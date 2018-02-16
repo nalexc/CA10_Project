@@ -1,1 +1,3 @@
 Why we can/can't neglect the motor inductance
+
+Minimize shaft weight, maximize reaction wheel weight
