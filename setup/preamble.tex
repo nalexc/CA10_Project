@@ -140,13 +140,26 @@
 % Bibliography
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %setting references (using numbers) and supporting i.a. Chicargo-style:
-\usepackage{etex}
-\usepackage{etoolbox}
-\usepackage{keyval}
-\usepackage{ifthen}
-\usepackage{url}
-\usepackage{csquotes}
-\usepackage[backend=biber, url=true, doi=true, style=numeric, sorting=none]{biblatex}
+%\usepackage[citestyle=authoryear,natbib=true]{biblatex}
+%\usepackage{etex}
+%\usepackage{etoolbox}
+%\usepackage{keyval}
+%\usepackage{ifthen}
+%\usepackage{url}
+%\usepackage{csquotes}
+%\usepackage[backend=biber, url=true, doi=true, style=numeric, sorting=none]{biblatex}
+%\addbibresource{setup/bibliography.bib}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+\usepackage{comment}
+
+\usepackage[
+backend=biber,
+style=numeric,
+sorting=ynt
+]{biblatex}
 \addbibresource{setup/bibliography.bib}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -186,7 +199,7 @@
 \usepackage{hyperref}
 \hypersetup{%
 	%pdfpagelabels=true,%
-	plainpages=false,%
+	plainpages=false,
 	pdfauthor={Author(s)},%
 	pdftitle={Title},%
 	pdfsubject={Subject},%
@@ -290,7 +303,6 @@ backgroundcolor=\color{lbcolor},
 \sisetup{detect-weight}
 
 \usepackage{enumitem}
-%\usepackage[citestyle=authoryear,natbib=true]{biblatex}
 
 % Figures - TIKZ
 \usepackage{tikz}
