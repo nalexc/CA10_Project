@@ -1,1 +1,65 @@
-\chapter{Angle control between satellites}
+\chapter{Modelling}\label{chap: modeling}
+%
+A widely used actuation system is reaction wheels which are spinning wheels and can exchange momentum with the spacecraft by increasing or decreasing the wheels speed. The rate of rotation can be adjusted by an electric motor and the magnitude of the wheels output torque is limited by the motors shaft torque. This chapter will provide characteristics of the chosen reaction wheels and BLDC motors along with the electrical and mechanical modelling of the motors for simulation purposes. 
+%
+\subsection*{Reaction wheels}
+%
+Since the focus of the current thesis is not on the design of reaction wheels, only few constraints are  taken into account for the selection of the wheels, such as the weight and the inertia. In order to minimize the total weight of the satellite, the weight of each wheel, is not overcome the weight of each motor. Furthermore, the chosen design gives higher inertia from the motor shaft, and can provide medium manoeuvrability in terms of time required to turn the satellite $90^o$ \cite{SIDI?}. The wheel inertia is \cite{flywheel design thesis} $I_{wheel} = 2.456 [gcm^2]$ and the weight is $w_{wheel} = 4.201 [g] $ compared to the motor weight $w_{motor} =6 [g] $ and the motor shaft inertia $I_{rotor} = 0.0249 [gcm^2]$  The characteristics of the selected motor can be found in \cite{chap: appendix}. The maximal speed of the motor is $\omega_{max}= 26700[rpm]$ and thus the maximum angular momentum that the system wheel-motor can provide can be found as \cite{SIDI}    
+%
+\begin{flalign*}
+	h_{max} = {I_{wheel}} {\omega_{max}} 
+\end{flalign*}
+%0.000114450
+which is found to be $1.144*10^{-4} [Kgm^2/s]$ for each wheel.	
+%
+%
+For 3 axis stabilization 3 wheels, each orthogonal to the principal axis, are enough but is not robust if one actuator fails. Redundancy is desired, requiring four or more wheels in positions oblique to all axis. The configuration of the wheels is chosen to be in tetrahedron shape since 4 reaction wheels system is more reliable and robust. The tetrahedron configuration will be discussed in an other chapter.  
+\subsection*{BLDC motor model}
+%
+
+In order to make the system more reliable and sufficient brush-less DC motors are chosen as actuators. BLDC motors are lighter compared to brushed with the same power output and do not causing sparking thus can be used in operations that demand long life and reliability.
+%
+Each motor consists of an electrical part and a mechanical part. The electrical part of the motor can be modelled using Kirchhoff's Voltage Law as
+%
+\begin{flalign}
+ V_{a} -V_{R}-V_{L} -V_{e} = 0
+\label{Kirchhoff}
+\end{flalign}
+%
+where $V_{a}$ is the voltage source, $V_{R}$ is the voltage drop across the resistance, $V_{L}$ is the voltage drop across the inductance and $V_{e}$ is the back emf. \Eqref{Kirchhoff} can be re written as 
+%
+\begin{flalign}
+	V_{a}= R_{a}i + L_{a}\dfrac{di}{dt}+ k_{e}\omega
+	\label{Kirchhoff2}
+\end{flalign}
+%
+ where $R_{a}$ [Ohm] is the armature resistance, $L_{a}$ [H] is the armature inductance and $k_{e}$ is the back emf coefficient.\cite{picture}    
+%
+%
+The mechanical part of the motor can be modelled as 
+%
+\begin{flalign}
+ k_{t}i  =J\dfrac{d\omega}{dt} + b\omega
+	\label{mechpart}
+\end{flalign}
+%
+where $J$ is the rotor moment of inertia, $k_{t}$ [Nm/A] is the motor torque coefficient and $b$ [Nm s/rad] is the viscous friction coefficient. Assuming the current will not increase rapidly in order not to harm the equipment, and moreover the electrical time constant $\tau_{e}=\dfrac{L}{R}$ is much smaller than the mechanical time constant $\tau_{m}=\dfrac{J}{b}$, the effect of the inductance can be neglected and the \eqref{mechpart} can be solved for $i$ and  replaced in \eqref{Kirchhoff2}\cite{permanent magnet}     
+%
+\begin{flalign}
+	i  =\dfrac{J}{k_{t}}\dfrac{d\omega}{dt} + \dfrac{b}{k_{t}}\omega
+	\label{mechpart2}
+\end{flalign}
+%
+\begin{flalign}
+\dfrac{RJ}{k_{t}}\dfrac{d\omega}{dt}+\dfrac{Rb}{k_{t}}\omega +k_{e}\omega = V_{a}
+	\label{mechpart3}
+\end{flalign}
+%
+by laplace transformed \eqref{mechpart3}, the first order transfer function from $V_{a}$ to $\Omega$ can be written as 
+%
+\begin{flalign}
+	\dfrac{\Omega(s)}{V_{a}(s)}= \dfrac{\dfrac{k_{t}}{Rb+k_{e}k_{t}}}{\dfrac{RJ}{Rb+k_{e}k_{t}}s+1}
+	\label{tf}
+\end{flalign}
+%
+where $\tau_{me} = \dfrac{RJ}{Rb+k_{e}k_{t}} $ is the time constant of the first order system.
