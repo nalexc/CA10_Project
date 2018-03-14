@@ -1,0 +1,22 @@
+\section{Desaturation}
+
+The reaction wheel DC motors and bearings have a limited angular velocity range they can operate in. When the velocity reaches the limit, the motor can no longer accelerate the wheel further in one direction, thus reducing controllability. To avoid this, the wheel velocity should be kept near zero. Usually the speed is above zero to avoid static friction in the bearings. Decreasing the reaction wheel speed by transferring its angular momentum is called desaturation.
+
+Reaction wheels are used to control the attitude of the satellite by transferring its angular momentum. Transferring the angular momentum back to the satellite body would be counterproductive, it should be discarded in a different way. Magnetorquers are ideal for desaturation since they can interact with the earth's magnetic field and are able to transfer angular momentum of the satellite body to earth. Since the earth's magnetic field is quite weak, the torque produced by magnetorquers are small compared to the torque of the reaction wheels. Reaction wheels can be used for fast attitude control while magnetorquers are good for gradually desaturating the reaction wheels. The angular momentum transfer happens through the satellite's body, but with the right control scheme the desaturation can be  completely decoupled from attitude control.
+
+Trégouët et al. \cite{DesatTregouet} developed a cascaded control method for reaction wheel desaturation. The method is a revised version of the so-called cross-product control law. It changes the magnetorquers' magnetic field based on the difference between the angular momentum of the reaction wheels and their reference angular momentum.
+
+\begin{equation}
+\tau_m = -\frac{\tilde{b}^\times(t)}{|\tilde{b}(t) |^2} k_p\left(h_w - h_{ref} \right)
+\end{equation}
+
+where  \todo{add the notations to nomenclature}
+
+
+
+body-fixed frame
+Static input allocation
+global asymptotic stability
+
+
+\cite{DesatYang}
