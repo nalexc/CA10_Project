@@ -12,6 +12,10 @@ Trégouët et al. \cite{DesatTregouet} developed a cascaded control method for r
 
 where  \todo{add the notations to nomenclature}
 
+The quasi-cascaded structure of the control law presented in \cite[Fig. 2.]{DesatTregouet}\todo{copy it here} includes the magnetorquer as the upper subsystem which outputs the rate of change of the total angular momentum of the system. The lower subsystem includes the attitude dynamics and the reaction wheel controller. The problem is that there's a feedback involved from the lower subsystem to the upper one, making $\dot{h}_t$ dependent on the attitude parameters. This means that desaturating the wheels can affect the attitude control loop. Since attitude control is more crucial than desaturation, the reverse would be desirable.  By reversing the ordering of the cascade, the interference can be eliminated.
+
+
+
 
 
 body-fixed frame
