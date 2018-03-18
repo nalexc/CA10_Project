@@ -141,6 +141,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %setting references (using numbers) and supporting i.a. Chicargo-style:
 %\usepackage[citestyle=authoryear,natbib=true]{biblatex}
+\usepackage[backend=bibtex8]{biblatex}
 %\usepackage{etex}
 %\usepackage{etoolbox}
 %\usepackage{keyval}
@@ -149,18 +150,19 @@
 %\usepackage{csquotes}
 %\usepackage[backend=biber, url=true, doi=true, style=numeric, sorting=none]{biblatex}
 %\addbibresource{setup/bibliography.bib}
+\bibliography{setup/bibliography.bib}
 
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 
 \usepackage{comment}
 
-\usepackage[
-backend=biber,
-style=numeric,
-sorting=ynt
-]{biblatex}
-\addbibresource{setup/bibliography.bib}
+%\usepackage[
+%backend=biber,
+%style=numeric,
+%sorting=ynt
+%]{biblatex}
+%\addbibresource{setup/bibliography.bib}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Misc
