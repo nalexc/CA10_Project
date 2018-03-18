@@ -4,7 +4,7 @@ A widely used actuation system is reaction wheels which are spinning wheels and 
 %
 \subsection*{Reaction wheels}
 %
-Since the focus of the current thesis is not on the design of reaction wheels, only few constraints are  taken into account for the selection of the wheels, such as the weight and the inertia. In order to minimize the total weight of the satellite, the weight of each wheel, is not overcome the weight of each motor. Furthermore, the chosen design gives higher inertia from the motor shaft, and can provide medium manoeuvrability in terms of time required to turn the satellite $90^o$ \cite{SIDI?}. The wheel inertia is \cite{flywheel design thesis} $I_{wheel} = 2.456 [gcm^2]$ and the weight is $w_{wheel} = 4.201 [g] $ compared to the motor weight $w_{motor} =8 [g] $ and the motor shaft inertia $I_{rotor} = 0.0249 [gcm^2]$  The characteristics of the selected motor can be found in \cite{chap: appendix}. The maximal speed of the motor is $\omega_{max}= 20000[rpm]$ and thus the maximum angular momentum that the system wheel-motor can provide can be found as \cite{SIDI}    
+Since the focus of the current thesis is not on the design of reaction wheels, only few constraints are  taken into account for the selection of the wheels, such as the weight and the inertia. In order to minimize the total weight of the satellite, the weight of each wheel, is not overcome the weight of each motor. Furthermore, the chosen design gives higher inertia from the motor shaft, and can provide medium manoeuvrability in terms of time required to turn the satellite $90^o$ \cite{SIDI?}. The wheel inertia is \cite{flywheel design thesis} $J_{wheel} = 2.456 [gcm^2]$ and the weight is $w_{wheel} = 4.201 [g] $ compared to the motor weight $w_{motor} =8 [g] $ and the motor shaft inertia $J_{rotor} = 0.0249 [gcm^2]$  The characteristics of the selected motor can be found in \cite{chap: appendix}. The maximal speed of the motor is $\omega_{max}= 20000[rpm]$ and thus the maximum angular momentum that the system wheel-motor can provide can be found as \cite{SIDI}    
 %
 \begin{flalign*}
 	h_{max} = {I_{wheel}} {\omega_{max}} 
@@ -62,7 +62,7 @@ by laplace transformed \eqref{mechpart3}, the first order transfer function from
 	\label{tf}
 \end{flalign}
 %
-where $\tau_{me} = \dfrac{RJ}{Rb+k_{e}k_{t}} $ is the time constant of the first order system for each motor. For four wheels, four motors are used in tetrahedron configuration.
+where $\tau_{me} = \dfrac{RJ}{Rb+k_{e}k_{t}} $ is the time constant of the first order system for each motor. For four wheels, four motors are used in tetrahedron configuration. The total moment of inertia of the motor-wheel system is the sum of individual moments $J = J_{wheel}+J_{rotor}$. Since $J_{wheel}\gg J_{rotor}$ the inertia of the rotor can be discarded.
 %
 \subsection*{Motor control}
 %
@@ -84,3 +84,7 @@ The root locus of one motor with PI controller is seen in the \figref{fig:rlocus
 \end{figure}
 %
 The closed loop system gives complex eigenvalues and fast response and is stable for a wide range of the adjustable parameters. 
+%
+ \chapter {Disturbing environmental torques}  \label{chap: distTorques}
+ %
+ Disturbance torques can be classified either as external or internal. Since the external disturbances are larger in magnitude compared to internal and can cause a change in the total momentum of the spacecraft, only these will be accounted. The external disturbing torques that will be discussed are aerodynamic, solar radiation and gravity gradient torque.
