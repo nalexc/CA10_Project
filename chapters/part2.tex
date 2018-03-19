@@ -1,9 +1,9 @@
 \chapter{Fault  analysis}
-\textit{In this chapter, probable faults in the system are examined using a Failure Mode and Effects Analysis (FMEA). Next, in order to find how probable a fault will happen and the effect of it, the severity and occurrance (SO) of faults is analyzed. It was decided that the fault analysis will be carry out only for the actuators (magnetorquers and momentum wheels).}
+\textit{In this chapter, probable faults in the system are examined using a \nomenclature{\textbf{FMEA}}{Failure Mode and Effects Analysis} Failure Mode and Effects Analysis (FMEA). Next, in order to find how probable a fault will happen and the effect of it, the severity and occurrance (SO) \nomenclature{\textbf{SO}}{Severity and Occurrance}  of faults is analyzed. It was decided that the fault analysis will be carry out only for the actuators (magnetorquers and momentum wheels).}
 
 A fault in a system can be seen as a sudden shift in the system functionality, nevertheless, it might not mean a total shutdown of the system. One way to see it is as a disturbance in the system, that might cause performance loss or serious deterioration to the system. On the other hand, a failure can be understood as a total shutdown of the system component. 
 
-In \figref{fig:1} a fault tolerant system is shown, which contains an autonomous supervisor that has the ability to switch between various controllers taking into account the type of fault that a component has. The spacecraft block illustrated in the picture is composed of a plant, actuators and sensors and is monitored by the fault detection and isolation (FDI) system, which include detectors that will feed informations to the supervisor in the eventuality of a fault. Based on the information received, the supervisor will establish if a fault occurred or not and in case of a fault the effectors will handle it. Figure \ref{fig:2} shows the procedure of how faults are handled with varius methods. The first step in Fault Analysis is fault modelling which uses a procedure called Failure Mode and Effects Analysis (FMEA).
+In \figref{fig:1} a fault tolerant system is shown, which contains an autonomous supervisor that has the ability to switch between various controllers taking into account the type of fault that a component has. The spacecraft block illustrated in the picture is composed of a plant, actuators and sensors and is monitored by the fault detection and isolation \nomenclature{\textbf{FDI}}{Fault Detection and Isolation} (FDI) system, which include detectors that will feed informations to the supervisor in the eventuality of a fault. Based on the information received, the supervisor will establish if a fault occurred or not and in case of a fault the effectors will handle it. Figure \ref{fig:2} shows the procedure of how faults are handled with varius methods. The first step in Fault Analysis is fault modelling which uses a procedure called FMEA.
 \begin{table}[H]
 	\begin{minipage}[b]{0.49\linewidth}
 		\centering
@@ -24,14 +24,12 @@ In \figref{fig:1} a fault tolerant system is shown, which contains an autonomous
 		\end{figure}
 	\end{minipage}
 \end{table}
-
 \subsection{Failure Mode and Effects Analysis}
 A FMEA analysis which is a bottom-up analysis method is performed for the components of the satellite. The main goal of FMEA is to identify possible faults and their effects on components. In order to evaluate how faults are propagated through the system, a FMEA scheme is constructed.
 Another aspect of FMEA analysis is that, the severity of a fault can be determined, which will offer the opportunity to prioritize the faults by severity and in this way focus on the important faults.
 
 In order to control the attitude of the satellite, two types of actuators are used: magnetorquers and momentum wheels. Potential faults are gather into a table which describes the effect and cause, while the satellite is orbiting.
 \subsubsection{Magnetorquers}
-
 \begin{table}[H]
 	\centering
 	\label{my-label}
@@ -40,34 +38,35 @@ In order to control the attitude of the satellite, two types of actuators are us
 		\multicolumn{3}{|c|}{\textit{\textbf{Magnetorquers}}}                                          \\ \hline
 		\multicolumn{3}{|c|}{Produces a magnetic field that interacts with Earth's magnetic field}                     \\ \hline
 		\textbf{Reference} & \textbf{Failure Effect} & \textbf{Failure Cause}                          \\ \hline
-		$MT_1$                 & Low magnetic field  & \begin{tabular}[c]{@{}l@{}}- Broken wire or bad soldering\\ - Component burned\end{tabular} \\ \hline
+		$MT_1$                 & Low magnetic field  & \begin{tabular}[c]{@{}l@{}}1) Broken wire or bad soldering\\ 2) Component burned\end{tabular} \\ \hline
 		$MT_2$                 & Maximum magnetic field power  & Short circuit to the power voltage   \\ \hline
-		$MT_3$                 & Wrong direction of the magnetic field & \begin{tabular}[c]{@{}l@{}}- Misalignment of the magnetorquer\\ - Short circuit of some parts of the \\ torquer to the power voltage \end{tabular} \\ \hline
+		$MT_3$                 & Wrong direction of the magnetic field & \begin{tabular}[c]{@{}l@{}} 1) Misalignment of the magnetorquer\\ 2) Short circuit of some parts of the \\ torquer to the power voltage \end{tabular} \\ \hline
 		$MT_4$                 & Wrong  power of the magnetic field                 & Floating supplay voltage                                            \\ \hline
 	\end{tabular}
 	\caption{Potential faults in the magnetorquers}
 \end{table}
+Description of faults in the magnetorquers:
 
-\subsubsection{Momentum wheels}
-
+\subsubsection{Reaction wheels}
 \begin{table}[H]
 	\centering
 	\label{my-label}
 	\begin{tabular}{|l|l|l|}
 		\hline
-		\multicolumn{3}{|c|}{\textit{\textbf{Momentum wheels}}}                                          \\ \hline
+		\multicolumn{3}{|c|}{\textit{\textbf{Reaction wheels}}}                                          \\ \hline
 		\multicolumn{3}{|c|}{Produces a torque about the satellite COM in order to rotate it }                     \\ \hline
 		\textbf{Reference} & \textbf{Failure Effect} & \textbf{Failure Cause}                          \\ \hline
-		$MW_1$                & Faulty orientation/alter the angular velocity & \begin{tabular}[c]{@{}l@{}} Shifting of the flywheel \\throughout launch or transport \\   \end{tabular} \\ \hline
-		$MW_2$                & Unable to control the rotation   & A difference in the power voltage  \\ \hline
-		$MW_3$                & No torque received& \begin{tabular}[c]{@{}l@{}} Short circuit to the ground\\  \end{tabular} \\ \hline
-		$MW_4$                & Increased rotations of the flywheel  & Broken wire or bad soldering                                          \\ \hline
+		$RW_1$                & Faulty orientation/alter the angular velocity & \begin{tabular}[c]{@{}l@{}} Shifting of the flywheel \\throughout launch or transport \\   \end{tabular} \\ \hline
+		$RW_2$                & Unable to control the rotation   & A difference in the power voltage  \\ \hline
+		$RW_3$                & No torque received& \begin{tabular}[c]{@{}l@{}} Short circuit to the ground\\  \end{tabular} \\ \hline
+		$RW_4$                & Increased rotations of the flywheel  & Broken wire or bad soldering                                          \\ \hline
 	\end{tabular}
-	\caption{Potential faults in the momentum wheels}
+	\caption{Potential faults in the reaction wheels}
 \end{table}
+Description of faults in the reaction wheels:
 \subsubsection{Severity and occurrence evaluation}
 The next step into Fault Analysis is the Fault Assessment that involves a Severity Occurrence analysis
-To investigate the faults that have the biggest rate of occurrence, the severity of the effects of failures and the probability of occurrence is determined based on the faults from FMEA. This procedure describes how to each fault receives a severity index (SO) and an occurrence index(OI). A table containing the serverity and occurrence for magnetorquers is shown as follows:
+To investigate the faults that have the biggest rate of occurrence, the severity of the effects of failures and the probability of occurrence is determined based on the faults from FMEA. This procedure describes how to each fault receives a severity index \nomenclature{\textbf{SO}}{Severity Index}(SO) and an occurrence index \nomenclature{\textbf{OI}}{Occurrence Index} (OI). A table containing the serverity and occurrence for magnetorquers is shown as follows:
 \begin{table}[H]
 	\centering
 	\label{11}
@@ -75,9 +74,9 @@ To investigate the faults that have the biggest rate of occurrence, the severity
 		\hline
 		\multicolumn{4}{|c|}{\textit{Magnetorquer}}                                                                                         \\ \hline
 		Reference & Severity & Occurrence                                          & SO Index                                      \\ \hline
-		$MT_1$     & 7        & \begin{tabular}[c]{@{}l@{}}- 5\\ - 4\end{tabular} & \begin{tabular}[c]{@{}l@{}}- 35\\- 28\end{tabular} \\ \hline
+		$MT_1$     & 7        & \begin{tabular}[c]{@{}l@{}} 5\\  4\end{tabular} & \begin{tabular}[c]{@{}l@{}} 35\\ 28\end{tabular} \\ \hline
 		$MT_2$       & 10       & 3       & 30                \\ \hline
-		$MT_3$       & 3        & \begin{tabular}[c]{@{}l@{}}- 2\\- 1\end{tabular} & \begin{tabular}[c]{@{}l@{}}- 6\\- 3\end{tabular} \\ \hline
+		$MT_3$       & 3        & \begin{tabular}[c]{@{}l@{}}- 2\\- 1\end{tabular} & \begin{tabular}[c]{@{}l@{}}6\\ 3\end{tabular} \\ \hline
 		$MT_4$       & 4        & 6                   & 24                  \\ \hline
 	\end{tabular}
 \caption{SO for magnetorquer}
@@ -90,10 +89,10 @@ The same procedure is done for momentum wheels as follows:
 		\hline
 		\multicolumn{4}{|c|}{\textit{Momentum wheels}}                                                                                         \\ \hline
 		Reference & Severity & Occurrence                                          & SO Index                                      \\ \hline
-		$MW_1$      & 1        & \begin{tabular}[c]{@{}l@{}}7\\ \end{tabular} & \begin{tabular}[c]{@{}l@{}}7\\ \end{tabular} \\ \hline
-		$MW_2$        & 1        & 4             & 4                                         \\ \hline
-		$MW_3$        & 2        & \begin{tabular}[c]{@{}l@{}}3\\\end{tabular} & \begin{tabular}[c]{@{}l@{}}8\\ \end{tabular} \\ \hline
-		$MW_4$        & 4        & 2     & 8               \\ \hline
+		$RW_1$      & 1        & \begin{tabular}[c]{@{}l@{}}7\\ \end{tabular} & \begin{tabular}[c]{@{}l@{}}7\\ \end{tabular} \\ \hline
+		$RW_2$        & 1        & 4             & 4                                         \\ \hline
+		$RW_3$        & 2        & \begin{tabular}[c]{@{}l@{}}3\\\end{tabular} & \begin{tabular}[c]{@{}l@{}}8\\ \end{tabular} \\ \hline
+		$RW_4$        & 4        & 2     & 8               \\ \hline
 	\end{tabular}
 	\caption{SO for momentum wheels}
 \end{table}
@@ -107,7 +106,7 @@ The severity index is computed using the following formula:
 \subsubsection{Fault propagation analysis}
 In order to observe how faults are propagated through the system and the effect of these faults, a FMEA scheme is constructed. Further computation will be on the appendix.
 \subsection{Fault detection and isolation}
-Next step into Fault Analysis is Structual Analysis that is described by Fault Detection and Isolation analysis.
+%Next step into Fault Analysis is Structual Analysis that is described by Fault Detection and Isolation analysis.
 
 \chapter{Attitude control}
 \section{Modelling}
@@ -130,18 +129,18 @@ where $h_{sat}$ is the angular momentum of the satellite, $\underline I_{s}$ is 
 
 Including the momentum wheels, the total angular momentum is given by:
 \begin{flalign}
-	{\vec{h_{tot}}} = \vec{h_{sat}} + \vec{h_{mw}}
+	{\vec{h_{tot}}} = \vec{h_{sat}} + \vec{h_{rw}}
 	\label{eq:ec4}
 \end{flalign} 
 where $\vec{h_{mw}}$ is the angular momentum of the momentum wheels.
 Therefore, the total angular momentum is described by:
 \begin{flalign}
-	{\vec{h_{tot}}} = {\underline I_{s}}{\vec{\omega}}+{\vec{h_{mw}}}
+	{\vec{h_{tot}}} = {\underline I_{s}}{\vec{\omega}}+{\vec{h_{rw}}}
 	\label{eq:ec5}
 \end{flalign}
 By rearranging terms, equation \ref{eq:ec5} becomes:
 \begin{flalign}
-	{\vec{\omega}} = {\underline I_{s}^{-1}} ({\vec{h_{tot}}}-{\vec{h_{mw}}})
+	{\vec{\omega}} = {\underline I_{s}^{-1}} ({\vec{h_{tot}}}-{\vec{h_{rw}}})
 	\label{eq:ec6}
 \end{flalign}
 
@@ -153,14 +152,14 @@ Using Euler's equation of motion, the time derivative of $\vec{h_{tot}}$ express
  \end{flalign}
 Subsequently, the angular velocity is separtated and expressed as:
 \begin{flalign}
-{\vec{\dot{\omega}}} = -\underline I_s ^{-1} \vec \omega \times \vec L -\underline I_s ^{-1} \vec {\dot{h}_{mw}} + \underline I_s ^{-1}(\vec{  N_{mt}} + \vec{  N_{dist}}) 
+{\vec{\dot{\omega}}} = -\underline I_s ^{-1} \vec \omega \times \vec L -\underline I_s ^{-1} \vec {\dot{h}_{rw}} + \underline I_s ^{-1}(\vec{  N_{mt}} + \vec{  N_{dist}}) 
 \label{eq:ec8}
 \end{flalign}
 Next, by replacing the cross product with a skew-symmetric matrix ${\underline S(\vec \omega)}$, \eqref{eq:ec8} becomes:
-\begin{flalign}&{\vec{\dot{\omega}}}={-\underline I_{s}^{-1}\underline S(\vec \omega)\underline I_{s}\vec \omega-\underline I_{s}^{-1}\underline S(\vec \omega)\vec h_{mw}-\underline I_s ^{-1}\vec{  N_{mw}} + \underline I_s ^{-1}(\vec{  N_{mt}} + \vec{  N_{dist}})}
+\begin{flalign}&{\vec{\dot{\omega}}}={-\underline I_{s}^{-1}\underline S(\vec \omega)\underline I_{s}\vec \omega-\underline I_{s}^{-1}\underline S(\vec \omega)\vec h_{rw}-\underline I_s ^{-1}\vec{  N_{rw}} + \underline I_s ^{-1}(\vec{  N_{mt}} + \vec{  N_{dist}})}
 \label{eq:ec9}
 \end{flalign}
-where $N_{mt}$ is the torque from the magnetorquers, $N_{mw}$ is the torque from the momentum wheels and the skew-symmetric matrix is:
+where $N_{mt}$ is the torque from the magnetorquers, $N_{rw}$ is the torque from the momentum wheels and the skew-symmetric matrix is:
 \begin{flalign}
 	{\underline S(\vec \omega)}
 	= 
@@ -173,7 +172,7 @@ where $N_{mt}$ is the torque from the magnetorquers, $N_{mw}$ is the torque from
 \end{flalign}
 Moreover, the torque set to the momentum wheels is equal to the time derivative of the angular momentum:
 \begin{flalign}
-    \vec {N_{mw}} =  {\vec{ \dot{h}_{mv}}}
+    \vec {N_{rw}} =  {\vec{ \dot{h}_{rv}}}
 	\label{eq:ec10}
 \end{flalign}
 \subsection{Spacecraft kinematic equation}
@@ -250,7 +249,7 @@ where $\underline \Omega$ is the skew symmetric matrix written in form:
 	\end{bmatrix} 
 	\label{eq:sm}
 \end{flalign}
-where the terms $\omega_u, \omega_v, \omega_w$ are the angular velocities.
+where the terms $\omega_u, \omega_v, \omega_w$ are the angular velocities componets.
 
 The rate of change in the orientation of the spacecraft $\vec{^s_i q(t)}$  can be found:
 \begin{flalign}
@@ -267,7 +266,7 @@ Putting together both dynamic and kinematic equation for the spacecraft, the sys
 	= 
 	\begin{bmatrix}
 		\frac{1}{2} \underline{ \Omega}_{(4\times4)} \vec{ ^s_i q(t)} \\
-		{-\underline{I}_{s}^{-1}\underline{S}(\vec{\omega})\underline{I}_{s}\vec{\omega}(t)-\underline{I}_{s}^{-1}\underline{S}(\vec{\omega})\vec{h_{mw}}-\underline{I}_{s}^{-1}\vec{N_{mw}}(t)+\underline{I}_{s}^{-1}[\vec{N_{mt}(t)}+\vec{N_{dis}}(t)}]
+		{-\underline{I}_{s}^{-1}\underline{S}(\vec{\omega})\underline{I}_{s}\vec{\omega}(t)-\underline{I}_{s}^{-1}\underline{S}(\vec{\omega})\vec{h_{rw}}-\underline{I}_{s}^{-1}\vec{N_{rw}}(t)+\underline{I}_{s}^{-1}[\vec{N_{mt}(t)}+\vec{N_{dis}}(t)}]
 	\end{bmatrix} 
 	\label{eq:seom}
 \end{flalign}
@@ -278,5 +277,5 @@ $\underline{\Omega}(\omega)$ is the $4\times4$ skew symmetric matrix \\
 $\underline{I}_{s}$ is the inertia matrix \\
 $\underline{S}(\omega)$ is the $3\times3$ skew symmetric matrix \\
 $\vec{N_{dis}}(t)$ is the disturbance torque \\
-$\vec{N_{mw}}$ is the torque from momentum wheels \\
+$\vec{N_{rw}}$ is the torque from momentum wheels \\
 $\vec{N_{mt}}$ is the torque from magnetorquers  \\
