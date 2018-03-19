@@ -199,3 +199,7 @@ TSWLatexianTemp*
 
 Worksheets/rapport/introduktion/intro.pdf
 Artical/Article - Copy.pdf
+
+#nomenclature file
+*.nls
+*.nlg

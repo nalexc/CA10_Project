@@ -335,3 +335,14 @@ backgroundcolor=\color{lbcolor},
 
 \usepackage[toc,xindy]{glossaries}
 \makeglossaries
+
+
+\usepackage{ifthen}
+\renewcommand{\nomgroup}[1]{%
+	\ifthenelse{\equal{#1}{R}}{\item[\textbf{Reference Frames}]}{%
+		\ifthenelse{\equal{#1}{A}}{\item[\textbf{Acronyms}]}{%
+			\ifthenelse{\equal{#1}{S}}{\item[\textbf{sets}]}{}}}
+}
+
+\renewcommand{\nompreamble}{
+	\input{chapters/nomenclature.tex}}
