@@ -36,17 +36,31 @@ In order to control the attitude of the satellite, two types of actuators are us
 	\begin{tabular}{|l|l|l|}
 		\hline
 		\multicolumn{3}{|c|}{\textit{\textbf{Magnetorquers}}}                                          \\ \hline
-		\multicolumn{3}{|c|}{Produces a magnetic field that interacts with Earth's magnetic field}                     \\ \hline
+		\multicolumn{3}{|c|}{Creates a magnetic field that interacts with Earth's magnetic field}                     \\ \hline
 		\textbf{Reference} & \textbf{Failure Effect} & \textbf{Failure Cause}                          \\ \hline
-		$MT_1$                 & Low magnetic field  & \begin{tabular}[c]{@{}l@{}}1) Broken wire or bad soldering\\ 2) Component burned\end{tabular} \\ \hline
-		$MT_2$                 & Maximum magnetic field power  & Short circuit to the power voltage   \\ \hline
-		$MT_3$                 & Wrong direction of the magnetic field & \begin{tabular}[c]{@{}l@{}} 1) Misalignment of the magnetorquer\\ 2) Short circuit of some parts of the \\ torquer to the power voltage \end{tabular} \\ \hline
-		$MT_4$                 & Wrong  power of the magnetic field                 & Floating supplay voltage                                            \\ \hline
+		$MT1$                 & Low magnetic field  & \begin{tabular}[c]{@{}l@{}}1) Broken wire or bad soldering\\ 2) Component burned\end{tabular} \\ \hline
+		$MT2$                 & Maximum magnetic field power  & Short circuit to the power voltage   \\ \hline
+		$MT3$                 & Wrong direction of the magnetic field & \begin{tabular}[c]{@{}l@{}} 1) Misalignment of the magnetorquer\\ 2) Short circuit of some parts of the \\ torquer to the power voltage \end{tabular} \\ \hline
+		$MT4$                 & Wrong  power of the magnetic field                 & Floating supplay voltage                                            \\ \hline
 	\end{tabular}
 	\caption{Potential faults in the magnetorquers}
 \end{table}
-Description of faults in the magnetorquers:
+Description of faults in the magnetorquers: 
 
+$\mathcal{F}_{MT1}$: 
+The coil it might have a broken wire or a bad soldering inside, that will lead to a poor generation of magnetic field from the magnetorqers. On the other hand, a component could be burned due to a fluctuation in the current.
+
+$\mathcal{F}_{MT2}$: 
+With a short circuit in the power supply, a maximum magnetic field power is expected.
+
+$\mathcal{F}_{MT3}$:
+A misalignment of the magnetorquer  due to transportation or a sudden shift during the launch, could affect the direction of the magnetic field.
+$\mathcal{F}_{MT4}$:  
+A variable supply voltage that could mean a positive or negative operation will end up with an error power of the magnetic field.
+
+The fault vector for the magnetorqers is constructed as follows:
+
+$\mathcal{F}_{MT}$ = [ \ $\mathcal{F}_{MT1}$ \ $\mathcal{F}_{MT2}$ \ $\mathcal{F}_{MT3}$ \ $\mathcal{F}_{MT4}$ ]$^ \mathsf{T}$
 \subsubsection{Reaction wheels}
 \begin{table}[H]
 	\centering
@@ -56,14 +70,30 @@ Description of faults in the magnetorquers:
 		\multicolumn{3}{|c|}{\textit{\textbf{Reaction wheels}}}                                          \\ \hline
 		\multicolumn{3}{|c|}{Produces a torque about the satellite COM in order to rotate it }                     \\ \hline
 		\textbf{Reference} & \textbf{Failure Effect} & \textbf{Failure Cause}                          \\ \hline
-		$RW_1$                & Faulty orientation/alter the angular velocity & \begin{tabular}[c]{@{}l@{}} Shifting of the flywheel \\throughout launch or transport \\   \end{tabular} \\ \hline
-		$RW_2$                & Unable to control the rotation   & A difference in the power voltage  \\ \hline
-		$RW_3$                & No torque received& \begin{tabular}[c]{@{}l@{}} Short circuit to the ground\\  \end{tabular} \\ \hline
-		$RW_4$                & Increased rotations of the flywheel  & Broken wire or bad soldering                                          \\ \hline
+		$RW1$                & Faulty orientation & \begin{tabular}[c]{@{}l@{}} Shifting of the flywheel  \\   \end{tabular} \\ \hline
+		$RW2$                & Unable to control the rotation   & A short-circuit in the power supply  \\ \hline
+		$RW3$                & Low power received& \begin{tabular}[c]{@{}l@{}} Short circuit to the ground\\  \end{tabular} \\ \hline
+		$RW4$                & No torque received  &  A fault in windings    \\ \hline
 	\end{tabular}
 	\caption{Potential faults in the reaction wheels}
 \end{table}
-Description of faults in the reaction wheels:
+Description of faults in the reaction wheels: 
+
+$\mathcal{F}_{RW1}$: 
+A displacement of the flywheel throughout launch or transportation could result in a error in the orientation that might alter the angular velocity of the satellite.
+
+$\mathcal{F}_{RW2}$: 
+A short-circuit in the power supply could influence the rotation of the flywheel, by having a low or maximum rotation, which will end up with a low or maximum power.
+
+$\mathcal{F}_{RW3}$:
+A short circuit to the ground due to a borken wire or bad soldering will result in low power generation, that could influence the rotation of the flywheel.
+
+$\mathcal{F}_{RW4}$:  
+Due to a fault in the windings, the flywheel will not be able to rotate, therefore, no torque will be received.
+
+The fault vector for the reaction wheels is constructed as follows:
+
+$\mathcal{F}_{RW}$ = [ \ $\mathcal{F}_{RW1}$ \ $\mathcal{F}_{RW2}$ \ $\mathcal{F}_{RW3}$ \ $\mathcal{F}_{RW4}$ ]$^ \mathsf{T}$
 \subsubsection{Severity and occurrence evaluation}
 The next step into Fault Analysis is the Fault Assessment that involves a Severity Occurrence analysis
 To investigate the faults that have the biggest rate of occurrence, the severity of the effects of failures and the probability of occurrence is determined based on the faults from FMEA. This procedure describes how to each fault receives a severity index \nomenclature{\textbf{SO}}{Severity Index}(SO) and an occurrence index \nomenclature{\textbf{OI}}{Occurrence Index} (OI). A table containing the serverity and occurrence for magnetorquers is shown as follows:
@@ -74,10 +104,10 @@ To investigate the faults that have the biggest rate of occurrence, the severity
 		\hline
 		\multicolumn{4}{|c|}{\textit{Magnetorquer}}                                                                                         \\ \hline
 		Reference & Severity & Occurrence                                          & SO Index                                      \\ \hline
-		$MT_1$     & 7        & \begin{tabular}[c]{@{}l@{}} 5\\  4\end{tabular} & \begin{tabular}[c]{@{}l@{}} 35\\ 28\end{tabular} \\ \hline
-		$MT_2$       & 10       & 3       & 30                \\ \hline
-		$MT_3$       & 3        & \begin{tabular}[c]{@{}l@{}}- 2\\- 1\end{tabular} & \begin{tabular}[c]{@{}l@{}}6\\ 3\end{tabular} \\ \hline
-		$MT_4$       & 4        & 6                   & 24                  \\ \hline
+		$MT1$     & 7        & \begin{tabular}[c]{@{}l@{}} 5\\  4\end{tabular} & \begin{tabular}[c]{@{}l@{}} 35\\ 28\end{tabular} \\ \hline
+		$MT2$       & 10       & 3       & 30                \\ \hline
+		$MT3$       & 3        & \begin{tabular}[c]{@{}l@{}}2\\ 1\end{tabular} & \begin{tabular}[c]{@{}l@{}}6\\ 3\end{tabular} \\ \hline
+		$MT4$       & 4        & 6                   & 24                  \\ \hline
 	\end{tabular}
 \caption{SO for magnetorquer}
 \end{table}
@@ -87,12 +117,12 @@ The same procedure is done for momentum wheels as follows:
 	\label{12}
 	\begin{tabular}{|l|l|l|l|}
 		\hline
-		\multicolumn{4}{|c|}{\textit{Momentum wheels}}                                                                                         \\ \hline
+		\multicolumn{4}{|c|}{\textit{Reaction wheels}}                                                                                         \\ \hline
 		Reference & Severity & Occurrence                                          & SO Index                                      \\ \hline
-		$RW_1$      & 1        & \begin{tabular}[c]{@{}l@{}}7\\ \end{tabular} & \begin{tabular}[c]{@{}l@{}}7\\ \end{tabular} \\ \hline
-		$RW_2$        & 1        & 4             & 4                                         \\ \hline
-		$RW_3$        & 2        & \begin{tabular}[c]{@{}l@{}}3\\\end{tabular} & \begin{tabular}[c]{@{}l@{}}8\\ \end{tabular} \\ \hline
-		$RW_4$        & 4        & 2     & 8               \\ \hline
+		$RW1$      & 1        & \begin{tabular}[c]{@{}l@{}}7\\ \end{tabular} & \begin{tabular}[c]{@{}l@{}}7\\ \end{tabular} \\ \hline
+		$RW2$        & 1        & 4             & 4                                         \\ \hline
+		$RW3$        & 2        & \begin{tabular}[c]{@{}l@{}}3\\\end{tabular} & \begin{tabular}[c]{@{}l@{}}8\\ \end{tabular} \\ \hline
+		$RW4$        & 4        & 2     & 8               \\ \hline
 	\end{tabular}
 	\caption{SO for momentum wheels}
 \end{table}
@@ -144,7 +174,7 @@ By rearranging terms, equation \ref{eq:ec5} becomes:
 	\label{eq:ec6}
 \end{flalign}
 
-Using Euler's equation of motion, the time derivative of $\vec{h_{tot}}$ expressed in the ECI frame is:\todo{maybe a more thorough description of the 1st eq like in witch frame is described}
+Using Euler's equation of motion, the time derivative of $\vec{h_{tot}}$ expressed in the ECI frame is:
 \begin{flalign}
 	&	\vec{ \dot h_{tot}} = \vec{ \dot h_{sat}} + \vec \omega \times \vec h= \vec{  N_{mt}} + \vec{  N_{dist}} \\
 	 &\underline I_s {\vec{\dot{\omega}}} + \vec {\dot{h}_{rw}}+ \vec \omega \times \vec L = \vec{  N_{mt}} + \vec{  N_{dist}} 
@@ -172,7 +202,7 @@ where $N_{mt}$ is the torque from the magnetorquers, $N_{rw}$ is the torque from
 \end{flalign}
 Moreover, the torque set to the momentum wheels is equal to the time derivative of the angular momentum:
 \begin{flalign}
-    \vec {N_{rw}} =  {\vec{ \dot{h}_{rv}}}
+    \vec {N_{rw}} =  {\vec{ \dot{h}_{rw}}}
 	\label{eq:ec10}
 \end{flalign}
 \subsection{Spacecraft kinematic equation}
