@@ -1,10 +1,17 @@
 \chapter{Introduction}\label{chap:Introduction}
 
-Satellites are no longer the privilege of just a handful of economic powerhouses such as nations or mega companies. There are currently 1738 active satellites orbiting Earth, 129 of it is categorized as having civil uses, created mostly for educational purposes.
+Satellites are no longer the privilege of just a handful of economic powerhouses such as nations or mega companies. There are currently 1738 active satellites orbiting Earth, 129 of it is categorized as having civil uses, created mostly for educational purposes \cite{SatSummary}. The ongoing AAUSAT project at Aalborg University is part of this educational effort. AAUSATs are mostly student built low-cost picosatellites, 5 of them already in orbit, the next one is currently in development \cite{aausatsite}. \todo{nomenclature picosat}. The mission goal of each of them include taking pictures of Earth and celestial objects and downlink them, or even tracking objects on Earth's surface. These require precise attitude control of the satellite. 
+
+Satellite attitude control differs fundamentally from the attitude control of earthbound objects, and is more challenging, as there is no direct mechanical connection available to other objects. Thus attitude control can be achieved using different interactions, such as transferring angular momentum between components of the satellite, utilizing the magnetic field of Earth or solar sails, or occasionally rocket propellants.
+
+ While the satellites themselves can be chosen to be engineered relatively cheaply, there is no avoiding the high cost of putting the satellite into orbit. Many efforts were made recently to reduce this cost.  Since the cost is highly dependent on the weight of the satellite, thus by minimizing the weight, a lot of money can be saved. The per kilogram cost of putting an object to LEO orbit in the case of Falcon Heavy, 1655 USD \cite{spaceX}, however this price only applies for 54400 kg payload. There are rockets missions with the purpose of putting several satellites into orbit, thus reducing the cost for individual satellites. AAU CUBESAT with its 1 kg weight cost 49000 USD to put in orbit \cite{AAUSATpres}.
+ 
+ The weight constraint had to be taken into account when designing each component of the satellite. For the attitude control system it means that using propellants is out of question. To make quick attitude control possible, reaction wheels are used as actuators, supported by magnetorquers for desaturation. 
+ 
+ Since putting satellites into orbit is quite costly, a lot of effort is made to prevent system failures. The satellite is designed to withstand extreme temperature changes, large accelerations during launch etc. Every part is made to last as long as possible. In order to be able to handle faults in actuators, a fault-tolerant control scheme is implemented. 
 
 
- While the satellites themselves can be chosen to be engineered relatively cheaply, there is no avoiding the high cost of putting the satellite into orbit. Many efforts were made recently to reduce this cost.  Since the cost is highly dependent on the weight of the satellite, thus by minimizing the weight, a lot of money can be saved. The per kilogram cost of putting an object to LEO orbit in the case of Falcon Heavy, 1655 USD \cite{spaceX}, however this price only applies for 54400 kg payload. There are rockets missions with the purpose of putting several satellites into orbit, thus reducing the cost for individual satellites. AAU CUBESAT cost 49000 USD to put in orbit \cite{AAUSATpres}. \todo{find weight}
-
+\todo{discuss control methods in previous aausats}
 
 \section{Problem statement}
 
