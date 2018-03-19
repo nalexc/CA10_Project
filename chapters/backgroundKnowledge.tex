@@ -4,15 +4,15 @@
 
 Using different reference frame for different calculations can simplify equations. Values in one reference frame can be converted into the other by using the proper transformations.
 Inertial frames of reference are frames where Newton's 3 laws of dynamics apply.
-The most used reference frames for earth-orbiting satellites are Earth Centered Inertial Frame (ECI), Earth Centered Earth Fixed Frame (ECEF), Orbit Frame, Body-Fixed Frame  \cite{ref1} \cite{ref2}.
+The most used reference frames for Earth-orbiting satellites are Earth Centered Inertial Frame (ECI), Earth Centered Earth Fixed Frame (ECEF), Orbit Frame, Body-Fixed Frame  \cite{ref1} \cite{ref2}.
 
 \subsubsection{Earth Centered Inertial Frame (ECI)}
-Earth is rotating and is orbiting the Sun, it accelerates in the direction of the Sun's center of mass, the Sun is orbiting the center of the Milky Way, etc. Thus the frame fixed to Earth's surface is not an inertial frame- But in the case of earth orbiting satellites, there exists a coordinate system attached to Earth's center that out of practical considerations can be treated as one, the Earth Centered Inertial Frame (ECI).
+Earth is rotating and is orbiting the Sun, it accelerates in the direction of the Sun's center of mass, the Sun is orbiting the center of the Milky Way, etc. Thus there is no frame fixed to Earth's center that is an inertial frame per se. But in the case of earth orbiting satellites, there exists a coordinate system attached to Earth's center that out of practical considerations can be treated as one, the Earth Centered Inertial Frame (ECI).
 As the name suggests, the origin of the coordinate system is the center of earth. Inertial means that the frame doesn't rotate, the direction of stars remain the same. 
 ECI is a cartesian coordinate system. Its $z$ vector points in the direction of the northern axis of rotation, while the $x$ axis towards the vernal equinox. The $y$ axis completes the triad of the right-handed cartesian coordinate system.
 
-The vernal equinox is the vector pointing towards the Sun's center during the equinox (20th of March in 2018). The $x$ vector also keeps its direction relative to the stars.
-\todo{transfer ve to nomenclature}
+
+\nomenclature[T]{\textbf{Vernal Equinox}}{The vernal equinox is the vector pointing towards the Sun's center during the equinox (20th of March in 2018). The $x$ vector also keeps its direction relative to the stars.}
 
 
 \subsubsection{Earth Centered Earth Fixed Frame (ECEF)}
@@ -23,10 +23,10 @@ ECEF, similarly to ECI is centered at the Earth's origin. Its $z$ vector points 
 
 The Orbital Frame is centered at the center of mass of the satellite. The $z$ axis points towards the center of Earth, $x$ points in the direction of the satellite's velocity, while $y$ is the normal vector for the orbital plane. The 3 axes make up an orthogonal triad.
 
-\todo{explain nadir}
+\nomenclature[T]{\textbf{Nadir}}{? the precise definition in satellite talk?}
 
 \subsubsection{Body-Fixed Frame ()}
 
-The orientation of the frame is arbitrary, but due to practical considerations the axis are usually chosen to line up with the principal axes of inertia of the body. As the name suggests, it follows the satellit's rotation.
+Body-fixed frames are attached to the satellite's body, but the orientation of the frame in relation to the body is arbitrary. Due to practical considerations the axes are usually chosen to line up with the principal axes of inertia of the body.
 
 \input{chapters/background/quaternion.tex}

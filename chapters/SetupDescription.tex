@@ -2,23 +2,23 @@
 
 \section{Reaction Wheels}
 
-One method of controlling a spacecraft's attitude is by using either reaction or momentum wheels attached to the spacecraft's body with fixed axes. By controlling the wheel's angular velocity using a motor, the amount of angular momentum stored in the wheel can be controlled. If there are no external forces involved, the sum of angular momentum in the system made up by the spacecraft's body and the reaction wheels is constant. This means that by increasing the angular velocity of the wheels, the satellite body's angular momentum can be reduced. This angular momentum transfer can be used to control the attitude of the satellite. If the goal is to change the angular momentum of the whole satellite, actuators that have external interaction should be used. Such actuators include magnetorquers and  \todo{list actuators}.
+One method of controlling a spacecraft's attitude is by using either reaction or momentum wheels attached to the spacecraft's body. By controlling the wheel's angular velocity using a motor, the amount of angular momentum stored in the wheel can be controlled. If there are no external forces involved, the sum of angular momentum in the system made up by the spacecraft's body and the reaction wheels is constant. This means that by increasing the angular velocity of the wheels, the satellite body's angular momentum can be reduced. This angular momentum transfer can be used to control the attitude of the satellite. If the goal is to change the angular momentum of the whole satellite, actuators that have external interaction should be used, such as magnetorquers or solar sails.
 
-The difference between momentum and reaction wheels is that the nominal angular velocity of momentum wheels is high in order to store angular momentum, and in the case of momentum wheels, low. Many momentum wheels still turn at an angular velocity larger than zero in order to avoid \todo{static friction, sticking?}.
+The difference between momentum and reaction wheels is that the nominal angular velocity of momentum wheels is high in order to store angular momentum, and in the case of reaction wheels, low. Many momentum wheels still turn at an angular velocity larger than zero in order to avoid static friction in the bearings. Reaction wheels usually make up only a small fraction of a satellite's weight. They rely on being able to run at high speeds, making their angular momentum significant. The small weight ratio makes precise controlling easier.
 
-\todo{find cost of sending 1 kg to space}
-One design consideration for momentum wheels is maximizing moment of inertia for unit weight. This is done by distributing most of the material near the outskirts of the wheel. There is a trade-off between having most of the mass at the outskirts and durability at high angular velocities. 
-Reaction wheels usually make up only a small fraction of a satellite's weight \todo{numbers}. They rely on being able to run at high speeds, making their angular momentum significant. The small weight ratio makes precise controlling easier.
 
-Reaction wheels have an angular velocity limitation. This means that if a reaction wheel reaches its maximum angular velocity, it can no longer generate a torque on the satellite's body in one direction. In this scenario the system's controllability decreases, thus it should be avoided. An angular momentum unloading strategy should be designed to avoid it. Instead of returning the angular momentum to the satellite's body, often unloading the angular momentum of the system is preferred. Magnetorquers can be used for such purposes.
+%One design consideration for reaction wheels is maximizing moment of inertia for unit weight. This is done by distributing most of the material near the outskirts of the wheel. There is a trade-off between having most of the mass at the outskirts and durability at high angular velocities. 
 
-Moving parts are usually prone to failures. Reaction wheels are expected to run at high angular velocities, which wears down the lubrication and the bearings. Reaction wheels equipped with active magnetic bearings are in development \cite{GERLACH2006572}. These can eliminate friction from the system and by controlling the bearing, can even reduce micro-vibrations, increasing the durability of the system. AAUSAT \todo{number} itself however uses classical reaction wheel bearings.
+
+Reaction wheels have an angular velocity limitation. This means that if a reaction wheel reaches its maximum angular velocity, it can no longer generate a torque on the satellite's body in one direction. In this scenario the system's controllability decreases, thus it should be avoided. An angular momentum unloading strategy should be designed to avoid it. Instead of returning the angular momentum to the satellite's body, unloading the angular momentum through other methods is preferred. Magnetorquers can be used for such purposes.
+
+Moving parts are usually prone to failures. Reaction wheels are expected to run at high angular velocities, which wears down the lubrication and the bearings. Reaction wheels equipped with active magnetic bearings are in development \cite{MagneticReactWheel}. These can eliminate friction from the system and by controlling the bearing, can even reduce micro-vibrations, increasing the durability of the system. AAUSAT-II itself however uses mechanical wheel bearings.
 
 \subsection{Reaction Wheel Configuration}
 
 angular acceleration demand \cite{ReactionWheelConfigSim} \cite{ReactConfigThesis}
 
-gps orientation, earth station
+gps orientation, Earth station
 
 Tetrahedron configuration can output twice as much force along an axis as one wheel can produce along its own axis.
 
@@ -38,4 +38,3 @@ N = A^R \textbf{$N_c$} + k\left(1,-1,-1,1\right)
 
 The torque demand for the satellite's body
 
-\nomenclature{$\underline{A}$}{Transformation matrix}

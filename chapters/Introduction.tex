@@ -1,6 +1,8 @@
 \chapter{Introduction}\label{chap:Introduction}
 
-Satellites are no longer the privilege of just a handful of economic powerhouses such as nations or mega companies. There are currently 1738 active satellites orbiting Earth, 129 of it is categorized as having civil uses, created mostly for educational purposes \cite{SatSummary}. The ongoing AAUSAT project at Aalborg University is part of this educational effort. AAUSATs are mostly student built low-cost picosatellites, 5 of them already in orbit, the next one is currently in development \cite{aausatsite}. \todo{nomenclature picosat}. The mission goal of each of them include taking pictures of Earth and celestial objects and downlink them, or even tracking objects on Earth's surface. These require precise attitude control of the satellite. 
+Satellites are no longer the privilege of just a handful of economic powerhouses such as nations or mega companies. There are currently 1738 active satellites orbiting Earth, 129 of it is categorized as having civil uses, created mostly for educational purposes \cite{SatSummary}. The ongoing AAUSAT project at Aalborg University is part of this educational effort. AAUSATs are mostly student built low-cost picosatellites, 5 of them already in orbit, the next one is currently in development \cite{aausatsite}. 
+\nomenclature[T]{\textbf{Picosatellite}}{Picosatellites are small satellites with mass between 0.1 and 1 kg.}
+ The mission goal of each of them include taking pictures of Earth and celestial objects and downlink them, or even tracking objects on Earth's surface. These require precise attitude control of the satellite. 
 
 Satellite attitude control differs fundamentally from the attitude control of earthbound objects, and is more challenging, as there is no direct mechanical connection available to other objects. Thus attitude control can be achieved using different interactions, such as transferring angular momentum between components of the satellite, utilizing the magnetic field of Earth or solar sails, or occasionally rocket propellants.
 
@@ -10,13 +12,16 @@ Satellite attitude control differs fundamentally from the attitude control of ea
  
  Since putting satellites into orbit is quite costly, a lot of effort is made to prevent system failures. The satellite is designed to withstand extreme temperature changes, large accelerations during launch etc. Every part is made to last as long as possible. In order to be able to handle faults in actuators, a fault-tolerant control scheme is implemented.
  
-
-
+ 
+ \nomenclature[A]{AAUSAT}{The name of the satellites developed at Aalborg University} 
+ 
+ 
+ \nomenclature[T]{Precession}{} 
+ 
 \todo{discuss control methods in previous aausats}
 
 \section{Problem statement}
 
-\newglossaryentry{AAUSAT}{name={AAUSAT},description={Cool-ass picosatellite}}
 
 \section{Use-case}\label{sec:useCase}
 
