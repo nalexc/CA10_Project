@@ -7,20 +7,84 @@ Reaction wheels are used to control the attitude of the satellite by transferrin
 Trégouët et al. \cite{DesatTregouet} developed a cascaded control method for reaction wheel desaturation. The method is a revised version of the so-called cross-product control law. It changes the magnetorquers' magnetic field based on the difference between the angular momentum of the reaction wheels and their reference angular momentum.
 
 \begin{equation}
-\tau_m = -\frac{\tilde{b}^\times(t)}{|\tilde{b}(t) |^2} k_p\left(h_w - h_{ref} \right)
+\vec{\tau_m} = -\frac{\underline{\tilde{b}}^\times(t)}{|\vec{\tilde{b}}(t) |^2} k_p\left(\vec{h_w} - \vec{h_{ref}} \right)
 \end{equation}
 
 where  \todo{add the notations to nomenclature}
 
-The quasi-cascaded structure of the control law presented in \cite[Fig. 2.]{DesatTregouet}\todo{copy it here} includes the magnetorquer as the upper subsystem which outputs the rate of change of the total angular momentum of the system. The lower subsystem includes the attitude dynamics and the reaction wheel controller. The problem is that there's a feedback involved from the lower subsystem to the upper one, making $\dot{h}_t$ dependent on the attitude parameters. This means that desaturating the wheels can affect the attitude control loop. Since attitude control is more crucial than desaturation, the reverse would be desirable.  By reversing the ordering of the cascade, the interference can be eliminated.
+The quasi-cascaded structure of the control law includes the magnetorquer as the upper subsystem which outputs the rate of change of the total angular momentum of the system \ref{fig:CascadeDesat}. The lower subsystem includes the attitude dynamics and the reaction wheel controller. The problem is that there's a feedback involved from the lower subsystem to the upper one, making $\dot{h}_t$ dependent on the attitude parameters. This means that desaturating the wheels can affect the attitude control loop. Since attitude control is more crucial than desaturation, the reverse would be desirable.  By reversing the ordering of the cascade, the interference can be eliminated.
 
 
+\begin{figure}[h]
+	\centering
+	\begin{tabular}{@{}c@{\hspace{.5cm}}c@{}}
+		\includegraphics[page=1,width=1\textwidth]{quasiCascadeDesat.pdf}
+	\end{tabular}
+	\caption{Quasi cascaded desaturation control scheme \cite[Fig. 2.]{DesatTregouet}}
+	\label{fig:quasiCascadeDesat}
+\end{figure}
+
+\begin{equation}
+\underline{J}\vec{\omega} + \underline{\omega}^\times\underline{J}\vec{\dot{\omega}} = \vec{u}
+\end{equation}
+
+\begin{equation}
+\vec{\tau_m}^{[I]} = -\frac{\underline{\tilde{b}}^\times(t)}{|\vec{\tilde{b}}(t) |^2} k_p\left(\vec{h_w}^{[I]} - \underline{R}^T(\vec{q})\vec{h_{ref}} \right)
+\end{equation}
+
+\todo{make it a system of equations}
+
+%\begin{equation}
+%\dot{x}_c = 0, (\vec{q},\vec{\omega},x_c) \in C\
+%\end{equation}
+%
+%\begin{equation}
+%x_c^+ = -x_c, (\vec{q},\vec{\omega},x_c) \in D\
+%\end{equation}
+%
+%\begin{equation}
+%\vec{u} = -c x_c \epsilon -K_\omega \vec{\omega}
+%\end{equation}
+%
+%\begin{equation}
+%C:= \left\lbrace (\vec{q},\vec{\omega},x_c) \in \mathbb{S}^3 \times \mathbb{R}^3 \times \left\lbrace -1,1 \right\rbrace : x_c\eta \geq -\delta \right\rbrace 
+%\end{equation}
+%
+%\begin{equation}
+%D:= \left\lbrace (\vec{q},\vec{\omega},x_c) \in \mathbb{S}^3 \times \mathbb{R}^3 \times \left\lbrace -1,1 \right\rbrace : x_c\eta \leq -\delta \right\rbrace 
+%\end{equation}
+
+as shown in \ref{eq:finaleq}
+\begin{flalign}
+\vec{ ^s_i\dot q(t)}  = \dfrac{1}{2} \underline \Omega \  \vec{^s_i q(t)}
+\end{flalign} 
+
+\[
+\begin{array}{l}
+
+\dot{x}_c = 0, (\vec{q},\vec{\omega},x_c) \in C\ \\ 
+x_c^+ = -x_c, (\vec{q},\vec{\omega},x_c) \in D\ \\ 
+\vec{u} = -c x_c \epsilon -K_\omega \vec{\omega} \\
+C:= \left\lbrace (\vec{q},\vec{\omega},x_c) \in \mathbb{S}^3 \times \mathbb{R}^3 \times \left\lbrace -1,1 \right\rbrace : x_c\eta \geq -\delta \right\rbrace  \\
+
+D:= \left\lbrace (\vec{q},\vec{\omega},x_c) \in \mathbb{S}^3 \times \mathbb{R}^3 \times \left\lbrace -1,1 \right\rbrace : x_c\eta \leq -\delta \right\rbrace 
+\end{array}
+\]
 
 
+\begin{figure}[h]
+	\centering
+	\begin{tabular}{@{}c@{\hspace{.5cm}}c@{}}
+		\includegraphics[page=1,width=1\textwidth]{cascadeDesat.pdf}
+	\end{tabular}
+	\caption{Cascaded desaturation control scheme  \cite[Fig. 4.]{DesatTregouet}}
+	\label{fig:CascadeDesat}
+\end{figure}
 
-body-fixed frame
-Static input allocation
-global asymptotic stability
+\todo{
+	body-fixed frame
+	Static input allocation
+	global asymptotic stability}
 
 
 \cite{DesatYang}
