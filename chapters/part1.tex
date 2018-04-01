@@ -2,7 +2,7 @@
 %
 A widely used actuation system is reaction wheels which are spinning wheels and can exchange momentum with the spacecraft by increasing or decreasing the wheels speed. The rate of rotation can be adjusted by an electric motor and the magnitude of the wheels output torque is limited by the motors shaft torque. This chapter will provide characteristics of the chosen reaction wheels and BLDC motors along with the electrical and mechanical modelling of the motors for simulation purposes. 
 %
-\subsection*{Reaction wheels}
+\subsection*{Reaction wheels} \todo{merge with other reaction wheel section}
 %
 Since the focus of the current thesis is not on the design of reaction wheels, only few constraints are  taken into account for the selection of the wheels, such as the weight and the inertia. In order to minimize the total weight of the satellite, the weight of each wheel, is not overcome the weight of each motor. Furthermore, the chosen design gives higher inertia from the motor shaft, and can provide medium manoeuvrability in terms of time required to turn the satellite $90^o$ \cite{SIDI?}. The wheel inertia is \cite{flywheel design thesis} $J_{wheel} = 2.456 [gcm^2]$ and the weight is $w_{wheel} = 4.201 [g] $ compared to the motor weight $w_{motor} =8 [g] $ and the motor shaft inertia $J_{rotor} = 0.0249 [gcm^2]$  The characteristics of the selected motor can be found in \cite{chap: appendix}. The maximal speed of the motor is $\omega_{max}= 20000[rpm]$ and thus the maximum angular momentum that the system wheel-motor can provide can be found as \cite{SIDI}    
 %
@@ -95,7 +95,7 @@ the block diagram of the system can be seen in \figref{fig:blockdi} where $\tau_
 \end{figure}
 %
 \subsection*{Motor control}
-%
+ \todo{more details about previous work}
 In previous work, two controllers a linear and a non-linear(SMC), have been designed requiring a torque that has to be produced from the motors-wheel system. This torque demand is used to give the desired angular velocity reference for the wheels and thus the torque that will be fed back to the satellite as seen in the \cite{block diagram}. The output torque from the linear and non-linear controllers has three elements which has to be transformed in the tetrahedron configuration using the matrix \eqref{tetrahedron}  A PI controller has been designed to control the angular velocity of the motor as seen in the \figref{fig:blockdi222} .
 \\
 \begin{figure}[H]
@@ -111,7 +111,7 @@ The PI controller gains are chosen based on the open loop system response using 
 	k_{p} = 3.4 \\ k_{i} = 0.9
 \end{flalign*}
 % 
-
+\todo{make figure bigger}
 The root locus of one motor with PI controller is seen in the \figref{fig:rlocus33}
 %
 \begin{figure}[H]
@@ -125,9 +125,10 @@ The closed loop system gives complex eigenvalues and fast response and is stable
 %
 
 %
-\chapter {Environmental disturbing torques}  \label{chap: distTorques}
+\chapter {Environmental disturbance torques}
+  \label{chap: distTorques}
 %
-Disturbance torques can be classified either as external or internal. Since the external disturbances are larger in magnitude compared to internal and can cause a change in the total momentum of the spacecraft, only these will be accounted. The external disturbing torques that will be discussed are aerodynamic, solar radiation and gravity gradient torque.
+Disturbance torques can be classified either as external or internal \todo{dont distuingish between external and internal}. Since the external disturbances are larger in magnitude compared to \todo{reference} internal and can cause a change in the total momentum of the spacecraft, only these will be accounted. The external disturbing torques that will be discussed are aerodynamic, solar radiation and gravity gradient torque.
 \subsection*{Aerodynamic disturbance torque}\label{chap: disturbances}
 %
 Gas molecules, in a LEO(low Earth orbit) collide with the surface of the satellite causing
@@ -165,14 +166,14 @@ where $F_s$ is the intensity or mean energy flux given as 1358 [$W/m^2$] and $c$
 	\vec {F_{rad}} = C_{a} P A \ \hat{S}
 	\label{eq:Pres}
 \end{flalign}
-where $C_{a}\in [0,2]$ is the absorption coefficient which depends on the material of the satellite with 2 be the value of totally reflected beam, $P$ is the solar flux, $A$ is the radiated surface area, and $\hat{S} =\frac{\vec {r_{sun,sat}}}{||\vec {r_{sun,sat}}||}$ is the unit vector from the satellite to the sun. The solar radiation torque can be computed as 
+where $C_{a}\in [0,2]$ is the absorption coefficient which depends on the material of the satellite with 2 \todo{decide if 1.5 or 2 should be used} be the value of totally reflected beam, $P$ is the solar flux, $A$ is the radiated surface area, and $\hat{S} =\frac{\vec {r_{sun,sat}}}{||\vec {r_{sun,sat}}||}$ is the unit vector from the satellite to the sun. The solar radiation torque can be computed as 
 \begin{flalign}
 	\vec N_{drag} = \vec r_{s} \times  \vec F_{rad} 
 	\label{eq:solar}
 \end{flalign}
 where $\vec r_{s}$ is the vector from the center of mass of the satellite to the center of pressure.
 %
-\subsection*{Gravity Gradient disturbance torque and $J_2$  perturbation}\label{chap: disturbances3}
+\subsection*{Gravity Gradient disturbance torque and $J_2$  perturbation}\label{chap: disturbances3} \todo{separate}
 %
 Due to the non spherical mass distribution and non homogeneity of the Earth, a pertubative gravitational force($J_{2}$ perturbation)\cite{SADC}\cite{our report} exerted on the satellite determining its orbit difference compared to ideal mathematical models.
 Contrary to this, in order to derive an expression for the gravitational torque exerted about the mass centre of the satellite, it will be assumed symmetrical, spherical distribution of the Earth's mass\cite{SADC} with this assumption be valid by comparing the magnitude of the gravity gradient with the other pertubative torques.     
