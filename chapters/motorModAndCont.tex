@@ -40,7 +40,7 @@ where $V_{a}$ is the voltage source, $V_{R}$ is the voltage drop across the resi
 		\centering
 		\begin{figure}[H]
 			\centering
-			\includegraphics[width=1\linewidth]{figures/BLDC}
+			\includegraphics[width=1\linewidth]{figures/BLDC_el.pdf}
 			%\caption{ Electrical and mechanical part of the motor }
 		%	\label{fig:electromech}
 		\end{figure}
@@ -96,16 +96,15 @@ the block diagram of the system can be seen in \figref{fig:blockdi} where $\tau_
 %
 \subsection*{Motor control}
  \todo{more details about previous work}
-In previous work, two controllers a linear and a non-linear(SMC), have been designed requiring a torque that has to be produced from the motors-wheel system. This torque demand is used to give the desired angular velocity reference for the wheels and thus the torque that will be fed back to the satellite as seen in the \cite{block diagram}. The output torque from the linear and non-linear controllers has three elements which has to be transformed in the tetrahedron configuration using the matrix \eqref{tetrahedron}  A PI controller has been designed to control the angular velocity of the motor as seen in the \figref{fig:blockdi222} .
-\\
+In previous work, two controllers a linear and a non-linear(SMC), have been designed requiring a torque that has to be produced from the motors-wheel system. This torque demand is used to give the desired angular velocity reference for the wheels and thus the torque that will be fed back to the satellite as seen in the \cite{block diagram}. The output torque from the linear and non-linear controllers has three elements which has to be transformed in the tetrahedron configuration using the matrix \eqref{tetrahedron}.  A \textit{PID} controller has been designed to control the angular velocity of the motor as seen in the \figref{fig:blockdi222}:
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\linewidth]{figures/block_diagram_2}
-	\caption{Block diagram of the motor control with PI controller WE HAVE TO CHANGE THE FIGURE}
+	\includegraphics[width=1.0\linewidth]{figures/block_diagram_2}
+	\caption{Block diagram of the motor control with PID controller}
 	\label{fig:blockdi222}
 \end{figure}  
 %
-The PI controller gains are chosen based on the open loop system response using the Ziegler-Nichols method \cite{PID_tuning} and by trial and error in order to achieve faster closed loop response and asymptotically stable system. The gains are chosen to be   
+The PI controller gains are chosen based on the open loop system response using the Ziegler-Nichols method \cite{PID_tuning} and by trial and error in order to achieve faster closed loop response and asymptotically stable system. The gains are chosen to be:   
 %
 \begin{flalign*}
 	k_{p} = 3.4 \\ k_{i} = 0.9
