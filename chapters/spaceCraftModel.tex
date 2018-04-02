@@ -28,7 +28,7 @@ Including the momentum wheels, the total angular momentum is given by:
 {\vec{h_{tot}}} = \vec{h_{sat}} + \vec{h_{rw}}
 \label{eq:ec4}
 \end{flalign} 
-where $\vec{h_{mw}}$ is the angular momentum of the momentum wheels.
+where $\vec{h_{rw}}$ is the angular momentum of the reaction wheels.
 Therefore, the total angular momentum is described by:
 \begin{flalign}
 {\vec{h_{tot}}} = {\underline I_{s}}{\vec{\omega}}+{\vec{h_{rw}}}
@@ -42,13 +42,13 @@ By rearranging terms, equation \ref{eq:ec5} becomes:
 
 Using Euler's equation of motion, the time derivative of $\vec{h_{tot}}$ expressed in the ECI frame is:
 \begin{flalign}
-&	\vec{ \dot h_{tot}} = \vec{ \dot h_{sat}} + \vec \omega \times \vec h= \vec{  N_{mt}} + \vec{  N_{dist}} \\
-&\underline I_s {\vec{\dot{\omega}}} + \vec {\dot{h}_{rw}}+ \vec \omega \times \vec L = \vec{  N_{mt}} + \vec{  N_{dist}} 
+&	\vec{ \dot h_{tot}} = \vec{ \dot h_{sat}} + \vec \omega \times \vec h_{tot}= \vec{  N_{mt}} + \vec{  N_{dist}} \\
+&\underline I_s {\vec{\dot{\omega}}} + \vec {\dot{h}_{rw}}+ \vec \omega \times \vec h_{tot} = \vec{  N_{mt}} + \vec{  N_{dist}} 
 \label{eq:ec7}
 \end{flalign}
 Subsequently, the angular velocity is separtated and expressed as:
 \begin{flalign}
-{\vec{\dot{\omega}}} = -\underline I_s ^{-1} \vec \omega \times \vec L -\underline I_s ^{-1} \vec {\dot{h}_{rw}} + \underline I_s ^{-1}(\vec{  N_{mt}} + \vec{  N_{dist}}) 
+{\vec{\dot{\omega}}} = -\underline I_s ^{-1} \vec \omega \times \vec h_{tot} -\underline I_s ^{-1} \vec {\dot{h}_{rw}} + \underline I_s ^{-1}(\vec{  N_{mt}} + \vec{  N_{dist}}) 
 \label{eq:ec8}
 \end{flalign}
 Next, by replacing the cross product with a skew-symmetric matrix ${\underline S(\vec \omega)}$, \eqref{eq:ec8} becomes:
