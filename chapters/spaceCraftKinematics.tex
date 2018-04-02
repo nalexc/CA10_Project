@@ -1,0 +1,106 @@
+
+\subsection{Spacecraft kinematic equation}
+In this subsection, the focus will be on describing the orientation of the satellite. The method used for describing the satellite attitude is quaternion representation. It was decided to choose quaternion representation, because they provide a way to deal with singularities.
+
+The quaternion $\textbf{q}(t)$ is defined as the attitude quaternion of a rigid body at time $t$ with respect to the inertial frame and at time $t+\Delta t$, the quaternion $\textbf{q}(t+\Delta t)$ is defined. The orientation quaternion can be divided into the quaternion at time $t$ and performing a quaternion multiplication with the rotation in the interval $\Delta t$ as follows:
+\begin{flalign}
+	\vec{ ^s_iq}(t+\Delta{t}) = \vec{ q}(\Delta {t}) \otimes \vec{ ^s_i q}(t) 
+	\label{eq:qp}
+\end{flalign}
+where the orientation quaternion $	\vec{ ^s_iq}(t+\Delta{t}) $ represents the rotation of the spacecraft body frame with respect to the intertial frame
+
+The quaternion at time $\Delta t$ can be express using the triad $u, v, w$, that represent the axis of the spacecraft as:
+%
+\begin{flalign}
+	q_{1}(\Delta {t})  = {e_{u}\sin\frac{\Delta\Phi}{2}}
+	\label{eq:q11}
+\end{flalign}
+%
+\begin{flalign}
+	q_{2}(\Delta {t}) = {e_{v}\sin\frac{\Delta\Phi}{2}}
+	\label{eq:q2}
+\end{flalign}
+%
+\begin{flalign}
+	q_{3} (\Delta {t})= {e_{w}\sin\frac{\Delta\Phi}{2}}
+	\label{eq:q3}
+\end{flalign}
+%
+\begin{flalign}
+	q_{4}(\Delta {t}) = {\cos\frac{\Delta\Phi}{2}}
+	\label{eq:q4}
+\end{flalign}
+where $\Delta \Phi$ is the rotation at time $\Delta t$ and $e_u,e_v, e_w$ are the components along the triad $u, v, w$ at time $\Delta t$.
+
+Using equation \ref{eq:q11} and equation \ref{eq:q4} and insert them into equation \ref{eq:qp} which yields:
+\begin{flalign}
+	\vec{ ^s_i q}(t+\Delta{t})
+	= 
+	\left\{\cos\frac{\Delta\Phi}{2} \underline I_{(4\times4)}+\sin\frac{\Delta\Phi}{2}
+	\begin{bmatrix}
+		0 &e_{z}&-e_{y}&e_{x} \\
+		-e_{z}&0&e_{x}&e_{y}  \\ 
+		e_{y}&-e_{x}&0&e_{z} \\
+		-e_{x} &e_{y}&-e_{z}&0
+	\end{bmatrix} 
+	\right \} \vec{ ^s_i q}(t)
+	\label{eq:quatm}
+\end{flalign}  
+%
+where $\underline I$ is the identity matrix with the dimensions of $4\times4$.
+
+In order to turn equation \ref{eq:quatm} into a differential equation, a small angle approximation it is used: 
+\begin{flalign}
+	&\Delta \phi = \omega \ \Delta t \\
+	&\cos\frac{\Delta\Phi}{2} \approx 1 \\	
+	&\sin\frac{\Delta\Phi}{2} \approx \frac{\omega \Delta t }{2} \\
+	\label{eq:aprox}
+\end{flalign} 
+After using the approximation and substitute the terms into \ref{eq:quatm}, the following equation is obtained:
+\begin{flalign}
+	\vec{^s_i q(t+\Delta{t})} \approx \left[1 + \frac{1}{2} \underline \Omega \Delta(t)\right]\vec{^s_i q(t)}
+	\label{eq:quatfinal}
+\end{flalign} 
+where $\underline \Omega$ is the skew symmetric matrix written in form:
+\begin{flalign}
+	\underline \Omega
+	= 
+	\begin{bmatrix}
+		0& \omega_{w}& - \omega_{v}& \omega_{u} \\
+		-\omega_{w}& 0&\omega_{u}& \omega_{v}  \\ 
+		\omega_{v}& -\omega_{u}&0& \omega_{w} \\
+		-\omega_{u}& -\omega_{v}& -\omega_{w}&0
+	\end{bmatrix} 
+	\label{eq:sm}
+\end{flalign}
+where the terms $\omega_u, \omega_v, \omega_w$ are the angular velocities componets.
+
+The rate of change in the orientation of the spacecraft $\vec{^s_i q(t)}$  can be found:
+\begin{flalign}
+	\vec{ ^s_i\dot q(t)} = \lim_{\Delta t\to 0} \frac{\vec q(t+\Delta t) - \vec q(t)}{\Delta t} = \dfrac{1}{2} \underline \Omega \  \vec{^s_i q(t)}
+	\label{eq:finaleq}
+\end{flalign} 
+
+\subsection{Spacecraft equation of motion }
+Putting together both dynamic and kinematic equation for the spacecraft, the system equations can be combined into a state-space representation:
+\begin{flalign}
+	\begin{bmatrix}
+		\vec{ ^s_i\dot q(t)} \\
+		\vec{\dot \omega{(t)}}
+	\end{bmatrix} 	
+	= 
+	\begin{bmatrix}
+		\frac{1}{2} \underline{ \Omega}_{(4\times4)} \vec{ ^s_i q(t)} \\
+		{-\underline{I}_{s}^{-1}\underline{S}(\vec{\omega})\underline{I}_{s}\vec{\omega}(t)-\underline{I}_{s}^{-1}\underline{S}(\vec{\omega})\vec{h_{rw}}-\underline{I}_{s}^{-1}\vec{N_{rw}}(t)+\underline{I}_{s}^{-1}[\vec{N_{mt}(t)}+\vec{N_{dis}}(t)}]
+	\end{bmatrix} 
+	\label{eq:seom}
+\end{flalign}
+where,\\
+$\vec{ ^s_i  q(t)} = [q_1 \ q_2 \ q_3 \ q_4]^T$ \\
+$\vec{\omega{(t)}} = [ \omega_1 \ \omega_2 \ \omega_3]^T$ \\
+$\underline{\Omega}(\omega)$ is the $4\times4$ skew symmetric matrix \\
+$\underline{I}_{s}$ is the inertia matrix \\
+$\underline{S}(\omega)$ is the $3\times3$ skew symmetric matrix \\
+$\vec{N_{dis}}(t)$ is the disturbance torque \\
+$\vec{N_{rw}}$ is the torque from momentum wheels \\
+$\vec{N_{mt}}$ is the torque from magnetorquers  \\
