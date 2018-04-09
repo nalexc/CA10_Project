@@ -12,7 +12,7 @@ Trégouët et al. \cite{DesatTregouet} developed a cascaded control method for r
 
 where  \todo{add the notations to nomenclature}
 
-The quasi-cascaded structure of the control law includes the magnetorquer as the upper subsystem which outputs the rate of change of the total angular momentum of the system \ref{fig:CascadeDesat}. The lower subsystem includes the attitude dynamics and the reaction wheel controller. The problem is that there's a feedback involved from the lower subsystem to the upper one, making $\dot{h}_t$ dependent on the attitude parameters. This means that desaturating the wheels can affect the attitude control loop. Since attitude control is more crucial than desaturation, the reverse would be desirable.  By reversing the ordering of the cascade, the interference can be eliminated. It is done by applying input allocation, i.e. "suitably assigning the low level actuators' input, based on a higher level control effort requested by the control system" \cite{JOHANSEN20131087}. From the point of view of the desaturation controller, the control goal is to keep the reaction wheels' angular velocity as close to the reference velocity as possible. Since the desaturation control is decoupled from attitude control, it can achieve its desaturation control goal regardless of the attitude control law.
+Momentum dumping and attitude control can potentially be opposing goals, since attitude control changes the reaction wheel velocity to produce the required torque, while the desaturator tries to keep the angular velocity close to the reference. The quasi-cascaded structure of the desaturation control law includes the magnetorquer as the upper subsystem which outputs the rate of change of the total angular momentum of the system \ref{fig:CascadeDesat}. The lower subsystem includes the attitude dynamics and the reaction wheel controller. The problem is that there's a feedback involved from the lower subsystem to the upper one, making $\dot{h}_t$ dependent on the attitude parameters. This means that desaturating the wheels can affect the attitude control loop. Since attitude control is more crucial than desaturation, the reverse would be desirable.  By reversing the ordering of the cascade, the interference can be eliminated. It is done by applying input allocation, i.e. "suitably assigning the low level actuators' input, based on a higher level control effort requested by the control system" \cite{JOHANSEN20131087}. From the point of view of the desaturation controller, the control goal is to keep the reaction wheels' angular velocity as close to the reference velocity as possible. Since the desaturation control is decoupled from attitude control, it can achieve its desaturation control goal regardless of the attitude control law.
 
 
 
@@ -75,6 +75,7 @@ D:= \left\lbrace (\vec{q},\vec{\omega},x_c) \in \mathbb{S}^3 \times \mathbb{R}^3
 \end{array}
 \]
 
+\todo{this attitude controller should be down as one of the possible attitude controllers - "Satellite angular momentum removal utilizing the earth’s magnetic field" article}
 
 \begin{figure}[h]
 	\centering
@@ -95,12 +96,8 @@ The derived equations that can be implemented in simulation:
 \vec{\dot{h}}_{rw} =  -  \underline{\omega}^\times \vec{{h}}_{rw} + \vec{N_{mt}}  + \vec{N_{dist}} - \vec{u} 
 \end{equation}
 
-\todo{
-	body-fixed frame
+\todo{body-fixed frame
 	Static input allocation
 	global asymptotic stability}
-
-
-
 
 \cite{DesatYang}
