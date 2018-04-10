@@ -24,21 +24,57 @@ Tetrahedron configuration can output twice as much force along an axis as one wh
 
 \subsubsection{Transformation Between Body \& Reaction Wheel Space}
 
+The main attitude controller sends torque demands to the actuators. The torque demand distributed to the reaction wheels have to be converted to torques parallel to reaction wheel axes, in order for the motor controllers to function. Transformation from reaction wheel space to body frame is quite intuitive. Knowing the orientation of each motor axis and the corresponding motor torque
+
+\begin{equation}
+N_{rw} = A N_{motor} = \begin{bmatrix}
+Axis_{1}       & Axis_{2}  & Axis_{3}  & Axis_{4} 
+\end{bmatrix} N_{motor}
+\end{equation}
+
+\begin{equation}
+A N_{motor}  = 
+\begin{bmatrix}
+\cos(19.47)       & -\cos(19.47) \cos(60)  &  -\cos(19.47) \cos(60)  & 0 \\
+0       & \cos(19.47) \cos(30)  &  -\cos(19.47) \cos(30)  & 0 \\
+-\sin(19.47)       & -\sin(19.47)   &  -\sin(19.47)   & 1
+\end{bmatrix} N_{motor}
+\end{equation}
+
+Since $A$ is a $ 4 \times 3 $ matrix, a pseudo inverse has to be used when reordering the equation.
+
+\begin{equation}
+N_{motor} = A ^\dagger N_{rw}   =  A^T  (A A ^T)^{-1} N_{rw}
+\end{equation}
+
+\nomenclature{$N_{motor$}}{$4\times1 vector where each entry represents the torque of each reaction wheel motor. $}
+
 \cite[equation 18.41-42]{SADC}
+\cite{reactionWheelConfigThesis}
 
 \begin{equation}
 h_{rot} = A\left[ h_1, h_2, h_3, h_4 \right]^T
 \end{equation}
 
 \begin{equation}
-N = A^R \textbf{$N_c$} + k\left(1,-1,-1,1\right)
+N = A^R \textbf{$N_rw$} + k\left(1,-1,-1,1\right)
 \end{equation}
 
 \todo{revise 2nd part}
 
 The torque demand for the satellite's body
 
+\subsubsection{Reconfiguration}
 
+Fault isolation for the redundant reaction wheel configuration can be done by detecting which is the reaction wheel where the fault occurred and shutting it off and redistributing the torques to the rest of the reaction wheels. This reconfiguration can be represented by swapping the corresponding faulty columns to zero vectors. For example, if a fault occurs in the 3rd reaction wheel:
+
+\begin{equation}
+N_{rw} = A N_{motor} = \begin{bmatrix}
+Axis_{1}       & Axis_{2}  & 0  & Axis_{4} 
+\end{bmatrix} N_{motor}
+\end{equation}
+
+The pseudo inverse is calculated in the same manner as presented in ... 
 
 \input{chapters/magnetorquer.tex}
 
