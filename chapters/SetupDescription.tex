@@ -69,9 +69,9 @@ The torque demand for the satellite's body
 Fault isolation for the redundant reaction wheel configuration can be done by detecting which is the reaction wheel where the fault occurred and shutting it off and redistributing the torques to the rest of the reaction wheels. This reconfiguration can be represented by swapping the corresponding faulty columns to zero vectors. For example, if a fault occurs in the 3rd reaction wheel:
 
 \begin{equation}
-N_{rw} = A N_{motor} = \begin{bmatrix}
+A_{f3} = \begin{bmatrix}
 Axis_{1}       & Axis_{2}  & 0  & Axis_{4} 
-\end{bmatrix} N_{motor}
+\end{bmatrix}
 \end{equation}
 
 The pseudo inverse is calculated in the same manner as presented in ... 
