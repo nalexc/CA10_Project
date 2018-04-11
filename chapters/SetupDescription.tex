@@ -16,39 +16,42 @@ Moving parts are usually prone to failures. Reaction wheels are expected to run 
 
 \subsection{Reaction Wheel Configuration}
 
-There have been studies on what is the best configuration of redundant reaction wheels. The optimal configuration can of course depend on the requirements. In some configurations the   Minimizing energy consumption is normally the goal in deciding on a configuration. Ismail et al. \cite{ReactionWheelConfigSim} investigated several configurations by running simulations with the configuration being the only difference.
+There have been studies on what is the best configuration of redundant reaction wheels. The optimal configuration can of course depend on the requirements. If the requirement is to have the same controllability for reaction wheels in case of fault, and 6 reaction wheels are available, orthogonally configured double reaction wheels can be used. Minimizing energy consumption is normally the goal in deciding on a configuration. Ismail et al. \cite{ReactionWheelConfigSim} investigated several configurations by running simulations with the configuration being the only difference. The tetrahedron configuration of 4 reaction wheels has been chosen, which is quite widespread in the industry \cite{reactConfigNasa}.
+In tetrahedron configuration the 4 wheel orientations are evenly distributed, unlike the also widespread pyramid configuration. 
 
-evenly distributed
+If the requirement for the satellite is tracking objects on Earth, the tracking torque demand can be calculated using knowledge about satellite altitude, orbit shape and the corresponding satellite speed, and satellite moment of inertia. For a circular orbit at 600 km altitude, the satellite speed would be $7.56 km/s$.
 
-angular acceleration demand \cite{ReactionWheelConfigSim} \cite{reactionWheelConfigThesis}
+\begin{equation}
+asd
+\end{equation}
 
-gps orientation, Earth station
-
-Tetrahedron configuration can output twice as much force along an axis as one wheel can produce along its own axis.
 
 \subsubsection{Transformation Between Body \& Reaction Wheel Space}
 
-The main attitude controller sends torque demands to the actuators. The torque demand distributed to the reaction wheels have to be converted to torques parallel to reaction wheel axes, in order for the motor controllers to function. Transformation from reaction wheel space to body frame is quite intuitive. Knowing the orientation of each motor axis and the corresponding motor torque
+The main attitude controller sends torque demands to the actuators. The torque demand distributed to the reaction wheels have to be converted to torques parallel to reaction wheel axes, in order for the motor controllers to function. Transformation from reaction wheel space to body frame is quite intuitive. Knowing the orientation, the mounting angle of each motor axis and the corresponding motor torque
+
+
+\cite{reactionWheelConfigThesis}
 
 \begin{equation}
-N_{rw} = A N_{motor} = \begin{bmatrix}
-Axis_{1}       & Axis_{2}  & Axis_{3}  & Axis_{4} 
-\end{bmatrix} N_{motor}
+\vec{N}_{rw} = \underline{A} \vec{N}_{motor} = \begin{bmatrix}
+\vec{N}_{1}       & \vec{N}_{2}  & \vec{N}_{3}  & \vec{N}_{4} 
+\end{bmatrix} \vec{N}_{motor}
 \end{equation}
 
 \begin{equation}
-A N_{motor}  = 
+\underline{A} \vec{N}_{motor}  = 
 \begin{bmatrix}
 \cos(19.47)       & -\cos(19.47) \cos(60)  &  -\cos(19.47) \cos(60)  & 0 \\
 0       & \cos(19.47) \cos(30)  &  -\cos(19.47) \cos(30)  & 0 \\
 -\sin(19.47)       & -\sin(19.47)   &  -\sin(19.47)   & 1
-\end{bmatrix} N_{motor}
+\end{bmatrix} \vec{N}_{motor}
 \end{equation}
 
 Since $A$ is a $ 4 \times 3 $ matrix, a pseudo inverse has to be used when reordering the equation.
 
 \begin{equation}
-N_{motor} = A ^\dagger N_{rw}   =  A^T  (A A ^T)^{-1} N_{rw}
+\vec{N}_{motor} = \underline{A} ^\dagger \vec{N}_{rw}   =  \underline{A}^T  (\underline{A} \underline{A} ^T)^{-1}\vec{N}_{rw}
 \end{equation}
 
 \nomenclature{$N_{motor$}}{$4\times1 vector where each entry represents the torque of each reaction wheel motor. $}
@@ -56,17 +59,11 @@ N_{motor} = A ^\dagger N_{rw}   =  A^T  (A A ^T)^{-1} N_{rw}
 \cite[equation 18.41-42]{SADC}
 \cite{reactionWheelConfigThesis}
 
-\begin{equation}
-h_{rot} = A\left[ h_1, h_2, h_3, h_4 \right]^T
-\end{equation}
 
-\begin{equation}
-N = A^R \textbf{$N_rw$} + k\left(1,-1,-1,1\right)
-\end{equation}
 
-\todo{revise 2nd part}
-
-The torque demand for the satellite's body
+%\begin{equation}
+%\vec{N}_{motor} = \underline{A} ^\dagger \vec{N}_{rw} + k [1,-1,-1,1]
+%\end{equation}
 
 \subsubsection{Reconfiguration}
 
