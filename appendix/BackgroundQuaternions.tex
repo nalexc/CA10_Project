@@ -1,0 +1,61 @@
+\chapter{Quaternions} \label{chap:B}
+ \todo{put into appendix}
+\todo{add q multiplication, conjugate, rotation, conjugate, separately say that eta is cos fi2}
+
+There are several possible mathematical representations for rotation. In physics, rotation matrices, Euler angles (eg. pitch-roll-yaw) and quaternions. In satellite engineering, quaternions are the preferred representations, since they are more compact than rotation matrices and lack singularities.
+
+Quaternions include four values, three of them represent a vector \textbf{$\epsilon$}, the fourth a scalar $\eta$. 
+
+\begin{equation}
+\textbf{q} =
+\left[ 
+\begin{array}{cccc}
+q_1 \\
+q_2 \\  
+q_3 \\
+q_4 
+\end{array}
+\right] 
+= 
+\left[ 
+\begin{array}{cccc}
+\textbf{$\epsilon$} \\
+\eta
+\end{array}
+\right] 
+\end{equation}
+
+Let \textbf{e} represent the unit length rotation axis, with \textbf{i}, \textbf{j}, \textbf{k} being the base vectors in euclidean space. 
+
+\begin{equation}
+\textbf{e} = e_1 \textbf{i}+ e_2 \textbf{j} + e_3 \textbf{k}
+\end{equation}
+
+A rotation with $\Phi$ around the unit vector can be described according to Euler's formula.
+
+\begin{equation}
+q = e^{\frac{\Phi}{2} (e_1 \textbf{i}+ e_2 \textbf{j} + e_3 \textbf{k})} = \cos \frac{\Phi}{2} + (e_1 \textbf{i}+ e_2 \textbf{j} + e_3 \textbf{k}) \sin \frac{\Phi}{2}
+\end{equation}
+
+Consequently 
+
+\begin{equation}
+\textbf{q} =
+\left[ 
+\begin{array}{cccc}
+q_1 \\
+q_2 \\  
+q_3 \\
+q_4 
+\end{array}
+\right] 
+= 
+\left[ 
+\begin{array}{cccc}
+e_1  \sin \frac{\Phi}{2} \\
+e_2  \sin \frac{\Phi}{2} \\  
+e_3  \sin \frac{\Phi}{2} \\
+\cos \frac{\Phi}{2} 
+\end{array}
+\right] 
+\end{equation}
