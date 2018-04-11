@@ -24,8 +24,12 @@ Some of the torque in the mechanical part of the motors is used to overcome the 
  \begin{equation*}
  T_{fric}	= k_{t}*I_{nom} - T_{m} 
  \end{equation*}    
-where $I_{nom} $ is the nominal current. Viscous friction coefficient $b$ can now be calculated as
+where $I_{nom} $[A] is the nominal current. Viscous friction coefficient $b$ can now be calculated as
 \begin{equation*}
 	b	= \frac{T_{fric} }{\omega_{no-load}}
 \end{equation*}
-and $\omega_{no-load}$ is expressed in $rad/sec$.
+and $\omega_{no-load}$ is expressed in $rad/sec$. Finally, the back $emf$ constant is calculated as
+\begin{equation*}
+	k_{e}	= \frac{V_{nom} - I_{nom}R}{\omega_{no-load}}
+\end{equation*}
+where $V_{nom}$ is the nominal voltage and is equal to 6[V] and  $R$[Ohm] is the terminal resistance. 
