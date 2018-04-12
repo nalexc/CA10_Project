@@ -1,7 +1,7 @@
-\section{Structural Analysis}
+\section{Motors fault detection}
 
 \label{sec:structural}
-
+\subsection{Structural Analysis}
 Structural analysis studies the interrelation between parameters and variables of the system using constraints between them. It distinguishes known and unknown variables, according to whether they can be measured in the system or not. Then the unknown variables are expressed using the known ones according to the constraints. Structural analysis based residual signal require that unknown variables can be expressed redundantly. One of the constraints is used to express the unknown, the other to verify it. If there's a mismatch between the two, a fault is detected.
 
 In case of fault detection in sensors, one constraint is between the measured and the actual values of a variable. In case of a sensor fault, there can be a considerable difference between the measured and the actual value of a variable.
@@ -30,7 +30,7 @@ $L_a$ is negligible
 $d_1(\omega, \dot{\omega})$
 
 
-\section{Alternative method for identifying reaction wheel fault}
+\subsection{Alternative method for identifying reaction wheel fault}
 
 With enough computational power the faulty reaction wheel can be detected through the calculated reaction wheel output torque, assuming only one reaction wheel is faulty. It is done by calculating the difference between 3D torque demand and actual 3D torque output. 
 
@@ -54,3 +54,7 @@ Then the difference between torque demand and torque output is calculated. The r
 
 Note: the lag for torque change and wheel saturation has to be taken into account separately, as those don't count as faults. 
 Thresholds should be applied.
+
+\section{Magneto torquers  fault detection}
+
+\subsection{Unknown Input Observer (UIO)}
