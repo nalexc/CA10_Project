@@ -1,4 +1,156 @@
-\chapter{name} \label{chap:C}
+\chapter{Derivation of the satellite equations of motion} \label{chap:C}
+This section describes the derivation of themathematical model of the satellite which contains the dynamic and kinematic model, based on the rigid body dynamics and kinematics.
+\subsection{Kinematic equation}
+In this subsection, the focus will be on describing the orientation of the satellite. The method used for describing the satellite attitude is quaternion representation. It was decided to choose quaternion representation, because they provide a way to deal with singularities.
 
+The quaternion $\textbf{q}(t)$ is defined as the attitude quaternion of a rigid body at time $t$ with respect to the inertial frame and at time $t+\Delta t$, the quaternion $\textbf{q}(t+\Delta t)$ is defined. The orientation quaternion can be divided into the quaternion at time $t$ and performing a quaternion multiplication with the rotation in the interval $\Delta t$ as follows:
+\begin{flalign}
+	\vec{ ^s_iq}(t+\Delta{t}) = \vec{ q}(\Delta {t}) \otimes \vec{ ^s_i q}(t) 
+	\label{eq:qp}
+\end{flalign}
+where the orientation quaternion $	\vec{ ^s_iq}(t+\Delta{t}) $ represents the rotation of the spacecraft body frame with respect to the intertial frame
 
+The quaternion at time $\Delta t$ can be express using the triad $u, v, w$, that represent the axis of the spacecraft as:
+%
+\begin{flalign}
+	q_{1}(\Delta {t})  = {e_{u}\sin\frac{\Delta\Phi}{2}}
+	\label{eq:q11}
+\end{flalign}
+%
+\begin{flalign}
+	q_{2}(\Delta {t}) = {e_{v}\sin\frac{\Delta\Phi}{2}}
+	\label{eq:q2}
+\end{flalign}
+%
+\begin{flalign}
+	q_{3} (\Delta {t})= {e_{w}\sin\frac{\Delta\Phi}{2}}
+	\label{eq:q3}
+\end{flalign}
+%
+\begin{flalign}
+	q_{4}(\Delta {t}) = {\cos\frac{\Delta\Phi}{2}}
+	\label{eq:q4}
+\end{flalign}
+where $\Delta \Phi$ is the rotation at time $\Delta t$ and $e_u,e_v, e_w$ are the components along the triad $u, v, w$ at time $\Delta t$.
 
+Using equation \ref{eq:q11} and equation \ref{eq:q4} and insert them into equation \ref{eq:qp} which yields:
+\begin{flalign}
+	\vec{ ^s_i q}(t+\Delta{t})
+	= 
+	\left\{\cos\frac{\Delta\Phi}{2} \underline I_{(4\times4)}+\sin\frac{\Delta\Phi}{2}
+	\begin{bmatrix}
+		0 &e_{z}&-e_{y}&e_{x} \\
+		-e_{z}&0&e_{x}&e_{y}  \\ 
+		e_{y}&-e_{x}&0&e_{z} \\
+		-e_{x} &e_{y}&-e_{z}&0
+	\end{bmatrix} 
+	\right \} \vec{ ^s_i q}(t)
+	\label{eq:quatm}
+\end{flalign}  
+%
+where $\underline I$ is the identity matrix with the dimensions of $4\times4$.
+
+In order to turn equation \ref{eq:quatm} into a differential equation, a small angle approximation it is used: 
+\begin{flalign}
+	&\Delta \phi = \omega \ \Delta t \\
+	&\cos\frac{\Delta\Phi}{2} \approx 1 \\	
+	&\sin\frac{\Delta\Phi}{2} \approx \frac{\omega \Delta t }{2} \\
+	\label{eq:aprox}
+\end{flalign} 
+After using the approximation and substitute the terms into \ref{eq:quatm}, the following equation is obtained:
+\begin{flalign}
+	\vec{^s_i q(t+\Delta{t})} \approx \left[1 + \frac{1}{2} \underline \Omega \Delta(t)\right]\vec{^s_i q(t)}
+	\label{eq:quatfinal}
+\end{flalign} 
+where $\underline \Omega$ is the skew symmetric matrix written in form:
+\begin{flalign}
+	\underline \Omega
+	= 
+	\begin{bmatrix}
+		0& \omega_{w}& - \omega_{v}& \omega_{u} \\
+		-\omega_{w}& 0&\omega_{u}& \omega_{v}  \\ 
+		\omega_{v}& -\omega_{u}&0& \omega_{w} \\
+		-\omega_{u}& -\omega_{v}& -\omega_{w}&0
+	\end{bmatrix} 
+	\label{eq:sm}
+\end{flalign}
+where the terms $\omega_u, \omega_v, \omega_w$ are the angular velocities componets.
+
+The rate of change in the orientation of the spacecraft $\vec{^s_i q(t)}$  can be found:
+\begin{flalign}
+	\vec{ ^s_i\dot q(t)} = \lim_{\Delta t\to 0} \frac{\vec q(t+\Delta t) - \vec q(t)}{\Delta t} = \dfrac{1}{2} \underline \Omega \  \vec{^s_i q(t)}
+	\label{eq:finaleq}
+\end{flalign} 
+
+\subsection{ Dynamic equation}
+The satellite dynamics are described using Euler's equation of motion and Newton's laws of motion. 
+Using Euler's equation of motion, the relation between the change in angular momentum and the torques that affect the satellite is given as follows:
+\begin{flalign}
+	\vec{ \dot h} = \vec{N_{ext}} =  \vec{N_{mt}}+ \vec{N_{dist}}
+	\label{eq:ec2}
+\end{flalign} 
+where $h$ is the angular momentum of a rigid body, $N_{ext}$ represent all the external torques that influence the satellite, $N_{mt}$ is the torque from the magnetorquers and $N_{dist}$ is the torque from the disturbances.
+
+The change in angular momentum of the satellite can be express as the product between the angular acceleration and the moment of inertia:
+\begin{flalign}
+	{\vec{\dot h_{sat}}} = {\underline I_{s}}{\vec{\dot \omega}}
+	\label{eq:ec3}
+\end{flalign} 
+where $h_{sat}$ is the angular momentum of the satellite, $\underline I_{s}$ is the moment of inertia of the satellite and $\vec{\omega}$ is the angular velocity.
+
+Including the momentum wheels, the total angular momentum is given by:
+\begin{flalign}
+	{\vec{h_{tot}}} = \vec{h_{sat}} + \vec{h_{rw}}
+	\label{eq:ec4}
+\end{flalign} 
+where $\vec{h_{rw}}$ is the angular momentum of the reaction wheels.
+Therefore, the total angular momentum is described by:
+\begin{flalign}
+	{\vec{h_{tot}}} = {\underline I_{s}}{\vec{\omega}}+{\vec{h_{rw}}}
+	\label{eq:ec5}
+\end{flalign}
+By rearranging terms, equation \ref{eq:ec5} becomes:
+\begin{flalign}
+	{\vec{\omega}} = {\underline I_{s}^{-1}} ({\vec{h_{tot}}}-{\vec{h_{rw}}})
+	\label{eq:ec6}
+\end{flalign}
+
+Using Euler's equation of motion, the time derivative of $\vec{h_{tot}}$ expressed in the ECI frame is:
+\begin{flalign}
+	&	\vec{ \dot h_{tot}} = \vec{ \dot h_{sat}} + \vec \omega \times \vec h_{tot}= \vec{  N_{mt}} + \vec{  N_{dist}} \\
+	&\underline I_s {\vec{\dot{\omega}}} + \vec {\dot{h}_{rw}}+ \vec \omega \times \vec h_{tot} = \vec{  N_{mt}} + \vec{  N_{dist}} 
+	\label{eq:ec7}
+\end{flalign}
+Subsequently, the angular velocity is separtated and expressed as:
+\begin{flalign}
+	{\vec{\dot{\omega}}} = -\underline I_s ^{-1} \vec \omega \times \vec h_{tot} -\underline I_s ^{-1} \vec {\dot{h}_{rw}} + \underline I_s ^{-1}(\vec{  N_{mt}} + \vec{  N_{dist}}) 
+	\label{eq:ec8}
+\end{flalign}
+Next, by replacing the cross product with a skew-symmetric matrix ${\underline S(\vec \omega)}$, \eqref{eq:ec8} becomes:
+\begin{flalign}&{\vec{\dot{\omega}}}={-\underline I_{s}^{-1}\underline S(\vec \omega)\underline I_{s}\vec \omega-\underline I_{s}^{-1}\underline S(\vec \omega)\vec h_{rw}-\underline I_s ^{-1}\vec{  N_{rw}} + \underline I_s ^{-1}(\vec{  N_{mt}} + \vec{  N_{dist}})}
+	\label{eq:ec9}
+\end{flalign}
+where $N_{mt}$ is the torque from the magnetorquers, $N_{rw}$ is the torque from the momentum wheels and the skew-symmetric matrix is:
+\begin{flalign}
+	{\underline S(\vec \omega)}
+	= 
+	\begin{bmatrix}
+		0& -\omega_{3}& \omega_{2} \\
+		\omega_{3}& 0&-\omega_{1}  \\ 
+		-\omega_{2} & \omega_{1} &0
+	\end{bmatrix} 
+	\label{eq:skewsymmetricmatrix}
+\end{flalign}
+Moreover, the torque set to the momentum wheels is equal to the time derivative of the angular momentum:
+\begin{flalign}
+	\vec {N_{rw}} =  {\vec{ \dot{h}_{rw}}}
+	\label{eq:ec10}
+\end{flalign}
+\subsection{Liniarization of satellite  equations}
+ The quaternion $\vec{q(t)}$ is split in the operating point ($\vec{\bar{q}}$) and the error quaternion ($\vec{\tilde{q}}$) and the angular velocity $\vec{\omega}$ is split in the nominal value $\vec{\tilde{\omega}}$ and the error $\vec{\tilde{\omega}}$.
+\begin{flalign}
+	&\vec{ ^s_i q} = \vec{^s_i \bar{q}} \otimes \vec{\tilde{q}} \\
+	&\vec{\tilde{q}} = \vec{ ^s_i \bar{q}}^{-1} \otimes \vec{^s_i q} \\
+	&\vec{\omega} = \vec{\bar{\omega}} + \vec{\tilde{\omega}} 
+	\label{eq:smallsignal}
+\end{flalign}
