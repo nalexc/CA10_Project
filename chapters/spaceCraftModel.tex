@@ -15,14 +15,14 @@ The derivation of the satellite equations of motion is presented in appendix \re
 	\label{eq:seom}
 \end{flalign}
 where,\\
-$\vec{ ^s_i  q(t)} = [q_1 \ q_2 \ q_3 \ q_4]^T$ \\
-$\vec{\omega{(t)}} = [ \omega_1 \ \omega_2 \ \omega_3]^T$ \\
-$\underline{\Omega}(\omega)$ is the $4\times4$ skew symmetric matrix \\
-$\underline{I}_{s}$ is the inertia matrix \\
-$\underline{S}(\omega)$ is the $3\times3$ skew symmetric matrix \\
-$\vec{N_{dis}}(t)$ is the disturbance torque \\
-$\vec{N_{rw}}$ is the torque from momentum wheels \\
-$\vec{N_{mt}}$ is the torque from magnetorquers  \\
+- $\vec{ ^s_i  q(t)} = [q_1 \ q_2 \ q_3 \ q_4]^T$ \\
+- $\vec{\omega{(t)}} = [ \omega_1 \ \omega_2 \ \omega_3]^T$ \\
+- $\underline{\Omega}(\omega)$ is the $4\times4$ skew symmetric matrix \\
+- $\underline{I}_{s}$ is the inertia matrix \\
+- $\underline{S}(\omega)$ is the $3\times3$ skew symmetric matrix \\
+- $\vec{N_{dis}}(t)$ is the disturbance torque \\
+- $\vec{N_{rw}}$ is the torque from momentum wheels \\
+- $\vec{N_{mt}}$ is the torque from magnetorquers  \\
 \subsection{Linearized equation of motion}
 For the purpose of designing a linear controller, the equations of motion of the satellite need to be linearized. The whole process of linearization is presented in appendix \ref{chap:C}.
 
@@ -49,5 +49,9 @@ Therefore, by using the results from appendix \ref{chap:C} the linear equation o
 	\vec {\tilde N_{ctrl}}
 	\label{eq:lele}
 \end{flalign}
-where,
-$\vec{\tilde N_{ctrl}}$ is the torque from magnetorquers and the reaction wheels and is defined as $\vec{\tilde N_{ctrl}} = \vec{N_{mt}} - \vec{N_{rw}}$. \\
+where, \\
+- $\vec{\tilde N_{ctrl}}$ is the torque from magnetorquers and the reaction wheels and is defined as: $\vec{\tilde N_{ctrl}} = \vec{N_{mt}} - \vec{N_{rw}}$ \\
+
+- $	\vec{ {\tilde{^s_iq}}(t) } $ is the error quaternion \\
+- $ \vec{ {\tilde{\omega}}(t)} $ is the error in the angular velocity \\ 
+- $ \vec{ {\bar{\omega}}(t)} $ is the nominal value of angular velocity \\ 

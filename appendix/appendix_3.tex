@@ -1,5 +1,5 @@
 \chapter{Derivation of the satellite equations of motion} \label{chap:C}
-This section describes the derivation of themathematical model of the satellite which contains the dynamic and kinematic model, based on the rigid body dynamics and kinematics.
+This section describes the derivation of the mathematical model of the satellite which contains the dynamic and kinematic model, based on the rigid body dynamics and kinematics.
 \subsection{Kinematic equation}
 In this subsection, the focus will be on describing the orientation of the satellite. The method used for describing the satellite attitude is quaternion representation. It was decided to choose quaternion representation, because they provide a way to deal with singularities.
 
@@ -133,7 +133,7 @@ Next, by replacing the cross product with a skew-symmetric matrix ${\underline S
 where $N_{mt}$ is the torque from the magnetorquers, $N_{rw}$ is the torque from the momentum wheels and the skew-symmetric matrix is:
 \begin{flalign}
 	{\underline S(\vec \omega)}
-	= 
+	\overset{\Delta}{=}
 	\begin{bmatrix}
 		0& -\omega_{3}& \omega_{2} \\
 		\omega_{3}& 0&-\omega_{1}  \\ 
@@ -146,11 +146,30 @@ Moreover, the torque set to the momentum wheels is equal to the time derivative 
 	\vec {N_{rw}} =  {\vec{ \dot{h}_{rw}}}
 	\label{eq:ec10}
 \end{flalign}
-\subsection{Liniarization of satellite  equations}
- The quaternion $\vec{q(t)}$ is split in the operating point ($\vec{\bar{q}}$) and the error quaternion ($\vec{\tilde{q}}$) and the angular velocity $\vec{\omega}$ is split in the nominal value $\vec{\tilde{\omega}}$ and the error $\vec{\tilde{\omega}}$.
+\subsection{Linearization of satellite  equations}
+Due to the non-linear equations of motion of the satellite derived in the above sections, a linearization of these equations around an operating point is made, which will serve for designing a linear controller. 
+\subsubsection{Kinematic  equation}
+Starting with the non-linear kinematic equation which is given by:
+\begin{flalign}
+	\vec{ ^s_i\dot q(t)} = \dfrac{1}{2} \underline \Omega \  \vec{^s_i q(t)}
+	\label{eq:lke}
+\end{flalign} 
+The quaternion $\vec{q(t)}$ is split in the operating point ($\vec{\bar{q}}$) and the error quaternion ($\vec{\tilde{q}}$).
 \begin{flalign}
 	&\vec{ ^s_i q} = \vec{^s_i \bar{q}} \otimes \vec{\tilde{q}} \\
 	&\vec{\tilde{q}} = \vec{ ^s_i \bar{q}}^{-1} \otimes \vec{^s_i q} \\
-	&\vec{\omega} = \vec{\bar{\omega}} + \vec{\tilde{\omega}} 
 	\label{eq:smallsignal}
 \end{flalign}
+\subsubsection{Dynamic  equation}
+Next, linearize the dynamic equation which is given by:
+\begin{flalign}&{\vec{\dot{\omega}}}={-\underline I_{s}^{-1}\underline S(\vec \omega)\underline I_{s}\vec \omega-\underline I_{s}^{-1}\underline S(\vec \omega)\vec h_{rw}-\underline I_s ^{-1}\vec{  N_{rw}} + \underline I_s ^{-1}(\vec{  N_{mt}} + \vec{  N_{dist}})}
+\label{eq:ec34}
+\end{flalign}
+An operating point is introduce as:
+\begin{flalign}
+    \vec{\omega} = \vec{\bar{\omega}} + \vec{\tilde{\omega}} 
+	\label{eq:smallsi4gnal}
+\end{flalign}
+where the angular velocity $\vec{\omega}$ is split in the nominal value $\vec{\tilde{\omega}}$ and the error $\vec{\tilde{\omega}}$.
+
+The next step is to use a a first order Taylor expansion, with the mention of neglecting the $ \vec {  N_{dist}}$ which is assumed to be very small.
