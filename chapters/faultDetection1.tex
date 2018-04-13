@@ -88,3 +88,39 @@ The full order observer
 \begin{equation}
 \hat{x} = z + \underline H x
 \end{equation}
+with $\hat{x}$ be the state estimate and $z$ the state of the observer. When \eqref{stateObs1} is an observer for the system given by \eqref{stateObs} the dynamics of the errors vector($e = x - \hat{x}$) can be written as\cite{UIO} 
+%
+\begin{equation}
+\dot{e}= (\underline A-\underline H \underline C \underline A-\underline K1 \underline C)e + (\underline A-\underline H \underline C \underline A-\underline K1 \underline C - \underline F)z+ ((\underline A-\underline H \underline C \underline A-\underline K1 \underline C )\underline H-\underline K2)y
++ (\underline I - \underline {HC} - \underline T)\underline Bu	+(\underline I -\underline H\underline C)\underline E d
+\label{errordynamics}
+\end{equation}
+in the above equation the utility of $x  = e + \hat{x} = e + \underline Hy+z$ is used. It can be seen that the error converges to zero if the following conditions hold true:
+ %
+ \begin{equation}
+ \underline F = \underline A-\underline H \underline C \underline A-\underline K1 \underline C
+ \label{errordynamics3}
+ \end{equation}
+\begin{equation}
+(\underline I - \underline{HC})\underline E = 0
+\label{errordynamics4}
+\end{equation}
+\begin{equation}
+\underline T = (\underline I - \underline H\underline C)
+\label{errordynamics5}
+\end{equation}
+\begin{equation}
+\underline K = \underline K1 +\underline K2
+\label{errordynamics6}
+\end{equation}
+\begin{equation}
+\underline K2 =\underline F \underline H 
+\label{errordynamics7}
+\end{equation}
+where $\underline K1$ is designed freely by pole placement to give desired eigenvalues of the observer. The error dynamics can now be written as 
+\begin{equation}
+\dot{e} = \underline F e
+\label{errordynamics8}
+\end{equation}
+consequently if the eigenvalues of $\underline F$ are to the left half plane, the error converges exponentially asymptotically to zero. 
+
