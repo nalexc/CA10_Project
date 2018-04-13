@@ -92,9 +92,12 @@ with $\hat{x}$ be the state estimate and $z$ the state of the observer. When \eq
 %
 \begin{equation}
 \dot{e}= (\underline A-\underline H \underline C \underline A-\underline K1 \underline C)e + (\underline A-\underline H \underline C \underline A-\underline K1 \underline C - \underline F)z+ ((\underline A-\underline H \underline C \underline A-\underline K1 \underline C )\underline H-\underline K2)y
-+ (\underline I - \underline {HC} - \underline T)\underline Bu	+(\underline I -\underline H\underline C)\underline E d
 \label{errordynamics}
 \end{equation}
+\begin{equation*}
++ (\underline I - \underline {HC} - \underline T)\underline Bu	+(\underline I -\underline H\underline C)\underline E d
+\label{errordynamics45}
+\end{equation*}
 in the above equation the utility of $x  = e + \hat{x} = e + \underline Hy+z$ is used. It can be seen that the error converges to zero if the following conditions hold true:
  %
  \begin{equation}
@@ -135,4 +138,35 @@ A sufficient and rather necessary conditions for the UIO existence is the number
   rank (\underline{CE}) =rank( \underline E) 
   \label{errordynamics10}
   \end{equation}
-  and by denoting $\underline A1 = \underline A - \underline{HCA} $ that the pair $(\underline {CA1})$ is detectable.
+  and by denoting $\underline A1 = \underline A - \underline{HCA} $ that the pair $(\underline {CA1})$ is detectable and thus $F$ can have stable roots.
+  \subsection{Residual Generation}
+  The residual is used for fault detection and isolation thus should be decoupled from the unknown inputs(disturbances). The residual can be written as
+   \begin{equation*}
+   r = y - \underline C \hat{x} 
+   \label{errordynamics11}
+   \end{equation*}
+\begin{equation*}
+	 = y - \underline C (z + \underline{H} y ) 
+	\label{errordynamics12}
+\end{equation*}
+\begin{equation*}
+	= (\underline I  -\underline{ CH})y   -\underline C z 
+	\label{errordynamics13}
+\end{equation*}
+which is clear that does not depend on the disturbance vector. A simple threshold can be applied such that for the faulty case, if the magnitude of the residual is larger than the threshold then a fault has been occurred as
+$\{\lVert r\rVert \geq threshold \}$ else if $\{\lVert r\rVert < threshold \}$ then the system is fault free. In the \figref{fig:residualobs} the block diagram of the nominal system and the observer can be seen along with the residual generator
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figures/observer}
+	\caption{Observer based residual generator}
+	\label{fig:residualobs}
+\end{figure}
+Moreover, in the \figref{fig:residualobstest} it can be seen how the state error converge asymptotically to zero from the initial conditions along with a change in the attitude of the satellite after 70 seconds, and it can be clearly seen that the disturbance has been decoupled from the residual.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figures/obstest}
+	\caption{Convergence of the state estimation error to zero with the disturbance been decoupled}
+	\label{fig:residualobstest}
+\end{figure}
+The method can be used directly also for the motors. The faults after the detection can be isolated by making the residual sensitive to all but one actuator fault each time, leading to a bank of observers each sensitive to a particular actuator component.
+\subsection{CUSUM algorithm and change detection} 
