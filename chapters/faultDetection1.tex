@@ -124,3 +124,15 @@ where $\underline K1$ is designed freely by pole placement to give desired eigen
 \end{equation}
 consequently if the eigenvalues of $\underline F$ are to the left half plane, the error converges exponentially asymptotically to zero. 
 
+a solution to \eqref{errordynamics4} is given by making use of the Moore-Penrose pseudo-inverse as
+\begin{equation}
+\underline H = \underline E (\underline{CE})^{+}
+\label{errordynamics9}
+\end{equation}
+with $(\underline{CE})^{+} = [(\underline{CE})^{T} (\underline{CE})]^{-1}\underline{CE})^{T} $.
+A sufficient and rather necessary conditions for the UIO existence is the number of independent unknown inputs can not be larger than the number of independent measurements which leads to
+  \begin{equation}
+  rank (\underline{CE}) =rank( \underline E) 
+  \label{errordynamics10}
+  \end{equation}
+  and by denoting $\underline A1 = \underline A - \underline{HCA} $ that the pair $(\underline {CA1})$ is detectable.
