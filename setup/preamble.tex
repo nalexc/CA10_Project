@@ -339,10 +339,10 @@ backgroundcolor=\color{lbcolor},
 
 \usepackage{ifthen}
 \renewcommand{\nomgroup}[1]{%
-	\ifthenelse{\equal{#1}{T}}{\item[\textbf{Terminology}]}{%
-		\ifthenelse{\equal{#1}{A}}{\item[\textbf{Acronyms}]}{%
-	\ifthenelse{\equal{#1}{R}}{\item[\textbf{Reference Frames}]}{%
-	\ifthenelse{\equal{#1}{S}}{\item[\textbf{Symbols}]}{}}
+	\ifthenelse{\equal{#1}{T}}{\item[\textbf{\Huge Terminology}]}{%
+		\ifthenelse{\equal{#1}{A}}{\item[\textbf{\Huge Acronyms}]}{%
+	\ifthenelse{\equal{#1}{R}}{\item[\textbf{\Huge Reference Frames}]}{%
+	\ifthenelse{\equal{#1}{S}}{\item[\textbf{\Huge Symbols}]}{}}
 }}}
 
 \renewcommand{\nompreamble}{
