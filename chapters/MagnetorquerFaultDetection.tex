@@ -106,5 +106,12 @@ Moreover, in the \figref{fig:residualobstest} it can be seen how the state error
 	\caption{Convergence of the state estimation error to zero with the disturbance been decoupled}
 	\label{fig:residualobstest}
 \end{figure}
-The method can be used directly also for the motors. The faults after the detection can be isolated by making the residual sensitive to all but one actuator fault each time, leading to a bank of observers each sensitive to a particular actuator component.
+The method can be used directly also for the motors. The faults after the detection can be isolated by deleting the $i_{th}$ column of the matrix B namely $b_{i}$ and incorporating this along with the disturbance distribution matrix as
+\begin{equation}
+	E^{i} = [ E  b_{i}]
+	\label{errordynamics14}
+\end{equation}
+
+
+ leading to a bank of observers each sensitive to a particular actuator component.
 \subsection{CUSUM algorithm and change detection} 
