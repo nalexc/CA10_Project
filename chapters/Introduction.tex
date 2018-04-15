@@ -15,16 +15,23 @@ Satellite attitude control differs fundamentally from the attitude control of ea
  Since putting satellites into orbit is quite costly, a lot of effort is made to prevent system failures. The satellite is designed to withstand extreme temperature changes, large accelerations during launch etc. Every part is made to last as long as possible. In order to be able to handle faults in actuators, a fault-tolerant control scheme is implemented.
  
  
- \nomenclature[A]{\textbf{AAUSAT}}{The name of the satellites developed at Aalborg University} 
+ \nomenclature[A]{AAUSAT}{The name of the satellites developed at Aalborg University} 
  
+
  
- \nomenclature[T]{\textbf{Precession}}{} 
+ \nomenclature[T]{Precession}{} 
  
 \todo{discuss control methods in previous aausats}
 
 \section{Problem statement}
-
+Developing a solution for the case of fault detection and isolation that might occur in an actuator of a pico-satellite by design and simulation of a fault-tolerant attitude control scheme for a pico-satellite which is supplied with magnetorquers and reaction wheels will be the objective of this thesis.
 
 \section{Use-case}\label{sec:useCase}
+To further expand the problem statement stated above, a use case is conceived. In order to achieve the mission task, the use case is constructed for proving the system requirements.
 
+The task for the satellite is to track ships in arctic regions which is based on the mission of AAUSAT3. This steams from the desire of the Danish Maritime Safety Administration \nomenclature{\textbf{DaMSA}}{Danish Maritime Safety Administration}(DaMSA) of improving the safety by increasing the surveillance of the ships. The test area will be around Greenland, where DaMSA wants to monitor the ships around this area because of the low number of ships that are sailing. % http://www.space.aau.dk/aausat3/index.php?n=Main.AAUSAT3MissionDescription
+
+In order to achieve this objective, a Low Earth Orbit (LEO) satellite is deployed and Automatic Identification System (AIS) signals are used for exchanging information with a ground station.
+
+As secondary mission the satellite has to gather data while is flying around Greenland and in the same time taking pictures. 
 
