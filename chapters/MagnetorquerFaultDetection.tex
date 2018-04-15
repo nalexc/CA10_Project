@@ -106,12 +106,31 @@ Moreover, in the \figref{fig:residualobstest} it can be seen how the state error
 	\caption{Convergence of the state estimation error to zero with the disturbance been decoupled}
 	\label{fig:residualobstest}
 \end{figure}
-The method can be used directly also for the motors. The faults after the detection can be isolated by deleting the $i_{th}$ column of the matrix B namely $b_{i}$ and incorporating this along with the disturbance distribution matrix as
+The method can be used directly also for the motors. Fault isolation is possible assuming that all the sensors are fault free. A descriptor model of the overall system with actuator fault can be written as \eqref{stateObs} by adding the actuator fault indicator in the equation as 
 \begin{equation}
+\dot{x} = \underline Ax+\underline B u+\underline Ed + \underline Bf_{act}
+\label{stateObs34}
+\end{equation}
+where $f_{act}$ represents the actuator faults. After the detection, faults can be isolated by deleting the $i_{th}$ column of the matrix B namely $b_{i}$ and incorporating this along with the disturbance distribution matrix as
+\begin{equation*}
 	E^{i} = [ E  b_{i}]
 	\label{errordynamics14}
-\end{equation}
-
-
- leading to a bank of observers each sensitive to a particular actuator component.
+\end{equation*}
+and furthermore, the $i_{th}$ component of the input vector $u_{i}$ is incorporated to the disturbance vector as 
+\begin{flalign*}
+\begin{bmatrix}
+	d \\ u_{i}+f^{i}_{act}
+\end{bmatrix}
+\end{flalign*} 
+ leading to a bank of observers with each residual actuated by 2 inputs(without $i_{th}$) and all outputs. The detection of the fault is made by applying a threshold as  $\{\lVert r^{i}\rVert < Thr^{i} \}$ else if $\{\lVert r^{k}\rVert \geq Thr^{k} \}$ with $k = 1,...i-1,..i+1,5..r$ be the non faulty residuals.
 \subsection{CUSUM algorithm and change detection} 
+The evaluation of the residual which determines if the actuator is faulty or fault free is based on the cumulative sum (CUSUM), a sequential hypothesis testing technique to detect changes on the noisy signal. By changes are accounted changes on the mean of the original signal. 
+
+
+
+  \begin{figure}[H]
+  	\centering
+  	\includegraphics[width=0.7\linewidth]{figures/cusum1}
+  	\caption{CUSUM output with fault on the z axis magnetorquer at 40s }
+  	\label{fig:cusum1}
+  \end{figure}  
