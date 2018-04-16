@@ -1,6 +1,10 @@
 \chapter{System Description}\label{chap:systemDescribtion}
 
-\section{Reaction Wheels}
+\input{chapters/sensors.tex}
+
+\section{Actuators}
+ 
+\subsection{Reaction Wheels}
 
 One method of controlling a spacecraft's attitude is by using either reaction or momentum wheels attached to the spacecraft's body. By controlling the wheel's angular velocity using a motor, the amount of angular momentum stored in the wheel can be controlled. If there are no external forces involved, the sum of angular momentum in the system made up by the spacecraft's body and the reaction wheels is constant. This means that by increasing the angular velocity of the wheels, the satellite body's angular momentum can be reduced. This angular momentum transfer can be used to control the attitude of the satellite. If the goal is to change the angular momentum of the whole satellite, actuators that have external interaction should be used, such as magnetorquers or solar sails.
 
@@ -92,5 +96,8 @@ The pseudo inverse is calculated in the same manner as presented in equation \re
 \underline{A}_{DC,f3}^\dagger   = \underline{A}_{DC,f3}^T  (\underline{A}_{DC,f3} \underline{A}_{DC,f3}^T)^{-1}
 \end{equation}
 
+
+\input{chapters/motorModAndCont.tex}
+\input{chapters/motor/torqueControl.tex}
 \input{chapters/magnetorquer.tex}
 
