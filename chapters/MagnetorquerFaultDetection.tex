@@ -36,7 +36,7 @@ with $\hat{x}$ be the state estimate and $z$ the state of the observer. When \eq
 + (\underline I - \underline {HC} - \underline T)\underline Bu	+(\underline I -\underline H\underline C)\underline E d
 \label{errordynamics45}
 \end{equation*}
-in the above equation the utility of $x  = e + \hat{x} = e + \underline Hy+z$ is used. It can be seen that the error converges to zero if the following conditions hold true:
+in the above equation the utility of $x  = e + \hat{x} = e + \underline Hy+z$ is used. The estimation error may converge to zero if the following conditions hold true:
  %
  \begin{equation}
  \underline F = \underline A-\underline H \underline C \underline A-\underline K1 \underline C
@@ -58,14 +58,14 @@ in the above equation the utility of $x  = e + \hat{x} = e + \underline Hy+z$ is
 \underline K2 =\underline F \underline H 
 \label{errordynamics7}
 \end{equation}
-where $\underline K1$ is designed freely by pole placement to give desired eigenvalues of the observer. The error dynamics can now be written as 
+where $\underline K1$ is designed freely by pole placement to give desired eigenvalues of the observer. The error dynamics if the \ref{errordynamics4}...\ref{errordynamics7} hold true can now be written as 
 \begin{equation}
 \dot{e} = \underline F e
 \label{errordynamics8}
 \end{equation}
 consequently if the eigenvalues of $\underline F$ are to the left half plane, the error converges exponentially asymptotically to zero. 
 
-a solution to \eqref{errordynamics4} is given by making use of the Moore-Penrose pseudo-inverse as
+A solution to \eqref{errordynamics4} is given by making use of the Moore-Penrose pseudo-inverse as
 \begin{equation}
 \underline H = \underline E (\underline{CE})^{+}
 \label{errordynamics9}
