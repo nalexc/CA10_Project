@@ -340,10 +340,12 @@ backgroundcolor=\color{lbcolor},
 \usepackage{ifthen}
 \renewcommand{\nomgroup}[1]{%
 	\ifthenelse{\equal{#1}{T}}{\item[\textbf{\Large Terminology}]}{%
-		\ifthenelse{\equal{#1}{A}}{\item[\textbf{\Large Acronyms}]}{%
+	\ifthenelse{\equal{#1}{A}}{\item[\textbf{\Large Acronyms}]}{%
 	\ifthenelse{\equal{#1}{R}}{\item[\textbf{\Large Reference Frames}]}{%
 	\ifthenelse{\equal{#1}{S}}{\item[\textbf{\Large Symbols}]}{}}
 }}}
+
+\setlength{\nomlabelwidth}{4.5cm} % set spacing between symbol and description
 
 \renewcommand{\nompreamble}{
 	\input{chapters/nomenclature.tex}}
