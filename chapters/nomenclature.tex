@@ -1,28 +1,23 @@
 \section*{Notations}
 
-Vectors used have a bold typeface, matrices are underlined. 
-
+Vectors used have a bold typeface.  
 \begin{equation*}
 \textbf{v}
 \end{equation*}
+Matrices are underlined.
 \begin{equation*}
 \underline{A}
 \end{equation*}
 
 Cross product operations can be evaluated by taking the skew symmetric matrix of the left vector and executing a matrix multiplication. The skew symmetric matrix of $\textbf{v}$ is denoted as $\underline{v}^\times$
-
 \begin{equation*}
 	\textbf{w} = \textbf{u} \times \textbf{v} = \underline{u}^\times \textbf{v}
 \end{equation*}
-
 Matrix transposition is denoted as
-
 \begin{equation*}
-\underline{A^T}
+\underline{A}^T
 \end{equation*}
-
 If a non-square matrix has to undergo an operation similar to inversion, Moore-Penrose pseudoinverse is used. Pseudoinverse matrix is indicated as $\underline{A}^\dagger$. If the matrix satisfies $rank(\underline{A}) = min(m,n)$ and $m < n$, the left pseudoinverse is used as follows
-
 \begin{equation*}
 \underline{A}^\dagger    =   (\underline{A}^T \underline{A} )^{-1} \underline{A}^T 
 \end{equation*}
