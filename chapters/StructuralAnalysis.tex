@@ -4,7 +4,7 @@
 
 Structural analysis studies the interrelation between parameters and variables of the system using constraints between them. It distinguishes known and unknown variables, according to whether they can be measured in the system or not. Then the unknown variables are expressed using the known ones according to the constraints. Structural analysis based residual signal require that unknown variables can be expressed redundantly. One of the constraints is used to express the unknown, the other to verify it. If there's a mismatch between the two, a fault is detected.
 
-In case of fault detection in sensors, one constraint is between the measured and the actual values of a variable. In case of a sensor fault, there can be a considerable difference between the measured and the actual value of a variable. Assumes that only one fault occurs at any given time, so faults cannot mutually neutralize each other. 
+In case of fault detection in sensors, one constraint is between the measured and the actual values of a variable. In case of a sensor fault, there can be a considerable difference between the measured and the actual value of a variable. Assumes that only one fault occurs at any given time, so faults cannot mutually neutralize each other. The following structural analysis based residual generator is able to both actuator and sensor faults.
 
 The constraints being used to detect faults in the motor are \ref{sec:motor} \todo{reference motor section properly}
 
@@ -30,17 +30,17 @@ The constraints being used to detect faults in the motor are \ref{sec:motor} \to
 \end{figure} 
 
 \begin{equation}
-V_a = R_a i + k_e \omega
+C_1(\omega, v) = V_a = R_a i + k_e \omega
 \end{equation}
 
 \begin{equation}
-k_{t}i  =J\dfrac{d\omega}{dt} + b\omega
+C_2(\omega, \dot{\omega}, i) =  k_{t}i  =J\dfrac{d\omega}{dt} + b\omega
 \end{equation}
 
 \begin{equation}
-\tau = k_t i
+C_2(\tau, i) = \tau = k_t i
 \end{equation}
-
+\todo{adjust to right tau}
 \begin{equation}
 d_1(\omega, \dot{\omega})
 \end{equation}
@@ -52,7 +52,11 @@ $\omega$ and $i$ can be measured, so the residual signal can be derived as
 residual = k_t i + J \frac{d\omega}{dt} + b \omega
 \end{equation}
 
-The fraction model is quite accurate at high speeds, not so much for low speeds. This needs to be addressed by a higher threshold at low speeds.
+The friction model is quite accurate at high speeds, not so much for low speeds. This needs to be addressed by a higher threshold at low speeds.
+
+Figures \ref{fig:residual} - \ref{fig:residualOmega} show the effect of a bearing fault that increases the reaction wheel friction to twofold. When a residual indicates a fault, the torque distributor changes mode, shutting down the faulty wheel. There's a short term error in the reaction wheel subsystem's torque output, but then the torque reference tracking normalizes quite quickly. This might jeopardize a downlink operation, but since this kind of fault rarely occurs, the effects are not serious.
+
+\todo{handle the peak better by measurement of faulty torque}
 
 \begin{figure}[h]
 	\centering
@@ -66,34 +70,34 @@ The fraction model is quite accurate at high speeds, not so much for low speeds.
 
 
 
-\section{Alternative method for identifying reaction wheel fault}
-
-With enough computational power the faulty reaction wheel can be detected through the calculated reaction wheel output torque, assuming only one reaction wheel is faulty. It is done by calculating the difference between 3D torque demand and actual 3D torque output. 
-
-\begin{equation}
-\vec{N}_{rw} = \underline{I}_s \dot{\vec{\omega}}  + \vec{\omega} \times \vec{h_{rw}} - \vec{N_{mt}} - \vec{N_{dist}}
-\end{equation}
-
-Then the difference between torque demand and torque output is calculated. The reaction wheel that has the most similar axis orientation to the torque difference is deemed as faulty.
-
-\begin{equation}
-\vec{N}_{rw}^{demand} - \vec{N}_{rw}^{actual} = 
-\vec{N}_{rw}^{diff}
-\end{equation}
-
-\begin{equation}
-\pm \vec{N}_{rw}^{diff}  \stackrel{?}{\approx} \vec{axis} 
-\end{equation}
-
-If the torque error exceeds a certain threshold, then the faulty wheel index can be identified as
-
-unit vectors!!!
-
-\begin{equation}
-faultyWheelIndex = \arg\min_i ( \pm \vec{N}_{rw}^{diff} - \vec{axis}_i ) 
-\end{equation}
-
-\todo{mention unit vector notation, decide notation for axis, express axis according to q}
-
-Note: the lag for torque change and wheel saturation has to be taken into account separately, as those don't count as faults. 
-Thresholds should be applied.
+%\section{Alternative method for identifying reaction wheel fault}
+%
+%With enough computational power the faulty reaction wheel can be detected through the calculated reaction wheel output torque, assuming only one reaction wheel is faulty. It is done by calculating the difference between 3D torque demand and actual 3D torque output. 
+%
+%\begin{equation}
+%\vec{N}_{rw} = \underline{I}_s \dot{\vec{\omega}}  + \vec{\omega} \times \vec{h_{rw}} - \vec{N_{mt}} - \vec{N_{dist}}
+%\end{equation}
+%
+%Then the difference between torque demand and torque output is calculated. The reaction wheel that has the most similar axis orientation to the torque difference is deemed as faulty.
+%
+%\begin{equation}
+%\vec{N}_{rw}^{demand} - \vec{N}_{rw}^{actual} = 
+%\vec{N}_{rw}^{diff}
+%\end{equation}
+%
+%\begin{equation}
+%\pm \vec{N}_{rw}^{diff}  \stackrel{?}{\approx} \vec{axis} 
+%\end{equation}
+%
+%If the torque error exceeds a certain threshold, then the faulty wheel index can be identified as
+%
+%unit vectors!!!
+%
+%\begin{equation}
+%faultyWheelIndex = \arg\min_i ( \pm \vec{N}_{rw}^{diff} - \vec{axis}_i ) 
+%\end{equation}
+%
+%\todo{mention unit vector notation, decide notation for axis, express axis according to q}
+%
+%Note: the lag for torque change and wheel saturation has to be taken into account separately, as those don't count as faults. 
+%Thresholds should be applied.
