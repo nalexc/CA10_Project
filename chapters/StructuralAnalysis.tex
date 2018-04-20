@@ -45,35 +45,3 @@ The fraction model is quite accurate at high speeds, not so much for low speeds.
 
 
 
-
-\section{Alternative method for identifying reaction wheel fault}
-
-With enough computational power the faulty reaction wheel can be detected through the calculated reaction wheel output torque, assuming only one reaction wheel is faulty. It is done by calculating the difference between 3D torque demand and actual 3D torque output. 
-
-\begin{equation}
-\vec{N}_{rw} = \underline{I}_s \dot{\vec{\omega}}  + \vec{\omega} \times \vec{h_{rw}} - \vec{N_{mt}} - \vec{N_{dist}}
-\end{equation}
-
-Then the difference between torque demand and torque output is calculated. The reaction wheel that has the most similar axis orientation to the torque difference is deemed as faulty.
-
-\begin{equation}
-\vec{N}_{rw}^{demand} - \vec{N}_{rw}^{actual} = 
-\vec{N}_{rw}^{diff}
-\end{equation}
-
-\begin{equation}
- \pm \vec{N}_{rw}^{diff}  \stackrel{?}{\approx} \vec{axis} 
-\end{equation}
-
-If the torque error exceeds a certain threshold, then the faulty wheel index can be identified as
-
-unit vectors!!!
-
-\begin{equation}
-faultyWheelIndex = \arg\min_i ( \pm \vec{N}_{rw}^{diff} - \vec{axis}_i ) 
-\end{equation}
-
-\todo{mention unit vector notation, decide notation for axis, express axis according to q}
-
-Note: the lag for torque change and wheel saturation has to be taken into account separately, as those don't count as faults. 
-Thresholds should be applied.

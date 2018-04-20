@@ -10,6 +10,13 @@ Using different reference frame for different calculations can simplify equation
 Inertial frames of reference are frames where Newton's 3 laws of dynamics apply.
 The most used reference frames for Earth-orbiting satellites are Earth Centered Inertial Frame (ECI), Earth Centered Earth Fixed Frame (ECEF), Orbit Frame, Body-Fixed Frame  \cite{ref1} \cite{ref2}.
 
+\begin{figure}[h!]
+	\centering 
+	\includegraphics[width=140mm]{figures/frame.pdf}	
+	\caption{Reference frame axes. Superscripts: i - ECI, o - Orbital, s - Body Frame \cite{our_report}.}
+	\label{fig:frames}
+\end{figure}
+
 \subsubsection{Earth Centered Inertial Frame (ECI)}
 Earth is rotating and is orbiting the Sun, it accelerates in the direction of the Sun's center of mass, the Sun is orbiting the center of the Milky Way, etc. Thus there is no frame fixed to Earth's center that is an inertial frame. But in the case of earth orbiting satellites, there exists a coordinate system attached to Earth's center that out of practical considerations can be treated as one, the Earth Centered Inertial Frame (ECI).
 As the name suggests, the origin of the coordinate system is the center of earth. Inertial means that the frame doesn't rotate, the direction of stars remain the same. 
@@ -32,4 +39,3 @@ The Orbital Frame is centered at the center of mass of the satellite. The $z$ ax
 \subsubsection{Body-Fixed Frame (BFF)}
 
 Body-fixed frames are attached to the satellite's body, but the orientation of the frame in relation to the body is arbitrary. Due to practical considerations the axes are usually chosen to line up with the principal axes of inertia of the body.
-
