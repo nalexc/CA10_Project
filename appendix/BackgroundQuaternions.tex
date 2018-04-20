@@ -1,11 +1,9 @@
 \chapter{Quaternions } \label{chap:B}
-
-\todo{add q multiplication, conjugate, rotation, conjugate, separately say that eta is cos fi2}
+This appendix is based on sources from [Wertz] [Kuipers].
 
 There are several possible mathematical representations for rotation. In physics, rotation matrices, Euler angles (eg. pitch-roll-yaw) and quaternions. In satellite engineering, quaternions are the preferred representations, since they are more compact than rotation matrices and lack singularities.
 
 Quaternions include four values, three of them represent a vector \textbf{$\epsilon$}, the fourth a scalar $\eta$. 
-
 \begin{equation}
 \textbf{q} =
 \left[ 
@@ -24,21 +22,12 @@ q_4
 \end{array}
 \right] 
 \end{equation}
-
-Let \textbf{e} represent the unit length rotation axis, with \textbf{i}, \textbf{j}, \textbf{k} being the base vectors in euclidean space. 
-
-\begin{equation}
-\textbf{e} = e_1 \textbf{i}+ e_2 \textbf{j} + e_3 \textbf{k}
-\end{equation}
-
 A rotation with $\Phi$ around the unit vector can be described according to Euler's formula.
-
 \begin{equation}
-q = e^{\frac{\Phi}{2} (e_1 \textbf{i}+ e_2 \textbf{j} + e_3 \textbf{k})} = \cos \frac{\Phi}{2} + (e_1 \textbf{i}+ e_2 \textbf{j} + e_3 \textbf{k}) \sin \frac{\Phi}{2}
+q = e^{\frac{\Phi}{2} (e_1 \textbf{i}+ e_2 \textbf{j} + e_3 \textbf{k} + e_4)} = \cos \frac{\Phi}{2} + (e_1 \textbf{i}+ e_2 \textbf{j} + e_3 \textbf{k} +e_4) \sin \frac{\Phi}{2}
 \end{equation}
 
 Consequently 
-
 \begin{equation}
 \textbf{q} =
 \left[ 
@@ -59,3 +48,105 @@ e_3  \sin \frac{\Phi}{2} \\
 \end{array}
 \right] 
 \end{equation}
+
+\subsection{Quaternion multiplication}
+Let \textbf{q} represent the unit length rotation axis, with \textbf{i}, \textbf{j}, \textbf{k} being the base vectors in euclidean space and $e_4$ as the scalar part: 
+\begin{equation}
+\textbf{q} = q_1 \textbf{i}  + q_2 \textbf{j} + q_3 \textbf{k} + q_4
+\end{equation}
+
+where $\textbf{i}, \textbf{j}, \textbf{k}$ represent the hyper imaginary parts and satisfying the rules introduced by Hamilton:
+\begin{align*}
+	\begin{split}
+		\vec {i^{2}} &=  \vec {j^{2}}  = \vec {k^{2}} = -1 \\
+		{\vec {i}} {\vec {j}} &= - {\vec {j}} {\vec {i}} = \vec k \\
+		{\vec {j}} {\vec {k}} &= - {\vec {k}} {\vec {j}} = \vec i \\
+		{\vec {k}} {\vec {i}} &= - {\vec {i}} {\vec {k}} = \vec j 
+	\end{split}
+\end{align*}
+Next a product of two quaternions $\vec q_A$ and $\vec q_B$ is illustrated:
+\begin{flalign}
+	\vec q_C = \vec q_A \otimes \vec q_B = ( q_{A_{1}} \vec i + q_{A_{2}} \vec j + q_{A_{3}} \vec k + q_{A_{4}}) \otimes ( q_{B_{1}} \vec i + q_{B_{2}} \vec j + q_{B_{3}} \vec k + q_{B_{4}})
+		\label{eq:quat}
+\end{flalign}
+After rearranging terms and using the rules above, equation \ref{eq:quat} becomes:
+\begin{flalign}
+\vec q_C &= ( q_{A_{1}} q_{B_{4}} + q_{A_{2}}q_{B_{3}} - q_{A_{3}}q_{B_{2}}  + q_{A_{4}} q_{B_{1}}) \vec i + \\ 
+&+( - q_{A_{1}} q_{B_{3}} + q_{A_{2}}q_{B_{4}} - q_{A_{3}}q_{B_{1}}  + q_{A_{4}} q_{B_{2}}) \vec j + \\
+&+( q_{A_{1}} q_{B_{2}} - q_{A_{2}}q_{B_{1}} - q_{A_{3}}q_{B_{4}}  + q_{A_{4}} q_{B_{3}}) \vec k + \\
+&+ (- q_{A_{1}} q_{B_{1}} - q_{A_{2}}q_{B_{2}} - q_{A_{3}}q_{B_{3}}  + q_{A_{4}} q_{B_{4}}) 
+	\label{eq:quat2}
+\end{flalign}
+The product quaternion can be expressed in a matrix form:
+\begin{flalign}   
+	\begin{bmatrix}
+		 q_{C_{1}} \\
+		 q_{C_{2}}  \\ 
+		 q_{C_{3}}  \\ 
+		 q_{C_{4}}  \\ 
+	\end{bmatrix} 
+	&= 
+		\underbrace{
+	\begin{bmatrix}
+		q_{A_{4}}& q_{A_{3}}& -q_{A_{2}}&q_{A_{1}}&\\
+		-q_{A_{3}}& q_{A_{4}}& q_{A_{1}}&q_{A_{2}}&\\
+		q_{A_{2}}& -q_{A_{1}}& q_{A_{4}}&q_{A_{3}}&\\
+		-q_{A_{1}}& -q_{A_{2}}& -q_{A_{3}}&q_{A_{4}}&\\
+	\end{bmatrix} 
+}_{\underline{C}_A}
+	\begin{bmatrix}
+    q_{B_{1}} \\
+	q_{B_{2}}  \\ 
+	q_{B_{3}}  \\ 
+	q_{B_{4}}  \\  
+	\end{bmatrix} 	
+	\label{eq:sfgdm}
+\end{flalign}
+A skew-symmetric matrix is given as $\underline{S}(\vec q)$ and defined as
+\begin{flalign}   
+	\underline{S}(\vec q) = 
+	\begin{bmatrix}
+		 0 & - q_{A_{3}}  & q_{A_{2}}\\
+		 q_{A_{3}}&  0  & - q_{A_{1}} \\ 
+		- q_{A_{2}}&  q_{A_{1}}  & 0 \\ 
+	\end{bmatrix} 
+	\label{eq:s2f}
+\end{flalign}
+
+Moreover equation \ref{eq:sfgdm} can be written as
+\begin{flalign}   
+	\vec q_C = \vec q_A \vec q_B = \underline{C}_A \vec q_B = 
+	\begin{bmatrix}
+		 - \underline S(\vec{ q}) + \underline{\vec 1} q_{C_{4}} & \vec{ q} \\
+		 - \vec{ q}^\mathsf{T}&  q_{C_{4}}  \\ 
+	\end{bmatrix} 
+   \vec q_B
+	\label{eq:sff}
+\end{flalign}
+\subsection{Properties of quaternions}
+The \textit{complex conjugate} of a quaternion $\vec q$ is given by
+\begin{flalign}
+	\vec q^\ast= - q_1 \vec i - q_2 \vec j - q_3 \vec k +q_4
+	\label{eq:quart2}
+\end{flalign}
+Thus
+\begin{flalign}
+	(\vec q_A \vec q_B) = \vec q^\ast _{B} \vec q^\ast_{A}
+	\label{eq:quart32}
+\end{flalign}
+The \textit{norm} of a quaternion $\vec q$, denoted by $|\vec q|$ is
+\begin{flalign}
+	|\vec q|= \vec q \vec q^\ast = \vec q^\ast \vec q = |\vec q|^2 = \sqrt{q^2_{1} + q^2_{2} +q^2_{3}+q^2_{4}}
+	\label{eq:quar42}
+\end{flalign}
+The \textit{inverse} of a quaternion $\vec q$ is defined as 
+\begin{flalign}
+	\vec q^{-1} = \dfrac{\vec q^\ast }{|\vec q|^2}
+	\label{eq:quar432}
+\end{flalign}
+It can be verified that 
+\begin{flalign}
+	\vec q^{-1} \vec q = \vec q \vec q^{-1} = 1 
+	\label{eq:qutt}
+\end{flalign}
+where $\vec q$ is the unit quaternion and the inverse is its conjugate $\vec q^{-1} $
