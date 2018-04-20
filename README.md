@@ -9,3 +9,11 @@ makeindex %.nlo -s nomencl.ist -o %.nls -t %.nlg
 
 For nomenclature, set up ide as follows:
 https://www.youtube.com/watch?v=Ss1XfsaAnfs
+
+Nomenclature commands:
+Acronym:
+\nomenclature[A]{\textbf{SMC}}{Sliding Mode Control}
+Symbol
+\nomenclature[S]{\vec{\omega}}{AngVel}
+Terminology
+\nomenclature[T]{Nadir}{Whatever}
