@@ -6,17 +6,19 @@ Tracking the earth station requires torque from the actuators, the torque demand
 
 
 \todo{add figure for angular acceleration demand -station tracking}
-\todo{argue for tetrahedron, evenly distributed}
-
-There have been studies on what is the best configuration of redundant reaction wheels. The optimal configuration can of course depend on the requirements. In some configurations the   Minimizing energy consumption is normally the goal in deciding on a configuration. Ismail et al. \cite{ReactionWheelConfigSim} investigated several configurations by running simulations with the configuration being the only difference.
+\todo{argue for tetrahedron, evenly distributed}}
 
 
-Tetrahedron configuration can output twice as much force along an axis as one wheel can produce along its own axis.
-\cite{reactionWheelConfigThesis} 
+There have been studies on what is the best configuration of redundant reaction wheels. The optimal configuration can of course depend on the requirements. If the requirement is to have the same controllability for reaction wheels in case of fault, and 6 reaction wheels are available, orthogonally configured double reaction wheels can be used. Minimizing energy consumption is normally the goal in deciding on a configuration. Ismail et al. \cite{ReactionWheelConfigSim} investigated several configurations by running simulations with the configuration being the only difference. The tetrahedron configuration of 4 reaction wheels has been chosen, which is quite widespread in the industry \cite{reactConfigNasa}.
+In tetrahedron configuration the 4 wheel orientations are evenly distributed, unlike the also widespread pyramid configuration. 
+If the requirement for the satellite is tracking objects on Earth, the tracking torque demand can be calculated using knowledge about satellite altitude, orbit shape and the corresponding satellite speed, and satellite moment of inertia. For a circular orbit at 600 km altitude, the satellite speed would be $7.56 km/s$.
+
+%Tetrahedron configuration can output twice as much force along an axis as one wheel can produce along its own axis.
+%\cite{reactionWheelConfigThesis} 
 
 \subsubsection{Transformation Between Body \& Reaction Wheel Space}
 
-The main attitude controller sends torque demands to the actuators. The torque demand distributed to the reaction wheels have to be converted to torques parallel to reaction wheel axes, in order for the motor controllers to function. Transformation from reaction wheel space to body frame is quite intuitive. Knowing the orientation of each motor axis and the corresponding motor torque 
+The main attitude controller sends torque demands to the actuators. The torque demand distributed to the reaction wheels have to be converted to torques parallel to reaction wheel axes, in order for the motor controllers to function. Transformation from reaction wheel space to body frame is quite intuitive. Knowing the orientation, the mounting angle of each motor axis and the corresponding motor torque
 , the torque in body frame can be derived according to equation \ref{eq:motorTrans1} - \ref{transmatrix}. The matrix for tetrahedron configuration is given by \cite{reactionWheelConfigThesis}.
 
 \begin{equation}

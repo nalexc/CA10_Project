@@ -90,6 +90,7 @@ Momentum dumping and attitude control can potentially be opposing goals, since a
 		
 		\begin{figure}[h]
 			\centering
+			\label{fig:decoupledDesat}
 			\begin{tabular}{@{}c@{\hspace{.5cm}}c@{}}
 				\includegraphics[page=1,width=1\textwidth]{cascadeDesat.pdf}
 			\end{tabular}
@@ -97,19 +98,16 @@ Momentum dumping and attitude control can potentially be opposing goals, since a
 			\label{fig:CascadeDesat}
 		\end{figure}
 		
-		The derived equations that can be implemented in simulation:
+		The modified magnetorquer control law that decouples from attitude dynamics, as shown in \ref{fig:decoupledDesat}
+		
+%		\begin{equation}
+%		\vec{\dot{\omega}} = \underline{I}_{s}^{-1}\left( \vec{u} -  \underline{\omega}^\times\underline{I}_{s}\vec{\omega}  \right) 
+%		\end{equation}
 		
 		\begin{equation}
-		\vec{\dot{\omega}} = \underline{I}_{s}^{-1}\left( \vec{u} -  \underline{\omega}^\times\underline{I}_{s}\vec{\omega}  \right) 
+\vec{\tau_m}^{[I]} = -\frac{\underline{\tilde{b}}^\times(t)}{|\vec{\tilde{b}}(t) |^2} k_p\left(\vec{h_{rw}}^{[I]} - \underline{R}^T(\vec{q})\vec{h_{ref}} \right)
 		\end{equation}
 		
-		\begin{equation}
-		\vec{\dot{h}}_{rw} =  -  \underline{\omega}^\times \vec{{h}}_{rw} + \vec{N_{mt}}  + \vec{N_{dist}} - \vec{u} 
-		\end{equation}
+It can be viewed as if the amount of magnetorquer torque exerted is subtracted from the reaction wheel torque. When the torque demand is higher than the magnetorquer output torque, the magnetorquers help the reaction wheels, when it drops below a certain level, the magnetorquers are decreasing the angular velocity of reaction wheels.
 		
-		\todo{body-fixed frame
-			Static input allocation
-			global asymptotic stability}
-		
-		\todo{desat figure}
-		\cite{DesatYang}
+\todo{apply to tetrahedron}
