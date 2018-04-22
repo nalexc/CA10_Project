@@ -1,10 +1,6 @@
 \chapter{Torque demand source}
 
-In the following chapter will be discussed shortly two attitude controller designs that are based on previous work. The two controllers calculate a torque demand that has to be produced from the motors. The first controller is based on the linearized model \eqref{eq:lele}, and thus is characterized as linear state feedback control, while the second one is based on the non-linear dynamics \eqref{eq:seom} creating a sliding manifold, a hyperplane, such that when the states are on the manifold, will converge to the desired reference. The non-linear controller is called Sliding Mode Control (SMC).
-
-
-
-\nomenclature[A]{\textbf{SMC}}{Sliding Mode Control}
+In the following chapter will be discussed shortly two attitude controller designs that are based on previous work. The two controllers calculate a torque demand that has to be produced from the motors. The first controller is based on the linearized model \eqref{eq:lele}, and thus is characterized as linear state feedback control, while the second one is based on the non-linear dynamics \eqref{eq:seom} creating a sliding manifold, a hyperplane, such that when the states are on the manifold, will converge to the desired reference. The non-linear controller is called Sliding Mode Control (SMC).\nomenclature[A]{\textbf{SMC}}{Sliding Mode Control}
   
  \subsection{Torque demand based on linear controller}
  
@@ -70,4 +66,4 @@ with $i = 1, 2, 3 $. The control torque was defined by the state feedback law as
 \end{flalign}
 leading to a second order closed loop system calculated as $det(s\underline{I} - (\underline{A} - \underline{BK}) )$. Identifying  this with a general second order equation $s^{2}+2\zeta\omega_{n}s+\omega_{n}^{2}$, with $\zeta$ be the dumping factor which was chosen to be equal to 1 leading to an over dumped response and $\omega_{n}$  the natural frequency $\omega_{n} =  \frac{2\pi}{60/0.35} $ with 60 be the value of the chosen rise time, the controller gains was derived.
 
-\subsection{Torque demand based on non-linear controller}
+\subsection{Torque demand based on sliding mode controller}
