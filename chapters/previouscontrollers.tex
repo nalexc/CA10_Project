@@ -64,6 +64,34 @@ with $i = 1, 2, 3 $. The control torque was defined by the state feedback law as
 	\end{bmatrix} 	
 	\label{eq:inputtorque}
 \end{flalign}
-leading to a second order closed loop system calculated as $det(s\underline{I} - (\underline{A} - \underline{BK}) )$. Identifying  this with a general second order equation $s^{2}+2\zeta\omega_{n}s+\omega_{n}^{2}$, with $\zeta$ be the dumping factor which was chosen to be equal to 1 leading to an over dumped response and $\omega_{n}$  the natural frequency $\omega_{n} =  \frac{2\pi}{60/0.35} $ with 60 be the value of the chosen rise time, the controller gains was derived.
+leading to a second order closed loop system calculated as $det(s\underline{I} - (\underline{A} - \underline{BK}) )$. Identifying  this with a general second order equation $s^{2}+2\zeta\omega_{n}s+\omega_{n}^{2}$, with $\zeta$ be the dumping factor which was chosen to be equal to 1 leading to an over dumped response and $\omega_{n}$  the natural frequency $\omega_{n} =  \frac{2\pi}{60/0.35} $ with 60 be the value of the chosen rise time, the controller gains was derived as
 
+\begin{flalign*}
+k_{1} = -2 I_{i,s} \omega_{n}^{2} 
+\label{eq:gainsl22}
+\end{flalign*}
+\begin{flalign*}
+k_{2} = -2\zeta I_{i,s} \omega_{n}^{2} 
+\label{eq:gainsl223}
+\end{flalign*}
+which give stability for the all values of $ \vec{ {\bar{\omega}}} $. 
 \subsection{Torque demand based on sliding mode controller}
+
+As described previously the sliding mode control scheme belongs to the class of non-linear control designs and is more robust compared to the linear, when disturbances are present. The objective of the SMC is the design, from a geometrical point of view, of a hyperplane, commonly called manifold, in the state space which whenever the states are on the manifold, the behavior of the system will meet the specifications it is designed for, i.e convergence to the desired reference. \nomenclature[S]{\textbf{i.e}}{id est : in other words}   
+ Introducing the small signal deviation of the states as
+\begin{flalign}
+\vec{\tilde{q}} = \vec{  \bar{q}}^{-1} \otimes \vec{ q} 
+\label{eq:smallsignal22}
+\end{flalign}
+for the quaternion error and with $\vec{  \bar{q}}^{-1}$ be the reference quaternion and $\vec{ q} $ be the measured, and for the angular velocity
+\begin{flalign}
+\vec{\tilde{\omega}}  = \vec{\omega}-\vec{\bar{\omega}}  
+\label{eq:smallsi4gnal4566}
+\end{flalign}
+with $\vec{\bar{\omega}}$ be the nominal value of the angular velocity. Moreover, by introducing the sliding variable as $s$ which depends on the error \nomenclature[S]{\textbf{s}}{Sliding variable} and is chosen to be 
+
+\begin{flalign}
+s  = F\vec{\tilde{q}} + \vec{\tilde{\omega}}  
+\label{eq:sliding variable}
+\end{flalign}
+with $F = \alpha\ast diag[111]$ be a positive definite matrix. For $s=0$, $\vec{\tilde{\omega}} = - \alpha\ast\vec{\tilde{q_{1:3}}}$   
