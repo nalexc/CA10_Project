@@ -2,16 +2,20 @@
 \subsection{Reaction Wheel Configuration}
 
 The satellite should be capable of tracking an Earth station to be able to downlink data. Tracking a ship requires similar control capability, since the velocity of the wheel is practically zero compared to the velocity of the satellite. Directing the antennas to the nadir continuously only requires keeping a satellite angular velocity equal to the orbit's angular velocity.
-Tracking the earth station requires torque from the actuators, the torque demand can be calculated based on the angular acceleration demand for Earth station tracking.
+Tracking the Earth station requires torque from the actuators, the torque demand can be calculated based on the angular acceleration demand for Earth station tracking.
 
 
-\todo{add figure for angular acceleration demand -station tracking}
-\todo{argue for tetrahedron, evenly distributed}
-
-
-There have been studies on what is the best configuration of redundant reaction wheels. The optimal configuration can of course depend on the requirements. If the requirement is to have the same controllability for reaction wheels in case of fault, and 6 reaction wheels are available, orthogonally configured double reaction wheels can be used. Minimizing energy consumption is normally the goal in deciding on a configuration. Ismail et al. \cite{ReactionWheelConfigSim} investigated several configurations by running simulations with the configuration being the only difference. The tetrahedron configuration of 4 reaction wheels has been chosen, which is quite widespread in the industry \cite{reactConfigNasa}.
+There have been studies on what is the best configuration of redundant reaction wheels. The optimal configuration can of course depend on the requirements. If the requirement is to have the same controllability for reaction wheels in case of fault, and 6 reaction wheels are available, orthogonally configured double reaction wheels can be used. Minimizing energy consumption is normally the goal in deciding on a configuration. Ismail et al. \cite{ReactionWheelConfigSim} investigated several configurations by running simulations with the configuration being the only difference. The tetrahedron configuration of 4 reaction wheels has been chosen as the default configuration in the present paper, which is quite widespread in the industry \cite{reactConfigNasa}. The tetrahedron configuration is visualized in Figure \ref{fig:tetrahedron}.
 In tetrahedron configuration the 4 wheel orientations are evenly distributed, unlike the also widespread pyramid configuration. 
-If the requirement for the satellite is tracking objects on Earth, the tracking torque demand can be calculated using knowledge about satellite altitude, orbit shape and the corresponding satellite speed, and satellite moment of inertia. For a circular orbit at 600 km altitude, the satellite speed would be $7.56 km/s$ \cite{satSpeed}.
+If the requirement for the satellite is tracking objects on Earth, the tracking torque demand can be calculated using knowledge about satellite altitude, orbit shape and the corresponding satellite speed, and satellite moment of inertia. For a circular orbit at 600 km altitude, the satellite speed would be $7.56 km/s$ \cite{satSpeed}. Appendix \ref{sec:maxTorque} presents the graphs used in deriving the torque demand for Earth station pointing. A maximum torque of \boldmath$ 2.388 \times 10^{-7} Nm$ was calculated, which acts as a requirement for the actuatos' torque output.
+
+\begin{figure}[H]
+	\centering 
+	\includegraphics[width=120mm]{figures/tetrahedron}	
+	\caption{Geometry of the tetrahedron configuration}
+	\label{label{fig:tetrahedron}}
+\end{figure}
+
 
 %Tetrahedron configuration can output twice as much force along an axis as one wheel can produce along its own axis.
 %\cite{reactionWheelConfigThesis} 
@@ -77,16 +81,16 @@ Fault isolation for the redundant reaction wheel configuration can be done by de
 \end{bmatrix} 
 \end{equation}
 
-\begin{figure}[h!]
+\begin{figure}[H]
 	\centering 
 	\includegraphics[width=170mm]{figures/reconfigure.pdf}	
 	\caption{Reconfiguration Control Scheme for Reaction Wheels}
-	\label{label{fig:reconfig}}
+	\label{fig:reconfig}
 \end{figure}
 
 \nomenclature[S]{$\underline{A}_{DC,fi}$}{Transformation matrix between axis oriented reaction wheel torque and torques in 3 dimensional body frame in case of faulty $i$th reaction wheel}
 
-The pseudo inverse is calculated in the same manner as presented in equation \ref{eq:motorTrans}, as shown in equation \ref{eq:motorTransFault}. 
+The pseudo inverse is calculated in the same manner as presented in equation \ref{eq:motorTrans}, as shown in equation \ref{eq:motorTransFault}. The torque distribution controller scheme which checks for faults in the motors, is presented in Figure \ref{fig:reconfig}
 
 \begin{equation}
 \label{eq:motorTransFault}

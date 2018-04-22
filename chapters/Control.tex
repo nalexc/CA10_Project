@@ -10,6 +10,8 @@
 
 The proposed control scheme has a hierarchical, modular structure. The main attitude controller outputs a torque reference for the actuators, which is then distributed by lower level controllers. This means that the attitude controller can be swapped without having to modify the lower level controllers. The desaturation controller distributes the torque between the reaction wheels and magnetorquers. The reaction wheel subsystem executes local fault detection and fault isolation. It receives a 3 dimensional torque demand and distributes it between the individual reaction wheel motors. The reaction wheels subsystem checks fault residual signals and adjusts torque distribution between reaction wheels accordingly. 
 
+\todo{evaluation of station tracking precision - should be within $1\deg$. Compare different reaction wheel configurations}
+
 \input{chapters/desaturation.tex}
 \input{chapters/previouscontrollers.tex}
 \input{chapters/SlidingMode.tex}
