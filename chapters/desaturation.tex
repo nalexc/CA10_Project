@@ -26,7 +26,7 @@ It can be viewed as if the amount of magnetorquer torque exerted is subtracted f
 		
 		\begin{equation}
 		\label{eq:modCrossControl}
-		\vec{\tau_m}^{[I]} = -\frac{\underline{\tilde{b}}^\times(t)}{|\vec{\tilde{b}}(t) |^2} k_p\left(\vec{h_{rw}}^{[I]} - \underline{R}^T(^i_s\vec{ q})\vec{h_{ref}} \right)
+		\vec{\tau_m}^{[I]} = -\frac{\underline{\tilde{b}}^{[I]}\times(t)}{|\vec{\tilde{b}^{[I]}}(t) |^2} k_p\left(\vec{h_{rw}}^{[I]} - \underline{R}^T(^i_s\vec{ q})\vec{h_{ref}} \right)
 		\end{equation}
 		
 		where $\underline{R}(q)^T$ is the rotation matrix corresponding to rotation quaternion $^i_s\vec{ q}$ which transforms from body frame to inertia frame.
@@ -40,6 +40,8 @@ It can be viewed as if the amount of magnetorquer torque exerted is subtracted f
 			\caption{Quasi cascaded desaturation control scheme \cite[Fig. 2.]{DesatTregouet}}
 			\label{fig:quasiCascadeDesat}
 		\end{figure}
+		
+		\todo{checki if it is clear without further equations}
 		
 %		According to equation \todo{ref eq in modelling}
 		
@@ -116,8 +118,3 @@ It can be viewed as if the amount of magnetorquer torque exerted is subtracted f
 		
 %\todo{apply to tetrahedron}
 
-		\begin{equation}
-		\underline{I}_{s}\vec{\dot{\omega}} + \underline{\omega}^\times\underline{I}_{s}\vec{\omega} = -\vec{\dot{h}}_{rw} -  \underline{\omega}^\times \vec{{h}}_{rw} + \vec{N_{mt}}  + \vec{N_{dist}} = \vec{u} 
-		\end{equation}
-		
-		Compensation for $\underline{\omega}^\times \vec{{h}}_{rw}$ \todo{compensation} 
