@@ -77,7 +77,9 @@
   left=25mm,% left margin on an odd page %tidligere 25mm for baade right og left
   right=25mm,% right margin on an odd page
   top=35mm,
-  ]{geometry}
+  ]{geometry} % TODO go back to this default margin
+%\usepackage[left=4cm,right=4cm,top=3cm,bottom=3cm]{geometry} % giving enough space for todonotes
+
   
 % Modify how \chapter, \section, etc. look
 % The titlesec package is very configureable
@@ -327,7 +329,11 @@ backgroundcolor=\color{lbcolor},
 \usepackage{siunitx}
 \graphicspath{{./figures/}}
 
-\usepackage{todonotes}
+\usepackage{todonotes} 
+\paperwidth=\dimexpr \paperwidth + 10cm\relax
+\oddsidemargin=\dimexpr\oddsidemargin + 5cm\relax
+\evensidemargin=\dimexpr\evensidemargin + 5cm\relax
+\marginparwidth=\dimexpr \marginparwidth + 3cm\relax
 
 \usepackage{nomencl}
 \makenomenclature
