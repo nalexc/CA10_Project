@@ -21,3 +21,18 @@ in desat chapter, subtitute R(q)
 identity matrix in nomenclature
 
 change the notations in the desaturation schemes
+
+state that the desat controller determined the overall controller structure
+
+discuss the simulink model in appendix
+eg memory element of reconfig etc 
+
+show virtual actuator scheme
+
+strong detectability
+
+move sliding mode control before motor controllers
+
+add nomenclature ordering tricks to readme
+
+todo 3 control scheme for desat - original, no feedback, input alloc

@@ -2,6 +2,8 @@
 
 The TODO margin extension needs to be removed at finalization
 
+##Nomenclature 
+
 To run nomenclature, update makeindex command as follows:
 
 makeindex %.nlo -s nomencl.ist -o %.nls -t %.nlg
@@ -13,22 +15,46 @@ makeindex %.nlo -s nomencl.ist -o %.nls -t %.nlg
 For nomenclature, set up ide as follows:
 https://www.youtube.com/watch?v=Ss1XfsaAnfs
 
-Nomenclature commands:
+### Nomenclature commands
 
-Acronym:
+**Acronym**
 
+```
 \nomenclature[A]{\textbf{SMC}}{Sliding Mode Control}
+```
 
-Symbol
+**Symbol**
 
+```
 \nomenclature[S]{\vec{\omega}}{AngVel}
+```
 
-Terminology
+**Terminology**
 
+```
 \nomenclature[T]{Nadir}{Whatever}
+```
 
 
-Exporting .eps images from Matlab:
+## Exporting .eps images from Matlab
+
 https://stackoverflow.com/questions/10985946/how-to-export-the-figure-to-color-eps-in-matlab
 
+Save current figure as .eps file:
+
+```
 print -depsc myplot.eps
+```
+
+## Forcing figures to appear the same place  as in the .tex file
+
+add **[H]** after \begin{figure}
+
+```
+\begin{figure}[H]
+\centering
+\includegraphics{slike/visina8}
+\caption{Write some caption here}\label{visina8}
+\end{figure}
+
+```

@@ -12,7 +12,7 @@ By rearranging equation \ref{eq:ec34}, the satellite dynamics can be expressed a
 \label{eq:desatDyn}
 \end{equation}
 
-If the control goal is rotating the satellite according to the references, it might be desired to make the satellite dynamics independent of reaction wheel angular momenta. This can be achieved by using the actuators to counteract the effect of the gyroscopic term $\underline{\omega}^\times \vec{h_{rw}}$. This is a form of state compensation. Equation \ref{eq:desatDynReorder} presents the attitude stabilization loop terms corresponding to $\vec{u}$ control input and to $\vec{d}$ disturbance. $\vec{N_{dist}}$ is discarded for the discussion of the desaturation scheme.
+If the control goal is rotating the satellite according to the references, it might be desired to make the satellite dynamics independent of reaction wheel angular momenta. This can be achieved by using the actuators to counteract the effect of the gyroscopic term $\underline{\omega}^\times \vec{h_{rw}}$. This is a form of state compensation. Equation \ref{eq:desatDynReorder} presents the attitude control loop terms corresponding to $\vec{u}$ control input and to $\vec{d}$ disturbance. $\vec{N_{dist}}$ is discarded for the discussion of the desaturation scheme.
 \nomenclature[S]{$\vec{u}$}{Control input}
 \nomenclature[S]{$\vec{d}$}{Disturbance input}
 
@@ -70,12 +70,13 @@ Further analysis made by Trégouët et al. \cite{DesatTregouet} found that the c
 		\end{figure}
 
 		
-\begin{equation}
-\label{eq:momDumpDynDependency}
-\vec{\tau_{mt}} = 
+\begin{align}
+\nonumber \vec{\tau_{mt}} = 
 -\underline{R}(^s_i\vec{ q})  \frac{\underline{\tilde{b}}^{[I]\times}(t)}{|\vec{\tilde{b}^{[I]}}(t) |^2} k_p\left(\vec{h_{T}^{[I]}} - \vec{h_{ref}} + \underline{R}^T(^s_i\vec{ q}) \overbrace{
-	\left( \left( \underline{R}(^s_i\vec{ q}) - \underline{1}_3 \right) \vec{h_{ref}} - \underline{I}_s\vec{\omega} \right)}^{\xi(\vec{q}, \vec{\omega})} \right) 
-\end{equation}		
+	\left( \left( \underline{R}(^s_i\vec{ q}) - \underline{1}_3 \right) \vec{h_{ref}} - \underline{I}_s\vec{\omega} \right)}^{\xi(\vec{q}, \vec{\omega})} \right) \\
+= -\underline{R}(^s_i\vec{ q})  \frac{\underline{\tilde{b}}^{[I]\times}(t)}{|\vec{\tilde{b}^{[I]}}(t) |^2} k_p\left(\vec{h_{T}^{[I]}} - \vec{h_{ref}} + \underline{R}^T(^s_i\vec{ q}) \xi(\vec{q}, \vec{\omega}) \right)
+\label{eq:momDumpDynDependency}
+\end{align}		
 
 
 Remapping equation \ref{eq:momDumpDynDependency} to inertial frame results in equation  \ref{eq:momDumpDynDependencyInertial}.
@@ -88,7 +89,7 @@ Remapping equation \ref{eq:momDumpDynDependency} to inertial frame results in eq
 
 \subsubsection{Revised cross product control law using static allocation}
 
-Since attitude control is more crucial than desaturation, it would be more desirable to use the attitude control loop as upper subsystem and the momentum dumping loop as the lower one, as opposed to the reverse.   This rearranging can be achieved by applying input allocation, i.e. 'suitably assigning the low level actuators' input, based on a higher level control effort requested by the control system' \cite{JOHANSEN20131087}. From the point of view of the desaturation controller, the control goal is to keep the reaction wheels' angular velocity as close to the reference velocity as possible. In the control scheme presented in Figure \ref{fig:CascadeDesat} the desaturation control is decoupled from attitude control, it can achieve its desaturation control goal regardless of the attitude control law, using a modified version of the cross product control law. 
+Since attitude control is more crucial than desaturation, it would be more desirable to use the attitude control loop as the upper subsystem and the momentum dumping loop as the lower one, as opposed to the reverse. This arrangement can be achieved by applying input allocation, i.e. 'suitably assigning the low level actuators' input, based on a higher level control effort requested by the control system' \cite{JOHANSEN20131087}. From the point of view of the desaturation controller, the control goal is to keep the reaction wheels' angular velocity as close to the reference velocity as possible. By using a modified version of the cross product control law, the desaturation controller dynamics can be decoupled from the attitude control loop, this way the desaturator can achieve its  control goal regardless of the attitude control law. The control scheme is presented in Figure \ref{fig:CascadeDesat}.
 
 		\begin{figure}[h]
 			\centering
@@ -100,16 +101,36 @@ Since attitude control is more crucial than desaturation, it would be more desir
 			\label{fig:CascadeDesat}
 		\end{figure}
 
-The control law is given in equation \ref{eq:modCrossControl}. The decoupling is achieved by using inertial frame based angular momentum references. 		
-It can be viewed as if the amount of magnetorquer torque exerted is subtracted from the reaction wheel torque. When the torque demand is higher than the magnetorquer output torque, the magnetorquers help the reaction wheels, when it drops below a certain level, the magnetorquers are decreasing the angular velocity of reaction wheels.
-
-		
 		\begin{equation}
 		\label{eq:modCrossControl}
-		\vec{\tau_{mt}}^{[I]} = -\frac{\underline{\tilde{b}}^{[I]}\times(t)}{|\vec{\tilde{b}^{[I]}}(t) |^2} k_p\left(\vec{h_{rw}}^{[I]} - \underline{R}^T(^i_s\vec{ q})\vec{h_{ref}} \right)
+		\vec{\tau_{mt}}^{[I]} = -\frac{\underline{\tilde{b}}^{[I]\times(t)}}{|\vec{\tilde{b}^{[I]}}(t) |^2} k_p\left(\vec{h_{rw}}^{[I]} - \underline{R}^T(^i_s\vec{ q})\vec{h_{ref}} \right)
 		\end{equation}
+
+The magnetorquer control law for the reverse cascade is derived in two steps. First, the control law for the original cascade scheme presented in \ref{eq:momDumpDynDependencyInertial} in ECI frame is modified to discard the feedback connection corresponding to $\xi(\vec{q}, \vec{\omega})$, second, input allocation is used to reverse the order of the cascade. The ECI frame based new control law is presented in equation \ref{eq:newMTcontrol}.
+
+\begin{equation}
+\label{eq:newMTcontrol}
+\vec{\tau_{mt}^{[I]}} = -\frac{\underline{\tilde{b}}^{[I]\times}(t)}{|\vec{\tilde{b}^{[I]}}(t) |^2} k_p 
+\left(\vec{h_{T}^{[I]}} - \vec{h_{ref}} \right) 
+\end{equation}			
+
+The control law is given in equation \ref{eq:...}. The decoupling is achieved by using inertial frame based angular momentum references. 		
+It can be viewed as if the amount of magnetorquer torque exerted is subtracted from the reaction wheel torque demand. When the torque demand is higher than the magnetorquer output torque, the magnetorquers help the reaction wheels, when it drops below a certain level, the magnetorquers are decreasing the angular momenta of the reaction wheels.
+
+\todo{distuingish between the 3 control schemes and add figures}
+
+\begin{equation}
+\label{eq:totalMomDyn}
+\vec{\dot{h}_T^{[I]}} = -\underline{\tilde{b}}^{[I]\times}(t) \vec{\tau_{mt}^{[I]}} 
+\end{equation}		
+
+\begin{equation}
+\underline I_{s} \vec{\dot{\omega}} + \underline{\omega}^\times\underline I_{s} \vec{\omega} =    
+\vec{u} +  \underline{R}^T(^i_s\vec{q})\vec{\dot{h}_T^{[I]}}
+\label{eq:newDesatDynInterpret}
+\end{equation}
 		
-		where $\underline{R}(q)^T$ is the rotation matrix corresponding to rotation quaternion $^i_s\vec{ q}$ which transforms from body frame to inertia frame.
+%		where $\underline{R}(q)^T$ is the rotation matrix corresponding to rotation quaternion $^i_s\vec{ q}$ which transforms from body frame to inertial frame.
 		
 
 		
@@ -171,13 +192,13 @@ It can be viewed as if the amount of magnetorquer torque exerted is subtracted f
 		
 		
 		
-		\begin{equation}
-		\vec{\dot{\omega}} = \underline{I}_{s}^{-1}\left( \vec{u} -  \underline{\omega}^\times\underline{I}_{s}\vec{\omega}  \right) 
-		\end{equation}
+%		\begin{equation}
+%		\vec{\dot{\omega}} = \underline{I}_{s}^{-1}\left( \vec{u} -  \underline{\omega}^\times\underline{I}_{s}\vec{\omega}  \right) 
+%		\end{equation}
 		
-		\begin{equation}
-\vec{\tau_{mt}}^{[I]} = -\frac{\underline{\tilde{b}}^\times(t)}{|\vec{\tilde{b}}(t) |^2} k_p\left(\vec{h_{rw}}^{[I]} - \underline{R}^T(\vec{q})\vec{h_{ref}} \right)
-		\end{equation}
+%		\begin{equation}
+%\vec{\tau_{mt}}^{[I]} = -\frac{\underline{\tilde{b}}^\times(t)}{|\vec{\tilde{b}}(t) |^2} k_p\left(\vec{h_{rw}}^{[I]} - \underline{R}^T(\vec{q})\vec{h_{ref}} \right)
+%		\end{equation}
 
 		
 %\todo{apply to tetrahedron}
