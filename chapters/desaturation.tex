@@ -59,15 +59,48 @@ The dynamics of the momentum dumping loop is described by equation \ref{eq:momDu
 			
 Momentum dumping and attitude control can potentially be opposing goals, since attitude control changes the reaction wheel velocity to produce the required torque, while the desaturator tries to keep the angular velocity close to the reference. 
 Further analysis made by Trégouët et al. \cite{DesatTregouet} found that the classical cross product control law can be interpreted as having a quasi-cascaded structure with the momentum dumping loop including the magnetorquers as the upper subsystem and the attitude control loop with the reaction wheels being the lower subsystem, as presented in Figure \ref{fig:quasiCascadeDesat}. The problem is that there's a feedback involved from the lower subsystem to the upper one, making $\frac{d}{dt}(\vec{h_{rw}} - \vec{h_{ref}})$ dependent on the attitude parameters, as shown in equation \ref{eq:momDumpDynDependency}. In order to better distinguish the effect of the magnetorquers and reaction wheels, an inertial frame based expression of $\vec{h_T^{[I]}}$  is utilized. The reaction wheels can't change $\vec{h_T^{[I]}}$. $\xi(\vec{q}, \vec{\omega})$ denotes the momentum dumping loop's dependency on $\vec{q}$ and $\vec{\omega}$.
+		
+		\begin{figure}[h]
+			\centering
+			\begin{tabular}{@{}c@{\hspace{.5cm}}c@{}}
+				\includegraphics[page=1,width=1\textwidth]{quasiCascadeDesat.pdf}
+			\end{tabular}
+			\caption{Quasi cascaded desaturation control scheme \cite[Fig. 2.]{DesatTregouet}}
+			\label{fig:quasiCascadeDesat}
+		\end{figure}
 
+		
 \begin{equation}
 \label{eq:momDumpDynDependency}
 \vec{\tau_{mt}} = 
-\underline{R}(^s_i\vec{ q})  \frac{\underline{\tilde{b}}^{[I]\times}(t)}{|\vec{\tilde{b}^{[I]}}(t) |^2} k_p\left(\vec{h_{T}^{[I]}} - \vec{h_{ref}} + \underline{R}^T(^s_i\vec{ q}) \overbrace{
-\left( \left( \underline{R}(^s_i\vec{ q}) - \underline{1}_3 \right) \vec{h_{ref}} - \underline{I}_s\vec{\omega} \right)}^{\xi(\vec{q}, \vec{\omega})} \right) 
-\end{equation}
+-\underline{R}(^s_i\vec{ q})  \frac{\underline{\tilde{b}}^{[I]\times}(t)}{|\vec{\tilde{b}^{[I]}}(t) |^2} k_p\left(\vec{h_{T}^{[I]}} - \vec{h_{ref}} + \underline{R}^T(^s_i\vec{ q}) \overbrace{
+	\left( \left( \underline{R}(^s_i\vec{ q}) - \underline{1}_3 \right) \vec{h_{ref}} - \underline{I}_s\vec{\omega} \right)}^{\xi(\vec{q}, \vec{\omega})} \right) 
+\end{equation}		
 
-Since attitude control is more crucial than desaturation, the reverse would be desirable.  By reversing the ordering of the cascade, the interference can be eliminated. This can be achieved by applying input allocation, i.e. "suitably assigning the low level actuators' input, based on a higher level control effort requested by the control system" \cite{JOHANSEN20131087}. From the point of view of the desaturation controller, the control goal is to keep the reaction wheels' angular velocity as close to the reference velocity as possible. In the control scheme presented in \ref{fig:CascadeDesat} the desaturation control is decoupled from attitude control, it can achieve its desaturation control goal regardless of the attitude control law, using a modified version of the cross product control law. The control law is given in equation \ref{eq:modCrossControl}. The decoupling is achieved by using inertial frame based angular momentum references. 		
+
+Remapping equation \ref{eq:momDumpDynDependency} to inertial frame results in equation  \ref{eq:momDumpDynDependencyInertial}.
+
+\begin{equation}
+\label{eq:momDumpDynDependencyInertial}
+\vec{\tau_{mt}^{[I]}} = -\frac{\underline{\tilde{b}}^{[I]\times}(t)}{|\vec{\tilde{b}^{[I]}}(t) |^2} k_p 
+\left(\vec{h_{T}^{[I]}} - \vec{h_{ref}} + \underline{R}^T(^s_i\vec{ q}) \xi(\vec{q}, \vec{\omega}) \right) 
+	\end{equation}			
+
+\subsubsection{Revised cross product control law using static allocation}
+
+Since attitude control is more crucial than desaturation, it would be more desirable to use the attitude control loop as upper subsystem and the momentum dumping loop as the lower one, as opposed to the reverse.   This rearranging can be achieved by applying input allocation, i.e. 'suitably assigning the low level actuators' input, based on a higher level control effort requested by the control system' \cite{JOHANSEN20131087}. From the point of view of the desaturation controller, the control goal is to keep the reaction wheels' angular velocity as close to the reference velocity as possible. In the control scheme presented in Figure \ref{fig:CascadeDesat} the desaturation control is decoupled from attitude control, it can achieve its desaturation control goal regardless of the attitude control law, using a modified version of the cross product control law. 
+
+		\begin{figure}[h]
+			\centering
+			\label{fig:decoupledDesat}
+			\begin{tabular}{@{}c@{\hspace{.5cm}}c@{}}
+				\includegraphics[page=1,width=1\textwidth]{cascadeDesat.pdf}
+			\end{tabular}
+			\caption{Cascaded desaturation control scheme  \cite[Fig. 4.]{DesatTregouet}}
+			\label{fig:CascadeDesat}
+		\end{figure}
+
+The control law is given in equation \ref{eq:modCrossControl}. The decoupling is achieved by using inertial frame based angular momentum references. 		
 It can be viewed as if the amount of magnetorquer torque exerted is subtracted from the reaction wheel torque. When the torque demand is higher than the magnetorquer output torque, the magnetorquers help the reaction wheels, when it drops below a certain level, the magnetorquers are decreasing the angular velocity of reaction wheels.
 
 		
@@ -78,15 +111,7 @@ It can be viewed as if the amount of magnetorquer torque exerted is subtracted f
 		
 		where $\underline{R}(q)^T$ is the rotation matrix corresponding to rotation quaternion $^i_s\vec{ q}$ which transforms from body frame to inertia frame.
 		
-		
-		\begin{figure}[h]
-			\centering
-			\begin{tabular}{@{}c@{\hspace{.5cm}}c@{}}
-				\includegraphics[page=1,width=1\textwidth]{quasiCascadeDesat.pdf}
-			\end{tabular}
-			\caption{Quasi cascaded desaturation control scheme \cite[Fig. 2.]{DesatTregouet}}
-			\label{fig:quasiCascadeDesat}
-		\end{figure}
+
 		
 		\todo{checki if it is clear without further equations}
 		
@@ -142,15 +167,7 @@ It can be viewed as if the amount of magnetorquer torque exerted is subtracted f
 		
 %		\todo{this attitude controller should be down as one of the possible attitude controllers - "Satellite angular momentum removal utilizing the earth’s magnetic field" article}
 		
-		\begin{figure}[h]
-			\centering
-			\label{fig:decoupledDesat}
-			\begin{tabular}{@{}c@{\hspace{.5cm}}c@{}}
-				\includegraphics[page=1,width=1\textwidth]{cascadeDesat.pdf}
-			\end{tabular}
-			\caption{Cascaded desaturation control scheme  \cite[Fig. 4.]{DesatTregouet}}
-			\label{fig:CascadeDesat}
-		\end{figure}
+
 		
 		
 		
