@@ -125,10 +125,10 @@ by choosing the control as
  \end{flalign}
 
 it can be seen in the above equations that the torque from the magnetorquers is not included since the magnetorquers are used only for desaturation.
-\Eqref{eq:444444} can noe be written as 
+\Eqref{eq:444444} can now be written as 
 \begin{flalign}
 \dot{V} = -\vec{s}^{T}(-{\vec{\dot{\tilde{\omega}}}} +\lambda sign(\vec{s}) - \vec{N_{dis}}  )
 \label{eq:6666666}
 \end{flalign}
-
+consequently the condition $\dot{V} < 0 $ is satisfied if $\lambda >\rVert {\vec{\dot{\tilde{\omega}}}_{max}}\rVert +\rVert \vec{N_{dis}}\rVert$. The discontinuous function $sign$ is replace by the hyperbolic tangent function $tanh(\frac{\vec{s}}{\epsilon})$ in order to reduce the chattering around the manifold and $\epsilon$ is designed by trial and error.
 
