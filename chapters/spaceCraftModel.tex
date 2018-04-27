@@ -1,5 +1,16 @@
 \section{Satellite equations of motion }
 The satellite equations of motion is split into a kinematic model, which will describe the relation between the orientation of the satellite and the time derivative of the orientation using the rotation of the ECI and SBRF \todo{change} frame, while a dynamic model is established in order to relate the disturbance torques which influence the satellite and the angular velocity.
+\nomenclature[S]{$\vec{ ^s_i\dot q(t)}$}{The rotation from ECI to BFF using the quaterion $\vec q$}
+\nomenclature[S]{$\vec{ \omega{(t)}}$}{Angular velocity}
+\nomenclature[S]{$\underline{S}^\times $}{Skew symetric matrix $3 \times 3 $}
+\nomenclature[S]{$\underline{ \Omega}_{(4\times4)}^\times$}{Skew symetric matrix $4 \times 4$}
+\nomenclature[S]{$\underline{I}_{s}$}{Satellite inertia matrix}
+\nomenclature[S]{$\vec{N_{dis}}(t)$}{Disturbance torque}
+\nomenclature[S]{$\vec{N_{mt}}$}{The torque from magnetorquers}
+\nomenclature[S]{$\vec{ {\tilde{^s_iq}}(t) }$}{The error quaternion}
+\nomenclature[S]{$\vec{ {\tilde{\omega}}(t)}$}{The error in the angular velocity}
+\nomenclature[S]{$\vec{ {\bar{\omega}}(t)}$}{The nominal value of angular velocity }
+\nomenclature[S]{$\vec{\tilde N_{ctrl}}$}{The torque from magnetorquers and the reaction wheels }
 
 The derivation of the satellite equations of motion is presented in appendix \ref{chap:C}, therefore, putting together both dynamic and kinematic equation derived in the appendix, the system equations of the satellite will be non-linear and can be combined into a state-space representation as follows:
 \begin{flalign}
@@ -9,8 +20,8 @@ The derivation of the satellite equations of motion is presented in appendix \re
 	\end{bmatrix} 	
 	= 
 	\begin{bmatrix}
-		\frac{1}{2} \underline{ \Omega}_{(4\times4)} \vec{ ^s_i q(t)} \\
-		{-\underline{I}_{s}^{-1}\underline{S}(\vec{\omega})\underline{I}_{s}\vec{\omega}(t)-\underline{I}_{s}^{-1}\underline{S}(\vec{\omega})\vec{h_{rw}}-\underline{I}_{s}^{-1}\vec{N_{rw}}(t)+\underline{I}_{s}^{-1}[\vec{N_{mt}(t)}+\vec{N_{dis}}(t)}]
+		\frac{1}{2} \underline{ \Omega}_{(4\times4)}^\times \vec{ ^s_i q(t)} \\
+		{-\underline{I}_{s}^{-1}\underline{S}^\times (\vec{\omega})\underline{I}_{s}\vec{\omega}(t)-\underline{I}_{s}^{-1}\underline{S}^\times(\vec{\omega})\vec{h_{rw}}-\underline{I}_{s}^{-1}\vec{N_{rw}}(t)+\underline{I}_{s}^{-1}[\vec{N_{mt}(t)}+\vec{N_{dis}}(t)}]
 	\end{bmatrix} 
 	\label{eq:seom}
 \end{flalign}
@@ -34,8 +45,8 @@ Therefore, by using the results from appendix \ref{chap:C} the linear equation o
 	\end{bmatrix} 	
 	= 
 	\begin{bmatrix}
-		-\underline{S}(\vec{\bar{\omega}}) &	\frac{1}{2} \underline{\vec 1}_{(3\times3)} \\
-		\underline{ 0}_{(3\times3)} &	{\underline{I}_{s}^{-1}\underline{S}(\underline{I}_{s}\vec{\bar{\omega}})-\underline{I}_{s}^{-1}\underline{S}(\vec{\bar{\omega}})\underline{I}_{s}}
+		-\underline{S}^\times (\vec{\bar{\omega}}) &	\frac{1}{2} \underline{\vec 1}_{(3\times3)} \\
+		\underline{ 0}_{(3\times3)} &	{\underline{I}_{s}^{-1}\underline{S}^\times(\underline{I}_{s}\vec{\bar{\omega}})-\underline{I}_{s}^{-1}\underline{S}^\times(\vec{\bar{\omega}})\underline{I}_{s}}
 	\end{bmatrix} 
 	\begin{bmatrix}
 		\vec{  {\tilde{q}}(t) } \\
