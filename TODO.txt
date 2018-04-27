@@ -11,3 +11,13 @@ let {eq:ec34} have a number
 s(omega) to omegaX
 
 desat of tetrahedron
+
+does the desat control scheme fit omega tracking or only attitude stabilization?
+
+change to notation of magnetic field in desat chapter
+
+in desat chapter, subtitute R(q)
+
+identity matrix in nomenclature
+
+change the notations in the desaturation schemes

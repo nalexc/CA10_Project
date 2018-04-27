@@ -8,11 +8,11 @@ Reaction wheels are used to control the attitude of the satellite by transferrin
 
 By rearranging equation \ref{eq:ec34}, the satellite dynamics can be expressed according to equation \ref{eq:desatDyn}.
 \begin{equation}
-\underline I_{s} \vec{\dot{\omega}} + \underline{\omega}^\times(\underline I_{s} \vec{\omega} + \vec{h_{rw}}) = \vec{N_{rw}} +  \vec{N_{mt}} = \vec{N_{ctrl}}
+\underline I_{s} \vec{\dot{\omega}} + \underline{\omega}^\times(\underline I_{s} \vec{\omega} + \vec{h_{rw}}) = \vec{N_{rw}} +  \vec{N_{mt}} + \vec{N_{dist}} = \vec{N_{ctrl}} + \vec{N_{dist}}
 \label{eq:desatDyn}
 \end{equation}
 
-If the control goal is rotating the satellite according to the references, it might be desired to make the satellite dynamics independent of reaction wheel angular momenta. This can be achieved by using the actuators to counteract the effect of the gyroscopic term $\underline{\omega}^\times \vec{h_{rw}}$. This is a form of state compensation. Equation \ref{eq:desatDynReorder} presents the terms corresponding to $\vec{u}$ control input and to $\vec{d}$ disturbance.
+If the control goal is rotating the satellite according to the references, it might be desired to make the satellite dynamics independent of reaction wheel angular momenta. This can be achieved by using the actuators to counteract the effect of the gyroscopic term $\underline{\omega}^\times \vec{h_{rw}}$. This is a form of state compensation. Equation \ref{eq:desatDynReorder} presents the attitude stabilization loop terms corresponding to $\vec{u}$ control input and to $\vec{d}$ disturbance. $\vec{N_{dist}}$ is discarded for the discussion of the desaturation scheme.
 \nomenclature[S]{$\vec{u}$}{Control input}
 \nomenclature[S]{$\vec{d}$}{Disturbance input}
 
@@ -24,7 +24,7 @@ If the control goal is rotating the satellite according to the references, it mi
 Equation \ref{eq:desatDynReorder} implies that the task state compensation is assigned to the reaction wheels according to \ref{eq:stateComp}.
 
 \begin{equation}
-\vec{N_{rw}} = -\vec{\dot{h_{rw}}} = \vec{u} +  \underline{\omega}^\times\vec{h_{rw}}
+\vec{N_{rw}} = -\vec{\dot{h}_{rw}} = \vec{u} +  \underline{\omega}^\times\vec{h_{rw}}
 \label{eq:stateComp}
 \end{equation}
 
@@ -35,21 +35,37 @@ Equation \ref{eq:desatDynReorder} implies that the task state compensation is as
 %	\end{split}
 %\end{align*}
 
+The goal of the momentum dumping loop is to track the reference angular momenta of the reaction wheels.
 The original cross-product control law controls the magnetorquers' magnetic momentum based on the difference between the angular momentum of the reaction wheels and their reference angular momentum according to equation \ref{eq:crossLaw}.
 
 \begin{equation}
 \label{eq:crossLaw}
-\vec{\tau_m} = -\frac{\underline{\tilde{b}}^\times(t)}{|\vec{\tilde{b}}(t) |^2} k_p\left(\vec{h_{rw}} - \vec{h_{ref}} \right)
+\vec{\tau_{mt}} = -\frac{\underline{\tilde{b}}^\times(t)}{|\vec{\tilde{b}}(t) |^2} k_p\left(\vec{h_{rw}} - \vec{h_{ref}} \right)
 \end{equation}
 
 where $\vec{\tau_m}$ is the magnetic moment of the magnetorquers, $\vec{\tilde{b}}$ is the local geomagnetic field in BFF, $\vec{h_{rw}}$ is the angular momentum vector of the reaction wheels, $\vec{h_{ref}}$ is the reference reaction wheel angular momentum for desaturation, $k_p$ is an adjustable proportional gain.
-		\nomenclature[S]{$\vec{\tau_m}$}{Magnetorquer magnetic moment}
+		\nomenclature[S]{$\vec{\tau_{mt}}$}{Magnetorquer magnetic moment}
 		\nomenclature[S]{$\vec{\tilde{b}}$}{local geomagnetic field in body fixed frame}
 		\nomenclature[S]{$\vec{h_{rw}}$}{The angular momentum vector of the reaction wheels}
 		\nomenclature[S]{$\vec{h_{ref}}$}{The reference angular momentum vector of the reaction wheels}
 		\nomenclature[S]{$\vec{h_{T}}$}{Total angular momentum of the satellite}	
+		
+The dynamics of the momentum dumping loop is described by equation \ref{eq:momDumpDyn}.
+
+\begin{equation}
+\label{eq:momDumpDyn}
+\frac{d}{dt}(\vec{h_{rw}} - \vec{h_{ref}}) = -\underline{\tilde{b}}^\times(t) \vec{\tau_{mt}} =  \frac{\underline{\tilde{b}}^\times(t) \underline{\tilde{b}}^\times(t)}{|\vec{\tilde{b}}(t) |^2} k_p\left(\vec{h_{rw}} - \vec{h_{ref}} \right)
+\end{equation}
 			
-Momentum dumping and attitude control can potentially be opposing goals, since attitude control changes the reaction wheel velocity to produce the required torque, while the desaturator tries to keep the angular velocity close to the reference. The quasi-cascaded structure of the cross product control law includes the magnetorquer as the upper subsystem which outputs the rate of change of the total angular momentum of the system, as presented in Figure \ref{fig:quasiCascadeDesat}. The lower subsystem includes the attitude dynamics and the reaction wheel controller. The problem is that there's a feedback involved from the lower subsystem to the upper one, making $\dot{h}_T$ dependent on the attitude parameters. This means that desaturating the wheels can affect the attitude control loop. 
+Momentum dumping and attitude control can potentially be opposing goals, since attitude control changes the reaction wheel velocity to produce the required torque, while the desaturator tries to keep the angular velocity close to the reference. 
+Further analysis made by Trégouët et al. \cite{DesatTregouet} found that the classical cross product control law can be interpreted as having a quasi-cascaded structure with the momentum dumping loop including the magnetorquers as the upper subsystem and the attitude control loop with the reaction wheels being the lower subsystem, as presented in Figure \ref{fig:quasiCascadeDesat}. The problem is that there's a feedback involved from the lower subsystem to the upper one, making $\frac{d}{dt}(\vec{h_{rw}} - \vec{h_{ref}})$ dependent on the attitude parameters, as shown in equation \ref{eq:momDumpDynDependency}. In order to better distinguish the effect of the magnetorquers and reaction wheels, an inertial frame based expression of $\vec{h_T^{[I]}}$  is utilized. The reaction wheels can't change $\vec{h_T^{[I]}}$. $\xi(\vec{q}, \vec{\omega})$ denotes the momentum dumping loop's dependency on $\vec{q}$ and $\vec{\omega}$.
+
+\begin{equation}
+\label{eq:momDumpDynDependency}
+\vec{\tau_{mt}} = 
+\underline{R}(^s_i\vec{ q})  \frac{\underline{\tilde{b}}^{[I]\times}(t)}{|\vec{\tilde{b}^{[I]}}(t) |^2} k_p\left(\vec{h_{T}^{[I]}} - \vec{h_{ref}} + \underline{R}^T(^s_i\vec{ q}) \overbrace{
+\left( \left( \underline{R}(^s_i\vec{ q}) - \underline{1}_3 \right) \vec{h_{ref}} - \underline{I}_s\vec{\omega} \right)}^{\xi(\vec{q}, \vec{\omega})} \right) 
+\end{equation}
 
 Since attitude control is more crucial than desaturation, the reverse would be desirable.  By reversing the ordering of the cascade, the interference can be eliminated. This can be achieved by applying input allocation, i.e. "suitably assigning the low level actuators' input, based on a higher level control effort requested by the control system" \cite{JOHANSEN20131087}. From the point of view of the desaturation controller, the control goal is to keep the reaction wheels' angular velocity as close to the reference velocity as possible. In the control scheme presented in \ref{fig:CascadeDesat} the desaturation control is decoupled from attitude control, it can achieve its desaturation control goal regardless of the attitude control law, using a modified version of the cross product control law. The control law is given in equation \ref{eq:modCrossControl}. The decoupling is achieved by using inertial frame based angular momentum references. 		
 It can be viewed as if the amount of magnetorquer torque exerted is subtracted from the reaction wheel torque. When the torque demand is higher than the magnetorquer output torque, the magnetorquers help the reaction wheels, when it drops below a certain level, the magnetorquers are decreasing the angular velocity of reaction wheels.
@@ -57,7 +73,7 @@ It can be viewed as if the amount of magnetorquer torque exerted is subtracted f
 		
 		\begin{equation}
 		\label{eq:modCrossControl}
-		\vec{\tau_m}^{[I]} = -\frac{\underline{\tilde{b}}^{[I]}\times(t)}{|\vec{\tilde{b}^{[I]}}(t) |^2} k_p\left(\vec{h_{rw}}^{[I]} - \underline{R}^T(^i_s\vec{ q})\vec{h_{ref}} \right)
+		\vec{\tau_{mt}}^{[I]} = -\frac{\underline{\tilde{b}}^{[I]}\times(t)}{|\vec{\tilde{b}^{[I]}}(t) |^2} k_p\left(\vec{h_{rw}}^{[I]} - \underline{R}^T(^i_s\vec{ q})\vec{h_{ref}} \right)
 		\end{equation}
 		
 		where $\underline{R}(q)^T$ is the rotation matrix corresponding to rotation quaternion $^i_s\vec{ q}$ which transforms from body frame to inertia frame.
@@ -143,7 +159,7 @@ It can be viewed as if the amount of magnetorquer torque exerted is subtracted f
 		\end{equation}
 		
 		\begin{equation}
-\vec{\tau_m}^{[I]} = -\frac{\underline{\tilde{b}}^\times(t)}{|\vec{\tilde{b}}(t) |^2} k_p\left(\vec{h_{rw}}^{[I]} - \underline{R}^T(\vec{q})\vec{h_{ref}} \right)
+\vec{\tau_{mt}}^{[I]} = -\frac{\underline{\tilde{b}}^\times(t)}{|\vec{\tilde{b}}(t) |^2} k_p\left(\vec{h_{rw}}^{[I]} - \underline{R}^T(\vec{q})\vec{h_{ref}} \right)
 		\end{equation}
 
 		
