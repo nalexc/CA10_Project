@@ -102,17 +102,17 @@ Since attitude control is more crucial than desaturation, it would be more desir
 			\label{fig:CascadeDesat}
 		\end{figure}
 
-		\begin{equation}
-		\label{eq:modCrossControl}
-		\vec{\tau_{mt}}^{[I]} = -\frac{\underline{\tilde{b}}^{[I]\times(t)}}{|\vec{\tilde{b}^{[I]}}(t) |^2} k_p\left(\vec{h_{rw}}^{[I]} - \underline{R}^T(^i_s\vec{ q})\vec{h_{ref}} \right)
-		\end{equation}
+%		\begin{equation}
+%		\label{eq:modCrossControl}
+%		\vec{\tau_{mt}}^{[I]} = -\frac{\underline{\tilde{b}}^{[I]\times(t)}}{|\vec{\tilde{b}^{[I]}}(t) |^2} k_p\left(\vec{h_{rw}}^{[I]} - \underline{R}^T(^i_s\vec{ q})\vec{h_{ref}} \right)
+%		\end{equation}
 
-The magnetorquer control law for the reverse cascade is derived in two steps. First, the control law for the original cascade scheme presented in \ref{eq:momDumpDynDependencyInertial} in ECI frame is modified to discard the feedback connection corresponding to $\xi(\vec{q}, \vec{\omega})$, second, input allocation is used to reverse the order of the cascade. The ECI frame based new control law is presented in equation \ref{eq:newMTcontrol}.
+The momentum dumping control law for the reverse cascade is derived in two steps. First, the control law for the original cascade scheme presented in \ref{eq:momDumpDynDependencyInertial} in ECI frame is modified to discard the feedback connection corresponding to $\xi(\vec{q}, \vec{\omega})$, second, input allocation is used to reverse the order of the cascade. The ECI frame based new control law using $\vec{h_T}$ is presented in equation \ref{eq:newMTcontrol}.
 
 \begin{equation}
 \label{eq:newMTcontrol}
 \vec{\tau_{mt}^{[I]}} = -\frac{\underline{\tilde{b}}^{[I]\times}(t)}{|\vec{\tilde{b}^{[I]}}(t) |^2} k_p 
-\left(\vec{h_{T}^{[I]}} - \vec{h_{ref}} \right) 
+\left(\vec{h_{T}^{[I]}} - \underline{R}^T(\vec{q})\vec{h_{ref}} \right) 
 \end{equation}			
 
 To reverse the cascade arrangement, the grouping of the terms need to be revised. For the reverse cascade scheme, $\vec{u}$ is modified according to equation \ref{eq:newdesatDynReorder}.
@@ -145,8 +145,21 @@ Equation \ref{eq:newmomDumpDynECI} describes the dynamics shown in equation \ref
 \vec{\dot{h}_{rw}} = -\underline{R}^T(\vec{ q})\vec{u} -  \underline{\tilde{b}}^{[I]}(t)^\times \vec{\tau_{mt}^{[I]}}
 \end{equation}
 
-The control law is given in equation \ref{eq:...}. The decoupling is achieved by using inertial frame based angular momentum references. 		
-It can be viewed as if the amount of magnetorquer torque exerted is subtracted from the reaction wheel torque demand. When the torque demand is higher than the magnetorquer output torque, the magnetorquers help the reaction wheels, when it drops below a certain level, the magnetorquers are decreasing the angular momenta of the reaction wheels.
+The new magnetorquer control law that doesn't utilize $\vec{h_T}$ is described in ECI frame by equation \ref{eq:finalMTlawECI} and in BFF by equation \ref{eq:finalMTlawBFF}.
+
+\begin{equation}
+\vec{\tau_{mt}^{[I]}} 
+= - \frac{\underline{\tilde{b}}^{[I]}(t)^\times} {|\vec{\tilde{b}^{[I]}}(t) |^2} k_p\left(\vec{h_{rw}^{[I]}} - \underline{R}^T(^s_i\vec{ q})\vec{h_{ref}} \right)
+\label{eq:finalMTlawECI}
+\end{equation}
+
+\begin{equation}
+\vec{\tau_{mt}} 
+= - \frac{\left( \underline{R}(^s_i\vec{ q}) \underline{\tilde{b}}^{[I]}(t)\right)^\times} {|\vec{\tilde{b}^{[I]}}(t) |^2} k_p\left(\vec{h_{rw}} - \vec{h_{ref}} \right)
+\label{eq:finalMTlawBFF}
+\end{equation}
+
+The latter desaturation control structure can be viewed as if the amount of magnetorquer torque exerted is subtracted from the reaction wheel torque demand. When the torque demand is higher than the magnetorquer output torque, the magnetorquers help the reaction wheels, when it drops below a certain level, the magnetorquers are decreasing the angular momenta of the reaction wheels.
 
 \todo{distuingish between the 3 control schemes and add figures}
 
