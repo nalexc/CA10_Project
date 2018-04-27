@@ -43,7 +43,7 @@ The original cross-product control law controls the magnetorquers' magnetic mome
 \vec{\tau_{mt}} = -\frac{\underline{\tilde{b}}^\times(t)}{|\vec{\tilde{b}}(t) |^2} k_p\left(\vec{h_{rw}} - \vec{h_{ref}} \right)
 \end{equation}
 
-where $\vec{\tau_m}$ is the magnetic moment of the magnetorquers, $\vec{\tilde{b}}$ is the local geomagnetic field in BFF, $\vec{h_{rw}}$ is the angular momentum vector of the reaction wheels, $\vec{h_{ref}}$ is the reference reaction wheel angular momentum for desaturation, $k_p$ is an adjustable proportional gain.
+where $\vec{\tau_{mt}}$ is the magnetic moment of the magnetorquers, $\vec{\tilde{b}}$ is the local geomagnetic field in BFF, $\vec{h_{rw}}$ is the angular momentum vector of the reaction wheels, $\vec{h_{ref}}$ is the reference reaction wheel angular momentum for desaturation, $k_p$ is an adjustable proportional gain.
 		\nomenclature[S]{$\vec{\tau_{mt}}$}{Magnetorquer magnetic moment}
 		\nomenclature[S]{$\vec{\tilde{b}}$}{local geomagnetic field in body fixed frame}
 		\nomenclature[S]{$\vec{h_{rw}}$}{The angular momentum vector of the reaction wheels}
@@ -89,6 +89,7 @@ Remapping equation \ref{eq:momDumpDynDependency} to inertial frame results in eq
 
 \subsubsection{Revised cross product control law using static allocation}
 
+In cascaded structure, the upper subsystem can undesirably disturb the lower one.
 Since attitude control is more crucial than desaturation, it would be more desirable to use the attitude control loop as the upper subsystem and the momentum dumping loop as the lower one, as opposed to the reverse. This arrangement can be achieved by applying input allocation, i.e. 'suitably assigning the low level actuators' input, based on a higher level control effort requested by the control system' \cite{JOHANSEN20131087}. From the point of view of the desaturation controller, the control goal is to keep the reaction wheels' angular velocity as close to the reference velocity as possible. By using a modified version of the cross product control law, the desaturation controller dynamics can be decoupled from the attitude control loop, this way the desaturator can achieve its  control goal regardless of the attitude control law. The control scheme is presented in Figure \ref{fig:CascadeDesat}.
 
 		\begin{figure}[h]
@@ -113,6 +114,36 @@ The magnetorquer control law for the reverse cascade is derived in two steps. Fi
 \vec{\tau_{mt}^{[I]}} = -\frac{\underline{\tilde{b}}^{[I]\times}(t)}{|\vec{\tilde{b}^{[I]}}(t) |^2} k_p 
 \left(\vec{h_{T}^{[I]}} - \vec{h_{ref}} \right) 
 \end{equation}			
+
+To reverse the cascade arrangement, the grouping of the terms need to be revised. For the reverse cascade scheme, $\vec{u}$ is modified according to equation \ref{eq:newdesatDynReorder}.
+
+\begin{equation}
+\underline I_{s} \vec{\dot{\omega}} + \underline{\omega}^\times\underline I_{s} \vec{\omega} =    \overbrace{-\underline{\omega}^\times\vec{h_{rw}} + \vec{N_{rw}} +  \vec{N_{mt}}}^{\vec{u}}
+\label{eq:newdesatDynReorder}
+\end{equation}
+
+With the new grouping, the reaction wheel torque reference can be expressed as shown in equation \ref{eq:newstateComp}.
+
+\begin{equation}
+\vec{N_{rw}} =  \vec{u} - \vec{N_{mt}} +  \underline{\omega}^\times\vec{h_{rw}} = 
+\vec{u} - \left( \underline{R}(\vec{ q})  \vec{\tilde{b}^{[I]}}(t)\right)^\times \vec{\tau_{mt}}  +  \underline{\omega}^\times\vec{h_{rw}} 
+\label{eq:newstateComp}
+\end{equation}
+\todo{check sign}
+
+The new momentum dumping dynamics is presented by equation \ref{eq:newmomDumpDyn}.
+
+\begin{equation}
+\label{eq:newmomDumpDyn}
+\frac{d}{dt}(\vec{h_{rw}} - \vec{h_{ref}}) = -\vec{u} - \underline{\omega}^\times\vec{h_{rw}} - \left( \underline{R}(\vec{ q})  \vec{\tilde{b}^{[I]}}(t)\right)^\times \vec{\tau_{mt}}
+\end{equation}
+
+Equation \ref{eq:newmomDumpDynECI} describes the dynamics shown in equation \ref{eq:newmomDumpDyn} in ECI frame, the gyroscopic term disappears. It is apparent that the desaturation controller is affected by the attitude controller's $\vec{u}$ input, while the attitude controller is unaffected by the momentum dumping loop.
+
+\begin{equation}
+\label{eq:newmomDumpDynECI}
+\vec{\dot{h}_{rw}} = -\underline{R}^T(\vec{ q})\vec{u} -  \underline{\tilde{b}}^{[I]}(t)^\times \vec{\tau_{mt}^{[I]}}
+\end{equation}
 
 The control law is given in equation \ref{eq:...}. The decoupling is achieved by using inertial frame based angular momentum references. 		
 It can be viewed as if the amount of magnetorquer torque exerted is subtracted from the reaction wheel torque demand. When the torque demand is higher than the magnetorquer output torque, the magnetorquers help the reaction wheels, when it drops below a certain level, the magnetorquers are decreasing the angular momenta of the reaction wheels.

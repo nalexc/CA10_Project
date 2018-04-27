@@ -2,7 +2,7 @@
 
 The TODO margin extension needs to be removed at finalization
 
-##Nomenclature 
+## Nomenclature 
 
 To run nomenclature, update makeindex command as follows:
 
