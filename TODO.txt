@@ -1,0 +1,13 @@
+motor replacement with saturation
+
+detumbling presentation
+
+discussing omega x h extra wheel torque - when torque demand is zero, this should switch off
+
+change Nrw sign to + everywhere
+
+let {eq:ec34} have a number
+
+s(omega) to omegaX
+
+desat of tetrahedron
