@@ -1,5 +1,5 @@
 \chapter{Quaternions } \label{chap:B}
-This appendix is based on sources from [Wertz] [Kuipers].
+This appendix is based on sources from \cite{SADC} and \cite{Kui}.
 
 There are several possible mathematical representations for rotation. In physics, rotation matrices, Euler angles (eg. pitch-roll-yaw) and quaternions. In satellite engineering, quaternions are the preferred representations, since they are more compact than rotation matrices and lack singularities.
 
@@ -102,9 +102,9 @@ The product quaternion can be expressed in a matrix form:
 	\end{bmatrix} 	
 	\label{eq:sfgdm}
 \end{flalign}
-A skew-symmetric matrix is given as $\underline{S}(\vec q)$ and defined as
+A skew-symmetric matrix is given as $\underline{S}(\vec q)^\times$ and defined as
 \begin{flalign}   
-	\underline{S}(\vec q) = 
+	\underline{S}(\vec q)^\times = 
 	\begin{bmatrix}
 		 0 & - q_{A_{3}}  & q_{A_{2}}\\
 		 q_{A_{3}}&  0  & - q_{A_{1}} \\ 
@@ -117,7 +117,7 @@ Moreover equation \ref{eq:sfgdm} can be written as
 \begin{flalign}   
 	\vec q_C = \vec q_A \vec q_B = \underline{C}_A \vec q_B = 
 	\begin{bmatrix}
-		 - \underline S(\vec{ q}) + \underline{\vec 1} q_{C_{4}} & \vec{ q} \\
+		 - \underline S(\vec{ q})^\times + \underline{\vec 1} q_{C_{4}} & \vec{ q} \\
 		 - \vec{ q}^\mathsf{T}&  q_{C_{4}}  \\ 
 	\end{bmatrix} 
    \vec q_B
