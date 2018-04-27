@@ -1,0 +1,40 @@
+motor replacement with saturation
+
+detumbling presentation
+
+discussing omega x h extra wheel torque - when torque demand is zero, this should switch off
+
+change Nrw sign to + everywhere
+
+let {eq:ec34} have a number
+
+s(omega) to omegaX
+
+desat of tetrahedron
+
+does the desat control scheme fit omega tracking or only attitude stabilization?
+
+change to notation of magnetic field in desat chapter
+
+in desat chapter, subtitute R(q)
+
+identity matrix in nomenclature
+
+change the notations in the desaturation schemes
+
+state that the desat controller determined the overall controller structure
+
+discuss the simulink model in appendix
+eg memory element of reconfig etc 
+
+show virtual actuator scheme
+
+strong detectability
+
+move sliding mode control before motor controllers
+
+add nomenclature ordering tricks to readme
+
+todo 3 control scheme for desat - original, no feedback, input alloc
+
+substitute btilde with B in desat

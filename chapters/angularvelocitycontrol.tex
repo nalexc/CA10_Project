@@ -2,7 +2,7 @@
 
 \subsection*{ Angular velocity control}
 
-In previous work, two controllers a linear and a non-linear(SMC), have been designed requiring a torque that has to be produced from the motors-wheel system. This torque demand is used to give the desired angular velocity reference for the wheels and thus the torque that will be fed back to the satellite as seen in the \cite{block diagram}. The output torque from the linear and non-linear controllers has three elements which has to be transformed in the tetrahedron configuration using the matrix \eqref{transmatrix}.  A \textit{PID} controller has been designed to control the angular velocity of the motor as seen in the \figref{fig:blockdi222}:
+In the previous chapter has been discussed how the control demand is calculated through two, with different nature, controllers. This torque demand is used to give the desired angular velocity reference for the wheels and thus the torque that will be fed back to the satellite as seen in the \cite{block diagram}. The output torque from the linear and non-linear controllers has three elements which has to be transformed in the tetrahedron configuration using the matrix \eqref{transmatrix}.  A \textit{PI} controller has been designed to control the angular velocity of the motor as seen in the \figref{fig:blockdi222}:
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1.0\linewidth]{figures/block_diagram_2}
@@ -16,14 +16,12 @@ The PI controller gains are chosen based on the open loop system response using 
 	k_{p} = 3.4 \\ k_{i} = 0.9
 \end{flalign*}
 
-\todo{make figure bigger}
+\todo{change the figure to the newest and make figure bigger}
 The root locus of one motor with PI controller is seen in the \figref{fig:rlocus33}
 %
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.7\linewidth]{figures/pid_rootlocus}
-	\caption{Root locus of one motor with PI controller}
-	\label{fig:rlocus33}
-\end{figure}
+%\begin{figure}[H]
+%	\includegraphics[width=0.7\linewidth]{figures/pid_rootlocus}
+%	\caption{Root locus of one motor with PI controller}
+%	\label{fig:rlocus33}
+%\end{figure}
 %
-The closed loop system gives complex eigenvalues and fast response and is stable for a wide range of the adjustable parameters. 
