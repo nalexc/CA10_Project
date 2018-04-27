@@ -5,7 +5,7 @@ In this subsection, the focus will be on describing the orientation of the satel
 \nomenclature[S]{$\vec N_{ext}$}{Represent all the external torques that influence the satellite}
 \nomenclature[S]{${\vec{ h_{sat}}}$}{Angular momentum of the satellite}
 \nomenclature[S]{${\vec{ h_{tot}}}$}{Total angular momentum}
-\nomenclature[S]{$\vec{ \bar{q}}$}{ The operating point}
+\nomenclature[S]{$\vec{ \bar{q}}$}{ The operating point of the quaternion}
 \nomenclature[S]{$\vec{q_{\omega}}$}{ The angular velocity quaternion}
 
 The quaternion $\textbf{q}(t)$ is defined as the attitude quaternion of a rigid body at time $t$ with respect to the inertial frame and at time $t+\Delta t$, the quaternion $\textbf{q}(t+\Delta t)$ is defined. The orientation quaternion can be divided into the quaternion at time $t$ and performing a quaternion multiplication with the rotation in the interval $\Delta t$ as follows:
@@ -132,12 +132,12 @@ Subsequently, the angular velocity is separated and expressed as:
 	\label{eq:ec8}
 \end{flalign}
 Next, by replacing the cross product with a skew-symmetric matrix ${\underline S(\vec \omega)}$, \eqref{eq:ec8} becomes:
-\begin{flalign}&{\vec{\dot{\omega}}}={-\underline I_{s}^{-1}\underline S(\vec \omega)^\times\underline I_{s}\vec \omega-\underline I_{s}^{-1}\underline S(\vec \omega)^\times \vec h_{rw}-\underline I_s ^{-1}\vec{  N_{rw}} + \underline I_s ^{-1}(\vec{  N_{mt}} + \vec{  N_{dist}})}
+\begin{flalign}&{\vec{\dot{\omega}}}={-\underline I_{s}^{-1}\vec \omega ^\times\underline I_{s}\vec \omega-\underline I_{s}^{-1}\vec \omega ^\times \vec h_{rw}-\underline I_s ^{-1}\vec{  N_{rw}} + \underline I_s ^{-1}(\vec{  N_{mt}} + \vec{  N_{dist}})}
 	\label{eq:ec9}
 \end{flalign}
 where $N_{mt}$ is the torque from the magnetorquers, $N_{rw}$ is the torque from the momentum wheels and the skew-symmetric matrix is:
 \begin{flalign}
-	{\underline S(\vec \omega)^\times}
+	{\vec \omega ^\times}
 	\overset{\Delta}{=}
 	\begin{bmatrix}
 		0& -\omega_{3}& \omega_{2} \\
@@ -148,7 +148,7 @@ where $N_{mt}$ is the torque from the magnetorquers, $N_{rw}$ is the torque from
 \end{flalign}
 Moreover, the torque set to the momentum wheels is equal to the time derivative of the angular momentum:
 \begin{flalign}
-	\vec {N_{rw}} =  {\vec{ \dot{h}_{rw}}}
+	\vec {N_{rw}} =  -{\vec{ \dot{h}_{rw}}}
 	\label{eq:ec10}
 \end{flalign}
 \subsection{Linearization of satellite  equations}
@@ -197,7 +197,7 @@ In order to express the products quaternion from the previous equation, the prod
 \vec{\bar q_{\omega}} \otimes \vec{\tilde{q}}  
 = 
 \begin{bmatrix}
-& - \underline S(\vec{\tilde q})^\times + \underline{\vec 1} {\tilde q_4} & \vec{\tilde q} \\
+& - \vec{\tilde q} ^\times + \underline{\vec 1} {\tilde q_4} & \vec{\tilde q} \\
 & - \vec{\tilde q}^\mathsf{T}& {\tilde q_4}  \\ 
 \end{bmatrix} 
 \begin{bmatrix}
@@ -206,19 +206,19 @@ In order to express the products quaternion from the previous equation, the prod
 \end{bmatrix} 
 =
 \begin{bmatrix}
-& - \underline S(\vec{\bar \omega})^\times \vec{\tilde q} + \underline{\vec 1} {\tilde q_4} \vec{\bar \omega}  \\
+& - \vec{\bar \omega}^\times \vec{\tilde q} + \underline{\vec 1} {\tilde q_4} \vec{\bar \omega}  \\
 & - \vec{\tilde q}^\mathsf{T} \vec{\bar \omega}\\ 
 \end{bmatrix} 
 \label{eq:sffm}
 \end{flalign}
-where the following property is used $\underline S(\vec{\bar \omega})^\times \vec{\tilde q} = - \underline S(\vec{\tilde q} )^\times \vec{\bar \omega} $ and $ S(\vec \omega)^\times$ is the skew symmetric matrix.
+where the following property is used $(\vec{\bar \omega}^\times \vec{\tilde q} = - \vec{\tilde q} ^\times \vec{\bar \omega} $ and $ S(\vec \omega)^\times$ is the skew symmetric matrix.
 
 Similarly, the product quaternion between $ \vec{\tilde{q}} \otimes \vec{\bar q_{\omega}}  $ is found:
 \begin{flalign}   
 \vec{\tilde{q}} \otimes \vec{\bar q_{\omega}}  
 = 
 \begin{bmatrix}
-& - \underline S(\vec{\bar \omega}^\times & \vec{\bar \omega}\\
+& - \vec{\bar \omega}^\times & \vec{\bar \omega}\\
 & - \vec{\bar \omega}^\mathsf{T}& 0  \\ 
 \end{bmatrix} 
 \begin{bmatrix}
@@ -227,7 +227,7 @@ Similarly, the product quaternion between $ \vec{\tilde{q}} \otimes \vec{\bar q_
 \end{bmatrix} 
 =
 \begin{bmatrix}
-& - \underline S(\vec{\bar \omega})^\times \vec{\tilde q} +  \vec{\bar \omega} {\tilde q_4}   \\
+& - \vec{\bar \omega}^\times \vec{\tilde q} +  \vec{\bar \omega} {\tilde q_4}   \\
 & - \vec{\tilde \omega}^\mathsf{T} \vec{\tilde q}\\ 
 \end{bmatrix} 
 \label{eq:sfm}
@@ -237,7 +237,7 @@ The last product quaternion can be found in the same manner:
 	\vec{\tilde{q}} \otimes \vec{\tilde q_{\omega}}  
 	= 
 	\begin{bmatrix}
-		& - \underline S(\vec{\tilde \omega})^\times & \vec{\tilde \omega}\\
+		& - \vec{\tilde \omega}^\times & \vec{\tilde \omega}\\
 		& - \vec{\tilde \omega}^\mathsf{T}& 0  \\ 
 	\end{bmatrix} 
 	\begin{bmatrix}
@@ -246,7 +246,7 @@ The last product quaternion can be found in the same manner:
 	\end{bmatrix} 
 	=
 	\begin{bmatrix}
-		& - \underline S(\vec{\tilde \omega})^\times \vec{\tilde q} +  \vec{\tilde \omega} {\tilde q_4}   \\
+		& - \vec{\tilde \omega}^\times \vec{\tilde q} +  \vec{\tilde \omega} {\tilde q_4}   \\
 		& - \vec{\tilde \omega}^\mathsf{T} \vec{\tilde q}\\ 
 	\end{bmatrix} 
 	\label{eq:sfgfm}
@@ -277,7 +277,7 @@ Therefore, equation \ref{eq:sfgfm} can be rewritten by using this property as:
 	\vec{\tilde{q}} \otimes \vec{\tilde q_{\omega}}  
 	=
 	\begin{bmatrix}
-		& - \underline S(\vec{\tilde \omega})^\times \vec{\tilde q} +  \vec{\tilde \omega} {\tilde q_4}   \\
+		& - (\vec{\tilde \omega}^\times \vec{\tilde q} +  \vec{\tilde \omega} {\tilde q_4}   \\
 		& - \vec{\tilde \omega}^\mathsf{T} \vec{\tilde q}\\ 
 	\end{bmatrix} 
 =
@@ -289,17 +289,17 @@ Collecting terms and inserting equation \ref{eq:sffm},  \ref{eq:sfm}, \ref{eq:sf
 	\vec{\dot {\tilde{ q}}} \approx  
 	- \frac{1}{2}
 	\begin{bmatrix}
-		- \underline S(\vec{\bar \omega})^\times \vec{\tilde q} + \underline{\vec 1} {\tilde q_4} \vec{\bar \omega}  \\
+		- \vec{\bar \omega}^\times \vec{\tilde q} + \underline{\vec 1} {\tilde q_4} \vec{\bar \omega}  \\
 		- \vec{\tilde q}^\mathsf{T} \vec{\bar \omega}\\ 
 	\end{bmatrix} 
 + \frac{1}{2}
 \begin{bmatrix}
-	- \underline S(\vec{\bar \omega})^\times \vec{\tilde q} +  \vec{\bar \omega} {\tilde q_4}   \\
+	- \vec{\bar \omega}^\times \vec{\tilde q} +  \vec{\bar \omega} {\tilde q_4}   \\
     - \vec{\tilde \omega}^\mathsf{T} \vec{\tilde q}\\ 
 \end{bmatrix} 
 +\frac{1}{2} \vec{\tilde q_{\omega}} \approx
 \begin{bmatrix}
-	- \underline S(\vec{\bar \omega})^\times \\
+	- \vec{\bar \omega}^\times \\
 	0\\ 
 \end{bmatrix}
 \vec{\tilde q} + \frac{1}{2} \vec{\tilde q_{\omega}}
@@ -309,8 +309,8 @@ Collecting terms and inserting equation \ref{eq:sffm},  \ref{eq:sfm}, \ref{eq:sf
 Next, the non-linear dynamic equation is given by:
 \begin{align*}
 	\begin{split}
-	{\vec{\dot{\omega}}} &={-\underline I_{s}^{-1}\underline S(\vec \omega)^\times\underline I_{s}\vec \omega-\underline I_{s}^{-1}\underline S(\vec \omega)^\times\vec h_{rw}-\underline I_s ^{-1}\vec{  N_{rw}} + \underline I_s ^{-1}(\vec{  N_{mt}} + \vec{  N_{dist}})} = \\
-	&= {\underline I_{s}^{-1}} [\vec{  N_{dist}} + \vec{  N_{ctrl}} - S(\vec \omega)^\times (\underline I_{s}\vec \omega + \vec h_{rw})] 
+	{\vec{\dot{\omega}}} &={-\underline I_{s}^{-1}\vec \omega^\times\underline I_{s}\vec \omega-\underline I_{s}^{-1} \vec \omega^\times\vec h_{rw}-\underline I_s ^{-1}\vec{  N_{rw}} + \underline I_s ^{-1}(\vec{  N_{mt}} + \vec{  N_{dist}})} = \\
+	&= {\underline I_{s}^{-1}} [\vec{  N_{dist}} + \vec{  N_{ctrl}} - \vec \omega^\times (\underline I_{s}\vec \omega + \vec h_{rw})] 
 \label{eq:ec34}
 \end{split}
 \end{align*}
@@ -326,8 +326,8 @@ The next step is to use a a first order Taylor expansion for linearizing the tim
 		{\vec{\dot{\omega}}} \approx {-\underline I_{s}^{-1}} \frac{d {\vec{\dot{\omega}}}}{d {\vec{{\omega}}}} \Big|_{{\vec{{\omega}}} = {\vec{{\bar \omega}}}} \vec{{\tilde \omega}} -  {\underline I_{s}^{-1}} \frac{d {\vec{\dot{\omega}}}}{d {\vec{{h_{rw}}}}} \Big|_{{\vec{{h_{rw}}}} = {\vec{{\bar h_{rw}}}}} \vec{{\tilde h_{rw}}} + {\underline I_{s}^{-1}} \frac{d {\vec{\dot{\omega}}}}{d {\vec{{N_{ctrl}}}}} \Big|_{{\vec{{N_{ctrl}}}} = {\vec{{\bar N_{ctrl}}}}} \vec{{\tilde N_{ctrl}}} 
 		\label{eq:ec3f4}
 \end{flalign}
-By using the property $\underline S(\vec \omega)^\times\underline I_{s}\vec{\bar \omega} = - \underline S(\underline I_{s}\vec{\bar \omega})^\times  \vec \omega$ and rewriting the \ref{eq:ec3f4} by expanding the terms, will result the linearized dynamic equation:
+By using the property $\vec \omega^\times\underline I_{s}\vec{\bar \omega} = - \underline I_{s}\vec{\bar \omega}^\times  \vec \omega$ and rewriting the \ref{eq:ec3f4} by expanding the terms, will result the linearized dynamic equation:
 \begin{flalign}
-{\vec{\dot{\omega}}} = \underline I_{s}[ \underline S(\underline I_{s}\vec{\bar \omega})^\times  - \underline S(\vec{\bar \omega})^\times \underline I_{s} + \underline S(\vec{\bar h_{rw}})^\times ] {\vec{\tilde{\omega}}} - \underline I_{s} \underline S(\vec{\bar \omega})^\times \vec{\tilde h_{rw}} + \underline I_{s}  \vec{\tilde N_{ctrl}}
+{\vec{\dot{\omega}}} = \underline I_{s}( \underline I_{s}\vec{\bar \omega}^\times  - \vec{\bar \omega}^\times \underline I_{s} + \vec{\bar h_{rw}}^\times ) {\vec{\tilde{\omega}}} - \underline I_{s} \vec{\bar \omega}^\times \vec{\tilde h_{rw}} + \underline I_{s}  \vec{\tilde N_{ctrl}}
 \label{eq:ec3fr4}
 \end{flalign}
