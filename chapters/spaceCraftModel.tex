@@ -20,6 +20,7 @@ The derivation of the satellite equations of motion is presented in appendix \re
 	\end{bmatrix} 	
 	= 
 	\begin{bmatrix}
+
 		\frac{1}{2} \underline{ \Omega}_{(4\times4)}^\times \vec{ ^s_i q(t)} \\
 		{-\underline{I}_{s}^{-1}\underline{S}^\times (\vec{\omega})\underline{I}_{s}\vec{\omega}(t)-\underline{I}_{s}^{-1}\underline{S}^\times(\vec{\omega})\vec{h_{rw}}-\underline{I}_{s}^{-1}\vec{N_{rw}}(t)+\underline{I}_{s}^{-1}[\vec{N_{mt}(t)}+\vec{N_{dis}}(t)}]
 	\end{bmatrix} 
@@ -60,8 +61,8 @@ Therefore, by using the results from appendix \ref{chap:C} the linear equation o
 	\vec {\tilde N_{ctrl}}
 	\label{eq:lele}
 \end{flalign}
-where, \\
-- $\vec{\tilde N_{ctrl}}$ is the torque from magnetorquers and the reaction wheels and is defined as: $\vec{\tilde N_{ctrl}} = \vec{N_{mt}} - \vec{N_{rw}}$ \\
+where, \todo{changed the sign of Nrw}\\
+- $\vec{\tilde N_{ctrl}}$ is the torque from magnetorquers and the reaction wheels and is defined as: $\vec{\tilde N_{ctrl}} = \vec{N_{mt}} + \vec{N_{rw}}$ \\
 
 - $	\vec{ {\tilde{^s_iq}}(t) } $ is the error quaternion \\
 - $ \vec{ {\tilde{\omega}}(t)} $ is the error in the angular velocity \\ 
