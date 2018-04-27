@@ -115,12 +115,12 @@ and thus replacing \eqref{eq:seom} expressed for ${\vec{\dot{\tilde{\omega}}}}$ 
 
 
 \begin{flalign}
-	\dot{V}  = \vec{s}^{T}\underline{I}_{s}^{-1}(-\underline{{\omega}}^\times\underline{I}_{s}\vec{\omega}-\underline{{\omega}}^\times\vec{h_{rw}}-\vec{N_{rw}}+\vec{N_{mt}}+\vec{N_{dis}} - \underline{I}_{s}\dot{\bar{\omega}} +\underline{I}_{s}\underline{F}{\vec{\dot{\tilde{q}}}} ) 
+	\dot{V}  = \vec{s}^{T}\underline{I}_{s}^{-1}(-\underline{{\omega}}^\times\underline{I}_{s}\vec{\omega}-\underline{{\omega}}^\times\vec{h_{rw}}-\vec{N_{rw}}+\vec{N_{dis}} - \underline{I}_{s}\dot{\bar{\omega}} +\underline{I}_{s}\underline{F}{\vec{\dot{\tilde{q}}}} ) 
 	\label{eq:444444}
 \end{flalign}
 by choosing the control as
  \begin{flalign}
- 	\vec{N_{rw}}  = -\underline{{\omega}}^\times\underline{I}_{s}\vec{\omega}-\underline{{\omega}}^\times\vec{h_{rw}}+\vec{N_{mt}}+\vec{N_{dis}} - \underline{I}_{s}\dot{\bar{\omega}} +\underline{I}_{s}\underline{F}{\vec{\dot{\tilde{q}}}} ) 
+ 	\vec{N_{rw}}  = -\underline{{\omega}}^\times\underline{I}_{s}\vec{\omega}-\underline{{\omega}}^\times\vec{h_{rw}} - \underline{I}_{s}\dot{\omega} +\underline{I}_{s}\underline{F}{\vec{\dot{\tilde{q}}}}+\underline{I}_{s}\lambda sign(\vec{s})  ) 
  	\label{eq:555555}
  \end{flalign}
 
