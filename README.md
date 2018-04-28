@@ -6,7 +6,9 @@ The TODO margin extension needs to be removed at finalization
 
 To run nomenclature, update makeindex command as follows:
 
+```
 makeindex %.nlo -s nomencl.ist -o %.nls -t %.nlg
+```
 
 1. run Latex
 2. run MakeIndex command
