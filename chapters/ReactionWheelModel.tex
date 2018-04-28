@@ -1,9 +1,6 @@
-
 \subsection{Reaction Wheel Configuration}
-
 The satellite should be capable of tracking an Earth station to be able to downlink data. Tracking a ship requires similar control capability, since the velocity of the wheel is practically zero compared to the velocity of the satellite. Directing the antennas to the nadir continuously only requires keeping a satellite angular velocity equal to the orbit's angular velocity.
 Tracking the Earth station requires torque from the actuators, the torque demand can be calculated based on the angular acceleration demand for Earth station tracking.
-
 
 There have been studies on what is the best configuration of redundant reaction wheels. The optimal configuration can of course depend on the requirements. If the requirement is to have the same controllability for reaction wheels in case of fault, and 6 reaction wheels are available, orthogonally configured double reaction wheels can be used. Minimizing energy consumption is normally the goal in deciding on a configuration. Ismail et al. \cite{ReactionWheelConfigSim} investigated several configurations by running simulations with the configuration being the only difference. The tetrahedron configuration of 4 reaction wheels has been chosen as the default configuration in the present paper, which is quite widespread in the industry \cite{reactConfigNasa}. The tetrahedron configuration is visualized in Figure \ref{fig:tetrahedron}.
 In tetrahedron configuration the 4 wheel orientations are evenly distributed, unlike the also widespread pyramid configuration. 
@@ -71,7 +68,7 @@ In case there's a demand to adjust the torque distribution between the wheels, a
 
 
 \subsubsection{Reconfiguration}
-
+\todo{move reconfig part to fault isolation}
 Fault isolation for the redundant reaction wheel configuration can be done by detecting which is the reaction wheel where the fault occurred and shutting it off and redistributing the torques to the rest of the reaction wheels. This reconfiguration can be represented by swapping the corresponding faulty columns to zero vectors. For example, if a fault occurs in the 3rd reaction wheel, the transformation matrix becomes $\underline{A}_{DC,f3}$, as presented in equation \ref{eq:ReactFault}.
 
 \begin{equation}
