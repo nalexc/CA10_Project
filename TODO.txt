@@ -38,3 +38,5 @@ add nomenclature ordering tricks to readme
 todo 3 control scheme for desat - original, no feedback, input alloc
 
 substitute btilde with B in desat
+
+add simulink library to github
