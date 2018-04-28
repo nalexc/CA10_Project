@@ -43,7 +43,7 @@ The original cross-product control law controls the magnetorquers' magnetic mome
 \vec{\tau_{mt}} = -\frac{\underline{\tilde{b}}^\times(t)}{|\vec{\tilde{b}}(t) |^2} k_p\left(\vec{h_{rw}} - \vec{h_{ref}} \right)
 \end{equation}
 
-where $\vec{\tau_{mt}}$ is the magnetic moment of the magnetorquers, $\vec{\tilde{b}}$ is the local geomagnetic field in BFF, $\vec{h_{rw}}$ is the angular momentum vector of the reaction wheels, $\vec{h_{ref}}$ is the reference reaction wheel angular momentum for desaturation, $k_p$ is an adjustable proportional gain.
+where $\vec{\tau_{mt}}$ is the magnetic moment of the magnetorquers, $\vec{\tilde{b}}$ is the local geomagnetic field in SBRF, $\vec{h_{rw}}$ is the angular momentum vector of the reaction wheels, $\vec{h_{ref}}$ is the reference reaction wheel angular momentum for desaturation, $k_p$ is an adjustable proportional gain.
 		\nomenclature[S]{$\vec{\tau_{mt}}$}{Magnetorquer magnetic moment}
 		\nomenclature[S]{$\vec{\tilde{b}}$}{local geomagnetic field in body fixed frame}
 		\nomenclature[S]{$\vec{h_{rw}}$}{The angular momentum vector of the reaction wheels}
@@ -145,7 +145,7 @@ Equation \ref{eq:newmomDumpDynECI} describes the dynamics shown in equation \ref
 \vec{\dot{h}_{rw}} = -\underline{R}^T(\vec{ q})\vec{u} -  \underline{\tilde{b}}^{[I]}(t)^\times \vec{\tau_{mt}^{[I]}}
 \end{equation}
 
-The new magnetorquer control law that doesn't utilize $\vec{h_T}$ is described in ECI frame by equation \ref{eq:finalMTlawECI} and in BFF by equation \ref{eq:finalMTlawBFF}.
+The new magnetorquer control law that doesn't utilize $\vec{h_T}$ is described in ECI frame by equation \ref{eq:finalMTlawECI} and in SBRF by equation \ref{eq:finalMTlawBFF}.
 
 \begin{equation}
 \vec{\tau_{mt}^{[I]}} 
