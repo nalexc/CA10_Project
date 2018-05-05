@@ -4,16 +4,16 @@
 
 \nomenclature[A]{\textbf{ECI}}{Earth Centered Inertial Frame}
 \nomenclature[A]{\textbf{ECEF}}{Earth Centered Earth Fixed Frame}
-\nomenclature[A]{\textbf{BFF}}{Body-Fixed Frame}
+\nomenclature[A]{\textbf{SBRF}}{Satellite Body Reference Frame}
 
 Using different reference frame for different calculations can simplify equations. Values in one reference frame can be converted into the other by using the proper transformations.
 Inertial frames of reference are frames where Newton's 3 laws of dynamics apply.
-The most used reference frames for Earth-orbiting satellites are Earth Centered Inertial Frame (ECI), Earth Centered Earth Fixed Frame (ECEF), Orbit Frame, Body-Fixed Frame (BFF)  \cite{ref1} \cite{ref2}. Figure \ref{fig:frames} provides a visualization of the frames.
+The most used reference frames for Earth-orbiting satellites are Earth Centered Inertial Frame (ECI), Earth Centered Earth Fixed Frame (ECEF), Orbit Frame, Satellite Body Reference Frame (SBRF)  \cite{ref1} \cite{ref2}. Figure \ref{fig:frames} provides a visualization of the frames.
 
 \begin{figure}[h!]
 	\centering 
 	\includegraphics[width=140mm]{figures/frame.pdf}	
-	\caption{Reference frame axes. Superscripts: i - ECI, o - Orbital, s - Body Frame \cite{our_report}.}
+	\caption{Reference frame axes. Superscripts: i - ECI, o - Orbital, s - Satellite Body Frame \cite{our_report}.}
 	\label{fig:frames}
 \end{figure}
 
@@ -36,6 +36,6 @@ The Orbital Frame is centered at the center of mass of the satellite. The $^oz$ 
 
 \nomenclature[T]{\textbf{Nadir}}{The axis pointing towards Earth's center of mass}
 
-\subsubsection{Body-Fixed Frame (BFF)}
+\subsubsection{Satellite Body Reference Frame (SBRF)}
 
-Body-fixed frames are attached to the satellite's body, but the orientation of the frame in relation to the body is arbitrary. Due to practical considerations the axes are usually chosen to line up with the principal axes of inertia of the body.
+Body-fixed frames are attached to the satellite's body, but the orientation of the frame in relation to the body is arbitrary. Due to practical considerations the axes of the SBRF are chosen to line up with the principal axes of inertia of the body.
