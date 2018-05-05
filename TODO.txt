@@ -40,3 +40,15 @@ todo 3 control scheme for desat - original, no feedback, input alloc
 substitute btilde with B in desat
 
 add simulink library to github
+
+substitute btilde with B in desat
+
+add scope for eci orientation
+
+now reference quaternion 
+
+show actuator power consumption
+
+find which of the double magnetorquers are faulty. maybe use power consumption
+
+delete the stars in chapters

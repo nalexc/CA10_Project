@@ -1,0 +1,51 @@
+\chapter{Magnetorquer design} \label{chap:F}
+The design of the magnetorquers placed inside the satellie is inspired from \cite{TH}, where to types of magnetorqers are described: one with metal core and without core. The parameters for one magnetorqer without core are presented in table \ref{table:for}:
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|l|}
+		\hline
+		\textit{\textbf{Parameter}}     & \textit{\textbf{Value}}                     				     \\ \hline
+		Coil size                       		   & 75x75 {[}$mm^2$ {]}                      					  \\ \hline
+		Wire Thickness                      & 0.13 {[}$mm${]}                             					 	\\ \hline
+		Windings                        		& 250                                          						     	 \\ \hline
+		Coil mass                     		    & 0.053 [$kg$]                                    					    \\ \hline
+		Max voltage                  	      & ±1.25 {[}$V${]}  		\\ \hline
+		Max current                  	      & 15.78 {[}$mA${]}                               						   \\ \hline
+		Actuator on time                   & 88\%                                      				                        \\ \hline
+		Max power consumption pr. coil  & 17.4 {[}$mW$ {]}                            					     \\ \hline
+		Total power consumption     & 134.2 {[}$mW${]}                           	  					   	    \\ \hline
+		Coil Discharge time:             & 0.33481 {[}$ms${]} (99\% discharged)   					     \\ \hline
+		Available time for measurements & 11.67 {[}$ms${]}                               					     \\ \hline
+	\end{tabular}
+	\caption{Parameters for magnetorqer without metal core}
+	\label{table:for}
+\end{table}
+
+For this type of magnetorqer, one magnetorqer will generate around 200 [$nNm$] at low magnetic field strength (18000 [$nT$), which is perpendicular to the area of the coil. (thesis)
+
+A second alternative is to choose a magnetorqer with metal core, because the power consumption, the size and weight are considered superior compared with a magnetorqer without cores. Moreover, because the interest in redundancy is important and four magnetorqers will be placed inside the satellite, the magnetorqer with metal core is preferable because of their weight and size. The parameters for the magnetorqer with metal core is illustrated in the following table:
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|l|}
+		\hline
+		\textit{\textbf{Parameter}}     & \textit{\textbf{Value}}               \\ \hline
+		Core diameter:                       & 10 {[}$mm$ {]}                           \\ \hline
+		Core length             			   & 10 {[}$mm${]}                             \\ \hline
+		Permeability                           & 1000                                      	     \\ \hline
+		Wire Thickness                      & 0.13 [$mm$]                                 \\ \hline
+		Windings                                & 200 											      \\ \hline
+		Coil mass                               & 0.019 {[}$kg${]}                               \\ \hline
+		Max voltage                			  & ±1.25 {[}$V${]}                                  \\ \hline
+		Max current							  & 20 {[}$mA$ {]}                                    \\ \hline
+		External resistance needed   & 62.5 {[}$\Omega$ {]} 					  	 \\ \hline
+		Actuator on time			       & 27 \% {[}$mW${]}                                  \\ \hline
+		Max power consumption pr. coil     & 6.75{[}$mW${]} 				           \\ \hline
+		Total power consumption		& 35.3 {[}$mW${]}                                      \\ \hline
+	\end{tabular}
+	\caption{Parameters for magnetorqer with metal core}
+	\label{table:for1}
+\end{table}
+In this case, one magnetorqer will generate around 400 [$nNm$] at low magnetic field strength (18000 [$nT$). Besides the advantage of having a reduced dimension and a better power consumption, the magnetorqer with core, generates a magnetic moment higher than expected. On the other hand, the magnetorqer without core was already tested on the AAUSAT and can be seen as a safe choice of actuator.
+
+
