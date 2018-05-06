@@ -34,4 +34,21 @@ Using \ref{eq:NT} and \ref{eq:mm} and taking the magnitude, the applied torque o
 \end{flalign} 
 where $\sin (\theta)$ is the angle between the area $A_{coil}$ and the magnetic field vector $\vec B$.
 
+Furthermore, the resistance of the magnetorqer which is a function of the temperature of the coil given as an input, can be computed as
+\begin{flalign}
+R_{mt} = \dfrac{nC  \rho_{mt} }{A_{wire}} = \dfrac{nC \rho_0(1+\alpha_0(T_{mt} - T_0))}{A_{wire}}
+\label{eq:rt}
+\end{flalign} 
+where \\
+$R_{mt}$ is the resistance of the magnetorquer \\
+$n$ is the number of windings \\ 
+$C$ is the wire circumference  \\
+$A_{wire}$ is the wire cross-sectional area  \\
+$\rho_0$ is the resistivity of copper  \\
+$\alpha_0$ is the coefficient of resistivity temperature   \\
+$T_{mt}$ is the temperature given as an input   \\
+$T_0$ is the resistivity base temperature  \\
+
+Using the computed resistance the current is found by dividing the voltage by the resistance of the magnetorquer. Next, in order to find the magnetic moment $m$, the current is multiplied by the number of windings and the area of the wire. For finding the torque that acts on the satellite, the magnetic moment is multiplied by the coil normal and a cross-product is used between this multiplication and the magnetic field of the Earth.
+
 The design of the magnetorquer is described in appendix \ref{chap:F}.

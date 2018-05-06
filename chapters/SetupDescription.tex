@@ -1,9 +1,40 @@
 \chapter{System Description}\label{chap:systemDescribtion}
+\textit{In this chapter is presented a description of the system configuration, which includes mechanical properties, sensors and actuators description and ADCS approaches.}
+
+The satellite used in this thesis is a CubeSat as can be seen in figure \ref{fig:cube}, which is a pico-satellite that have been designed by California Polytechnic State University. This concept of satellite impose a few constrains. The dimensions of a 1U CubeSat  is $10 \times 10 \times 10 \ cm$ with a mass of 1kg, which makes it have the advantage of having a light weight that leads to a low power consumption, but on the other hand the drawback of limited space. In order to enlarge the space within the satellite, the dimensions could be changed when designing the satellite, such that a 3U design might be suitable for a satellite that will contain solar arrays or thrusters.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figures/cubesat}
+	\caption{CubeSat exploded view [ref]}
+	\label{fig:cube}
+\end{figure}
+
+Moreover, for the satellite to use an attitude control, it will be equipped with two types of actuators, magnetorquers and reaction wheels, which are accounted as stabilization methods. By using the reaction wheels, a periodic desaturation is needed by using the magnetorqers for this purpose.
+
+\subsubsection{ADCS approaches}
+The objective of the ADCS system illustrated in figure \ref{fig:cubee} will be to reduce the angular velocity of the satellite and also to point to a specific target located on Earth. Therefore, a few procedures can be taking into account:
+
+\textit{Detumbling}, which is the state that the satellite is initialized immediately after is deployed from the device called P-POD. Thus, the ADCS shall keep the satellite of performing arbitrary tumbling.
+
+\textit{Desaturation}, represents the mode where the reaction wheels reach saturation 
+, therefore the controllability is reduced.
+
+\textit{Pointing}, is the maneuver used after the satellite is stable and needs to orientate the camera towards a target.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figures/adcs}
+	\caption{ADCS system description [ref]}
+	\label{fig:cubee}
+\end{figure}
+
+\nomenclature[A]{\textbf{ADCS}}{Attitude Determination and Control System}
 
 \input{chapters/sensors.tex}
 
 \section{Actuators}
- 
+ In this section the actuators that the satellite is equipped with for holding or changing the attitude, are described.
 \subsection{Reaction Wheels}
 
 One method of controlling a spacecraft's attitude is by using either reaction or momentum wheels attached to the spacecraft's body. By controlling the wheel's angular velocity using a motor, the amount of angular momentum stored in the wheel can be controlled. If there are no external forces involved, the sum of angular momentum in the system made up by the spacecraft's body and the reaction wheels is constant. This means that by increasing the angular velocity of the wheels, the satellite body's angular momentum can be reduced. This angular momentum transfer can be used to control the attitude of the satellite. If the goal is to change the angular momentum of the whole satellite, actuators that are capable of external interaction should be used, such as magnetorquers or solar sails.
