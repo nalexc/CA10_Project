@@ -13,6 +13,7 @@ Quaternion based rotation representation significantly improves control capabili
 
 The attitude control goal can be described as keeping the orientation demand $\vec{q}$. According to  \cite{globalAttController}, it is impossible to design a globally stabilizing quaternion based state feedback that is robust to measurement noise. The quaternion-based robust hysteric feedback controller which is capable of globally asymptotically stabilizing a rigid body is described subsequently. It can be considered as a more robust extension of classical state feedback controller.
 
+
 The dynamics of a rigid body is described in equation \ref{eq:dynSimple}. For clarity of the control method, disturbance torques are emitted from the equation. For more details, refer to Appendix ... .
 
 \begin{equation}
@@ -106,4 +107,3 @@ After a satellite is ejected from its rocket, it might be rotating quite fast. T
 	\label{fig:omega}
 \end{figure}
 
-\todo{fix time axis}
