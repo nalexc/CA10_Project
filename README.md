@@ -60,3 +60,13 @@ add **[H]** after \begin{figure}
 \end{figure}
 
 ```
+
+```
+subplot(3,1,2)
+xlabel('time (s)')
+ylabel('Torque(Nm) - x axis')
+title('Hybrid controller detumbling torque demand')
+print -depsc detumbling.eps
+
+ plot(control.Data(:,1))
+```
