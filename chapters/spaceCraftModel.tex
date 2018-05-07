@@ -18,20 +18,20 @@ The derivation of the satellite equations of motion is presented in appendix \re
 	\end{bmatrix} 	
 	= 
 	\begin{bmatrix}
-		\frac{1}{2}\vec{\omega} ^\times \vec{ ^s_i q(t)} \\
-		{-\underline{I}_{s}^{-1} \vec{\omega}^\times \underline{I}_{s}\vec{\omega}(t)-\underline{I}_{s}^{-1}\vec{\omega}^\times \vec{h_{rw}}-\underline{I}_{s}^{-1}\vec{N_{rw}}(t)+\underline{I}_{s}^{-1}[\vec{N_{mt}(t)}+\vec{N_{dist}}(t)}]
+		\frac{1}{2}\underline{\omega} ^\times \vec{ ^s_i q(t)} \\
+		{-\underline{I}_{s}^{-1} \vec{\omega}^\times \underline{I}_{s}\vec{\omega}(t)-\underline{I}_{s}^{-1}\vec{\omega}^\times \vec{h_{rw}}+\underline{I}_{s}^{-1}[\vec{N_{rw}}(t) + \vec{N_{mt}(t)}+\vec{N_{dist}}(t)}]
 	\end{bmatrix} 
 	\label{eq:seom}
 \end{flalign}
 where,\\
-- $\vec{ ^s_i  q(t)} = [q_1 \ q_2 \ q_3 \ q_4]^T$ \\
-- $\vec{\omega{(t)}} = [ \omega_1 \ \omega_2 \ \omega_3]^T$ \\
+- $\vec{ ^s_i  q(t)} = [q_1 \ q_2 \ q_3 \ q_4]^T$ is the attitude quaternion \\
+- $\vec{\omega{(t)}} = [ \omega_1 \ \omega_2 \ \omega_3]^T$ is the angular velocity vector relative to the ECI \\
 - $\underline{I}_{s}$ is the inertia matrix \\
-- $\vec{N_{dis}}(t)$ is the disturbance torque \\
+- $\vec{N_{dist}}$ is the disturbance torque \\
 - $\vec{N_{rw}}$ is the torque from momentum wheels \\
 - $\vec{N_{mt}}$ is the torque from magnetorquers  \\
 \subsection{Linearized equation of motion}
-For the purpose of designing a linear controller, the equations of motion of the satellite need to be linearized. The whole process of linearization is presented in appendix \ref{chap:C}.
+For the purpose of designing a linear controller and an unknown input observer, the equations of motion of the satellite need to be linearized. The whole process of linearization is presented in appendix \ref{chap:C}.
 
 Therefore, by using the results from appendix \ref{chap:C} the linear equation of motion can be combined in a state-space form as:
 \begin{flalign}
@@ -56,7 +56,7 @@ Therefore, by using the results from appendix \ref{chap:C} the linear equation o
 	\vec {\tilde N_{ctrl}}
 	\label{eq:lele}
 \end{flalign}
-where, \todo{changed the sign of Nrw}\\
+where, \\
 - $\vec{\tilde N_{ctrl}}$ is the torque from magnetorquers and the reaction wheels and is defined as: $\vec{\tilde N_{ctrl}} = \vec{N_{mt}} + \vec{N_{rw}}$ \\
 
 - $	\vec{ {\tilde{^s_iq}}(t) } $ is the error quaternion \\
