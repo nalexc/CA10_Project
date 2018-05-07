@@ -46,3 +46,5 @@ now reference quaternion
 show actuator power consumption
 
 find which of the double magnetorquers are faulty. maybe use power consumption
+
+change B to B^I wherever neccessary
