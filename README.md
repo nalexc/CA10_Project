@@ -37,6 +37,18 @@ https://www.youtube.com/watch?v=Ss1XfsaAnfs
 \nomenclature[T]{Nadir}{Whatever}
 ```
 
+**Forcing alphabetical ordering**
+
+By default, the alphabetical ordering in symbols takes the commands into account. \underline is always before \vec.
+to make sure the symbols are ordered the way we expect, we should add the phonetic text after the symbol prefix as follows
+
+```
+\nomenclature[Somega]{\vec{\omega}}{AngVel}
+
+\nomenclature[SA]{\underline{\A}}{Transformation matrix}
+
+etc.
+```
 
 ## Exporting .eps images from Matlab
 
@@ -60,6 +72,8 @@ add **[H]** after \begin{figure}
 \end{figure}
 
 ```
+
+## Export graph
 
 ```
 subplot(3,1,2)

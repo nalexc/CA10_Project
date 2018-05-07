@@ -9,7 +9,7 @@ Matrices are underlined.
 \underline{A}
 \end{equation*}
 
-Cross product operations can be evaluated by taking the skew symmetric matrix of the left vector and executing a matrix multiplication. The skew symmetric matrix of $\textbf{v}$ is denoted as $\underline{v}^\times$. The $4\times4$ skew symmetric matrix of quaternions are denoted as $q^\times$ in a similar fashion.
+Cross product operations can be evaluated by taking the skew symmetric matrix of the left vector and executing a matrix multiplication. The skew symmetric matrix of $\textbf{v}$ is denoted as $\underline{v}^\times$. The $4\times4$ skew symmetric matrix of quaternions are denoted as $\underline{q}^\times$ in a similar fashion.
 \begin{equation*}
 	\textbf{w} = \textbf{u} \times \textbf{v} = \underline{u}^\times \textbf{v}
 \end{equation*}
@@ -29,13 +29,13 @@ If $n < m$, the right pseudoinverse is used as follows
 \end{equation*}
 
 
-The majority of equations are expressed in satellite body reference frame (SBRF). Unless it's not explicitly noted, the matrices and vectors are expressed in SBRF. In case the expression is in earth centered inertial frame (ECI), it is noted in the superscript as 
+The majority of equations are expressed in satellite body reference frame (SBRF). Unless it is not explicitly noted, the matrices and vectors are expressed in SBRF. In case the expression is in Earth centered inertial frame (ECI), it is noted in the superscript as 
 
 \begin{equation*}
 \vec{XY}^{[I]}
 \end{equation*}
 
-The rotation quaternion between frames use the subscript to denote the frame where the transformation is done from, the superscript is the symbol of the frame being transformed into. In case the frame symbols are not present, it should be interpreted as a transformation from inertial frame to body frame.
+The rotation quaternion between frames use the subscript to denote the frame where the transformation is done from, the superscript is the symbol of the frame being transformed into. In case the frame symbols are not present, it should be interpreted as a transformation from inertial frame to satellite body reference frame.
 
 \begin{equation*}
 \vec{^s_i q(t)}
@@ -47,23 +47,27 @@ Rotation matrix corresponding to rotation matrix $\vec{^s_i q(t)}$ is denoted as
 \underline{R}(\vec{^s_i q(t)})
 \end{equation*}
 
-A subarray of an array is denoted as When only the vector part of a quaternion is used, it is denoted as 
+A subarray of an array is denoted as $\vec{a}_{4:7}$. When only the vector part of a quaternion is used, it is denoted as 
 \begin{equation*}
 \vec{q}_{1:3}
 \end{equation*}
 
-Description of faults in magnetorquers or reaction wheels
+The scalar component of the quaternion is denoted as 
+\begin{equation*}
+\vec{q}_{4}
+\end{equation*}
+
+The complex of a quaternion is denoted as
+
+\begin{equation*}
+\vec q^\ast
+\end{equation*}
+
+Faults in magnetorquers or reaction wheels are denoted as
 
 \begin{equation*}
 \mathcal{F}_{MT} \ or  \  \mathcal{F}_{RW}
 \end{equation*}
-
-The complex conjugate is defined
-
-\begin{equation*}
- \vec q^\ast
-\end{equation*}
-\todo{move last part}
 
 \todo{operating point description}
 
