@@ -1,10 +1,10 @@
 \chapter{Main attitude control}
 
-In the following chapter will be discussed shortly two attitude controller designs that are based on previous work. The two controllers calculate a torque demand that has to be produced from the motors. The first controller is based on the linearized model \eqref{eq:lele}, and thus is characterized as linear state feedback control, while the second one is based on the non-linear dynamics \eqref{eq:seom} creating a sliding manifold, a hyperplane, such that when the states are on the manifold, will converge to the desired reference. The non-linear controller is called Sliding Mode Control (SMC).\nomenclature[A]{\textbf{SMC}}{Sliding Mode Control}
+In the following chapter will be discussed shortly two attitude controller designs that are based on previous work. The two controllers calculate a torque demand that has to be produced from the motors. The first controller is based on the linearized model equation \ref{eq:lele}, and thus is characterized as linear state feedback control, while the second one is based on the non-linear dynamics equation \ref{eq:seom} creating a sliding manifold, a hyperplane, such that when the states are on the manifold, will converge to the desired reference. The non-linear controller is called Sliding Mode Control (SMC).\nomenclature[A]{\textbf{SMC}}{Sliding Mode Control}
   
  \section{Linear controller}
  
-Since the norm of $ \vec{ {\bar{\omega}}} $ is known and equal to the orbital angular velocity ($\approx 0.0011$) comparing this value to $\frac{1}{2}$,becomes small, thus \eqref{eq:lele} can be simplified to 
+Since the norm of $ \vec{ {\bar{\omega}}} $ is known and equal to the orbital angular velocity ($\approx 0.0011$) comparing this value to $\frac{1}{2}$,becomes small, thus equation \ref{eq:lele} can be simplified to 
 \begin{flalign}
 	\begin{bmatrix}
 		\vec{ \dot {\tilde{q}}(t) } \\
@@ -27,7 +27,7 @@ Since the norm of $ \vec{ {\bar{\omega}}} $ is known and equal to the orbital an
 	\vec {\tilde N_{ctrl}}
 	\label{eq:lelele}
 \end{flalign}
-Three equal subsystems can be derived from \eqref{eq:lelele} as
+Three equal subsystems can be derived from equation \ref{eq:lelele} as
  \begin{flalign}
  	\begin{bmatrix}
  		 \dot { \tilde {q_{i}}} \\
@@ -100,18 +100,18 @@ The variable $s$ can be driven to 0 making use of a Lyapunov candidate function 
  	V  = \frac{1}{2} \vec{s}^{T}\vec{s} 
  	\label{eq:sliding variable333}
  \end{flalign} 
-and in order to prove stability around $s=0$ a necessary condition is $\dot{V} < 0 $ for each $s\neq0$. The time derivative of \eqref{eq:sliding variable333} is written as
+and in order to prove stability around $s=0$ a necessary condition is $\dot{V} < 0 $ for each $s\neq0$. The time derivative of equation \ref{eq:sliding variable333} is written as
 \begin{flalign}
 	\dot{V}  = \frac{1}{2}( \dot{\vec{s}^{T}}\vec{s}+\vec{s}^{T}\dot{\vec{s}}) 
 	\label{eq:sliding variable33333}
 \end{flalign}
 showing that $\vec{s}^{T}\dot{\vec{s}} < 0 $ $\forall s\neq0$ the condition may be satisfied.
-Substituting \eqref{eq:sliding variable} is obtained
+Substituting equation \ref{eq:sliding variable} is obtained
 \begin{flalign}
 	\dot{V}  = \vec{s}^{T} (\underline{F}{\vec{\dot{\tilde{q}}}} + {\vec{\dot{\tilde{\omega}}}}) 
 	\label{eq:e33333}
 \end{flalign}
-and thus replacing \eqref{eq:seom} expressed for ${\vec{\dot{\tilde{\omega}}}}$ \eqref{eq:e33333} is written as 
+and thus replacing equation \ref{eq:seom} expressed for ${\vec{\dot{\tilde{\omega}}}}$ equation \ref{eq:e33333} is written as 
 
 
 \begin{flalign}
@@ -125,7 +125,7 @@ by choosing the control as
  \end{flalign}
 
 it can be seen in the above equations that the torque from the magnetorquers is not included since the magnetorquers are used only for desaturation.
-\Eqref{eq:444444} can now be written as 
+Equation \ref{eq:444444} can now be written as 
 \begin{flalign}
 \dot{V} = -\vec{s}^{T}(-{\vec{\dot{\tilde{\omega}}}} +\lambda sign(\vec{s}) - \vec{N_{dis}}  )
 \label{eq:6666666}
