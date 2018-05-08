@@ -1,6 +1,6 @@
 \section{Desaturation}
 
-The reaction wheel DC motors and bearings have a limited angular velocity range they can operate in. When the velocity reaches the limit, the motor can no longer accelerate the wheel further in one direction, thus reducing controllability. To avoid this, the wheel velocity should be kept near zero. Usually the speed is above zero to avoid static friction in the bearings. Decreasing the reaction wheel speed by transferring its angular momentum is called desaturation.
+The reaction wheel DC motors and bearings have a limited angular velocity range they can operate in. When the velocity reaches the limit, the motor can no longer accelerate the wheel further in one direction, thus reducing controllability. To avoid this, the wheel velocity should be kept near a small reference angular velocity. Usually the speed is above zero to avoid static friction in the bearings. Decreasing the reaction wheel speed by transferring its angular momentum is called desaturation.
 
 Reaction wheels are used to control the attitude of the satellite by transferring its angular momentum. Transferring the angular momentum back to the satellite body would be counterproductive, it should be discarded in a different way. Magnetorquers are ideal for desaturation since they can interact with the Earth's magnetic field and are able to transfer angular momentum of the satellite body to earth. Since the Earth's magnetic field is quite weak, the torque produced by magnetorquers are small compared to the torque of the reaction wheels. Reaction wheels can be used for fast attitude control while magnetorquers are good for gradually desaturating the reaction wheels. The angular momentum transfer happens through the satellite's body, but with the right control scheme the desaturation can be  completely decoupled from attitude control. Trégouët et al. \cite{DesatTregouet} developed a cascaded control method for reaction wheel desaturation. The method is a revised version of the so-called cross-product control law. 
 
@@ -40,11 +40,11 @@ The original cross-product control law controls the magnetorquers' magnetic mome
 
 \begin{equation}
 \label{eq:crossLaw}
-\vec{\tau_{mt}} = -\frac{\underline{B}^\times(t)}{|\vec{B}(t) |^2} k_p\left(\vec{h_{rw}} - \vec{h_{ref}} \right)
+\vec{m_{mt}} = -\frac{\underline{B}^\times(t)}{|\vec{B}(t) |^2} k_p\left(\vec{h_{rw}} - \vec{h_{ref}} \right)
 \end{equation}
 
-where $\vec{\tau_{mt}}$ is the magnetic moment of the magnetorquers, $\vec{V}$ is the local geomagnetic field in SBRF, $\vec{h_{rw}}$ is the angular momentum vector of the reaction wheels, $\vec{h_{ref}}$ is the reference reaction wheel angular momentum for desaturation, $k_p$ is an adjustable proportional gain.
-		\nomenclature[S]{$\vec{\tau_{mt}}$}{Magnetorquer magnetic moment}
+where $\vec{m_{mt}}$ is the magnetic moment of the magnetorquers, $\vec{V}$ is the local geomagnetic field in SBRF, $\vec{h_{rw}}$ is the angular momentum vector of the reaction wheels, $\vec{h_{ref}}$ is the reference reaction wheel angular momentum for desaturation, $k_p$ is an adjustable proportional gain.
+		\nomenclature[S]{$\vec{m_{mt}}$}{Magnetorquer magnetic moment}
 		\nomenclature[S]{$\vec{B}$}{local geomagnetic field in body fixed frame}
 		\nomenclature[S]{$\vec{h_{rw}}$}{The angular momentum vector of the reaction wheels}
 		\nomenclature[S]{$\vec{h_{ref}}$}{The reference angular momentum vector of the reaction wheels}
@@ -54,7 +54,7 @@ The dynamics of the momentum dumping loop is described by equation \ref{eq:momDu
 
 \begin{equation}
 \label{eq:momDumpDyn}
-\frac{d}{dt}(\vec{h_{rw}} - \vec{h_{ref}}) = -\underline{B}^\times(t) \vec{\tau_{mt}} =  \frac{\underline{B}^\times(t) \underline{B}^\times(t)}{|\vec{B}(t) |^2} k_p\left(\vec{h_{rw}} - \vec{h_{ref}} \right)
+\frac{d}{dt}(\vec{h_{rw}} - \vec{h_{ref}}) = -\underline{B}^\times(t) \vec{m_{mt}} =  \frac{\underline{B}^\times(t) \underline{B}^\times(t)}{|\vec{B}(t) |^2} k_p\left(\vec{h_{rw}} - \vec{h_{ref}} \right)
 \end{equation}
 			
 Momentum dumping and attitude control can potentially be opposing goals, since attitude control changes the reaction wheel velocity to produce the required torque, while the desaturator tries to keep the angular velocity close to the reference. 
@@ -71,7 +71,7 @@ Further analysis made by Trégouët et al. \cite{DesatTregouet} found that the c
 
 		
 \begin{align}
-\nonumber \vec{\tau_{mt}} = 
+\nonumber \vec{m_{mt}} = 
 -\underline{R}(^s_i\vec{ q})  \frac{\underline{B}^{[I]\times}(t)}{|\vec{B^{[I]}}(t) |^2} k_p\left(\vec{h_{T}^{[I]}} - \vec{h_{ref}} + \underline{R}^T(^s_i\vec{ q}) \overbrace{
 	\left( \left( \underline{R}(^s_i\vec{ q}) - \underline{1}_3 \right) \vec{h_{ref}} - \underline{I}_s\vec{\omega} \right)}^{\xi(\vec{q}, \vec{\omega})} \right) \\
 = -\underline{R}(^s_i\vec{ q})  \frac{\underline{B}^{[I]\times}(t)}{|\vec{B^{[I]}}(t) |^2} k_p\left(\vec{h_{T}^{[I]}} - \vec{h_{ref}} + \underline{R}^T(^s_i\vec{ q}) \xi(\vec{q}, \vec{\omega}) \right)
@@ -83,7 +83,7 @@ Remapping equation \ref{eq:momDumpDynDependency} to inertial frame results in eq
 
 \begin{equation}
 \label{eq:momDumpDynDependencyInertial}
-\vec{\tau_{mt}^{[I]}} = -\frac{\underline{B}^{[I]\times}(t)}{|\vec{B^{[I]}}(t) |^2} k_p 
+\vec{m_{mt}^{[I]}} = -\frac{\underline{B}^{[I]\times}(t)}{|\vec{B^{[I]}}(t) |^2} k_p 
 \left(\vec{h_{T}^{[I]}} - \vec{h_{ref}} + \underline{R}^T(^s_i\vec{ q}) \xi(\vec{q}, \vec{\omega}) \right) 
 	\end{equation}			
 
@@ -111,7 +111,7 @@ The momentum dumping control law for the reverse cascade is derived in two steps
 
 \begin{equation}
 \label{eq:newMTcontrol}
-\vec{\tau_{mt}^{[I]}} = -\frac{\underline{B}^{[I]\times}(t)}{|\vec{B^{[I]}}(t) |^2} k_p 
+\vec{m_{mt}^{[I]}} = -\frac{\underline{B}^{[I]\times}(t)}{|\vec{B^{[I]}}(t) |^2} k_p 
 \left(\vec{h_{T}^{[I]}} - \underline{R}^T(\vec{q})\vec{h_{ref}} \right) 
 \end{equation}			
 
@@ -126,7 +126,7 @@ With the new grouping, the reaction wheel torque reference can be expressed as s
 
 \begin{equation}
 \vec{N_{rw}} =  \vec{u} - \vec{N_{mt}} +  \underline{\omega}^\times\vec{h_{rw}} = 
-\vec{u} - \left( \underline{R}(\vec{ q})  \vec{B^{[I]}}(t)\right)^\times \vec{\tau_{mt}}  +  \underline{\omega}^\times\vec{h_{rw}} 
+\vec{u} - \left( \underline{R}(\vec{ q})  \vec{B^{[I]}}(t)\right)^\times \vec{m_{mt}}  +  \underline{\omega}^\times\vec{h_{rw}} 
 \label{eq:newstateComp}
 \end{equation}
 \todo{check sign}
@@ -135,26 +135,26 @@ The new momentum dumping dynamics is presented by equation \ref{eq:newmomDumpDyn
 
 \begin{equation}
 \label{eq:newmomDumpDyn}
-\frac{d}{dt}(\vec{h_{rw}} - \vec{h_{ref}}) = -\vec{u} - \underline{\omega}^\times\vec{h_{rw}} - \left( \underline{R}(\vec{ q})  \vec{B^{[I]}}(t)\right)^\times \vec{\tau_{mt}}
+\frac{d}{dt}(\vec{h_{rw}} - \vec{h_{ref}}) = -\vec{u} - \underline{\omega}^\times\vec{h_{rw}} - \left( \underline{R}(\vec{ q})  \vec{B^{[I]}}(t)\right)^\times \vec{m_{mt}}
 \end{equation}
 
 Equation \ref{eq:newmomDumpDynECI} describes the dynamics shown in equation \ref{eq:newmomDumpDyn} in ECI frame, the gyroscopic term disappears. It is apparent that the desaturation controller is affected by the attitude controller's $\vec{u}$ input, while the attitude controller is unaffected by the momentum dumping loop.
 
 \begin{equation}
 \label{eq:newmomDumpDynECI}
-\vec{\dot{h}_{rw}} = -\underline{R}^T(\vec{ q})\vec{u} -  \underline{B}^{[I]}(t)^\times \vec{\tau_{mt}^{[I]}}
+\vec{\dot{h}_{rw}} = -\underline{R}^T(\vec{ q})\vec{u} -  \underline{B}^{[I]}(t)^\times \vec{m_{mt}^{[I]}}
 \end{equation}
 
 The new magnetorquer control law that doesn't utilize $\vec{h_T}$ is described in ECI frame by equation \ref{eq:finalMTlawECI} and in SBRF by equation \ref{eq:finalMTlawBFF}.
 
 \begin{equation}
-\vec{\tau_{mt}^{[I]}} 
+\vec{m_{mt}^{[I]}} 
 = - \frac{\underline{B}^{[I]}(t)^\times} {|\vec{B^{[I]}}(t) |^2} k_p\left(\vec{h_{rw}^{[I]}} - \underline{R}^T(^s_i\vec{ q})\vec{h_{ref}} \right)
 \label{eq:finalMTlawECI}
 \end{equation}
 
 \begin{equation}
-\vec{\tau_{mt}} 
+\vec{m_{mt}} 
 = - \frac{\left( \underline{R}(^s_i\vec{ q}) \underline{B}^{[I]}(t)\right)^\times} {|\vec{B^{[I]}}(t) |^2} k_p\left(\vec{h_{rw}} - \vec{h_{ref}} \right)
 \label{eq:finalMTlawBFF}
 \end{equation}
@@ -165,7 +165,7 @@ The latter desaturation control structure can be viewed as if the amount of magn
 
 \begin{equation}
 \label{eq:totalMomDyn}
-\vec{\dot{h}_T^{[I]}} = -\underline{B}^{[I]\times}(t) \vec{\tau_{mt}^{[I]}} 
+\vec{\dot{h}_T^{[I]}} = -\underline{B}^{[I]\times}(t) \vec{m_{mt}^{[I]}} 
 \end{equation}		
 
 \begin{equation}

@@ -13,6 +13,7 @@ Cross product operations can be evaluated by taking the skew symmetric matrix of
 \begin{equation*}
 	\textbf{w} = \textbf{u} \times \textbf{v} = \underline{u}^\times \textbf{v}
 \end{equation*}
+
 Matrix transposition is denoted as
 \begin{equation*}
 \underline{A}^T
@@ -21,53 +22,49 @@ If a non-square matrix has to undergo an operation similar to inversion, Moore-P
 \begin{equation*}
 \underline{A}^\dagger    =   (\underline{A}^T \underline{A} )^{-1} \underline{A}^T 
 \end{equation*}
-
 If $n < m$, the right pseudoinverse is used as follows
-
 \begin{equation*}
  \underline{A}^\dagger    =  \underline{A}^T  (\underline{A} \underline{A}^T)^{-1}
 \end{equation*}
 
-
 The majority of equations are expressed in satellite body reference frame (SBRF). Unless it is not explicitly noted, the matrices and vectors are expressed in SBRF. In case the expression is in Earth centered inertial frame (ECI), it is noted in the superscript as 
-
 \begin{equation*}
 \vec{XY}^{[I]}
 \end{equation*}
-
 The rotation quaternion between frames use the subscript to denote the frame where the transformation is done from, the superscript is the symbol of the frame being transformed into. In case the frame symbols are not present, it should be interpreted as a transformation from inertial frame to satellite body reference frame.
-
 \begin{equation*}
 \vec{^s_i q(t)}
 \end{equation*}
-
-
 Rotation matrix corresponding to rotation matrix $\vec{^s_i q(t)}$ is denoted as
 \begin{equation*}
 \underline{R}(\vec{^s_i q(t)})
 \end{equation*}
-
 A subarray of an array is denoted as $\vec{a}_{4:7}$. When only the vector part of a quaternion is used, it is denoted as 
 \begin{equation*}
 \vec{q}_{1:3}
 \end{equation*}
-
-The scalar component of the quaternion is denoted as 
+The scalar component of a quaternion is denoted as 
 \begin{equation*}
 \vec{q}_{4}
 \end{equation*}
-
 The complex of a quaternion is denoted as
-
 \begin{equation*}
 \vec q^\ast
 \end{equation*}
-
+In sections using linearization, operating points of variables are denoted as
+\begin{equation*}
+\vec{\bar{v}}
+\end{equation*}
+Deviations from the operating point are denoted as
+\begin{equation*}
+\vec{\tilde{v}}
+\end{equation*}
+When discussing control schemes, a $d$ in the superscript denotes the variable referring to a control demand. If the $d$ is not present, the variable refers to the actual value.
+\begin{equation*}
+N^d
+\end{equation*}
 Faults in magnetorquers or reaction wheels are denoted as
-
 \begin{equation*}
 \mathcal{F}_{MT} \ or  \  \mathcal{F}_{RW}
 \end{equation*}
-
-\todo{operating point description}
 
