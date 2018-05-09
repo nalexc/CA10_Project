@@ -23,7 +23,7 @@ The proposed control scheme has a hierarchical, modular structure. The main atti
 
 In the following chapter will be discussed shortly two attitude controller designs that are based on previous work. The two controllers calculate a torque demand that has to be produced from the motors. The first controller is based on the linearized model \eqref{eq:lele}, and thus is characterized as linear state feedback control, while the second one is based on the non-linear dynamics \eqref{eq:seom} creating a sliding manifold, a hyperplane, such that when the states are on the manifold, will converge to the desired reference. The non-linear controller is called Sliding Mode Control (SMC).\nomenclature[A]{\textbf{SMC}}{Sliding Mode Control}
 
-\section{Linear controller}
+\section{Linear controller} \label{sec:LC}
 
 Since the norm of $ \vec{ {\bar{\omega}}} $ is known and equal to the orbital angular velocity ($\approx 0.0011$) comparing this value to $\frac{1}{2}$,becomes small, thus \eqref{eq:lele} can be simplified to 
 \begin{flalign}
@@ -96,7 +96,7 @@ leading to a second order closed loop system calculated as $det(s\underline{I} -
 	\label{eq:gainsl223}
 \end{flalign*}
 which give stability for the all values of $ \vec{ {\bar{\omega}}} $. 
-\section{Sliding mode control}
+\section{Sliding mode control} \label{sec:SM}
 
 As described previously the sliding mode control scheme belongs to the class of non-linear control designs and is more robust compared to the linear, when disturbances are present. The objective of the SMC is the design, from a geometrical point of view, of a manifold in the state space which whenever the states are on the manifold, the behavior of the system will meet the specifications it is designed for, i.e convergence to the desired reference.  
 Introducing the small signal deviation of the states as
