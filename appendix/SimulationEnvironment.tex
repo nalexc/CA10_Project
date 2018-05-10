@@ -1,0 +1,33 @@
+\chapter{Simulation framework} \label{chap:G}
+In this chapter an overview about the simulation environment is presented. Therefore, a simulation environment is needed with the aim of testing the performance of the control methods developed for this thesis. Firstly, a short summary about what the simulation environment contains will be introduced, and secondly a series of adjustments have been made in order to speed up the simulation, which will be explained.
+
+The whole environment is designed in MATLAB by using the Simulink library, namely AAUSAT library used for simulating a satellite in LEO. The library was constructed for the AAUSAT missions and designed by students from previous groups. The library incorporates building blocks containing satellite kinematics and dynamics, environmental perturbations, orbit propagation, models for the sensors and actuatuors and also different functionalities such as quaternions multiplications, vectors or matrices operations. Even if the AAUSAT library was proven to work well, a few changes and additions were made for the purpose of this thesis.
+
+A way to improve the performance of the simulation is to use S-functions which are assessed at any time step. These functions are written as C code, which is compiled as \textit{mex-files} that represent an interface between MATLAB and the function written in C or C++ and act as a built-in function. In the end, these functions will help to a faster crossing from MATLAB files that will contain the controller algorithm to C code, which will be uploaded on the satellite.
+
+Running the simulation with MATLAB functions it was noticed that it reduces the simulation speed considerably, hence a way to replace the MATLAB functions is to use the built-in Simulink function blocks which proved to be faster. 
+
+In order to organize the blocks and having a simplify model, hierarchical subsystems are introduced. In this way the number of blocks in the main model  can be reduced. Moreover, it offers a way to swap between elements without having any problem and reduces the risk of having mistakes. Another advantage is that, since the simulation is built modularly, it will be easier to simulate the environment by taking out different block and simulate it separately. Therefore, by having these subsystems, it could improve the performance for simulation speed, model loading and memory usage.
+
+Because the model contains slow to fast transitions, unit delay blocks have been added. Since the controller has a certain frequency that is running at and the sampling is made at high frequency, the unit delays are appropriate to use and approximates the actual system well.
+
+% it slows down the sys that we have fast subsys (the motors) and slow subsys, and when we developed the lower subsys we just substituted ( instead of using the angular velocity motor we used a dummy that just directly output the torque deemed) 
+
+A way to simplify the model is to use \textit{From} and \textit{Goto} blocks, because these blocks offer virtual connection and provide a way to send a signal between different blocks without connecting them.
+
+Even though in Simulink the MATLAB function can be used, the Aerospace Toolbox was chosen, because it provides an alternative to compute the cross product between two vectors and also includes coordinate axes transformations where different conversions can be made. Using this toolbox proved to accelerate the simulation speed.
+
+The\textit{ igrf2005.d} file is a collection of data gather from different magnetic observatories placed around the world. It is a reliable source of comparing the Earth magnetic field with the magnetic field measured by the magnetometer.
+In Simulink, a block that have as input the satellite position and the rotation of Earth, gives as output a vector with the magnetic field taking into account the satellite position.
+
+\textbf{Simulation parameters ?!} 
+
+Orbit parameters: \\
+- Altitude\\
+- Inclination 
+
+Satellite’s parameters: \\
+- Weight \\
+- Size \\
+- Moment of inertia \\
+- Atmospheric density
