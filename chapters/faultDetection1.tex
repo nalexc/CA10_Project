@@ -5,6 +5,7 @@ Fault detection deals with detecting system discrepancies, abnormal behaviour. I
 
 \section{Motors fault detection}
 \input{chapters/StructuralAnalysis.tex}
+\input{chapters/ModelFreeFaultDetection.tex}
 \input{chapters/MagnetorquerFaultDetection.tex}
 
 
@@ -34,10 +35,64 @@ The pseudo inverse is calculated in the same manner as presented in equation \re
 \label{eq:motorTransFault}
 \underline{A}_{DC,f3}^\dagger   = \underline{A}_{DC,f3}^T  (\underline{A}_{DC,f3} \underline{A}_{DC,f3}^T)^{-1}
 \end{equation}
+%
+%\begin{figure}
+%	\centering
+%	\includegraphics[width=120mm]{figures/residOmega}
+%	\caption{Insert caption}
+%	\label{fig:residualOmega}
+%\end{figure} 
+
+\subsubsection{Reconfiguration in case of residual fault detection}
 
 \begin{figure}
 	\centering
-	\includegraphics[width=120mm]{figures/residOmega}
-	\caption{Insert caption}
-	\label{fig:residualOmega}
+	\includegraphics[width=120mm]{figures/3dTorque_resid_reconfig}
+	\caption{$N_rw$ with fault occuring at 20 seconds}
+\end{figure} 
+
+\begin{figure}
+	\centering
+	\includegraphics[width=120mm]{figures/torque_reconfig}
+	\caption{$N_M$ with fault occuring at 20 seconds}
+\end{figure} 
+
+\begin{figure}
+	\centering
+	\includegraphics[width=120mm]{figures/voltage_reconfig}
+	\caption{Voltage control signal with fault occuring at 20 seconds}
+\end{figure} 
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width=120mm]{figures/omega_reconfig}
+	\caption{$\omega_{M,i}$ with fault occuring at 20 seconds}
+\end{figure} 
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width=120mm]{figures/residual_reconfig}
+	\caption{Residual signal with fault occuring at 20 seconds}
+\end{figure} 
+
+\subsubsection{Reconfiguration in case of model-free sensor anomaly detection}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=120mm]{figures/omegaSensorfault_omega}
+	\caption{$\omega_{M,i}$ sensor signal and actual value with fault occuring at 30 seconds}
+\end{figure} 
+
+\begin{figure}
+	\centering
+	\includegraphics[width=120mm]{figures/omegaSensorfault_Nmotor}
+	\caption{$N_M$ with $\omega$ sensor fault occuring at 20 seconds}
+\end{figure} 
+
+\begin{figure}
+	\centering
+	\includegraphics[width=120mm]{figures/omegaSensorfault_Nrw}
+	\caption{$N_{rw}$ with $\omega$ sensor fault occuring at 20 seconds}
 \end{figure} 
