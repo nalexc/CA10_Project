@@ -1,12 +1,12 @@
 \subsection*{ Angular velocity control}
 
 In the previous chapter has been discussed how the control demand is calculated through two, with different nature, controllers. This torque demand is used to give the desired angular velocity reference for the wheels and thus the torque that will be fed back to the satellite as seen in the \cite{block diagram}. The output torque from the linear and non-linear controllers has three elements which has to be transformed in the tetrahedron configuration using the matrix \eqref{transmatrix}.  A \textit{PI} controller has been designed to control the angular velocity of the motor as seen in the \figref{fig:blockdi222}:
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=1.0\linewidth]{figures/block_diagram_2}
-	\caption{Block diagram of the motor control with PID controller}
-	\label{fig:blockdi222}
-\end{figure}  
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[width=1.0\linewidth]{figures/block_diagram_2}
+%	\caption{Block diagram of the motor control with PID controller}
+%	\label{fig:blockdi222}
+%\end{figure}  
 %
 The PI controller gains are chosen by trial and error in order to achieve faster closed loop response, settling time less than 1 $s$ zero steady state error and asymptotically stable system. The gains are chosen to be:   
 %

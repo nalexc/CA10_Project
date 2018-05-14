@@ -1,4 +1,6 @@
 \subsection{Reaction Wheel Configuration}
+\label{ref:reactConfig}
+
 The satellite should be capable of tracking an Earth station to be able to downlink data. Tracking a ship requires similar control capability, since the velocity of the wheel is practically zero compared to the velocity of the satellite. Directing the antennas to the nadir continuously only requires keeping a satellite angular velocity equal to the orbit's angular velocity.
 Tracking the Earth station requires torque from the actuators, the torque demand can be calculated based on the angular acceleration demand for Earth station tracking.
 
@@ -23,34 +25,41 @@ The main attitude controller sends torque demands to the actuators. The torque d
 
 \begin{equation}
 \label{eq:motorTrans1}
-\vec{N_{rw}} = \underline{A}_{DC} \vec{N_{DC}} = \begin{bmatrix}
+\vec{N_{rw}} = \underline{A}_{M} \vec{N_{M}} = \begin{bmatrix}
 \vec{Axis^{DC}_{1}}       & \vec{Axis^{DC}_{2}}   & \vec{Axis^{DC}_{3}}   & \vec{Axis^{DC}_{4}} 
-\end{bmatrix} \vec{N_{DC}}
+\end{bmatrix} \vec{N_{M}}
 \end{equation}
 
 \begin{equation}
-\underline{A}_{DC} \vec{N_{DC}}  = 
+\underline{A}_{M} \vec{N_{M}}  = 
 \begin{bmatrix}
 \cos(19.47)       & -\cos(19.47) \cos(60)  &  -\cos(19.47) \cos(60)  & 0 \\
 0       & \cos(19.47) \cos(30)  &  -\cos(19.47) \cos(30)  & 0 \\
 -\sin(19.47)       & -\sin(19.47)   &  -\sin(19.47)   & 1
-\end{bmatrix} \vec{N_{DC}}
-\label{transmatrix}
+\end{bmatrix} \vec{N_{M}}
+\label{eq:transmatrix}
 \end{equation}
 
-where $\vec{N_{rw}}$ is the reaction wheel torque in body frame, $\vec{N_{DC}}$ is the vector containing the reaction wheel DC motor torques parallel to their axes, $\vec{Axis^{DC}_{i}}$ are the reaction wheel motor orientation in body frame, $\underline{A}_{DC}$ is the transformation matrix between axis oriented reaction wheel torque and torques in 3 dimensional body frame.
+where $\vec{N_{rw}}$ is the reaction wheel torque in body frame, $\vec{N_{M}}$ is the vector containing the reaction wheel DC motor torques parallel to their axes, $\vec{Axis^{DC}_{i}}$ are the reaction wheel motor orientation in body frame, $\underline{A}_{M}$ is the transformation matrix between axis oriented reaction wheel torque and torques in 3 dimensional body frame.
 
 
 \nomenclature[S]{$\vec{N_{rw}}$}{Reaction wheel torque in body frame }
-\nomenclature[S]{$\vec{N_{DC}}$}{$4\times1$ vector containing the reaction wheel motor motor torques parallel to their axes }
-\nomenclature[SAdc]{$\underline{A}_{DC}$}{Transformation matrix between axis oriented reaction wheel torque and torques in 3 dimensional body frame }
+\nomenclature[S]{$\vec{N_{M}}$}{$4\times1$ vector containing the reaction wheel motor motor torques parallel to their axes }
+\nomenclature[SAdc]{$\underline{A}_{M}$}{Transformation matrix between axis oriented reaction wheel torque and torques in 3 dimensional body frame }
 
-Since $\underline{A}_{DC} $ is a $ 4 \times 3 $ matrix, a pseudo inverse has to be used when reordering the equation, as presented in equation \ref{eq:motorTrans}. 
+Since $\underline{A}_{M} $ is a $ 4 \times 3 $ matrix, a pseudo inverse has to be used when reordering the equation, as presented in equation \ref{eq:motorTrans}. 
 
 \begin{equation}
 \label{eq:motorTrans}
-\vec{N_{DC}} =  \underline{A}_{DC} ^\dagger \vec{N_{rw}}   =  \underline{A}_{DC}^T  (\underline{A}_{DC} \underline{A}_{DC} ^T)^{-1} \vec{N_{DC}}
+\vec{N_{M}} =  \underline{A}_{M} ^\dagger \vec{N_{rw}}   =  \underline{A}_{M}^T  (\underline{A}_{M} \underline{A}_{M} ^T)^{-1} \vec{N_{M}}
 \end{equation}
+
+\begin{figure}[H]
+	\centering 
+	\includegraphics[width=170mm]{figures/distribution}	
+	\caption{Reaction wheel torque distribution}
+	\label{fig:torqueDistribution}
+\end{figure}
 
 
 %\begin{equation}
@@ -62,6 +71,17 @@ In case there's a demand to adjust the torque distribution between the wheels, a
 
 \begin{equation}
 \label{eq:TorqueDistrib}
- \vec{N_{DC}} = \underline{A}^\dagger_{DC} \vec{N_{rw}}  + k\left[1,-1,-1,1\right]^T
+ \vec{N_{M}} = \underline{A}^\dagger_{DC} \vec{N_{rw}}  + k\left[1,-1,-1,1\right]^T
 \end{equation}
 
+\todo{matrix for alternative configurations}
+
+\begin{equation}
+\underline{A}_{M,orth}  = 
+\begin{bmatrix}
+1       & 0  &  0 \\
+0       & 1  &  0  \\
+0       & 0   & 1
+\end{bmatrix} 
+\label{eq:orthoMatrix}
+\end{equation}
