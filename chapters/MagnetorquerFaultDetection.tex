@@ -1,5 +1,5 @@
 \section{Magneto torquers  fault detection}
-\subsection{Unknown Input Observer (UIO)}
+\subsection{Unknown Input Observer (UIO)} \label{sec:UIO}
 Uncertainties and modeling errors may cause discrepancies between the actual system and the descriptor mathematical model. Linearization and simplifications which make the system more manageable may lead also to uncertainties. All these\nomenclature[A]{\textbf{UIO}}{Unknown Input Observer } uncertainties can have an effect on the system dynamic behavior through the input signals.   
 A residual, fault indicator, based on observer design can be robust regarding the unknown input signals by making the effect of unknown inputs(UI) insensitive to the residual and thus making possible to maximize the detectability of a fault. The dynamic equation of the system can be written as 
 \nomenclature[A]{\textbf{UI}}{Unknown Input}
@@ -52,14 +52,14 @@ in the above equation the utility of $\vec{x}  = \vec{e} + \hat{\vec{x}} = \vec{
 \label{errordynamics5}
 \end{equation}
 \begin{equation}
-\underline K = \underline K1 +\underline K2
+\underline K = \underline K_{1} +\underline K_{2}
 \label{errordynamics6}
 \end{equation}
 \begin{equation}
-\underline K2 =\underline F \underline H 
+\underline K_{2} =\underline F \underline H 
 \label{errordynamics7}
 \end{equation}
-where $\underline K1$ is designed freely by pole placement to give desired eigenvalues of the observer. The error dynamics if the \ref{errordynamics4}...\ref{errordynamics7} hold true can now be written as 
+where $\underline K_{1}$ is designed freely by pole placement to give desired eigenvalues of the observer. The error dynamics if the \ref{errordynamics4}...\ref{errordynamics7} hold true can now be written as 
 \begin{equation}
 \dot{\vec{e}} = \underline F \vec{e}
 \label{errordynamics8}
