@@ -19,19 +19,20 @@ The derivation of the satellite equations of motion is presented in appendix \re
 	= 
 	\begin{bmatrix}
 		\frac{1}{2}\underline{\omega} ^\times \vec{ ^s_i q(t)} \\
-		{-\underline{I}_{s}^{-1} \vec{\omega}^\times \underline{I}_{s}\vec{\omega}(t)-\underline{I}_{s}^{-1}\vec{\omega}^\times \vec{h_{rw}}+\underline{I}_{s}^{-1}[\vec{N_{rw}}(t) + \vec{N_{mt}(t)}+\vec{N_{dist}}(t)}]
+		{-\underline{I}_{s}^{-1} \underline{\omega}^\times \underline{I}_{s}\vec{\omega}(t)-\underline{I}_{s}^{-1}\underline{\omega}^\times \vec{h_{rw}}+\underline{I}_{s}^{-1}[\vec{N_{rw}}(t) + \vec{N_{mt}(t)}+\vec{N_{dist}}(t)}]
 	\end{bmatrix} 
 	\label{eq:seom}
 \end{flalign}
 where,\\
 - $\vec{ ^s_i  q(t)} = [q_1 \ q_2 \ q_3 \ q_4]^T$ is the attitude quaternion \\
 - $\vec{\omega{(t)}} = [ \omega_1 \ \omega_2 \ \omega_3]^T$ is the angular velocity vector relative to the ECI \\
+- $\vec{h_{rw}}$ is the angular momentum of the reaction wheels \\
 - $\underline{I}_{s}$ is the inertia matrix \\
 - $\vec{N_{dist}}$ is the disturbance torque \\
 - $\vec{N_{rw}}$ is the torque from momentum wheels \\
 - $\vec{N_{mt}}$ is the torque from magnetorquers  \\
 \subsection{Linearized equation of motion}
-For the purpose of designing a linear controller and an unknown input observer, the equations of motion of the satellite need to be linearized. The whole process of linearization is presented in appendix \ref{chap:C}.
+For the purpose of designing a linear controller as can be seen in section \ref{sec:SM} and an unknown input observer presented in section \ref{sec:UIO}, the equations of motion of the satellite need to be linearized. The whole process of linearization is presented in appendix \ref{chap:C}.
 
 Therefore, by using the results from appendix \ref{chap:C} the linear equation of motion can be combined in a state-space form as:
 \begin{flalign}
@@ -41,8 +42,8 @@ Therefore, by using the results from appendix \ref{chap:C} the linear equation o
 	\end{bmatrix} 	
 	= 
 	\begin{bmatrix}
-		-\vec{\bar{\omega}}^\times  &	\frac{1}{2} \underline{\vec 1}_{(3\times3)} \\
-		\underline{ 0}_{(3\times3)} &	{\underline{I}_{s}^{-1} (\underline{I}_{s}\vec{\bar{\omega}})^\times -\underline{I}_{s}^{-1}\vec{\bar{\omega}}^\times \underline{I}_{s}}
+		-\underline{\bar{\omega}}^\times  &	\frac{1}{2} \underline{\vec 1}_{(3\times3)} \\
+		\underline{ 0}_{(3\times3)} &	{\underline{I}_{s}^{-1} (\underline{I}_{s}\vec{\bar{\omega}})^\times -\underline{I}_{s}^{-1}\underline{\bar{\omega}}^\times \underline{I}_{s}}
 	\end{bmatrix} 
 	\begin{bmatrix}
 		\vec{  {\tilde{q}}(t) } \\
@@ -58,7 +59,6 @@ Therefore, by using the results from appendix \ref{chap:C} the linear equation o
 \end{flalign}
 where, \\
 - $\vec{\tilde N_{ctrl}}$ is the torque from magnetorquers and the reaction wheels and is defined as: $\vec{\tilde N_{ctrl}} = \vec{N_{mt}} + \vec{N_{rw}}$ \\
-
 - $	\vec{ {\tilde{^s_iq}}(t) } $ is the error quaternion \\
 - $ \vec{ {\tilde{\omega}}} $ is the error in the angular velocity \\ 
 - $ \vec{ {\bar{\omega}}} $ is the operating point of angular velocity \\ 

@@ -3,17 +3,19 @@
 
 The satellite used in this thesis is a CubeSat as can be seen in figure \ref{fig:cube}, which is a pico-satellite that have been designed by California Polytechnic State University. This concept of satellite impose a few constrains. The dimensions of a 1U CubeSat  is $10 \times 10 \times 10 \ cm$ with a mass of 1kg, which makes it have the advantage of having a light weight that leads to a low power consumption, but on the other hand the drawback of limited space. In order to enlarge the space within the satellite, the dimensions could be changed when designing the satellite, such that a 3U design might be suitable for a satellite that will contain solar arrays or thrusters.
 
+In figure \ref{fig:cube} a CubeSat is illustrated. It can be seen from the picture that the satellite contains three magnetorquers shown as an example, but during the thesis a satellite with four magnetorquers is used. Also the Cubesat image shows the solar panels with on board electronics.
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{figures/cubesat}
-	\caption{CubeSat exploded view [ref]}
+	\caption{CubeSat exploded view \cite{report}}
 	\label{fig:cube}
 \end{figure}
 
 Moreover, for the satellite to use an attitude control, it will be equipped with two types of actuators, magnetorquers and reaction wheels, which are accounted as stabilization methods. By using the reaction wheels, a periodic desaturation is needed by using the magnetorqers for this purpose.
 
 \subsubsection{ADCS approaches}
-The objective of the ADCS system illustrated in figure \ref{fig:cubee} will be to reduce the angular velocity of the satellite and also to point to a specific target located on Earth. Therefore, a few procedures can be taking into account:
+The objective of the ADCS system illustrated in figure \ref{fig:cubee} will be to control the angular velocity of the satellite and also to point to a specific target located on Earth. Therefore, a few procedures can be taking into account:
 
 \textit{Detumbling}, which is the state that the satellite is initialized immediately after is deployed from the device called P-POD. Thus, the ADCS shall keep the satellite of performing arbitrary tumbling.
 

@@ -1,15 +1,10 @@
 \section*{Magnetorqer model}
-% The total disturbance torque can now be derived as.... [for disturbances]
-% In SD a short description about how many magnetorqers we use and why
-% maybe to put the RW and MT in the SD both with general description and model
-% ref for magnetorqer: serway and wartz or "Fully magnetic attitude control for spacecraft subject
-%to gravity gradient" Rafal
-% m is given in the sat body frame and is needed in control frame so we need a rotation 
 \nomenclature[Sncoil]{$n_{coil}$}{The number of windings of the coil}
 \nomenclature[SIcoil]{$I_{coil}$}{The electric current flowing through the coil}
 \nomenclature[SAcoil]{$\vec A_{coil}$}{The vector perpendicular to the cross-sectional area of the magnetorquer}
+\nomenclature[Sm]{$\vec m$}{The magnetic dipole moment}
 
-Since the primary actuators for the satellite are chosen to be reaction wheels, the magnetorqers will be used for desaturation of the reaction wheels. The satellite contains onboard four magnetorqers mounted perpendicular to each other. 
+Since the primary actuators for the satellite are chosen to be reaction wheels, four magnetorqers will be used for desaturation of the reaction wheels.  
 
 Having a solenoid onboard of the satellite, referred as a magnetorqer through which the current could be controlled and hence the dipole moment.
 
@@ -32,7 +27,7 @@ Using \ref{eq:NT} and \ref{eq:mm} and taking the magnitude, the applied torque o
 	\vec N_{mt} = n_{coil} \ \rvert I_{coil}\rvert \ \rvert \vec A_{coil}\rvert \ |\vec B| \sin (\theta)
 	\label{eq:ft}
 \end{flalign} 
-where $\sin (\theta)$ is the angle between the area $A_{coil}$ and the magnetic field vector $\vec B$.
+where $\sin (\theta)$ is the angle between the plane $A_{coil}$ and the magnetic field vector $\vec B$.
 
 Furthermore, the resistance of the magnetorqer which is a function of the temperature of the coil given as an input, can be computed as
 \begin{flalign}
