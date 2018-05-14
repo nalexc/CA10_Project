@@ -1,19 +1,21 @@
 \chapter{System Description}\label{chap:systemDescribtion}
-\textit{In this chapter is presented a description of the system configuration, which includes mechanical properties, sensors and actuators description and ADCS approaches.}
+\textit{This chapter presents a description of the system configuration, which includes mechanical properties, sensors and actuators description and ADCS approaches.}
 
 The satellite used in this thesis is a CubeSat as can be seen in figure \ref{fig:cube}, which is a pico-satellite that have been designed by California Polytechnic State University. This concept of satellite impose a few constrains. The dimensions of a 1U CubeSat  is $10 \times 10 \times 10 \ cm$ with a mass of 1kg, which makes it have the advantage of having a light weight that leads to a low power consumption, but on the other hand the drawback of limited space. In order to enlarge the space within the satellite, the dimensions could be changed when designing the satellite, such that a 3U design might be suitable for a satellite that will contain solar arrays or thrusters.
+
+In figure \ref{fig:cube} a CubeSat is illustrated. It can be seen from the picture that the satellite contains three magnetorquers shown as an example, but during the thesis a satellite with four magnetorquers is used. Also the Cubesat image shows the solar panels with on board electronics.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{figures/cubesat}
-	\caption{CubeSat exploded view [ref]}
+	\caption{CubeSat exploded view \cite{report}}
 	\label{fig:cube}
 \end{figure}
 
 Moreover, for the satellite to use an attitude control, it will be equipped with two types of actuators, magnetorquers and reaction wheels, which are accounted as stabilization methods. By using the reaction wheels, a periodic desaturation is needed by using the magnetorqers for this purpose.
 
 \subsubsection{ADCS approaches}
-The objective of the ADCS system illustrated in figure \ref{fig:cubee} will be to reduce the angular velocity of the satellite and also to point to a specific target located on Earth. Therefore, a few procedures can be taking into account:
+The objective of the ADCS system illustrated in figure \ref{fig:cubee} will be to control the angular velocity of the satellite and also to point to a specific target located on Earth. Therefore, a few procedures can be taking into account:
 
 \textit{Detumbling}, which is the state that the satellite is initialized immediately after is deployed from the device called P-POD. Thus, the ADCS shall keep the satellite of performing arbitrary tumbling.
 
@@ -34,7 +36,7 @@ The objective of the ADCS system illustrated in figure \ref{fig:cubee} will be t
 \input{chapters/sensors.tex}
 
 \section{Actuators}
- In this section the actuators that the satellite is equipped with for holding or changing the attitude, are described.
+ This section describes the attitude actuators that the satellite is equipped with.
 \subsection{Reaction Wheels}
 
 One method of controlling a spacecraft's attitude is by using either reaction or momentum wheels attached to the spacecraft's body. By controlling the wheel's angular velocity using a motor, the amount of angular momentum stored in the wheel can be controlled. If there are no external forces involved, the sum of angular momentum in the system made up by the spacecraft's body and the reaction wheels is constant. This means that by increasing the angular velocity of the wheels, the satellite body's angular momentum can be reduced. This angular momentum transfer can be used to control the attitude of the satellite. If the goal is to change the angular momentum of the whole satellite, actuators that are capable of external interaction should be used, such as magnetorquers or solar sails.
@@ -47,10 +49,10 @@ The difference between momentum and reaction wheels is that the nominal angular 
 
 Reaction wheels have an angular velocity limitation. This means that if a reaction wheel reaches its maximum angular velocity, it can no longer generate a torque on the satellite's body in one direction. In this scenario the system's controllability decreases, thus it should be avoided. An angular momentum unloading strategy should be designed to avoid it. Instead of returning the angular momentum to the satellite's body, unloading the angular momentum through other methods is preferred. Magnetorquers can be used for such purposes.
 
-Moving parts are usually prone to failures. Reaction wheels are expected to run at high angular velocities, which wears down the lubrication and the bearings. Reaction wheels equipped with active magnetic bearings are in development \cite{MagneticReactWheel}. These can eliminate friction from the system and by controlling the bearing, can even reduce micro-vibrations, increasing the durability of the system. AAUSAT-II itself however uses mechanical wheel bearings.
+Moving parts are usually prone to failures. Reaction wheels are expected to occasionally run at high angular velocities, which wears down the lubrication and the bearings. Reaction wheels equipped with active magnetic bearings are in development \cite{MagneticReactWheel}. These can eliminate friction from the system and by controlling the bearing, can even reduce micro-vibrations, increasing the durability of the system. AAUSAT-II itself however uses mechanical wheel bearings.
 
 
 
 \subsection{Magnetorqer}
 
-Magnetorquers are special coils that can control the satellite's attitude by creating a magnetic field that interacts with Earth's magnetic field. It is capable of changing the total angular momentum of the satellite. Magnetorquers can only exert torque in 2 dimensions at any given moment, however over one orbit, 3 dimensional control can be achieved. In the investigated satellite they function as secondary actuators, with their purpose being the desaturation of the reaction wheels. Precise torque control can be achieved by setting up coaxial magnetorquers, one of which equipped with an iron core for larger magnetic field, the other lacking an iron core for finer magnetic field control.
+Magnetorquers are special coils that can control the satellite's attitude by creating a magnetic momentum that interacts with Earth's magnetic field. It is capable of changing the total angular momentum of the satellite. Magnetorquers can only exert torque in 2 dimensions at any given moment, however over one orbit, 3 dimensional control can be achieved. In the investigated satellite they function as secondary actuators, with their purpose being the desaturation of the reaction wheels. Precise torque control can be achieved by setting up coaxial magnetorquers, one of which equipped with an iron core for larger magnetic field, the other lacking an iron core for finer magnetic field control.
