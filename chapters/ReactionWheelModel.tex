@@ -26,7 +26,7 @@ The main attitude controller sends torque demands to the actuators. The torque d
 \begin{equation}
 \label{eq:motorTrans1}
 \vec{N_{rw}} = \underline{A}_{M} \vec{N_{M}} = \begin{bmatrix}
-\vec{Axis^{DC}_{1}}       & \vec{Axis^{DC}_{2}}   & \vec{Axis^{DC}_{3}}   & \vec{Axis^{DC}_{4}} 
+\vec{Axis^{M}_{1}}       & \vec{Axis^{M}_{2}}   & \vec{Axis^{M}_{3}}   & \vec{Axis^{M}_{4}} 
 \end{bmatrix} \vec{N_{M}}
 \end{equation}
 
@@ -40,7 +40,7 @@ The main attitude controller sends torque demands to the actuators. The torque d
 \label{eq:transmatrix}
 \end{equation}
 
-where $\vec{N_{rw}}$ is the reaction wheel torque in body frame, $\vec{N_{M}}$ is the vector containing the reaction wheel DC motor torques parallel to their axes, $\vec{Axis^{DC}_{i}}$ are the reaction wheel motor orientation in body frame, $\underline{A}_{M}$ is the transformation matrix between axis oriented reaction wheel torque and torques in 3 dimensional body frame.
+where $\vec{N_{rw}}$ is the reaction wheel torque in body frame, $\vec{N_{M}}$ is the vector containing the reaction wheel DC motor torques parallel to their axes, $\vec{Axis^{M}_{i}}$ are the reaction wheel motor orientation in body frame, $\underline{A}_{M}$ is the transformation matrix between axis oriented reaction wheel torque and torques in 3 dimensional body frame.
 
 
 \nomenclature[S]{$\vec{N_{rw}}$}{Reaction wheel torque in body frame }
@@ -71,7 +71,7 @@ In case there's a demand to adjust the torque distribution between the wheels, a
 
 \begin{equation}
 \label{eq:TorqueDistrib}
- \vec{N_{M}} = \underline{A}^\dagger_{DC} \vec{N_{rw}}  + k\left[1,-1,-1,1\right]^T
+ \vec{N_{M}} = \underline{A}^\dagger_{M} \vec{N_{rw}}  + k\left[1,-1,-1,1\right]^T
 \end{equation}
 
 \todo{matrix for alternative configurations}
