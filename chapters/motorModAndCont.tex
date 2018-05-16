@@ -103,8 +103,17 @@ by laplace transformed \eqref{mechpart333}, the second order transfer function f
 \end{flalign}
 %= \dfrac{k_{t}}{LJs^{2}+(RJ+Lb)s+Rb+k_{e}k_{t}}
 %\label{tf}
-the block diagram of the system can be seen in \figref{fig:blockdi}. Four wheels, requiring four motors in tetrahedron configuration. The total moment of inertia of the motor-wheel system is the sum of individual moments $J = J_{wheel}+J_{rotor}$. Since $J_{wheel}\gg J_{rotor}$ the inertia of the rotor can be neglected.
+following \cite{permanent_magnet} the electrical time constant $\tau_{e}$ and mechanical time constant $\tau_{m}$ can be written respectively $\tau_{e} = \frac{LJ}{RJ+Lb}$ and $\tau_{m} = \frac{RJ+LB}{RB+k_{e}k_{t}}$, the values for the two time constants are found to be $\tau_{e} = 1.2709*10^{-10}$[s] and $\tau_{m} = 8.4102*10^{-4}$[s] thus since the $\tau_{e}$ is very small compared to $\tau_{m}$, the effect of inductance can be though negligible thus the transfer function from $V_{a}$ to $ \omega $ is reduced to a first order transfer function as 
 %
+\begin{flalign}
+\dfrac{\omega(s)}{V_{a}(s)}= \dfrac{k_{t}}{R(Js+b)+k_{e}k_{t}}
+\label{tf2}
+\end{flalign}
+%
+the block diagram of the system can be seen in \figref{fig:blockdi} along with PI velocity controller which will be discussed in the next chapter. Four wheels, requiring four motors in tetrahedron configuration. The total moment of inertia of the motor-wheel system is the sum of individual moments $J = J_{wheel}+J_{motor}$. Since $J_{wheel}\gg J_{motor}$ the inertia of the rotor can be neglected.
+%
+\nomenclature[S]{\textbf{$\tau_{e}$}}{Electrical time constant}
+\nomenclature[S]{\textbf{$\tau_{m}$}}{Mechanical time constant}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\linewidth]{figures/omegaControl}
