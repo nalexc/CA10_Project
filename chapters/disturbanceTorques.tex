@@ -142,9 +142,32 @@ where $M$ is the Earth magnetic moment and $R$ is the distance from the Earth to
 \nomenclature[SM]{$\vec M$}{The Earth magnetic moment }
 \nomenclature[SR]{$\vec R$}{The distance from the Earth to the center of the satellite}
 \subsection{Total disturbance torque}
-The total disturbance torque acting on the satellite in the SBRF is:
+The total disturbance torque that the satellite is subject to is:
 
 \begin{flalign}
 	N_{dist} = N_{drag} + N_{solar} + N_{gg} + N_{mr}
 	\label{eq:TDT}
 \end{flalign}
+
+Each disturbance torque is computed in MATLAB using the AAUStudentSpace toolbox and given in the following table:
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|c|}
+		\hline
+		\textit{\textbf{Disturbance}} & \multicolumn{1}{l|}{\textit{\textbf{Torque (nNm)}}} \\ \hline
+		\textit{Aerodynamic}                   & 1.52                                               \\ \hline
+		\textit{Gravitaional}                  &     0.86                                               \\ \hline
+		\textit{Radiation}                     & 1.25                                                  \\ \hline
+	\textit{Magnetic residual }            & 48                                                  \\ \hline
+		\textbf{Total}                & 51                                                  \\ \hline
+	\end{tabular}
+\caption{Environment disturbance torques}
+\label{TN}
+\end{table}
+Total torque magnitude is illustrated in figure \ref{fig:totalN}, where the most significant disturbance torque is the magnetic residual.
+\begin{figure}[h!]
+	\centering 
+	\includegraphics[width=160mm]{figures/total_torque}	
+	\caption{Total torque magnitude}
+	\label{fig:totalN}
+\end{figure}
