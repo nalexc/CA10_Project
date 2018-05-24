@@ -67,6 +67,14 @@ The voltage can be found using the following transfer function:
 
 where the voltage is found to be $1.25 V$
 
+The magnetorquer open loop control can be seen in figure \ref{fig:op}:
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{figures/MT_open_loop}
+	\caption{Magnetorquer open loop control }
+	\label{fig:op}
+\end{figure}
+
 Given a current $I$ going through a coil, the interest is to find the magnetic field $B$ at a certain point located distance $r$ from the coil. Finding an estimate of the magnetic field at any point will give the possibility to change the location of the magnetometers around. For computing the magnetic field in the center of a rectangular coil, the law of Biot-Savart is used \cite{SJ}:
 \begin{flalign}
 	d\vec B = \frac{\mu_0 I}{4 \pi}  \frac{d \vec s \times \hat{\vec r}}{r^2}
