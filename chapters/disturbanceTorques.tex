@@ -70,7 +70,7 @@ where $F_s$ is the intensity or mean energy flux given as 1358 [$W/m^2$] and $c$
 \end{flalign}
 where $C_{a}\in [0,2]$ is the absorption coefficient which depends on the material of the satellite with 2 \todo{decide if 1.5 or 2 should be used} be the value of totally reflected beam, $P$ is the solar flux, $A$ is the radiated surface area, and $\hat{S} =\frac{\vec {r_{sun,sat}}}{||\vec {r_{sun,sat}}||}$ is the unit vector from the satellite to the sun. The solar radiation torque can be computed as 
 \begin{flalign}
-	\vec N_{drag} = \vec r_{s} \times  \vec F_{rad} 
+	\vec N_{solar} = \vec r_{s} \times  \vec F_{rad} 
 	\label{eq:solar}
 \end{flalign}
 where $\vec r_{s}$ is the vector from the center of mass of the satellite to the center of pressure.
@@ -109,7 +109,7 @@ The gravity gradient effect about the centre of mass of the satellite is a conse
 \nomenclature[A]{\textbf{COM}}{Center of Mass}
 %
 \begin{flalign}
-	\vec N_{gra} &= \dfrac{3\mu}{\vec R_{sc}^3}[\vec{\hat R_{sc}} \times(\vec{I} \ \vec{\hat R_{sc}}] 
+	\vec N_{gg} &= \dfrac{3\mu}{\vec R_{sc}^3}[\vec{\hat R_{sc}} \times(\vec{I} \ \vec{\hat R_{sc}}] 
 	\label{eq:ref4}
 \end{flalign}
 where $\vec{\hat R_{sc}}$ is the unit vector from geometric centre of the earth's to the satellite's geometric centre, $\mu = G*m_{earth}$ with $G$ be the Gravitational constant $6.6740*10^{-11}$ [$m^{3} kg^{-1} s^{-2}$] and $\underline I$ is the inertia matrix of the satellite. 
@@ -142,3 +142,32 @@ where $M$ is the Earth magnetic moment and $R$ is the distance from the Earth to
 \nomenclature[SM]{$\vec M$}{The Earth magnetic moment }
 \nomenclature[SR]{$\vec R$}{The distance from the Earth to the center of the satellite}
 \subsection{Total disturbance torque}
+The total disturbance torque that the satellite is subject to is:
+
+\begin{flalign}
+	N_{dist} = N_{drag} + N_{solar} + N_{gg} + N_{mr}
+	\label{eq:TDT}
+\end{flalign}
+
+Each disturbance torque is computed in MATLAB using the AAUStudentSpace toolbox and given in the following table:
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|c|}
+		\hline
+		\textit{\textbf{Disturbance}} & \multicolumn{1}{l|}{\textit{\textbf{Torque (nNm)}}} \\ \hline
+		\textit{Aerodynamic}                   & 1.52                                               \\ \hline
+		\textit{Gravitaional}                  &     0.86                                               \\ \hline
+		\textit{Radiation}                     & 1.25                                                  \\ \hline
+	\textit{Magnetic residual }            & 48                                                  \\ \hline
+		\textbf{Total}                & 51                                                  \\ \hline
+	\end{tabular}
+\caption{Environment disturbance torques}
+\label{TN}
+\end{table}
+Total torque magnitude is illustrated in figure \ref{fig:totalN}, where the most significant disturbance torque is the magnetic residual.
+\begin{figure}[h!]
+	\centering 
+	\includegraphics[width=160mm]{figures/total_torque}	
+	\caption{Total torque magnitude}
+	\label{fig:totalN}
+\end{figure}
