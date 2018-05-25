@@ -1,7 +1,31 @@
-\section {Environmental disturbance torques}
+\section {Environmental disturbances}
   \label{chap:distTorques}
 %
-Disturbance torques can be classified either as external or internal \todo{don't distinguish between external and internal}. Since the external disturbances are larger in magnitude compared to \todo{reference} internal and can cause a change in the total momentum of the spacecraft, only these will be accounted. The external disturbing torques that will be discussed are aerodynamic, solar radiation and gravity gradient torque.
+The environmental disturbances can cause a change in the total momentum of the spacecraft. At the following chapter will be accounted the main disturbing torques that are aerodynamic, solar radiation, gravity gradient and magnetic disturbance torques, as well as the $j_{2}$ orbital perturbation due to oblateness of the Earth .
+\subsection{Orbit perturbation - $J_2$ }\label{chap: j2}
+Due to Earth's spin, its shape is oblate rather than spherical. This non spherical mass distribution of the Earth, affects a satellite motion in LEO. The gravitational potential is corrected using spherical harmonics which depend only on the latitude. These harmonics affect the satellite, determining its orbit difference compared to ideal mathematical models.
+An approximation of the gravitational potential of the Earth is \cite{SADC}\cite{our_report}:
+\begin{flalign}
+U \approx -\frac{\mu}{r} \left[1 - \sum_{n=2}^{\infty} \left(\frac{R_e}{r}\right)^{n} J_n P_n cos(\theta)  \right ] = \frac{\mu}{r} [U_0 + U_{J_2} + ...]
+\label{eq:Pr341}
+\end{flalign}
+\nomenclature[S]{\textbf{$j_2$}}{Zonal harmonic coefficient}
+\nomenclature[S]{\textbf{$R_e$}}{Equatorial radius}
+describing deviations of the potential to the south and north direction,
+with $P_n$ be Legendre polynomial, $\theta$ be a spherical polar coordinate, $U_0$ = -1, $U_{J_2}$ = $\left(\frac{R_e}{r}\right)^{2} J_2 \frac{1}{2} (3 cos^2 \theta -1) $ and ${J_2 = 1.0826*10^{-3}}$ be a zonal numerical coefficient and the other terms($j_3,j_4,...$) been discarded since are less significant compared to $j_2$. The force caused by the $j_2$ term is obtained as 
+\begin{flalign}
+\vec F_{j2} = -m \nabla U
+\label{eq:Pr3431}
+\end{flalign}
+\nomenclature[S]{\textbf{$F_{j2}$}}{Force caused by the $j_2$ effect}
+with the vector $\vec F_j2$ expand to the force components \cite{SIDI}\cite{our_report}  :
+\begin{flalign}
+F_x = -\frac{\partial U}{\partial x} = \mu \left[ -\frac{x}{r^3} + A_{J_2} \left(15 \frac{xz^2}{r^7} - 3\frac{x}{r^5}   \right ) \right ]       \\
+F_y = -\frac{\partial U}{\partial y} = \mu \left[ -\frac{y}{r^3} + A_{J_2} \left(15 \frac{yz^2}{r^7} - 3\frac{y}{r^5}   \right ) \right ]       \\
+F_z = - \frac{\partial U}{\partial z} =  \mu \left[ -\frac{z}{r^3} + A_{J_2} \left(15 \frac{z^3}{r^7} - 3\frac{z}{r^5}   \right )  \right]       
+\label{eq:Pr34331}
+\end{flalign}
+where $A_{J_2}  = \frac{1}{2} J_2 R_e^2$ and and $R_e$ is the mean radius o the Earth at the equator
 \subsection*{Aerodynamic disturbance torque}\label{chap:disturbances}
 %
 Gas molecules, in a LEO(low Earth orbit) collide with the surface of the satellite causing
@@ -30,7 +54,7 @@ Using the \eqref{eq:ec1c}, the aerodynamic torque acting on the satellite can be
 \end{flalign}
 where:\\
 $\vec r_{s}$ is the vector from the centre of mass of the satellite to the geometric centre of the exposed area
-
+\nomenclature[S]{\textbf{$\vec N_{drag}$}}{Drag disturbance torque}
 \subsection*{Solar radiation disturbance torque}\label{chap: disturbances2}
 
 Solar radiation pressure is emitted from various sources such as reflection from the Earth's atmosphere, from solar wind and direct radiation from the sun to the surface of the satellite\cite{SADC}\cite{our_report}  . Direct radiation is larger and only this source will be taken into account.
@@ -52,7 +76,7 @@ Solar radiation pressure is emitted from various sources such as reflection from
 		
 		\end{figure}
 	\end{minipage}
-	\caption{ Sun radiation actiong on satellite surface}
+	\caption{ Sun radiation acting on satellite surface}
 	\label{fig:radf}
 \end{table}
 
@@ -68,45 +92,39 @@ where $F_s$ is the intensity or mean energy flux given as 1358 [$W/m^2$] and $c$
 	\vec {F_{rad}} = C_{a} P A \ \hat{S}
 	\label{eq:Pres}
 \end{flalign}
-where $C_{a}\in [0,2]$ is the absorption coefficient which depends on the material of the satellite with 2 \todo{decide if 1.5 or 2 should be used} be the value of totally reflected beam, $P$ is the solar flux, $A$ is the radiated surface area, and $\hat{S} =\frac{\vec {r_{sun,sat}}}{||\vec {r_{sun,sat}}||}$ is the unit vector from the satellite to the sun. The solar radiation torque can be computed as 
+where $C_{a}\in [0,2]$ is the absorption coefficient which depends on the material of the satellite with 2 be the value of totally reflected beam and for simulation purposes is chosen to be 1.5, $P$ is the solar flux, $A$ is the radiated surface area, and $\hat{S} =\frac{\vec {r_{sun,sat}}}{||\vec {r_{sun,sat}}||}$ is the unit vector from the satellite to the sun. The solar radiation torque can be computed as 
 \begin{flalign}
-	\vec N_{solar} = \vec r_{s} \times  \vec F_{rad} 
+	\vec N_{rad} = \vec r_{s} \times  \vec F_{rad} 
 	\label{eq:solar}
 \end{flalign}
 where $\vec r_{s}$ is the vector from the center of mass of the satellite to the center of pressure.
 %
-\subsection*{Gravity Gradient disturbance torque and $J_2$  perturbation}\label{chap: disturbances3} \todo{separate}
+\nomenclature[S]{\textbf{$P$}}{Solar flux}
+\nomenclature[S]{\textbf{$\vec {r_{sun,sat}}$}}{vector from the satellite to the sun}
+\nomenclature[S]{\textbf{$C_{a}$}}{Absorption coefficient}
+\nomenclature[S]{\textbf{$F_{rad}$}}{solar radiation force}
+\nomenclature[S]{\textbf{$\vec N_{rad}$}}{Solar radiation torque}
 %
-Due to the non spherical mass distribution and non homogeneity of the Earth, a pertubative gravitational force($J_{2}$ perturbation)\cite{SADC}\cite{our_report} exerted on the satellite determining its orbit difference compared to ideal mathematical models.
-Contrary to this, in order to derive an expression for the gravitational torque exerted about the mass centre of the satellite, it will be assumed symmetrical, spherical distribution of the Earth's mass\cite{SADC} with this assumption be valid by comparing the magnitude of the gravity gradient with the other pertubative torques.     
-\subsubsection{$J_2$ gravity perturbation}
-An approximation of the gravitational potential of the Earth is \cite{SADC}\cite{our_report}:
+\subsection*{Gravity Gradient disturbance torque}\label{chap: disturbances3}
+Contrary to $j_{2}$ effect, in order to derive an expression for the gravitational torque exerted about the mass center of the satellite, it is assumed symmetrical and spherical Earth's mass distribution  \cite{SADC}.
+The gravity gradient effect about the center of mass of the satellite is a consequence of the non-uniform gravitational field of the Earth. If the gravitational field was uniformly distributed no torque would be present. The force to an infinitesimal element $d\vec{F_{i}}$ to a distance $R_{i}$ from the center of the Earth can be written
+%
 \begin{flalign}
-	U \approx -\frac{\mu}{r} \left[1 - \sum_{n=2}^{\infty} \left(\frac{R_e}{r}\right)^{n} J_n P_n sin(\phi)  \right ] = \frac{\mu}{r} [U_0 + U_{J_2} + U_{J_3} + ...]
-	\label{eq:Pr341}
+d\vec F_{i} = \dfrac{-\mu\vec{R_{i}}dm_{i}}{R_{i}^{3}} 
+\label{eq:ref9876}
 \end{flalign}
-which has been derived using the spherical harmonic expansion describing deviations of the potential to the south and north direction,
-with $U_0$ = -1, $U_{J_2}$ = $\left(\frac{R_e}{r}\right)^{2} J_2 \frac{1}{2} (3 sin^2 \phi -1) $ and ${J_2}$ be a numerical coefficient, with the other terms been discarded.
+as it can be seen in \figref{fig:gg}. The torque about the geometric center of the satellite can be written as 
+ %
+ \begin{flalign}
+ \vec N_{gra}^{i} = r_{i}\times d\vec F_{i}
+ \label{eq:ref9876875}
+ \end{flalign}
+ %
+ Assuming that the center of mass is aligned with the geometric center, the torque about the center of mass of the satellite can be expressed as\cite{SADC}\cite{our_report}  
 
-The final relation is obtained as 
-\begin{flalign}
-	\vec F = -m \nabla U
-	\label{eq:Pr3431}
-\end{flalign}
-with the vector $\vec F$ expand to the components \cite{SIDI}\cite{our_report}  :
-\begin{flalign}
-	F_x = -\frac{\partial U}{\partial x} = \mu \left[ -\frac{x}{r^3} + A_{J_2} \left(15 \frac{xz^2}{r^7} - 3\frac{x}{r^5}   \right ) \right ]       \\
-	F_y = -\frac{\partial U}{\partial y} = \mu \left[ -\frac{y}{r^3} + A_{J_2} \left(15 \frac{yz^2}{r^7} - 3\frac{y}{r^5}   \right ) \right ]       \\
-	F_z = - \frac{\partial U}{\partial z} =  \mu \left[ -\frac{z}{r^3} + A_{J_2} \left(15 \frac{z^3}{r^7} - 3\frac{z}{r^5}   \right )  \right]       
-	\label{eq:Pr34331}
-\end{flalign}
-where $A_{J_2}  = \frac{1}{2} J_2 R_e^2$ and and $R_e$ is the mean radius o the Earth at the equator
-%
-%
-\subsubsection{Gravity-Gradient torque}
-The gravity gradient effect about the centre of mass of the satellite is a consequence of the non uniform gravitational field of the Earth. The torque about the centre of mass of the satellite can be expressed as\cite{SADC}\cite{our_report}  
-
-\nomenclature[A]{\textbf{COM}}{Center of Mass}
+\nomenclature[A]{\textbf{$\vec N_{gra}$}}{Gravity Gradient torque}
+\nomenclature[S]{\textbf{COM}}{Center of Mass}
+\nomenclature[S]{\textbf{$d\vec F_{i}$}}{Gravity force to an infinitesimal element}
 %
 \begin{flalign}
 	\vec N_{gg} &= \dfrac{3\mu}{\vec R_{sc}^3}[\vec{\hat R_{sc}} \times(\vec{I} \ \vec{\hat R_{sc}}] 
