@@ -17,20 +17,20 @@ The PI controller gains are chosen by trial and error in order to achieve faster
 \nomenclature[S]{\textbf{$k_{p}$}}{Proportional gain of PI control}
 \nomenclature[S]{\textbf{$k_{i}$}}{Integral gain of PI control}
 %
-In the \figref{fig:closedloopsys} it can be seen the closed loop step response with PI control for one motor. The closed loop system gives a small overshoot, however, it is deemed good for simulation. 
-\begin{figure}[H]
-	\includegraphics[width=0.9\linewidth]{figures/stepresponse_motorCL}
-	\caption{Step response of closed loop system with PI control}
-	\label{fig:closedloopsys}
-\end{figure}
-Moreover, the root locus of one motor with PI controller is seen in the \figref{fig:rlocus33}
+%In the \figref{fig:closedloopsys} it can be seen the closed loop step response with PI control for one motor. The closed loop system gives a small overshoot, however, it is deemed good for simulation. 
+%\begin{figure}[H]
+%	\includegraphics[width=0.9\linewidth]{figures/stepresponse_motorCL}
+%	\caption{Step response of closed loop system with PI control}
+%	\label{fig:closedloopsys}
+%\end{figure}
+The root locus of one motor with PI controller is seen in the \figref{fig:rlocus33}
 
 \begin{figure}[H]
 	\includegraphics[width=0.9\linewidth]{figures/rloci_new}
 	\caption{Root locus of one motor with PI controller}
 	\label{fig:rlocus33}
 \end{figure}
-Furthermore, its is worth showing how the poles moving when the motor reach saturation mode and thus the gain becomes 0 which can be seen in \figref{fig:rlocus44}. It can be seen that the poles moving to the complex plane causing the system to oscillate. 
+Furthermore, its is worth showing how the poles moving when the motor reach saturation mode and thus the gain becomes 0 which can be seen in \figref{fig:rlocus44}.
 \begin{figure}[H]
 	\includegraphics[width=0.9\linewidth]{figures/stauration_motor_mode}
 	\caption{Root locus of one motor with PI controller when the gain K becomes 0}
