@@ -21,10 +21,39 @@ The proposed control scheme presented in figure \ref{fig:mainLoop} has a hierarc
 \input{chapters/desaturation.tex}
 \input{chapters/globalAttitudeControl.tex}
 
-In the following chapter will be discussed shortly two attitude controller designs that are based on previous work \cite{PrevPro}. The two controllers calculate a torque demand that has to be produced from the motors. The first controller is based on the linearized model \eqref{eq:lele}, and thus is characterized as linear state feedback control, while the second one is based on the non-linear dynamics \eqref{eq:seom} creating a sliding manifold, a hyperplane, such that when the states are on the manifold, will converge to the desired reference. The non-linear controller is called Sliding Mode Control (SMC).\nomenclature[A]{\textbf{SMC}}{Sliding Mode Control}
+In the following sections \ref{sec:LC} and \ref{sec:SM}  will be discussed shortly two attitude controller designs that are based on previous work \cite{PrevPro}. The two controllers calculate a torque demand that has to be produced from the motors. The first controller is based on the linearized model \eqref{eq:lele}, and thus is characterized as linear state feedback control, while the second one is based on the non-linear dynamics \eqref{eq:seom} creating a sliding manifold, a hyperplane, such that when the states are on the manifold, will converge to the desired reference. The non-linear controller is called Sliding Mode Control (SMC).\nomenclature[A]{\textbf{SMC}}{Sliding Mode Control}
 
-\section{Linear controller} \label{sec:LC}
+\section{Linear attitude controller} \label{sec:LC}
 
+\Eqref{eq:lele} following \cite{Rafael} can be written as 
+%
+\begin{flalign}
+\begin{bmatrix}
+\vec{ \dot {\tilde{q}}(t) } \\
+\vec{ \dot {\tilde{\omega}}(t) }
+\end{bmatrix} 	
+= 
+\begin{bmatrix}
+0 &0& 0&\frac{1}{2} &0&0& \\
+0 &0& \omega_{o}&0 &\frac{1}{2}&0& \\
+0 &-\omega_{o}& 0&0&0&\frac{1}{2}& \\
+-2\sigma_{x} &0& 0&0 &0&0& \\
+0 &2\sigma_{y}& 0&0 &0&\omega_{o}\ \\
+0 &0& 0&\frac{1}{2} &0&0& \\
+\end{bmatrix} 
+\begin{bmatrix}
+\vec{  {\tilde{q}}(t) } \\
+{  {\tilde{\vec \omega}}(t) }
+\end{bmatrix} 	
+-
+\begin{bmatrix}
+\underline{\vec 0}_{(3\times3)} \\
+{\underline I_{s}^{-1}}
+\end{bmatrix} 	
+\vec {\tilde N_{ctrl}}
+\label{eq:lelele}
+\end{flalign}
+%
 Since the norm of $ \vec{ {\bar{\omega}}} $ is known and equal to the orbital angular velocity ($\approx 0.0011$) comparing this value to $\frac{1}{2}$,becomes small, thus \eqref{eq:lele} can be simplified to 
 \begin{flalign}
 	\begin{bmatrix}
