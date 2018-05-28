@@ -14,9 +14,11 @@ Yang's article on desaturation \cite{DesatYang} describes a model that can be ef
 \vec{\omega} = \vec{_I^{lv}\omega} + \vec{_{lv}^s\omega}
 \end{equation}
 
+where $\vec{_I^{lv}\omega}$ is the angular velocity of the LVLH frame compared to the inertial frame and $\vec{_{lv}^s\omega}$ is the angular velocity of the body frame compared to the LVLH frame.
+
 \todo{should we show the equations in more detail?}
 
-\begin{flalign}
+\begin{align}
 \begin{bmatrix}
 \vec{_{lv}^s\dot{\omega}} \\
 \vec{\dot{\omega}_{rw} } \\
@@ -24,15 +26,66 @@ Yang's article on desaturation \cite{DesatYang} describes a model that can be ef
 \end{bmatrix}
  = 
 \begin{bmatrix}
-0 & 0 & \omega_0\frac{J_1 - J_2 + J_3}{-J_1} \\
-0 & 0 &	0 \\
- \omega_0\frac{J_1 - J_2 + J_3}{J_3}  & 0 & 0 \\
-0 & 0 &	0 \\
-0 & 0 &	0 \\
-0 & 0 &	0 \\
-0.5 & 0 &	0 \\
-0 & 0.5 &	0 \\
-0 & 0 &	0.5 \\
+0 & 0 & \omega_o\frac{I_1 - I_2 + I_3}{-I_1} & 0 & 0 & \omega_o\frac{I_w}{-I_1} & 8\omega_o^2\frac{I_3 - I_2}{I_1} & 0 & 0 \\
+0 & 0 &	0 & 0 & 0 &	0 & 0 &  6\omega_o^2\frac{I_3 - I_1}{I_2} & 0\\
+ \omega_o\frac{I_1 - I_2 + I_3}{I_3}  & 0 & 0 &  \omega_o\frac{I_w}{I_3} & 0 &	0 & 0 & 0 & 2\omega_o^2\frac{I_1 - I_2}{I_3}\\
+0 & 0 &	0  & 0 & 0 & 0 & 0 & 0 & 0\\
+0 & 0 &	0  & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 &	0 & 0 & 0 & 0 & 0 & 0 & 0\\
+0.5 & 0 &	0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0.5 &	0& 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 &	0.5 & 0 & 0 & 0 & 0 & 0 & 0\\
 \end{bmatrix}
+\begin{bmatrix}
+_{lv}^s\omega_1 \\
+_{lv}^s\omega_2 \\
+_{lv}^s\omega_3 \\
+\omega_{rw,1} \\
+\omega_{rw,2} \\
+\omega_{rw,3} \\
+q_1 \\
+q_2 \\
+q_3 
+\end{bmatrix}
+ \\
++
+\begin{bmatrix}
+I_1^{-1} & 0 & 0 & 0 & \frac{b_3}{I_1} & -\frac{b_2}{I_1}\\
+0 & I_2^{-1} & 0 & - \frac{b_3}{I_2} & 0 &  \frac{b_1}{I_2} \\ 
+0 & 0 & I_3^{-1} &  \frac{b_2}{I_3} &  -\frac{b_1}{I_3} & 0 \\  
+I_w^{-1} & 0 & 0 & 0 & 0 & 0 \\
+0 & I_w^{-1} & 0 & 0 & 0 & 0 \\ 
+0 & 0 & I_w^{-1} & 0 & 0 & 0 \\  
+0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 \\
+\end{bmatrix}
+\begin{bmatrix}
+N_{rw,1} \\
+N_{rw,2} \\
+N_{rw,3}\\
+\m_{mt,1} \\
+\m_{mt,2} \\
+\m_{mt,3} 
+\end{bmatrix}
++
+\begin{bmatrix}
+N_{dist,1} \\
+N_{dist,2} \\
+N_{dist,3}\\
+0\\
+0\\
+0\\
+0\\
+0\\
+0
+\end{bmatrix}
+=
+\underline{A}\vec{x} + \underline{B}(t)\vec{u} + \vec{d}
 \label{eq:uioMatrices}
-\end{flalign}
+\end{align}
+
+where $I_w$ is the reaction wheel axial moment of inertia, $\omega_o$ is the angular velocity of the orbit, $I_i$ is the satellite moment of inertia along $i$th principal axis.
+
+\nomenclature[SIw]{$I_w$}{Reaction wheel axial moment of inertia}
+\nomenclature[Somegao]{$\omega_o$}{Orbit angular velocity}
