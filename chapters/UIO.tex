@@ -1,0 +1,38 @@
+\subsection{Application of Unknown Input Observer}
+\label{sec:UIO_App}
+
+\todo{discuss articles a bit}
+
+The present chapter discusses how to apply unknown input observer (UIO) theory to the satellite functioning in nadir pointing control goal. The regular UIO uses linear model, however the satellite system is highly nonlinear.  During one orbit, the orientation of the nadir pointing satellite rotates by $360\deg$. By choosing the appropriate reference frame, this rotation can be eliminated from attitude dynamics. In local vertical, local horizontal frame (LVLH), the nadir pointing satellite keeps its attitude. This opens an opportunity to use linear approximation of the trigonometric nonlinearities in the satellite dynamic equations. The operating point should be chosen as nadir pointing, and if the attitude stays near enough to the operating point, the model stays quite accurate.
+
+\todo{add LVLH to frames chapter}
+
+Yang's article on desaturation \cite{DesatYang} describes a model that can be effective for UIO. The $\underline{A}$ matrix of the model is constant, so the UIO matrices can be derived as described in \ref{sec:UIO}. The model detaches the orbit angular velocity from the dynamics according to equation \ref{eq:angDetach}.
+
+\begin{equation}
+\label{eq:angDetach}
+\vec{\omega} = \vec{_I^{lv}\omega} + \vec{_{lv}^s\omega}
+\end{equation}
+
+\todo{should we show the equations in more detail?}
+
+\begin{flalign}
+\begin{bmatrix}
+\vec{_{lv}^s\dot{\omega}} \\
+\vec{\dot{\omega}_{rw} } \\
+\vec{\dot{q}_{1:3}}
+\end{bmatrix}
+ = 
+\begin{bmatrix}
+0 & 0 & \omega_0\frac{J_1 - J_2 + J_3}{-J_1} \\
+0 & 0 &	0 \\
+ \omega_0\frac{J_1 - J_2 + J_3}{J_3}  & 0 & 0 \\
+0 & 0 &	0 \\
+0 & 0 &	0 \\
+0 & 0 &	0 \\
+0.5 & 0 &	0 \\
+0 & 0.5 &	0 \\
+0 & 0 &	0.5 \\
+\end{bmatrix}
+\label{eq:uioMatrices}
+\end{flalign}
