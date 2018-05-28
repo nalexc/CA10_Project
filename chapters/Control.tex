@@ -6,7 +6,7 @@
 
 \todo{evaluation of station tracking precision - should be within $1\deg$. Compare different reaction wheel configurations}
 
-When developing complex systems, using a modular design, setting up a hierarchy between elements, and using abstractions can be very helpful in keeping the complexity at a manageable level. They can also prove to be useful during debugging or finding faults in the system. The proposed control scheme utilizes these tools. Figure  \ref{fig:mainLoop} introduces the high-level control scheme used in the thesis. The scheme is inspired by the control scheme proposed by Tregouet et al in their paper concerning a new desaturation control scheme \cite{DesatTregouet}. 
+When developing complex systems, using a modular design, setting up a hierarchy between elements, and using abstractions can be very helpful in keeping the complexity at a manageable level. They can also prove to be useful during debugging or finding faults in the system. The proposed control scheme utilizes these tools. Figure  \ref{fig:mainLoop} introduces the high-level control scheme used in the thesis. The scheme is inspired by the control scheme proposed by Trégouët et al. in their paper concerning a new desaturation control scheme \cite{DesatTregouet}. 
 
 %The proposed high-level control scheme presented in figure \ref{fig:mainLoop} has a hierarchical, modular structure.
  The main attitude controller outputs a torque reference for the actuators, which is then distributed by lower level controllers. This means that the attitude controller can be swapped without having to modify the lower level controllers. The desaturation controller distributes the torque between the reaction wheels and magnetorquers. The reaction wheel subsystem executes local fault detection and fault isolation. It receives a 3 dimensional torque demand and distributes it between the individual reaction wheel motors. The reaction wheel subsystem checks fault residual signals and adjusts torque distribution between reaction wheels accordingly. These will be elaborated in subsequent sections.
@@ -18,12 +18,16 @@ When developing complex systems, using a modular design, setting up a hierarchy 
 	\label{fig:mainLoop}
 \end{figure}
 
+The attitude dynamics are given once again by equation \ref{eq:sysDynMain}. 
+
+\begin{equation}
+\underline{I}_{s}\vec{\dot{\omega}} + \underline{\omega}^\times\underline{I}_{s}\vec{\omega} = -\vec{\dot{h}}_{rw} -  \underline{\omega}^\times \vec{{h}}_{rw} + \vec{N_{mt}}  + \vec{N_{dist}} =  -  \underline{\omega}^\times \vec{{h}}_{rw} + \vec{N_{rw}} + \vec{N_{mt}}  + \vec{N_{dist}}
+\label{eq:sysDynMain} 
+\end{equation}
+
 The system's mechanical states affecting the attitude dynamics include satellite attitude, satellite angular velocity and reaction wheel angular velocity. High reaction wheel angular momenta can make the satellite react differently to the same control torques compared to when the reaction wheels are not rotating (e.g. smaller angular acceleration). Desaturation is reducing this unwanted effect, but it works quite slowly, requiring several orbits to reduce wheel angular velocity to an acceptable level. To counteract the unwanted gyroscopic term $\underline{\omega}^\times \vec{{h}}_{rw}$, the torque demand should include a compensation term for it.
 
-		\begin{equation}
-		\underline{I}_{s}\vec{\dot{\omega}} + \underline{\omega}^\times\underline{I}_{s}\vec{\omega} = -\vec{\dot{h}}_{rw} -  \underline{\omega}^\times \vec{{h}}_{rw} + \vec{N_{mt}}  + \vec{N_{dist}} =  -  \underline{\omega}^\times \vec{{h}}_{rw} + \vec{N_{rw}} + \vec{N_{mt}}  + \vec{N_{dist}} 
-		\end{equation}
-		
+
 
 \input{chapters/desaturation.tex}
 
