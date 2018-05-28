@@ -35,11 +35,11 @@ In the following sections \ref{sec:LC} and \ref{sec:SM}  will be discussed short
 = 
 \begin{bmatrix}
 0 &0& 0&\frac{1}{2} &0&0& \\
-0 &0& \omega_{o}&0 &\frac{1}{2}&0& \\
-0 &-\omega_{o}& 0&0&0&\frac{1}{2}& \\
+0 &0& {\omega_{o}}&0 &\frac{1}{2}&0& \\
+0 &-{\omega_{o}}& 0&0&0&\frac{1}{2}& \\
 -2\sigma_{x} &0& 0&0 &0&0& \\
-0 &2\sigma_{y}& 0&0 &0&\omega_{o}\ \\
-0 &0& 0&\frac{1}{2} &0&0& \\
+0 &2\sigma_{y}& 0&0 &0&{\omega_{o}}\sigma_{y} \\
+0 &0& 0&0 &{\omega_{o}}\sigma_{z}&0& \\
 \end{bmatrix} 
 \begin{bmatrix}
 \vec{  {\tilde{q}}(t) } \\
@@ -54,7 +54,8 @@ In the following sections \ref{sec:LC} and \ref{sec:SM}  will be discussed short
 \label{eq:lelele}
 \end{flalign}
 %
-Since the norm of $ \vec{ {\bar{\omega}}} $ is known and equal to the orbital angular velocity ($\approx 0.0011$) comparing this value to $\frac{1}{2}$,becomes small, thus \eqref{eq:lele} can be simplified to 
+with $\sigma_{x}= \frac{I_{y}-I_{z}}{I_{x}}$,$\sigma_{y}=\frac{I_{z}-I_{x}}{I_{y}}$,$\sigma_{z}=\frac{I_{x}-I_{y}}{I_{z}}$ and $I_{x} = 0.0017$, $I_{y}=0.0022$, $I_{z}=0.0022$ been the values of the inertia matrix in $[kg.m^{2}]$ and ${\omega_{o}}\approx0.0011 $ , is the orbital angular rate. The linearization is made for the angular velocity between the control frame and the orbit frame be equal to zero and the two frames are aligned.     
+Moreover, by comparing the values of  matrix \eqref{eq:lelele} it can be seen that the value $\frac{1}{2}$ is larger compared to the other values thus \eqref{eq:lelele} can be simplified to 
 \begin{flalign}
 	\begin{bmatrix}
 		\vec{ \dot {\tilde{q}}(t) } \\
@@ -75,9 +76,9 @@ Since the norm of $ \vec{ {\bar{\omega}}} $ is known and equal to the orbital an
 		{\underline I_{s}^{-1}}
 	\end{bmatrix} 	
 	\vec {\tilde N_{ctrl}}
-	\label{eq:lelele}
+	\label{eq:lelelele}
 \end{flalign}
-Three equal subsystems can be derived from \eqref{eq:lelele} as
+Three equal subsystems can be derived from \eqref{eq:lelelele} as
 \begin{flalign}
 	\begin{bmatrix}
 		\dot { \tilde {q_{i}}} \\
@@ -124,7 +125,13 @@ leading to a second order closed loop system calculated as $det(s\underline{I} -
 	k_{2} = -2\zeta I_{i,s} \omega_{n}^{2} 
 	\label{eq:gainsl223}
 \end{flalign*}
-which give stability for the all values of $ \vec{ {\bar{\omega}}} $. 
+which give stability for the all values of $ \vec{ {\bar{\omega}}} $. In the figure \figref{fig:linear demand} it is seen the torque demand from the linear controller for nadir pointing reference.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{figures/linear_controller_demant}
+	\caption{Sliding mode behavior }
+	\label{fig:linear demand}
+\end{figure}
 \section{Sliding mode control} \label{sec:SM}
 
 As described previously the sliding mode control scheme belongs to the class of non-linear control designs and is more robust compared to the linear, when disturbances are present. The objective of the SMC is the design, from a geometrical point of view, of a manifold in the state space which whenever the states are on the manifold, the behavior of the system will meet the specifications it is designed for, i.e convergence to the desired reference.  
