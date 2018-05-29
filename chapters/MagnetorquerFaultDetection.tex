@@ -107,7 +107,7 @@ Moreover, in the \figref{fig:residualobstest} it can be seen how the state error
 	\caption{Convergence of the state estimation error to zero with the disturbance been decoupled}
 	\label{fig:residualobstest}
 \end{figure}
-The method can be used directly also for the motors. Fault isolation is possible assuming that all the sensors are fault free. A descriptor model of the overall system with actuator fault can be written as \eqref{stateObs} by adding the actuator fault indicator in the equation as 
+ Fault isolation is possible assuming that all the sensors are fault free. A descriptor model of the overall system with actuator fault can be written as \eqref{stateObs} by adding the actuator fault indicator in the equation as 
 \begin{equation}
 \dot{\vec{x}} = \underline A\vec{x}+\underline B \vec{u}+\underline E\vec{d} + \underline B\vec{f_{act}}
 \label{stateObs34}
