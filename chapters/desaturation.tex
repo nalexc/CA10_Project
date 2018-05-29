@@ -78,19 +78,22 @@ where $k_p$ is an adjustable proportional gain.
 Recognizing that the reaction wheels cannot change $\vec{h_{T}}^{[I]}$ total angular momentum, a step can be taken towards detaching the effect of the magnetorquers and the reaction wheels. Substituting $ \vec{h_{rw}} = \underline{R}(^s_i\vec{ q}) \vec{h_{T}^{[I]}} - \underline{I}_s \vec{\omega}$. Using this, equation \ref{eq:crossLaw} can be rewritten according to equation \ref{eq:bodyDesatRewrite}.
 
 \begin{align}
-\nonumber \vec{m_{mt}} = 
--  \frac{(\underline{R}(^s_i\vec{ q}) \underline{B}^{[I]}(t))^\times}{|\vec{B}(t) |^2} k_p\left(\underline{R}(^s_i\vec{ q}) \vec{h_{T}^{[I]}} -  \underline{I}_s \vec{\omega} - \vec{h_{ref}}\right)  \\
-= 
--\underline{R}(^s_i\vec{ q})  \frac{\underline{B}^{[I]\times}(t)}{|\vec{B^{[I]}}(t) |^2} k_p\left(\vec{h_{T}^{[I]}} - \vec{h_{ref}} + \underline{R}^T(^s_i\vec{ q}) \overbrace{
-	\left( \left( \underline{R}(^s_i\vec{ q}) - \underline{1}_3 \right) \vec{h_{ref}} - \underline{I}_s\vec{\omega} \right)}^{\xi(\vec{q}, \vec{\omega})} \right)\\
-= -\underline{R}(^s_i\vec{ q})  \frac{\underline{B}^{[I]\times}(t)}{|\vec{B^{[I]}}(t) |^2} k_p\left(\vec{h_{T}^{[I]}} - \vec{h_{ref}} + \underline{R}^T(^s_i\vec{ q}) \vec{\xi}(\vec{q}, \vec{\omega}) \right)
+\vec{m_{mt}} = 
+-  \frac{\underline{B}^{[I]\times}(t)}{|\vec{B}(t) |^2} k_p\left(\underline{R}(^s_i\vec{ q}) \vec{h_{T}^{[I]}} -  \underline{I}_s \vec{\omega} - \vec{h_{ref}}\right) 
+%-  \frac{(\underline{R}(^s_i\vec{ q}) \underline{B}^{[I]}(t))^\times}{|\vec{B}(t) |^2} k_p\left(\underline{R}(^s_i\vec{ q}) \vec{h_{T}^{[I]}} -  \underline{I}_s \vec{\omega} - \vec{h_{ref}}\right) 
+%= 
+%-\underline{R}(^s_i\vec{ q})  \frac{\underline{B}^{[I]\times}(t)}{|\vec{B^{[I]}}(t) |^2} k_p\left(\vec{h_{T}^{[I]}} - \vec{h_{ref}} + \underline{R}^T(^s_i\vec{ q}) \overbrace{
+%	\left( \left( \underline{R}(^s_i\vec{ q}) - \underline{1}_3 \right) \vec{h_{ref}} - \underline{I}_s\vec{\omega} \right)}^{\xi(\vec{q}, \vec{\omega})} \right)\\
+%= -\underline{R}(^s_i\vec{ q})  \frac{\underline{B}^{[I]\times}(t)}{|\vec{B^{[I]}}(t) |^2} k_p\left(\vec{h_{T}^{[I]}} - \vec{h_{ref}} + \underline{R}^T(^s_i\vec{ q}) \vec{\xi}(\vec{q}, \vec{\omega}) \right)
 \label{eq:bodyDesatRewrite}
 \end{align}		
-where $\underline{1}_3$ is a $3\times3$ identity matrix, $\vec{\xi}(\vec{q}, \vec{\omega})$ is the notation for the term related satellite dynamics states that affect the desaturation dynamics.
+
 
 			
 Momentum dumping and attitude control can potentially be opposing goals, since attitude control changes the reaction wheel velocity to produce the required torque, while the desaturator tries to keep the angular velocity close to the reference. 
-Further analysis made by Trégouët et al. \cite{DesatTregouet} found that the classical cross product control law can be interpreted as having a quasi-cascaded structure with the momentum dumping loop including the magnetorquers as the upper subsystem and the attitude control loop with the reaction wheels being the lower subsystem, as presented in Figure \ref{fig:}. The problem is that there's a feedback involved from the lower subsystem to the upper one, making $\frac{d}{dt}(\vec{h_{rw}} - \vec{h_{ref}})$ dependent on the attitude parameters, as shown in equation \ref{eq:momDumpDynDependency}. In order to better distinguish the effect of the magnetorquers and reaction wheels, an inertial frame based expression of $\vec{h_T^{[I]}}$  is utilized. The reaction wheels can't change $\vec{h_T^{[I]}}$. $\xi(\vec{q}, \vec{\omega})$ denotes the momentum dumping loop's dependency on $\vec{q}$ and $\vec{\omega}$.
+Further analysis made by Trégouët et al. \cite{DesatTregouet} found that the classical cross product control law can be interpreted as having a quasi-cascaded structure with the momentum dumping loop including the magnetorquers as the upper subsystem and the attitude control loop with the reaction wheels being the lower subsystem. The problem is that there's a feedback involved from the lower subsystem to the upper one, making $\frac{d}{dt}(\vec{h_{rw}} - \vec{h_{ref}})$ dependent on the attitude parameters, as shown in equation \ref{eq:momDumpDynDependency}.  
+
+% In order to better distinguish the effect of the magnetorquers and reaction wheels, an inertial frame based expression of $\vec{h_T^{[I]}}$  is utilized. The reaction wheels can't change $\vec{h_T^{[I]}}$. $\xi(\vec{q}, \vec{\omega})$ denotes the momentum dumping loop's dependency on $\vec{q}$ and $\vec{\omega}$.
 		
 		\begin{figure}[h]
 			\centering
@@ -100,18 +103,21 @@ Further analysis made by Trégouët et al. \cite{DesatTregouet} found that the c
 			\caption{Quasi cascaded desaturation control scheme \cite[Fig. 2.]{DesatTregouet}}
 			\label{fig:quasiCascadeDesat}
 		\end{figure}
-
+	
 		
 \begin{align}
 \nonumber \vec{m_{mt}} = 
+- \frac{(\underline{R}(^s_i\vec{ q}) \underline{B}^{[I]}(t))^\times}{|\vec{B}(t) |^2} k_p\left(\underline{R}(^s_i\vec{ q}) \vec{h_{T}^{[I]}} -  \underline{I}_s \vec{\omega} - \vec{h_{ref}}\right)  \\
+\nonumber =
 -\underline{R}(^s_i\vec{ q})  \frac{\underline{B}^{[I]\times}(t)}{|\vec{B^{[I]}}(t) |^2} k_p\left(\vec{h_{T}^{[I]}} - \vec{h_{ref}} + \underline{R}^T(^s_i\vec{ q}) \overbrace{
-	\left( \left( \underline{R}(^s_i\vec{ q}) - \underline{1}_3 \right) \vec{h_{ref}} - \underline{I}_s\vec{\omega} \right)}^{\xi(\vec{q}, \vec{\omega})} \right) \\
-= -\underline{R}(^s_i\vec{ q})  \frac{\underline{B}^{[I]\times}(t)}{|\vec{B^{[I]}}(t) |^2} k_p\left(\vec{h_{T}^{[I]}} - \vec{h_{ref}} + \underline{R}^T(^s_i\vec{ q}) \xi(\vec{q}, \vec{\omega}) \right)
+	\left( \left( \underline{R}(^s_i\vec{ q}) - \underline{1}_3 \right) \vec{h_{ref}} - \underline{I}_s\vec{\omega} \right)}^{\xi(\vec{q}, \vec{\omega})} \right)\\
+= -\underline{R}(^s_i\vec{ q})  \frac{\underline{B}^{[I]\times}(t)}{|\vec{B^{[I]}}(t) |^2} k_p\left(\vec{h_{T}^{[I]}} - \vec{h_{ref}} + \underline{R}^T(^s_i\vec{ q}) \vec{\xi}(\vec{q}, \vec{\omega}) \right)
 \label{eq:momDumpDynDependency}
 \end{align}		
 
+where $\underline{1}_3$ is a $3\times3$ identity matrix, $\vec{\xi}(\vec{q}, \vec{\omega})$ is the notation for the term related satellite dynamics states that affect the desaturation dynamics.
 
-Remapping equation \ref{eq:momDumpDynDependency} to inertial frame results in equation  \ref{eq:momDumpDynDependencyInertial}.
+Remapping equation \ref{eq:momDumpDynDependency} to inertial frame results in equation  \ref{eq:momDumpDynDependencyInertial}. Figure \ref{fig:quasiCascadeDesat} illustrates the system according to equations \ref{eq:momDumpDynDependencyInertial} and \ref{eq:desatDynReorder}.
 
 \begin{equation}
 \label{eq:momDumpDynDependencyInertial}
