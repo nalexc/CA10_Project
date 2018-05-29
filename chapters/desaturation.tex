@@ -117,7 +117,7 @@ Further analysis made by Trégouët et al. \cite{DesatTregouet} found that the c
 
 where $\underline{1}_3$ is a $3\times3$ identity matrix, $\vec{\xi}(\vec{q}, \vec{\omega})$ is the notation for the term related satellite dynamics states that affect the desaturation dynamics.
 
-Remapping equation \ref{eq:momDumpDynDependency} to inertial frame results in equation  \ref{eq:momDumpDynDependencyInertial}. Figure \ref{fig:quasiCascadeDesat} illustrates the system according to equations \ref{eq:momDumpDynDependencyInertial} and \ref{eq:desatDynReorder}.
+Remapping equation \ref{eq:momDumpDynDependency} to inertial frame results in equation  \ref{eq:momDumpDynDependencyInertial}. Figure \ref{fig:quasiCascadeDesat} illustrates the system according to equations \ref{eq:desatDynReorder} and \ref{eq:momDumpDynDependencyInertial}.
 
 \begin{equation}
 \label{eq:momDumpDynDependencyInertial}
@@ -125,10 +125,10 @@ Remapping equation \ref{eq:momDumpDynDependency} to inertial frame results in eq
 \left(\vec{h_{T}^{[I]}} - \vec{h_{ref}} + \underline{R}^T(^s_i\vec{ q}) \xi(\vec{q}, \vec{\omega}) \right) 
 	\end{equation}			
 
-\subsubsection{Revised cross product control law using static allocation}
+\subsubsection{Revised cross product control law}
 
 In cascaded structure, the upper subsystem can undesirably disturb the lower one.
-Since attitude control is more crucial than desaturation, it would be more desirable to use the attitude control loop as the upper subsystem and the momentum dumping loop as the lower one, as opposed to the reverse. This arrangement can be achieved by applying input allocation, i.e. 'suitably assigning the low level actuators' input, based on a higher level control effort requested by the control system' \cite{JOHANSEN20131087}. From the point of view of the desaturation controller, the control goal is to keep the reaction wheels' angular velocity as close to the reference velocity as possible. By using a modified version of the cross product control law, the desaturation controller dynamics can be decoupled from the attitude control loop, this way the desaturator can achieve its  control goal regardless of the attitude control law. The control scheme is presented in Figure \ref{fig:CascadeDesat}.
+Since attitude control is more crucial than desaturation, it would be more desirable to use the attitude control loop as the upper subsystem and the momentum dumping loop as the lower one, as opposed to the reverse. This arrangement can be achieved by applying input allocation, i.e. 'suitably assigning the low level actuators' input, based on a higher level control effort requested by the control system' \cite{JOHANSEN20131087}. From the point of view of the desaturation controller, the control goal is to keep the reaction wheels' angular momentum as close to the reference momentum as possible. By using a modified version of the cross product control law, the desaturation controller dynamics can be decoupled from the attitude control loop, this way the desaturator can achieve its  control goal independently from the attitude control law. The control scheme is presented in Figure \ref{fig:CascadeDesat}.
 
 		\begin{figure}[h]
 			\centering
@@ -145,15 +145,28 @@ Since attitude control is more crucial than desaturation, it would be more desir
 %		\vec{\tau_{mt}}^{[I]} = -\frac{\underline{\tilde{b}}^{[I]\times(t)}}{|\vec{\tilde{b}^{[I]}}(t) |^2} k_p\left(\vec{h_{rw}}^{[I]} - \underline{R}^T(^i_s\vec{ q})\vec{h_{ref}} \right)
 %		\end{equation}
 
-The momentum dumping control law for the reverse cascade is derived in two steps. First, the control law for the original cascade scheme presented in \ref{eq:momDumpDynDependencyInertial} in ECI frame is modified to discard the feedback connection corresponding to $\xi(\vec{q}, \vec{\omega})$, second, input allocation is used to reverse the order of the cascade. The ECI frame based new control law using $\vec{h_T}$ is presented in equation \ref{eq:newMTcontrol}.
+The momentum dumping control law for the reverse cascade is derived in two steps. First, the control law for the original cascade scheme presented in \ref{eq:momDumpDynDependencyInertial} in ECI frame is revised to discard the feedback connection corresponding to $\vec{\xi}(\vec{q}, \vec{\omega})$, as presented in this subsection, second, input allocation is used to reverse the order of the cascade, as presented in the following section. The system can be turned into a cascade if the term $\vec{\xi}(\vec{q}, \vec{\omega})$ is eliminated from equation \ref{eq:momDumpDynDependencyInertial}.  The resulting control law is presented in equation \ref{eq:newMTcontrol}.
 
 \begin{equation}
 \label{eq:newMTcontrol}
 \vec{m_{mt}^{[I]}} = -\frac{\underline{B}^{[I]\times}(t)}{|\vec{B^{[I]}}(t) |^2} k_p 
-\left(\vec{h_{T}^{[I]}} - \underline{R}^T(\vec{q})\vec{h_{ref}} \right) 
+\left(\vec{h_{T}^{[I]}} - \underline{R}^T(^s_i\vec{ q})\vec{h_{ref}} \right) 
 \end{equation}			
 
-To reverse the cascade arrangement, the grouping of the terms need to be revised. For the reverse cascade scheme, $\vec{u}$ is modified according to equation \ref{eq:newdesatDynReorder}.
+The dynamics of the total angular momentum and the satellite's angular velocity can be described according to equations \ref{eq:dyn01} and \ref{eq:dyn02}, where that total angular momentum dynamics is described in ECI frame, while the satellite angular velocity dynamics is described in SBRF frame. The magnetorquer torque is considered a disturbance, that is altering the total angular momentum of the system.
+
+\begin{flalign}
+\label{eq:dyn01}
+\vec{\dot{h}_{T}}^{[I]} = \underline{B}^{[I]}(t)^\times \vec{m_{mt}^{[I]}} \\
+\label{eq:dyn02}
+\underline I_{s} \vec{\dot{\omega}} + \underline{\omega}^\times\underline I_{s} \vec{\omega} =    \vec{u} + \underline{R}^T(^s_i\vec{ q}) \vec{\dot{h}_{T}}^{[I]}
+\end{flalign}
+
+%\underline I_{s} \vec{\dot{\omega}} + \underline{\omega}^\times\underline I_{s} \vec{\omega} =    \overbrace{-\underline{\omega}^\times\vec{h_{rw}} + \vec{N_{rw}}}^{\vec{u}} +  \overbrace{\vec{N_{mt}}}^{\vec{d}}
+
+\subsubsection{Static input allocation}
+
+To reverse the cascade arrangement, the grouping of the terms need to be revised. For the reverse cascade scheme, $\vec{u}$ is modified according to equation \ref{eq:newdesatDynReorder}. The magnetorquer torque is no longer handled as a disturbance, instead it is explicitly a term in the control input.
 
 \begin{equation}
 \underline I_{s} \vec{\dot{\omega}} + \underline{\omega}^\times\underline I_{s} \vec{\omega} =    \overbrace{-\underline{\omega}^\times\vec{h_{rw}} + \vec{N_{rw}} +  \vec{N_{mt}}}^{\vec{u}}
@@ -167,7 +180,6 @@ With the new grouping, the reaction wheel torque reference can be expressed as s
 \vec{u} - \left( \underline{R}(\vec{ q})  \vec{B^{[I]}}(t)\right)^\times \vec{m_{mt}}  +  \underline{\omega}^\times\vec{h_{rw}} 
 \label{eq:newstateComp}
 \end{equation}
-\todo{check sign}
 
 The new momentum dumping dynamics is presented by equation \ref{eq:newmomDumpDyn}.
 
