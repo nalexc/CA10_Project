@@ -1,4 +1,5 @@
-\subsection{Luenberger Observer} \label{sec:simpleObserver}
+\subsection{Luenberger Observer} 
+\label{sec:simpleObserver}
 
 Parallel to structural analysis methods also two observer based methods have been designed for fault detection in magnetorquer based actuators. Here will be discussed a Luenberger-like form which is based directly on the non-linear dynamics. In previous chapter has been discussed that for each axis there is a pair of magnetorquers. The redundant magnetic actuators are used for reconfiguration in the presence of a fault or failure.\\    The Luenberger-like observer is based on the dynamic  \eqref{eq:seom} and for the sake of brevity is rewritten here as   
 %
@@ -67,7 +68,7 @@ with $\underline{C}$ be identity matrix. The matrix $\underline{A}$ is found by 
 	\label{fig:observerresidual}
 \end{figure}
 %
- Even the Luenberger-like observer can detect faults, is not robust in the sense of isolation. Therefore, in order to isolate the faulty component the  Luenberger-like observer is combined with the local structural analysis based residual which have been discussed in \ref{sec: MTStructAnal} and together by combining their flags reconfigure the magnetorquer scheme by shutting off the faulty component and turning on the healthy one which will be discussed in chapter \ref{chap:faltHandling} in the \figref{fig:obsflag} it can be seen the flag from the observer with a fault in the voltage supply at $200$[s] of the first magnetorquer component. 
+ Even the Luenberger-like observer can detect faults, is not robust in the sense of isolation. Therefore, in order to isolate the faulty component the  Luenberger-like observer is combined with the local structural analysis based residual which have been discussed in \ref{sec: MTStructAnal} and together by combining their flags reconfigure the magnetorquer scheme by shutting off the faulty component and turning on the healthy one which will be discussed in chapter \ref{chap:faltHandling}. In the \figref{fig:obsflag} it can be seen the flag from the observer with a fault in the voltage supply at $200$[s] of the first magnetorquer component. 
  %
  \begin{figure}[H]
  	\centering
