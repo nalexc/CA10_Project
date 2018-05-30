@@ -2,32 +2,11 @@
 
 \label{sec:structural}
 
-Structural analysis studies the interrelation between parameters and variables of the system using constraints between them. It distinguishes known and unknown variables, according to whether they can be measured in the system or not. Then the unknown variables are expressed using the known ones according to the constraints. Structural analysis based residual signal require that unknown variables can be expressed redundantly. One of the constraints is used to express the unknown, the other to verify it. If there's a mismatch between the two, a fault is detected.
+Structural analysis studies the interrelation between parameters and variables of the system by establishing constraints. The constraints can be obtained from the equations describing the system model. Structural analysis distinguishes known and unknown variables, according to whether they can be measured or not. Then the unknown variables are expressed using the known ones, using the constraints. Structural analysis based residual signal generation requires that unknown variables can be expressed redundantly. One of the constraints is used to express the unknown, the other to verify it. If there's a mismatch between the two, a fault is detected.
 
-In case of fault detection in sensors, one constraint is between the measured and the actual values of a variable. In case of a sensor fault, there can be a considerable difference between the measured and the actual value of a variable. Assumes that only one fault occurs at any given time, so faults cannot mutually neutralize each other. The following structural analysis based residual generator is able to both actuator and sensor faults.
+When looking for sensor faults, one constraint is between the measured and the actual values of a variable. When a sensor fault occurs, there can be a considerable difference between the measured and the actual value of a variable. Assuming that only one fault occurs at any given time, faults cannot mutually neutralize each other. The following structural analysis based residual generator is able to detect both actuator and sensor faults.
 
-The constraints being used to detect faults in the motor are \ref{sec:motor} \todo{reference motor section properly}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=120mm]{figures/residual_Noreconfig}
-	\caption{Residual signal in scenario where at 20 s the reaction wheel friction doubles}
-	\label{fig:rwFaultRes}
-\end{figure} 
-
-\begin{figure}
-	\centering
-	\includegraphics[width=120mm]{figures/voltage_Noreconfig}
-	\caption{DC control voltage signal of angular velocity controlled reaction wheel in scenario where at 20 s the reaction wheel friction doubles}
-	\label{fig:rwFaultRes}
-\end{figure} 
-
-\begin{figure}
-	\centering
-	\includegraphics[width=120mm]{figures/omega_Noreconfig}
-	\caption{Angular velocity in scenario where at 20 s the reaction wheel friction doubles}
-	\label{fig:rwFaultRes}
-\end{figure} 
+The constraints being used to detect faults in the motor are derived from the equations in section \ref{sec:motors} and are listed in equations \ref{eq:const1} to \ref{eq:const4}. $C_i$ represents constraint relations, $d_i$ represent differential relations. The relation between the constraints and the variables are illustrated by figure \ref{fig:structDiagram}.
 
 %\begin{figure}
 %	\centering
@@ -55,32 +34,24 @@ The constraints being used to detect faults in the motor are \ref{sec:motor} \to
 
 \begin{equation}
 C_1(\omega, v) = V_a = R_a i + k_e \omega
+\label{eq:const1}
 \end{equation}
 
 \begin{equation}
 C_2(\omega, \dot{\omega}, i) =  k_{t}i  =J\dfrac{d\omega}{dt} + b\omega
+\label{eq:const2}
 \end{equation}
 
 \begin{equation}
 C_2(\tau, i) = \tau = k_t i
+\label{eq:const3}
 \end{equation}
 \todo{adjust to right tau}
 \begin{equation}
 d_1(\omega, \dot{\omega})
+\label{eq:const4}
 \end{equation}
 
-$\omega$ and $i$ can be measured, so the residual signal can be derived as
-
-
-\begin{equation}
-residual = k_t i + J \frac{d\omega}{dt} + b \omega
-\end{equation}
-
-The friction model is quite accurate at high speeds, not so much for low speeds. This needs to be addressed by a higher threshold at low speeds.
-
-Figures \ref{fig:residual} - \ref{fig:residualOmega} show the effect of a bearing fault that increases the reaction wheel friction to twofold. When a residual indicates a fault, the torque distributor changes mode, shutting down the faulty wheel. There's a short term error in the reaction wheel subsystem's torque output, but then the torque reference tracking normalizes quite quickly. This might jeopardize a downlink operation, but since this kind of fault rarely occurs, the effects are not serious.
-
-\todo{handle the peak better by measurement of faulty torque}
 
 \begin{figure}[h]
 	\centering
@@ -88,10 +59,42 @@ Figures \ref{fig:residual} - \ref{fig:residualOmega} show the effect of a bearin
 		\includegraphics[page=1,width=1\textwidth]{fault_diagram}
 	\end{tabular}
 	\caption{Structural graph of reaction wheel motor}
-	\label{fig:CascadeDesat}
+	\label{fig:structDiagram}
 \end{figure}
 
 
+$\omega$ and $i$ can be measured, so the residual signal can be derived according to \ref{eq:res1}. In absence of fault, the residual should be close to zero.
+
+\begin{equation}
+residual = k_t i + J \frac{d\omega}{dt} + b \omega
+\label{eq:res1}
+\end{equation}
+
+The friction model is quite accurate at high speeds, not so much for low speeds. This needs to be addressed by a higher threshold fault signal threshold at low speeds. Figures \ref{fig:residual} - \ref{fig:residualOmega} show the effect of a bearing fault on the residual. The fault doubles the reaction wheel friction.
+
+ When a residual indicates a fault, the torque distributor changes mode, shutting down the faulty wheel. There's a short term error in the reaction wheel subsystem's torque output, but then the torque reference tracking normalizes quite quickly. This might jeopardize a downlink operation, but since this kind of fault rarely occurs, the effects are not serious. \todo{move}
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width=120mm]{figures/residual_Noreconfig}
+	\caption{Residual signal in scenario where at 20 s the reaction wheel friction doubles}
+	\label{fig:residual}
+\end{figure} 
+
+\begin{figure}
+	\centering
+	\includegraphics[width=120mm]{figures/voltage_Noreconfig}
+	\caption{DC control voltage signal of angular velocity controlled reaction wheel in scenario where at 20 s the reaction wheel friction doubles}
+	\label{fig:rwFaultRes3}
+\end{figure} 
+
+\begin{figure}
+	\centering
+	\includegraphics[width=120mm]{figures/omega_Noreconfig}
+	\caption{Angular velocity in scenario where at 20 s the reaction wheel friction doubles}
+	\label{fig:residualOmega}
+\end{figure} 
 
 
 %\section{Alternative method for identifying reaction wheel fault}
