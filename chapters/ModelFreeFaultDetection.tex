@@ -1,2 +1,11 @@
-\subsection{Model Free Fault Detection}
+\subsubsection{Model Free Fault Detection}
+\label{sec:ModelFreeFD}
 
+Some faults can cause anomalies in signals that are easy to notice by simply analyzing the signal shape they produce. Discontinuities for example often hint at a fault. Since most signals are sampled discretely, discontinuities appear as large signal gradients. For example, if the angular velocity sensor in the reaction wheel motors fall to zero instantaneously, there's a good chance that a sensor fault has just occurred. Detecting faults through such anomalies require no knowledge of the system dynamics, thus they can be deemed as model free fault detection. \todo{add figure showing angular velocity signal dropping to zero and discrete time gradients in same graph + threshold level}
+
+A reconfiguration scheme using anomaly detection in angular velocity sensors has been implemented in the simulation. The detection checks the magnitude of the angular velocity gradient, and if it's above the threshold, the fault detector module sends a fault signal to the reaction wheel supervisor system, which can decide to reconfigure the reaction wheel torque distribution. The signal equation is given by equation \ref{eq:modelFreeDetect}, where $\dot{\omega}_{thresh}$ denotes the treshold for fault signal generation, $\delta t$ denotes the sampling time.  $\dot{\omega}_{thresh}$ can be set according to maximum reaction wheel torque, maximum reaction wheel angular velocity and wheel friction. $\dot{\omega}_{thresh}$ should at  least be $\dot{\omega}_{thresh} > \frac{b \omega_{max} + \tau_{max}}{J_{motor}}$ if false fault signals are to be avoided.
+
+\begin{equation}
+\label{eq:modelFreeDetect}
+FaultSignal_i = |\omega_{w,i}(k) - \omega_{w,i}(k-1)| > \dot{\omega}_{thresh} \Delta t
+\end{equation}

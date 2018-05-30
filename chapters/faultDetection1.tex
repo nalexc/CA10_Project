@@ -1,14 +1,17 @@
 \section{Fault Detection}
 
-Fault detection deals with detecting system discrepancies, abnormal behaviour. It is the first step towards handling faults. It doesn't necessarily identify the source of the fault, just establishes the fact that a fault has occurred in the system. The way of isolating faults in redundant actuators is by shutting down the actuator affected by the fault and reassining the shut down actuator's task.
+Fault detection deals with detecting system discrepancies, abnormal behaviour. It is the first step towards handling faults. It doesn't necessarily identify the source of the fault, just establishes the fact that a fault has occurred in the system. In redundant systems, fault handling can be achieved shutting down the actuator affected by the fault and reassining the tasks of the shut down actuator.
 
 
-\section{Motors fault detection}
+\subsection{Motor fault detection}
+
 \input{chapters/ModelFreeFaultDetection.tex}
-\input{chapters/StructuralAnalysis.tex}
-\input{chapters/MagnetorquerFaultDetection.tex}
 
+\input{chapters/StructuralAnalysis.tex}
+
+\input{chapters/MagnetorquerFaultDetection.tex}
 \input{chapters/LebObserver.tex}
+
 
 \input{chapters/UIO.tex}
 

@@ -78,7 +78,7 @@ rank (\underline{CE}) =rank( \underline E)
 \label{errordynamics10}
 \end{equation}
 and by denoting $\underline A1 = \underline A - \underline{HCA} $ that the pair $(\underline {CA1})$ is detectable and thus $F$ can have stable roots.
-\subsection{Residual Generation}
+\subsubsection{Residual Generation}
 The residual is used for fault detection and isolation thus should be decoupled from the unknown inputs(disturbances). The residual can be written as
 \begin{equation*}
 \vec{r} = \vec{y} - \underline C \hat{\vec{x}} 
@@ -107,7 +107,7 @@ Moreover, in the \figref{fig:residualobstest} it can be seen how the state error
 	\caption{Convergence of the state estimation error to zero with the disturbance been decoupled}
 	\label{fig:residualobstest}
 \end{figure}
-The method can be used directly also for the motors. Fault isolation is possible assuming that all the sensors are fault free. A descriptor model of the overall system with actuator fault can be written as \eqref{stateObs} by adding the actuator fault indicator in the equation as 
+ Fault isolation is possible assuming that all the sensors are fault free. A descriptor model of the overall system with actuator fault can be written as \eqref{stateObs} by adding the actuator fault indicator in the equation as 
 \begin{equation}
 \dot{\vec{x}} = \underline A\vec{x}+\underline B \vec{u}+\underline E\vec{d} + \underline B\vec{f_{act}}
 \label{stateObs34}

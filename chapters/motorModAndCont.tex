@@ -1,7 +1,7 @@
 \chapter{Actuators modelling and control}\label{chap: modeling}
 A widely used actuation system is reaction wheels which are spinning wheels and can exchange momentum with the spacecraft by increasing or decreasing the wheels speed. The rate of rotation can be adjusted by an electric motor and the magnitude of the wheels output torque is limited by the motors shaft torque. This chapter will provide characteristics of the chosen reaction wheels and BLDC motors along with the electrical and mechanical modelling of the motors for simulation purposes. 
 %
-\section*{Reaction wheels}
+\section{Reaction wheels}
 %
 %Since the focus of the current thesis is not on the design of reaction wheels, only few constraints are  taken into account for the selection of the wheels, such as the weight and the inertia. In order to minimize the total weight of the satellite, the weight of each wheel, is not overcome the %weight of each motor. 
  The reaction wheels are chosen to give higher inertia from the motor shaft, and can provide medium manoeuvrability in terms of time required to turn the satellite $90^o$ \cite{SIDI}. The wheel inertia is \cite{flywheel_design_thesis} $J_{wheel} = 2.456 [gcm^2]$ and the weight is $m_{wheel} = 4.201 [g] $ compared to the motor weight $m_{motor} =8 [g] $ and the motor shaft inertia $J_{motor} = 0.0249 [gcm^2]$. The characteristics of the selected motor can be found in appendix \ref{chap: B}. The maximal speed of the motor is $\omega_{max}= 20000[rpm]$ and thus the maximum angular momentum that the system wheel-motor can provide can be found as    
@@ -19,8 +19,8 @@ which is found to be $5.1438*10^{-4} [Kgm^2/s]$ for each wheel.
 %
 %
 For 3 axis stabilization, 3 wheels each orthogonal to the principal axis, are efficient but lack of robustness is present if one actuator fails. Redundancy is desired, requiring four wheels in tilted positions. The configuration of the wheels is chosen to be in tetrahedron shape giving rise to more reliable and robust system. The tetrahedron configuration will be discussed in chapter \ref{ref:reactConfig}.  
-\subsection*{BLDC motor model}
-%
+\subsection{BLDC motor model}
+\label{sec:motors}
 
 In order to make the system more reliable, brush-less DC motors are chosen as actuators. BLDC motors are lighter compared to brushed with the same power output and do not causing sparking thus can be used in operations that demand long life and reliability.
 %
