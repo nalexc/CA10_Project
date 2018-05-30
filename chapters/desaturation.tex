@@ -79,7 +79,7 @@ Recognizing that the reaction wheels cannot change $\vec{h_{T}}^{[I]}$ total ang
 
 \begin{align}
 \vec{m_{mt}} = 
--  \frac{\underline{B}^{[I]\times}(t)}{|\vec{B}(t) |^2} k_p\left(\underline{R}(^s_i\vec{ q}) \vec{h_{T}^{[I]}} -  \underline{I}_s \vec{\omega} - \vec{h_{ref}}\right) 
+-  \frac{\underline{B}^{\times}(t)}{|\vec{B}(t) |^2} k_p\left(\underline{R}(^s_i\vec{ q}) \vec{h_{T}^{[I]}} -  \underline{I}_s \vec{\omega} - \vec{h_{ref}}\right) 
 %-  \frac{(\underline{R}(^s_i\vec{ q}) \underline{B}^{[I]}(t))^\times}{|\vec{B}(t) |^2} k_p\left(\underline{R}(^s_i\vec{ q}) \vec{h_{T}^{[I]}} -  \underline{I}_s \vec{\omega} - \vec{h_{ref}}\right) 
 %= 
 %-\underline{R}(^s_i\vec{ q})  \frac{\underline{B}^{[I]\times}(t)}{|\vec{B^{[I]}}(t) |^2} k_p\left(\vec{h_{T}^{[I]}} - \vec{h_{ref}} + \underline{R}^T(^s_i\vec{ q}) \overbrace{
@@ -128,7 +128,7 @@ Remapping equation \ref{eq:momDumpDynDependency} to inertial frame results in eq
 \subsubsection{Revised cross product control law}
 
 In cascaded structure, the upper subsystem can undesirably disturb the lower one.
-Since attitude control is more crucial than desaturation, it would be more desirable to use the attitude control loop as the upper subsystem and the momentum dumping loop as the lower one, as opposed to the reverse. This arrangement can be achieved by applying input allocation, i.e. 'suitably assigning the low level actuators' input, based on a higher level control effort requested by the control system' \cite{JOHANSEN20131087}. From the point of view of the desaturation controller, the control goal is to keep the reaction wheels' angular momentum as close to the reference momentum as possible. By using a modified version of the cross product control law, the desaturation controller dynamics can be decoupled from the attitude control loop, this way the desaturator can achieve its  control goal independently from the attitude control law. The control scheme is presented in Figure \ref{fig:CascadeDesat}.
+Since attitude control is more crucial than desaturation, it would be more desirable to use the attitude control loop as the upper subsystem and the momentum dumping loop as the lower one, as opposed to the reverse. This arrangement can be obtained by applying input allocation, i.e. 'suitably assigning the low level actuators' input, based on a higher level control effort requested by the control system' \cite{JOHANSEN20131087}. From the point of view of the desaturation controller, the control goal is to keep the reaction wheels' angular momentum as close to the reference momentum as possible. By using a modified version of the cross product control law, the desaturation controller dynamics can be decoupled from the attitude control loop, this way the desaturator can achieve its  control goal independently from the attitude control law. The control scheme is presented in Figure \ref{fig:CascadeDesat}.
 
 		\begin{figure}[h]
 			\centering
@@ -153,7 +153,7 @@ The momentum dumping control law for the reverse cascade is derived in two steps
 \left(\vec{h_{T}^{[I]}} - \underline{R}^T(^s_i\vec{ q})\vec{h_{ref}} \right) 
 \end{equation}			
 
-The dynamics of the total angular momentum and the satellite's angular velocity can be described according to equations \ref{eq:dyn01} and \ref{eq:dyn02}, where that total angular momentum dynamics is described in ECI frame, while the satellite angular velocity dynamics is described in SBRF frame. The magnetorquer torque is considered a disturbance, that is altering the total angular momentum of the system.
+The dynamics of the total angular momentum and the satellite's angular velocity can be described according to equations \ref{eq:dyn01} and \ref{eq:dyn02}, where the total angular momentum dynamics is described in ECI frame, while the satellite angular velocity dynamics is described in SBRF frame. The magnetorquer torque is considered a disturbance, which is altering the total angular momentum of the system.
 
 \begin{flalign}
 \label{eq:dyn01}
@@ -164,38 +164,49 @@ The dynamics of the total angular momentum and the satellite's angular velocity 
 
 %\underline I_{s} \vec{\dot{\omega}} + \underline{\omega}^\times\underline I_{s} \vec{\omega} =    \overbrace{-\underline{\omega}^\times\vec{h_{rw}} + \vec{N_{rw}}}^{\vec{u}} +  \overbrace{\vec{N_{mt}}}^{\vec{d}}
 
-\subsubsection{Static input allocation}
+\subsubsection{Static allocation}
 
-\todo{write tight reasons for static input allocation usage}
-
-To reverse the cascade arrangement, the grouping of the terms need to be revised. For the reverse cascade scheme, $\vec{u}$ is modified according to equation \ref{eq:newdesatDynReorder}. The magnetorquer torque is no longer handled as a disturbance, instead it is explicitly a term in the control input.
+Equation \ref{eq:dyn02} suggests that the desaturation loop can have an effect on the on the attitude control loop, as mentioned above. That is undesired, since the attitude control loop is of higher importance than desaturation. To reverse the cascade arrangement corresponding to control law \ref{eq:newMTcontrol}, the grouping of the terms need to be revised first. For the reverse cascade scheme, the control input $\vec{u}$ is modified to include the magnetorquer torque, according to equation \ref{eq:newdesatDynReorder}. The magnetorquer torque is no longer handled as a disturbance, instead it is explicitly a term in the control input. If  $\vec{u}$ actuation tracking  $\vec{u}$ demand well, the main attitude dynamics becomes independent of the magnetorquer torque output.
 
 \begin{equation}
 \underline I_{s} \vec{\dot{\omega}} + \underline{\omega}^\times\underline I_{s} \vec{\omega} =    \overbrace{-\underline{\omega}^\times\vec{h_{rw}} + \vec{N_{rw}} +  \vec{N_{mt}}}^{\vec{u}}
 \label{eq:newdesatDynReorder}
 \end{equation}
 
-With the new grouping, the reaction wheel torque reference can be expressed as shown in equation \ref{eq:newstateComp}.
+
+With the new grouping, the reaction wheel torque reference can be expressed according to equation \ref{eq:newstateComp}. The equation suggests that if the in some cases the magnetorquers can 'help out' the reaction wheels, decreasing reaction wheel torque demand, thus decreasing reaction wheel acceleration. 
 
 \begin{equation}
-\vec{N_{rw}} =  \vec{u} - \vec{N_{mt}} +  \underline{\omega}^\times\vec{h_{rw}} = 
-\vec{u} - \left( \underline{R}(\vec{ q})  \vec{B^{[I]}}(t)\right)^\times \vec{m_{mt}}  +  \underline{\omega}^\times\vec{h_{rw}} 
+\vec{N_{rw}} =  \vec{u} - \vec{N_{mt}} +  \underline{\omega}^\times\vec{h_{rw}} 
 \label{eq:newstateComp}
 \end{equation}
 
-The new momentum dumping dynamics is presented by equation \ref{eq:newmomDumpDyn}.
+%\begin{equation}
+%\vec{N_{rw}} =  \vec{u} - \vec{N_{mt}} +  \underline{\omega}^\times\vec{h_{rw}} = 
+%\vec{u} - \left( \underline{R}(\vec{ q})  \vec{B^{[I]}}(t)\right)^\times \vec{m_{mt}}  +  \underline{\omega}^\times\vec{h_{rw}} 
+%\label{eq:newstateComp}
+%\end{equation}
+
+
+The momentum dumping dynamics becomes what is presented in SRBF by equation \ref{eq:newmomDumpDyn}, in ECI frame by equation \ref{eq:newmomDumpDyn2}. Transformation to inertial frame eliminates the gyroscopic term from the equation. Equation \ref{eq:newmomDumpDyn2} suggests that the desaturation dynamics is affected by the main attitude control input.
 
 \begin{equation}
 \label{eq:newmomDumpDyn}
-\frac{d}{dt}(\vec{h_{rw}} - \vec{h_{ref}}) = -\vec{u} - \underline{\omega}^\times\vec{h_{rw}} - \left( \underline{R}(\vec{ q})  \vec{B^{[I]}}(t)\right)^\times \vec{m_{mt}}
+\frac{d}{dt}(\vec{h_{rw}} - \vec{h_{ref}}) = -\vec{u} - \underline{\omega}^\times\vec{h_{rw}} - \left( \underline{R}(^s_i\vec{ q})  \vec{B^{[I]}}(t)\right)^\times \vec{m_{mt}}
 \end{equation}
-
-Equation \ref{eq:newmomDumpDynECI} describes the dynamics shown in equation \ref{eq:newmomDumpDyn} in ECI frame, the gyroscopic term disappears. It is apparent that the desaturation controller is affected by the attitude controller's $\vec{u}$ input, while the attitude controller is unaffected by the momentum dumping loop.
 
 \begin{equation}
-\label{eq:newmomDumpDynECI}
-\vec{\dot{h}_{rw}} = -\underline{R}^T(\vec{ q})\vec{u} -  \underline{B}^{[I]}(t)^\times \vec{m_{mt}^{[I]}}
+\label{eq:newmomDumpDyn2}
+\vec{\dot{h}_{rw}^{[I]}} = -\underline{R}^T(^s_i\vec{ q})\vec{u}  - \vec{B^{[I]}}(t)^\times \vec{m_{mt}^{[I]}}
 \end{equation}
+
+
+%Equation \ref{eq:newmomDumpDynECI} describes the dynamics shown in equation \ref{eq:newmomDumpDyn} in ECI frame, the gyroscopic term disappears. It is apparent that the desaturation controller is affected by the attitude controller's $\vec{u}$ input, while the attitude controller is unaffected by the momentum dumping loop.
+%
+%\begin{equation}
+%\label{eq:newmomDumpDynECI}
+%\vec{\dot{h}_{rw}} = -\underline{R}^T(\vec{ q})\vec{u} -  \underline{B}^{[I]}(t)^\times \vec{m_{mt}^{[I]}}
+%\end{equation}
 
 The new magnetorquer control law that doesn't utilize $\vec{h_T}$ is described in ECI frame by equation \ref{eq:finalMTlawECI} and in SBRF by equation \ref{eq:finalMTlawBFF}.
 
@@ -211,26 +222,23 @@ The new magnetorquer control law that doesn't utilize $\vec{h_T}$ is described i
 \label{eq:finalMTlawBFF}
 \end{equation}
 
-The latter desaturation control structure can be viewed as if the amount of magnetorquer torque exerted is subtracted from the reaction wheel torque demand. When the torque demand is higher than the magnetorquer output torque, the magnetorquers help the reaction wheels, when it drops below a certain level, the magnetorquers are decreasing the angular momenta of the reaction wheels.
+%The latter desaturation control structure can be viewed as if the amount of magnetorquer torque exerted is subtracted from the reaction wheel torque demand. When the torque demand is higher than the magnetorquer output torque, the magnetorquers help the reaction wheels, when it drops below a certain level, the magnetorquers are decreasing the angular momenta of the reaction wheels.
 
-\todo{distuingish between the 3 control schemes and add figures}
-
-\begin{equation}
-\label{eq:totalMomDyn}
-\vec{\dot{h}_T^{[I]}} = -\underline{B}^{[I]\times}(t) \vec{m_{mt}^{[I]}} 
-\end{equation}		
-
-\begin{equation}
-\underline I_{s} \vec{\dot{\omega}} + \underline{\omega}^\times\underline I_{s} \vec{\omega} =    
-\vec{u} +  \underline{R}^T(^i_s\vec{q})\vec{\dot{h}_T^{[I]}}
-\label{eq:newDesatDynInterpret}
-\end{equation}
+%\begin{equation}
+%\label{eq:totalMomDyn}
+%\vec{\dot{h}_T^{[I]}} = -\underline{B}^{[I]\times}(t) \vec{m_{mt}^{[I]}} 
+%\end{equation}		
+%
+%\begin{equation}
+%\underline I_{s} \vec{\dot{\omega}} + \underline{\omega}^\times\underline I_{s} \vec{\omega} =    
+%\vec{u} +  \underline{R}^T(^i_s\vec{q})\vec{\dot{h}_T^{[I]}}
+%\label{eq:newDesatDynInterpret}
+%\end{equation}
 		
 %		where $\underline{R}(q)^T$ is the rotation matrix corresponding to rotation quaternion $^i_s\vec{ q}$ which transforms from body frame to inertial frame.
 		
 
 		
-		\todo{checki if it is clear without further equations}
 		
 %		According to equation \todo{ref eq in modelling}
 		
