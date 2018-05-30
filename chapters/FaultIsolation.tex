@@ -1,4 +1,5 @@
 \chapter{Fault handling and reconfiguration}
+ \label{chap:faltHandling}
 \subsection{Reaction Wheel Reconfiguration}
 \todo{move reconfig part to fault isolation}
 Fault isolation for the redundant reaction wheel configuration can be done by detecting which is the reaction wheel where the fault occurred and shutting it off and redistributing the torques to the rest of the reaction wheels. This reconfiguration can be represented by swapping the corresponding faulty columns to zero vectors. For example, if a fault occurs in the 3rd reaction wheel, the transformation matrix becomes $\underline{A}_{M,f3}$, as presented in equation \ref{eq:ReactFault}.
