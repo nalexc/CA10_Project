@@ -1,6 +1,6 @@
 \subsection*{ Angular velocity control}
 
-In the previous chapters has been discussed how the control demand is calculated through different nature controllers. This torque demand is used to give the desired angular velocity reference for the wheels and thus the torque that will be fed back to the satellite. The output torque from the linear and non-linear controllers has three elements which has to be transformed in the tetrahedron configuration using the matrix \eqref{eq:transmatrix}.  A \textit{PI} controller has been designed to control the angular velocity of the motor as seen in the \figref{fig:blockdi}:
+In the previous chapters has been discussed how the control demand is calculated through different nature controllers. This torque demand is used to give the desired angular velocity reference for the wheels and thus the torque that will be fed back to the satellite. The output torque from the linear and non-linear(SMC) controllers has three elements which has to be transformed in the tetrahedron configuration using the matrix \eqref{eq:transmatrix}.  A \textit{PI} controller has been designed to control the angular velocity of the motor as seen in the \figref{fig:blockdi}:
 %\begin{figure}[H]
 %	\centering
 %	\includegraphics[width=1.0\linewidth]{figures/block_diagram_2}
@@ -8,7 +8,7 @@ In the previous chapters has been discussed how the control demand is calculated
 %	\label{fig:blockdi222}
 %\end{figure}  
 %
-The PI controller gains are chosen by trial and error in order to achieve faster closed loop response, settling time less than 1 $s$, zero steady state error and asymptotically stable system. The gains are chosen to be:   
+The PI controller gains are chosen by trial and error in order to achieve faster closed loop response, zero steady state error and asymptotically stable system. The gains are chosen to be:   
 %
 \begin{flalign*}
 	k_{p} = 0.006 \\

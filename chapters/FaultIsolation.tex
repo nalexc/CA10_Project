@@ -1,5 +1,5 @@
 \chapter{Fault handling and reconfiguration}
-\label{chap:faultHandling}
+ \label{chap:faltHandling}
 \subsection{Reaction Wheel Reconfiguration}
 \label{sec:rwReconfig}
 Fault handling in the redundant reaction wheel configuration can be done by isolating which is the reaction wheel where the fault occurred and shutting it off and redistributing the torques to the rest of the reaction wheels. Fault signals emitted by the fault detection modules are handled by the reconfiguration logic. Section \ref{ref:reactConfig} describes the distribution of reaction wheel torque demand between the reaction wheels. When the reconfiguration system receives a fault signal, it redistributes the $\vec{N_{rw}^d}$ torque demand by modifying $\underline{A}_M$ matrix in equation \ref{eq:transmatrix}. The torque demand for the faulty wheel becomes zero, while the sum of reaction wheel torques are controlled to follow $\vec{N_{rw}^d}$.
