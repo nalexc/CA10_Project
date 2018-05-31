@@ -30,6 +30,8 @@ When developing complex systems, using a modular design, setting up a hierarchy 
 \input{chapters/desaturation.tex}
 \input{chapters/globalAttitudeControl.tex}
 
+
+
 In the following sections \ref{sec:LC} and \ref{sec:SM}  will be discussed shortly two attitude controller designs that are based on previous work \cite{PrevPro}. The two controllers calculate a torque demand that has to be produced from the motors. The first controller is based on the linearized model \eqref{eq:lele}, and thus is characterized as linear state feedback control, while the second one is based on the non-linear dynamics \eqref{eq:seom} creating a sliding manifold, a hyperplane, such that when the states are on the manifold, will converge to the desired reference. The non-linear controller is called Sliding Mode Control (SMC).\nomenclature[A]{\textbf{SMC}}{Sliding Mode Control}
 
 \section{Linear attitude controller} \label{sec:LC}
@@ -142,15 +144,6 @@ which give stability for the all values of $ \vec{ {\bar{\omega}}} $. In the fig
 	\label{fig:linear demand}
 \end{figure}
 \section{Sliding mode control} \label{sec:SM}
-The attitude dynamics are given once again by equation \ref{eq:sysDynMain}. 
-
-\begin{equation}
-\underline{I}_{s}\vec{\dot{\omega}} + \underline{\omega}^\times\underline{I}_{s}\vec{\omega} = -\vec{\dot{h}}_{rw} -  \underline{\omega}^\times \vec{{h}}_{rw} + \vec{N_{mt}}  + \vec{N_{dist}} =  -  \underline{\omega}^\times \vec{{h}}_{rw} + \vec{N_{rw}} + \vec{N_{mt}}  + \vec{N_{dist}}
-\label{eq:sysDynMain} 
-\end{equation}
-
-The system's mechanical states affecting the attitude dynamics include satellite attitude, satellite angular velocity and reaction wheel angular velocity. High reaction wheel angular momenta can make the satellite react differently to the same control torques compared to when the reaction wheels are not rotating (e.g. smaller angular acceleration). Desaturation is reducing this unwanted effect, but it works quite slowly, requiring several orbits to reduce wheel angular velocity to an acceptable level. To counteract the unwanted gyroscopic term $\underline{\omega}^\times \vec{{h}}_{rw}$, the torque demand should include a compensation term for it.
-
 As described previously the sliding mode control scheme belongs to the class of non-linear control designs and is more robust compared to the linear, when disturbances are present. The objective of the SMC is the design, from a geometrical point of view, of a manifold in the state space which whenever the states are on the manifold, the behavior of the system will meet the specifications it is designed for, i.e convergence to the desired reference.  
 
 \begin{figure}[H]
