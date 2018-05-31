@@ -47,3 +47,46 @@ Equation \ref{eq:motorTransReconfig2} presents the reconfigured torque distribut
 \input{chapters/angVelFaultReconfig}
 
 \input{chapters/rwStructFaultReconfig}
+
+\subsection{Magnetorquer Reconfiguration}
+\label{sec:MTReconfig}
+
+\subsubsection{Reconfiguration with compensation in case of Luenberger-like Observer residual fault detection}
+
+Similarly to the reaction wheel reconfiguration \secref{sec:rwReconfig}, fault handling in the redundant magnetorquer scheme can be done by isolating the faulty magnetic component, shutting it off and at the same time turn on the redundant magnetorquer at the same axis. As it has been discussed in \secref{sec:simpleObserver} the Luenberger-like Observer is not robust in the sense of isolating which component is faulty. Therefore, a combination with the structural analysis method \secref{sec: MTStructAnal} is made in order to isolate the faulty component. Each method give a flag, commonly a binary input, such that when a fault is present each method indicate 1 and when a fault is absent indicate 0. The binary flags from both methods are inputs to a block which emulates the logic operator $AND$, so if the flags from both methods give binary indicator 1, the magnetorquers are switched. In the \figref{fig:magneticconfig} it can be seen how the magnetorquer on the x axis shutting off in the presence of a fault in the power supply at time 150 and its corresponding pair how rapidly turns on. Moreover, comparing the rest figures, it can be seen that only the faulty magnetic component will swap with its pair. 
+%
+%
+\begin{figure}[ht]  
+	\begin{minipage}{0.5\textwidth}
+		\includegraphics[width=\textwidth]{figures/config1.eps}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.5\textwidth}
+		\includegraphics[width=\textwidth]{figures/config11.eps}
+	\end{minipage}
+\end{figure}
+\begin{figure}[ht]  
+	\begin{minipage}{0.5\textwidth}
+		\includegraphics[width=\textwidth]{figures/config2.eps}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.5\textwidth}
+		\includegraphics[width=\textwidth]{figures/config22.eps}
+	\end{minipage}
+\end{figure}    
+\begin{figure}[ht]  
+	\begin{minipage}{0.5\textwidth}
+		\includegraphics[width=\textwidth]{figures/config3.eps}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.5\textwidth}
+		\includegraphics[width=\textwidth]{figures/config33.eps}
+	\end{minipage}
+	\caption{To the left are depicted the magnetorquers of each axis $x,y,z$ respectively and to the right their pairs}
+	\label{fig:magneticconfig}
+\end{figure}  
+%
+Even the combination between the two methods gives a desired result in the sense of isolation, the structural analysis method cant detect all kind of faults compared to the Luenberger-like Observer which can detect the majority of faulty situations. In this case the $AND$ operation can be changed with $OR$ operation and in the presence of a fault which structural analysis is not able to detect, all the magnetorquers will swapped with their pairs.  
+
+
+

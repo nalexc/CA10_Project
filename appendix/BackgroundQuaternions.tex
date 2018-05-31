@@ -17,11 +17,19 @@ q_4
 = 
 \left[ 
 \begin{array}{cccc}
+\vec{q}_{1:3} \\
+\eta
+\end{array}
+\right]
+=
+\left[ 
+\begin{array}{cccc}
 \textbf{$\epsilon$} \\
 \eta
 \end{array}
 \right] 
 \end{equation}
+
 A rotation with $\Phi$ around the unit vector can be described according to Euler's formula.
 \begin{equation}
 \vec q = e^{\frac{\Phi}{2} (e_1 \textbf{i}+ e_2 \textbf{j} + e_3 \textbf{k} + e_4)} = \cos \frac{\Phi}{2} + (e_1 \textbf{i}+ e_2 \textbf{j} + e_3 \textbf{k} +e_4) \sin \frac{\Phi}{2}
@@ -47,6 +55,10 @@ e_3  \sin \frac{\Phi}{2} \\
 \cos \frac{\Phi}{2} 
 \end{array}
 \right] 
+\end{equation}
+Rotation matrix corresponding to a quaternion
+\begin{equation}
+\underline{R}(\vec{^s_i q(t)}) = \underline{\vec 1} + 2 \eta \underline{S} ^\times (\epsilon) + 2 \underline{S^2} ^\times (\epsilon) 
 \end{equation}
 
 \subsection{Quaternion multiplication}
