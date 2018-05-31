@@ -69,7 +69,7 @@ $\mathcal {\vec{{F}_{MT}}}$ = [ \ $\mathcal{F}_{MT1}$ \ $\mathcal{F}_{MT2}$ \ $\
 \subsubsection{Reaction wheels}
 \begin{table}[H]
 	\centering
-	\label{my-label}
+	\label{table:kysymys}
 	\begin{tabular}{|l|l|l|}
 		\hline
 		\multicolumn{3}{|c|}{\textit{\textbf{Reaction wheels}}}                                          \\ \hline
@@ -78,7 +78,8 @@ $\mathcal {\vec{{F}_{MT}}}$ = [ \ $\mathcal{F}_{MT1}$ \ $\mathcal{F}_{MT2}$ \ $\
 		$RW1$                & Faulty orientation & \begin{tabular}[c]{@{}l@{}} Shifting of the flywheel  \\   \end{tabular} \\ \hline
 		$RW2$                & Unable to control the rotation   & A short-circuit in the power supply  \\ \hline
 		$RW3$                & Low power received& \begin{tabular}[c]{@{}l@{}} Short circuit to the ground\\  \end{tabular} \\ \hline
-		$RW4$                & No torque received  &  A fault in windings    \\ \hline
+		$RW4$                & No torque exerted  &  A fault in windings    \\ \hline
+		$RW5$                & More power requirement  &  A fault in bearings    \\ \hline
 	\end{tabular}
 	\caption{Potential faults in the reaction wheels}
 \end{table}
@@ -94,11 +95,14 @@ $\mathcal{F}_{RW3}$:
 A short circuit to the ground due to a broken wire or bad soldering will result in low power generation, that could influence the rotation of the flywheel.
 
 $\mathcal{F}_{RW4}$:  
-Due to a fault in the windings, the flywheel will not be able to rotate, therefore, no torque will be received.
+Due to a fault in the windings, the flywheel is uncontrollable since the motor can not exerts torque.
+
+$\mathcal{F}_{RW5}$:  
+If the motor bearings fail, then the motor will need to generate more torque than usual in order to compensate, therefore more power is required.
 
 The fault vector for the reaction wheels is constructed as follows:
 
-$\mathcal {\vec{{F}_{RW}}}$ = [ \ $\mathcal{F}_{RW1}$ \ $\mathcal{F}_{RW2}$ \ $\mathcal{F}_{RW3}$ \ $\mathcal{F}_{RW4}$ ]$^ \mathsf{T}$
+$\mathcal {\vec{{F}_{RW}}}$ = [ \ $\mathcal{F}_{RW1}$ \ $\mathcal{F}_{RW2}$ \ $\mathcal{F}_{RW3}$ \ $\mathcal{F}_{RW4}$ \ $\mathcal{F}_{RW5}$]$^ \mathsf{T}$
 \subsubsection{Severity and occurrence evaluation}
 The next step into Fault Analysis is the Fault Assessment that involves a Severity Occurrence analysis for investigating the faults that have the biggest rate of occurrence. The severity of the effects of failures and the probability of occurrence is determined based on the faults from FMEA. This procedure describes how each fault receives a severity index \nomenclature[A]{\textbf{SI}}{Severity Index} (SI) and an occurrence index \nomenclature[A]{\textbf{OI}}{Occurrence Index} (OI). A table containing the severity and occurrence for magnetorquers is shown 
 \begin{table}[H]
@@ -139,6 +143,7 @@ The severity index is computed using the following formula:
 
 %Severity (1 = not severe, 10 = very severe) 
 %Occurrence (1 = not likely, 10 = very likely)
+\todo{ref the table}
 
 %\subsubsection{Fault propagation analysis}
 %In order to observe how faults are propagated through the system and the effect of these faults, a FMEA scheme is constructed. Further computation will be on the appendix.
