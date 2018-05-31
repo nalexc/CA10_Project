@@ -1,6 +1,6 @@
 \subsection{Luenberger Observer} \label{sec:simpleObserver}
 
-Parallel to structural analysis methods also two observer based methods have been designed for fault detection in magnetorquer based actuators. Here will be discussed a Luenberger-like form which is based directly on the non-linear dynamics. In previous chapter has been discussed that for each axis it is assumed a pair of magnetorquers. The redundant magnetic actuators are used for reconfiguration in the presence of a fault or failure.\\    The Luenberger-like observer is based on the dynamic  \eqref{eq:seom} and for the sake of brevity is rewritten here as   
+Parallel to structural analysis methods also two observer based methods have been designed for fault detection in magnetorquer based actuators. Here will be discussed a Luenberger-like form which is based directly on the non-linear dynamics. In previous chapter has been discussed that for each axis it is assumed a pair of magnetorquers. The redundant magnetic actuators are used for reconfiguration in the presence of a fault or failure. The Luenberger-like observer is based on the dynamic  \eqref{eq:seom} and for the sake of brevity is rewritten here as   
 %
 \begin{flalign}
 \vec{\dot \omega}	
@@ -9,19 +9,19 @@ Parallel to structural analysis methods also two observer based methods have bee
 \label{eq:seom22}
 \end{flalign}
 %
-where the time dependency of the variables has been suppressed for clarity. Rearranging the above equation and by adding the fault vector $\vec{f_{act}}$ it can obtained 
+where the time dependency of the variables has been suppressed for clarity. Rearranging the above equation and by adding the fault vector $\vec{F_{MT}}$ it can obtained 
 %
 \begin{flalign}
 \vec{\dot \omega}	
 = 
-\underbrace{-\underline{I}_{s}^{-1}  [(\underline{I}_{s}\vec{\omega})^\times- (\vec{h_{rw}})^\times]}_{\underline{A}}\vec{\omega}+\underbrace{\underline{I}_{s}^{-1}}_{\underline{B}} \underbrace{[\vec{N_{rw}} + \vec{N_{mt}}]}_{\vec{u}}+\underline{I}_{s}^{-1}\vec{N_{dist}}+\vec{f_{act}}
+\underbrace{-\underline{I}_{s}^{-1}  [(\underline{I}_{s}\vec{\omega})^\times- (\vec{h_{rw}})^\times]}_{\underline{A}}\vec{\omega}+\underbrace{\underline{I}_{s}^{-1}}_{\underline{B}} \underbrace{[\vec{N_{rw}} + \vec{N_{mt}}]}_{\vec{u}}+\underline{I}_{s}^{-1}\vec{N_{dist}}+\vec{F_{MT}}
 \label{eq:seom2244}
 \end{flalign}
 %  
 where $\underline{A}=-\underline{I}_{s}^{-1}  [(\underline{I}_{s}\vec{\omega})^\times- (\vec{h_{rw}})^\times] $ is the system matrix, $ \underline{B}= \underline{I}_{s}^{-1}$ is the input matrix, $\vec{u} =\vec{N_{rw}} + \vec{N_{mt}} $ is the input vector and $\vec{N_{dist}}= \vec{d}$ is the disturbance vector. The system can now be written in Luenberger-like form as
 %
 \begin{flalign}
-\vec{\hat{{\dot \omega}}} = \underline{A}{\hat{{\vec{\omega}}}}+\underline{B}\vec{u}+\underline{B}\vec{d}+\underline{L}\underline{C}({\vec{\omega}}-{\hat{{\vec{\omega}}}})
+\vec{\dot{{\hat \omega}}} = \underline{A}{\hat{{\vec{\omega}}}}+\underline{B}\vec{u}+\underline{B}\vec{d}+\underline{L}\underline{C}({\vec{\omega}}-{\hat{{\vec{\omega}}}})
 \label{eq:seom255554}
 \end{flalign}
 % 
@@ -41,10 +41,10 @@ with $\underline{C}$ be identity matrix. The matrix $\underline{A}$ is found by 
 \label{eq:orthoMatrix22}
 \end{equation}
 %
-\subsubsection{residual generation}
+\subsubsection{Residual generation}
  \label{sec:simpleObserveresidual}
  %
- Assuming that the motors are fault free and that one fault may occur at a time a residual can be generated from the Luenberger-like observer. By denoting $\vec{\tau_{real}} =I\vec{\hat{{\dot \omega}}}$ where $I$ is the inertia of the satellite then a residual can be generated as
+ Assuming that the motors are fault free and that one fault may occur at a time a residual can be generated from the Luenberger-like observer. By denoting $\vec{\tau_{real}} =I\vec{\dot{{\hat \omega}}}$ where $I$ is the inertia of the satellite then a residual can be generated as
  %
  \begin{equation}
  \vec{r_{o}} = \vec{u} - \vec{\tau_{real}}
