@@ -1,23 +1,28 @@
-\section{Hybrid Attitude Controller}
+\section{Main Attitude Controller}
+\label{sec:mainCont}
+
+\textit{Previously the main attitude controller was treated as a black box. The current and subsequent sections discuss several satellite attitude controllers.}
+
+\subsection{Hybrid Attitude Controller}
 
 Dynamic discontinuous hybrid controller, global asymptotic stability, local exponential stability, state feedback for $\omega$ and $q$. Capable of detumbling. \cite{globalAttController}
 
-One way of describing rotation in 3D Eucledian space is by using Euler sequences consisting of 3 rotational values. Euler rotation sequences can use combinations of roll, pitch and yaw. There's an inherent problem with Euler rotation, that makes controlling them an issue, i.e. they are disposed to singularities. Certain orientations might described by an infinite amount of different sequences. This situation can arise when the rotations are made in such a way that rotation axes align with each other. This issue is called the gimbal lock. The result is that given a attitude demand, the corresponding Euler rotations can not be unambiguously deducted, unless extra constraints are used.
+There are different ways to describe the rotation of a 3D object. One of them is by using Euler sequences consisting of 3 rotational values. Euler rotation sequences can use combinations of roll, pitch and yaw. There's an inherent problem with Euler rotation, that makes controlling Euler rotation based models an issue, i.e. they are susceptible to singularities. Certain orientations might have an infinite amount of corresponding Euler angles. This can arise when the rotations are made in such a way that some rotation axes align with each other. This issue is commonly known as the gimbal lock. The result of a gimbal lock is that given an attitude, the  cannot be unambiguously deducted, unless extra constraints are introduced.
 
-Quaternion based rotation representation significantly improves control capabilities. Quaternions are not susceptible to singularities. The only problem with quaternion representation is the so-called double coverage, i.e. rotation by $-\vec{q}$ represents the same rotation as rotation by $-\vec{q}$. This becomes obvious from the rotation equation \ref{eq:doubleCover}.
+Quaternion based rotation representation are more appropriate for control. Quaternions are not susceptible to singularities. The only problem with quaternion representation is the so-called double coverage, i.e. rotation by $-\vec{q}$ represents the same rotation as rotation by $-\vec{q}$. This becomes obvious from the rotation equation \ref{eq:doubleCover}.
 
 \begin{equation}
 \label{eq:doubleCover}
 \vec{q} \vec{v} \vec{q}^{-1} = 	(\vec{-q}) \vec{v} (\vec{-q}^{-1})
 \end{equation} 
 
-The attitude control goal can be described as keeping the orientation demand $\vec{q}$. According to  \cite{globalAttController}, it is impossible to design a globally stabilizing quaternion based state feedback that is robust to measurement noise. The quaternion-based robust hysteric feedback controller which is capable of globally asymptotically stabilizing a rigid body is described subsequently. It can be considered as a more robust extension of classical state feedback controller.
+The attitude control goal can be described as tracking the orientation demand $\vec{q}$. According to \cite{globalAttController}, it is impossible to design a globally stabilizing quaternion based state feedback that is robust to measurement noise. The quaternion-based robust hysteretic feedback controller which is capable of globally asymptotically stabilizing a rigid body is described subsequently, according to \cite{globalAttController}. It can be considered as a more robust extension of classical state feedback controller.
 
 
-The dynamics of a rigid body is described in equation \ref{eq:dynSimple}. For clarity of the control method, disturbance torques are emitted from the equation. For more details, refer to Appendix ... .
+The dynamics of a rigid body is described in equation \ref{eq:dynSimple1}. For clarity of the control method, disturbance torques are emitted from the equation. Since the control system compensates for the gyroscopic term, it is omitted as well from the discussion .
 
 \begin{equation}
-\label{eq:dynSimple}
+\label{eq:dynSimple1}
 \underline{I}_s \vec{\dot{\omega}} = \underline{\omega}^\times \underline{I}_s \vec{\omega} + \vec{N_{ctrl}}
 \end{equation}
 
@@ -25,14 +30,14 @@ The control goal can be clearly described with rotation matrices. Rotation matri
 
 \begin{equation}
 \label{eq:rotationError}
-\underline{R}_e = \underline{R}(\vec{q_d})^T \underline{R}(\vec{q})
+\underline{R}(\vec{q^e}) = \underline{R}(\vec{q^d})^T \underline{R}(\vec{q})
 \end{equation}
 
-The goal is to align the $\underline{R}(\vec{q})$ with $\underline{R}(\vec{q_d})$. If that demand is satisfied, $\underline{R}_e$ becomes $\underline{I}$ identity matrix. In quaternion representation, this goal corresponds to having having a unit quaternion with the scalar element being $\pm 1$, according to equation \ref{eq:stabilityQuat}. 
+The goal is to align $\underline{R}(\vec{q})$ with $\underline{R}(\vec{q^d})$ orientation demand. If that demand is satisfied, $\underline{{R}}(\vec{q^e})$ orientation error becomes $\underline{I}$ identity matrix. In quaternion representation, this goal corresponds to having having a unit quaternion with the scalar element being $\pm 1$, according to equation \ref{eq:stabilityQuat}. 
 
 \begin{equation}
 \label{eq:stabilityQuat}
-\underline{R}_e = \underline{I} \xrightarrow{equivalent} \vec{q_e}  = \pm	\begin{bmatrix}
+\underline{R}(\vec{q^e}) = \underline{R}(\vec{q^e}) = \underline{1} \xrightarrow{equivalent} \vec{q^e}  = \pm	\begin{bmatrix}
 0 \\
 0 \\
 0 \\
@@ -40,9 +45,9 @@ The goal is to align the $\underline{R}(\vec{q})$ with $\underline{R}(\vec{q_d})
 \end{bmatrix} 	
 \end{equation}
 
-Because of the double coverage property of quaternions, stabilizing an attitude, stabilization has to be done on a two equilibrium points corresponding to $\vec{q_e}$ in equation \ref{eq:stabilityQuat}. According to \cite{globalAttController}, robust and global stabilization on this set is impossible to achieve using non-hybrid discontinuous state feedback in the presence of sensor noise. The paper proposes a hybrid, discontinuous, robust, gloablly asymptotically stabilizing attitude control method instead. A hybrid system is a system in which state changes can vary between being continuous or discrete.
+Because of the double coverage property of quaternions, stabilizing an attitude, stabilization has to be done on a two equilibrium points corresponding to $\vec{q^e}$ in equation \ref{eq:stabilityQuat}. If a feedback controller is used in the form of $\vec{N_{ctrl}} = f(\vec{q^e})$, $\vec{q^e}$ and $-\vec{q^e}$ might result in different torque demand, even though they both represent the same rotation. The hybrid controller addresses this issue. According to \cite{globalAttController}, robust and global stabilization on this set is impossible to achieve using non-hybrid discontinuous state feedback in the presence of sensor noise. The paper proposes a hybrid, discontinuous, hysteretic, robust, gloablly asymptotically stabilizing attitude control method instead. A system is considered a hybrid system in the subsequent discussion if the state changes can vary between being continuous or discrete.
 
-The state changes are controlled by the following rules. Controller state storing information about which of the double covering quaternions should be tracked is introduced as $x_c \epsilon  \left\lbrace -1,1 \right\rbrace $. The rule for choosing between discrete or continuous control mode is presented in equation \ref{eq:contDiscont}.
+The state changes are controlled by the following rules. Controller state storing information about which of the double covering quaternions should be tracked is introduced as $x_c \in  \left\lbrace -1,1 \right\rbrace $. $x_c$ decides which of the two double covering quaternions should be tracked. If $x_c = signum(q_4)$ rule is followed, the controller becomes sensitive to measurement noise. To avoid that, a hysteresis introduced, with an adjustable $\delta  \in (0,1)$ hysteresis threshold parameter. The rule for choosing between discrete or continuous control mode is presented in equation \ref{eq:contDiscont}.
 
 \begin{align}
 \label{eq:contDiscont}
@@ -50,7 +55,7 @@ C:= \left\lbrace (\vec{q},\vec{\omega},x_c) \in \mathbb{S}^3 \times \mathbb{R}^3
 \nonumber D:= \left\lbrace (\vec{q},\vec{\omega},x_c) \in \mathbb{S}^3 \times \mathbb{R}^3 \times \left\lbrace -1,1 \right\rbrace : x_cq_4 \leq -\delta \right\rbrace 
 \end{align}
 
-where $\delta \in (0,1)$ is the threshold parameter. If $(\vec{q},\vec{\omega},x_c) \in C$, i.e. the controller is running in continuous mode, the governing equations are according to equation \ref{eq:globalCont}. When $(\vec{q},\vec{\omega},x_c) \in D$, $x_c$ swaps sign instantaneously. Because of the $\delta$ thresholding, two swaps don't happen in infinitesimally small time.  
+If $(\vec{q},\vec{\omega},x_c) \in C$, i.e. the controller is running in continuous mode, the governing equations are according to equation \ref{eq:globalCont}. When $(\vec{q},\vec{\omega},x_c) \in D$, $x_c$ controller state swaps sign instantaneously. Because of the $\delta$ thresholding, two swaps don't happen in infinitesimally small time.  
 
 \begin{align}
 	\label{eq:globalCont}
@@ -63,9 +68,8 @@ Equation \ref{eq:globalControlInput} describes the generated negative feedback c
 
 \begin{equation}
 \label{eq:globalControlInput}
-\vec{u} = -K_q x_c \vec{q}_{e, 1:3} -K_\omega \vec{\omega_e}
+\vec{u} = -K_q x_c \vec{q^e}_{1:3} -K_\omega \vec{\omega^e}
 \end{equation}
-\todo{how does it handle nonzero omega demand?}
 
 %\begin{align}
 %	\label{eq:contDiscont}
@@ -74,6 +78,7 @@ Equation \ref{eq:globalControlInput} describes the generated negative feedback c
 %\end{align}
 
 \todo{add to nomenclature}
+\todo{graphs}
 
 
 %\[
