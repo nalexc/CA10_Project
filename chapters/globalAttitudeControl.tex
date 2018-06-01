@@ -77,7 +77,6 @@ Equation \ref{eq:globalControlInput} describes the generated negative feedback c
 %	\nonumber x_c q_4 < -\delta \xrightarrow{}  Discontinuous
 %\end{align}
 
-\todo{add to nomenclature}
 \todo{graphs}
 
 
@@ -95,7 +94,7 @@ Equation \ref{eq:globalControlInput} describes the generated negative feedback c
 \subsubsection{Detumbling}
 
 After a satellite is ejected from its rocket, it might be rotating quite fast. The first task of the satellite attitude controller is detumbling the satellite, preparing for normal operation. The hybrid attitude controller is capable of doing that. This means that the hybrid attitude controller is a good nominee for being the attitude controller for every operation mode. A simulation was made where the satellite's initial angular velocity is unrealistically high, the goal being to stabilize the satellite to point at the nadir. The controller saturates at $\pm 2 \dot 10^{-3} Nm$, characteristic of the reaction wheels. At the current level of analysis, motor and magnetorquer models are omitted, it is assumed that the actuators satisfy the attitude controller's torque demand. Simulation results with actuator models are presented in subsequent chapters.
-\todo{Simulate desat with motor and mt model} 
+
 \todo{set Kq to zero for detumbling}
 
 \begin{figure}[H]
