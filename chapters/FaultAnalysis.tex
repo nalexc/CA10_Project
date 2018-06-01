@@ -103,47 +103,7 @@ If the motor bearings fail, then the motor will need to generate more torque tha
 The fault vector for the reaction wheels is constructed as follows:
 
 $\mathcal {\vec{{F}_{RW}}}$ = [ \ $\mathcal{F}_{RW1}$ \ $\mathcal{F}_{RW2}$ \ $\mathcal{F}_{RW3}$ \ $\mathcal{F}_{RW4}$ \ $\mathcal{F}_{RW5}$]$^ \mathsf{T}$
-\subsubsection{Severity and occurrence evaluation}
-The next step into Fault Analysis is the Fault Assessment that involves a Severity Occurrence analysis for investigating the faults that have the biggest rate of occurrence. The severity of the effects of failures and the probability of occurrence is determined based on the faults from FMEA. This procedure describes how each fault receives a severity index \nomenclature[A]{\textbf{SI}}{Severity Index} (SI) and an occurrence index \nomenclature[A]{\textbf{OI}}{Occurrence Index} (OI). A table containing the severity and occurrence for magnetorquers is shown 
-\begin{table}[H]
-	\centering
-	\label{11}
-	\begin{tabular}{|l|l|l|l|}
-		\hline
-		\multicolumn{4}{|c|}{\textit{Magnetorquer}}                                                                                         \\ \hline
-		Reference & Severity & Occurrence                                          & SO Index                                      \\ \hline
-		$MT1$     & 7        & \begin{tabular}[c]{@{}l@{}} 5\\  4\end{tabular} & \begin{tabular}[c]{@{}l@{}} 35\\ 28\end{tabular} \\ \hline
-		$MT2$       & 10       & 3       & 30                \\ \hline
-		$MT3$       & 3        & \begin{tabular}[c]{@{}l@{}}2\\ 1\end{tabular} & \begin{tabular}[c]{@{}l@{}}6\\ 3\end{tabular} \\ \hline
-		$MT4$       & 4        & 6                   & 24                  \\ \hline
-	\end{tabular}
-\caption{SO for magnetorquer}
-\end{table}
-The same procedure is done for reaction wheels as follows:
-\begin{table}[H]
-	\centering
-	\label{12}
-	\begin{tabular}{|l|l|l|l|}
-		\hline
-		\multicolumn{4}{|c|}{\textit{Reaction wheels}}                                                                                         \\ \hline
-		Reference & Severity & Occurrence                                          & SO Index                                      \\ \hline
-		$RW1$      & 7       & \begin{tabular}[c]{@{}l@{}}3\\ \end{tabular} & \begin{tabular}[c]{@{}l@{}}21\\ \end{tabular} \\ \hline
-		$RW2$        & 10        & 3             & 30                                        \\ \hline
-		$RW3$        & 6        & \begin{tabular}[c]{@{}l@{}}2\\\end{tabular} & \begin{tabular}[c]{@{}l@{}}12\\ \end{tabular} \\ \hline
-		$RW4$        & 5        & 3     & 15               \\ \hline
-	\end{tabular}
-	\caption{SO for reaction wheels}
-\end{table}
 
-The severity index is computed using the following formula:
-\begin{flalign}
-	SO_{index} = severity \cdot occurrence
-	\label{eq:ec1}
-\end{flalign} 
-
-%Severity (1 = not severe, 10 = very severe) 
-%Occurrence (1 = not likely, 10 = very likely)
-\todo{ref the table}
-
+In appendix \ref{chap:H} a severity and occurrence evaluation is performed.
 %\subsubsection{Fault propagation analysis}
 %In order to observe how faults are propagated through the system and the effect of these faults, a FMEA scheme is constructed. Further computation will be on the appendix.

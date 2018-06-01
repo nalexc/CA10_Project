@@ -1,18 +1,3 @@
-\subsection{Magnetorquers structural analysis} \label{sec: MTStructAnal}
-For magnetorquers fault detection, two types of structural analysis were implemented. First, a locally structure analysis for each magnetorquer was implemented, and second a second a structure analysis using the satellite dynamics.
-
-The residual for the magnetorquer is generated using the following equation:
-\begin{flalign}
-	residual = B - \frac{4 \mu_0}{\sqrt{2} \pi L} I
-	\label{eq:BfS}
-\end{flalign} 
-where \\
-$\vec B$ is the magnetic field \\
-$\mu_0$ is a constant called permeability of free space \\
-$I$ is the current \\
-$L$ is the length of the coil
-
-In equation \ref{eq:BfS} the magnetic field is measured and based on this measurement the magnetic moment can be deducted, but for the residual is not necessary, because if it is correct then the magnetic moment should be as expected using magnetic sensors for checking, unless the shape of the coil changes, perhaps due to some physical movement of the system.
 
 
 
