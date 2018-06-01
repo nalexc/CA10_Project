@@ -219,7 +219,7 @@ The momentum dumping dynamics becomes what is presented in SRBF by equation \ref
 %\vec{\dot{h}_{rw}} = -\underline{R}^T(\vec{ q})\vec{u} -  \underline{B}^{[I]}(t)^\times \vec{m_{mt}^{[I]}}
 %\end{equation}
 
-The new magnetorquer magnetic moment control law is established for dynamics presented by equation \ref{eq:newmomDumpDyn2}, ignoring $\vec{u}$. The control law is given by equation \ref{eq:finalMTlawECI}. The control system consisting of equations \ref{eq:finalMTlawECI} and \ref{eq:newstateComp} are illustrated by figure \ref{fig:CascadeDesat}. Since the main attitude control loop is unaffected by the desaturation control loop, the main attitude controller can be considered as the upper subsystem of the cascade.
+The new magnetorquer magnetic moment control law is established for dynamics presented by equation \ref{eq:newmomDumpDyn2}, ignoring $\vec{u}$. The control law is given by equation \ref{eq:finalMTlawECI}. The control system consisting of equations \ref{eq:finalMTlawECI} and \ref{eq:newstateComp} are illustrated by figure \ref{fig:CascadeDesat}. Since the main attitude control loop is unaffected by the desaturation control loop, the main attitude controller can be considered as the upper subsystem of the cascade. The control law suggests that the sum of magnetorquer magnetic moments $\vec{m_{mt}^{[I]}} $ has no component in the direction of $\vec{B^{[I]}}$, since that would be a waste of energy.
 
 \begin{equation}
 \vec{m_{mt}^{[I]}} 
@@ -227,9 +227,8 @@ The new magnetorquer magnetic moment control law is established for dynamics pre
 \label{eq:finalMTlawECI}
 \end{equation}
 
-\todo{make nice graphs, if neccessary, turn off main attitude controller after a while}
 
-Figures ... present desaturation over ... orbits
+Figures \ref{fig:desatspeed} and \ref{fig:desatNmt} present desaturation over several orbits. The attitude controller control goal is nadir pointing, in the very beginning the attitude and angular velocity of the satellite differs from nadir pointing. The error is handled by quick reaction wheel torque action, then the wheels are desaturated over several orbits. The graphs show a semi-periodic magnetorquer behavior, corresponding to the periodic nature of Earth's magnetic field. By adjusting $k_p$ control gain in the magnetorquer control law, the speed of desaturation can be adjusted as well.
 
 
 %\begin{equation}
@@ -322,21 +321,34 @@ Figures ... present desaturation over ... orbits
 
 		
 %\todo{apply to tetrahedron}
-\begin{figure}[h]
+%\begin{figure}[h]
+%	\centering
+%	\begin{tabular}{@{}c@{\hspace{.5cm}}c@{}}
+%		\includegraphics[page=1,width=1\textwidth]{noDesat3}
+%	\end{tabular}
+%	\caption{$\omega_rw$ Desaturation off, torque demand shut down at 1000 s}
+%	\label{fig:DesatOff}
+%\end{figure}
+%
+%\begin{figure}[h]
+%	\centering
+%	\begin{tabular}{@{}c@{\hspace{.5cm}}c@{}}
+%		\includegraphics[page=1,width=1\textwidth]{desat3}
+%	\end{tabular}
+%	\caption{$\omega_rw$ Desaturation on}
+%	\label{fig:DesatOn}
+%\end{figure}
+
+\begin{figure}[H]
 	\centering
-	\begin{tabular}{@{}c@{\hspace{.5cm}}c@{}}
-		\includegraphics[page=1,width=1\textwidth]{noDesat3}
-	\end{tabular}
-	\caption{$\omega_rw$ Desaturation off, torque demand shut down at 1000 s}
-	\label{fig:DesatOff}
+	\includegraphics[width=0.9\linewidth]{figures/desaturation2}
+	\caption{Angular velocity of reaction wheels in orthogonal configuration, during desaturation}
+	\label{fig:desatspeed}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
-	\begin{tabular}{@{}c@{\hspace{.5cm}}c@{}}
-		\includegraphics[page=1,width=1\textwidth]{desat3}
-	\end{tabular}
-	\caption{$\omega_rw$ Desaturation on}
-	\label{fig:DesatOn}
+	\includegraphics[width=0.9\linewidth]{figures/desat_Nmt}
+	\caption{Magnetorquer torque $\vec{N_{mt}}$ during desaturation}
+	\label{fig:desatNmt}
 \end{figure}
-

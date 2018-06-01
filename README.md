@@ -77,6 +77,8 @@ add **[H]** after \begin{figure}
 
 ```
 subplot(3,1,2)
+grid on
+legend('wheel 1','wheel 2','wheel 3')
 xlabel('time (s)')
 ylabel('Torque(Nm) - x axis')
 title('Hybrid controller detumbling torque demand')
