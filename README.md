@@ -82,6 +82,8 @@ legend('wheel 1','wheel 2','wheel 3')
 xlabel('time (s)')
 ylabel('Torque(Nm) - x axis')
 title('Hybrid controller detumbling torque demand')
+xlim([0 10])
+ylim([-0.4 0.8])
 print -depsc detumbling.eps
 
  plot(control.Data(:,1))

@@ -45,7 +45,7 @@ The goal is to align $\underline{R}(\vec{q})$ with $\underline{R}(\vec{q^d})$ or
 \end{bmatrix} 	
 \end{equation}
 
-Because of the double coverage property of quaternions, stabilizing an attitude, stabilization has to be done on a two equilibrium points corresponding to $\vec{q^e}$ in equation \ref{eq:stabilityQuat}. If a feedback controller is used in the form of $\vec{N_{ctrl}} = f(\vec{q^e})$, $\vec{q^e}$ and $-\vec{q^e}$ might result in different torque demand, even though they both represent the same rotation. The hybrid controller addresses this issue. According to \cite{globalAttController}, robust and global stabilization on this set is impossible to achieve using non-hybrid discontinuous state feedback in the presence of sensor noise. The paper proposes a hybrid, discontinuous, hysteretic, robust, gloablly asymptotically stabilizing attitude control method instead. A system is considered a hybrid system in the subsequent discussion if the state changes can vary between being continuous or discrete.
+Because of the double coverage property of quaternions, stabilizing an attitude, stabilization has to be done on a two equilibrium points corresponding to $\vec{q^e}$ in equation \ref{eq:stabilityQuat}. If a feedback controller is used in the form of $\vec{N_{ctrl}} = f(\vec{q^e})$, $\vec{q^e}$ and $-\vec{q^e}$ might result in different torque demand, even though they both represent the same rotation. Out of the double covering quaternions $[0 0 0 1]^T$ and $-[0 0 0 1]^T$, one might be a stable, the other an unstable equilibrium point. The hybrid controller addresses this issue. According to \cite{globalAttController}, robust and global stabilization on this set is impossible to achieve using non-hybrid discontinuous state feedback in the presence of sensor noise. The paper proposes a hybrid, discontinuous, hysteretic, robust, gloablly asymptotically stabilizing attitude control method instead. A system is considered a hybrid system in the subsequent discussion if the state changes can vary between being continuous or discrete.
 
 The state changes are controlled by the following rules. Controller state storing information about which of the double covering quaternions should be tracked is introduced as $x_c \in  \left\lbrace -1,1 \right\rbrace $. $x_c$ decides which of the two double covering quaternions should be tracked. If $x_c = signum(q_4)$ rule is followed, the controller becomes sensitive to measurement noise. To avoid that, a hysteresis introduced, with an adjustable $\delta  \in (0,1)$ hysteresis threshold parameter. The rule for choosing between discrete or continuous control mode is presented in equation \ref{eq:contDiscont}.
 
@@ -93,21 +93,33 @@ Equation \ref{eq:globalControlInput} describes the generated negative feedback c
 
 \subsubsection{Detumbling}
 
-After a satellite is ejected from its rocket, it might be rotating quite fast. The first task of the satellite attitude controller is detumbling the satellite, preparing for normal operation. The hybrid attitude controller is capable of doing that. This means that the hybrid attitude controller is a good nominee for being the attitude controller for every operation mode. A simulation was made where the satellite's initial angular velocity is unrealistically high, the goal being to stabilize the satellite to point at the nadir. The controller saturates at $\pm 2 \dot 10^{-3} Nm$, characteristic of the reaction wheels. At the current level of analysis, motor and magnetorquer models are omitted, it is assumed that the actuators satisfy the attitude controller's torque demand. Simulation results with actuator models are presented in subsequent chapters.
+After a satellite is ejected from its rocket, it might be rotating quite fast. The first task of the satellite attitude controller is detumbling the satellite, preparing for normal operation. The hybrid attitude controller is capable of doing that. This means that the hybrid attitude controller is a good nominee for being the attitude controller for every operation mode. A simulation was made where the satellite's initial angular velocity is unrealistically high, while the control goal is stabilizing the satellite to point at the nadir. Actuator saturation is omitted in order to present the dynamics of the control law more clearly. Figures \ref{fig:detumbling} and \ref{fig:detumblingomega} present the torque demand and the angular velocity during detumbling. At 20 seconds, the input quaternion is negated in order to present the controller handling the double coverage of the quaternion. Figure \ref{fig:detumblingVar} presents $x_c$ during the detumbling maneuver.
 
-\todo{set Kq to zero for detumbling}
+%At the current level of analysis, motor and magnetorquer models are omitted, it is assumed that the actuators satisfy the attitude controller's torque demand. Simulation results with actuator models are presented in subsequent chapters.
+
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\linewidth]{figures/detumbling}
+%	\includegraphics[width=0.7\linewidth]{figures/detumbling}
+	\includegraphics[width=0.9\linewidth]{figures/hybridtorque}
 	\caption{Hybrid controller detumbling torque demand}
 	\label{fig:detumbling}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\linewidth]{figures/detumbling3}
-	\caption{Hybrid controller detumbling angular velocity}
-	\label{fig:omega}
+%	\includegraphics[width=0.7\linewidth]{figures/detumbling3}
+	\includegraphics[width=0.7\linewidth]{figures/hybridomega}
+	\caption{Satellite angular velocity during detumbling maneuver using the hybrid controller}
+	\label{fig:detumblingomega}
 \end{figure}
+
+\begin{figure}[H]
+	\centering
+	%	\includegraphics[width=0.7\linewidth]{figures/detumbling3}
+	\includegraphics[width=0.4\linewidth]{figures/xc}
+	\caption{$x_c$ controller state during detumbling maneuver using the hybrid controller. The quaternion error is negated at 4 seconds.}
+	\label{fig:detumblingVar}
+\end{figure}
+
 
