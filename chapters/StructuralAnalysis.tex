@@ -75,21 +75,21 @@ The friction model is quite accurate at high speeds, not so much for low speeds.
  When a residual indicates a fault, the torque distributor changes mode, shutting down the faulty wheel. There's a short term error in the reaction wheel subsystem's torque output, but then the torque reference tracking normalizes quite quickly. This might jeopardize a downlink operation, but since this kind of fault rarely occurs, the effects are not serious. \todo{move}
 
 
-\begin{figure}
+\begin{figure}[h]
 	\centering
 	\includegraphics[width=120mm]{figures/residual_Noreconfig}
 	\caption{Residual signal in scenario where at 20 s the reaction wheel friction doubles}
 	\label{fig:residual}
 \end{figure} 
 
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=120mm]{figures/voltage_Noreconfig}
 	\caption{DC control voltage signal of angular velocity controlled reaction wheel in scenario where at 20 s the reaction wheel friction doubles}
 	\label{fig:rwFaultRes3}
 \end{figure} 
 
-\begin{figure}
+\begin{figure}[h]
 	\centering
 	\includegraphics[width=120mm]{figures/omega_Noreconfig}
 	\caption{Angular velocity in scenario where at 20 s the reaction wheel friction doubles}
