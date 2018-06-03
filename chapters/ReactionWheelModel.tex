@@ -1,27 +1,27 @@
 \subsection{Reaction Wheel Configuration}
 \label{ref:reactConfig}
 
-The satellite should be capable of tracking an Earth station to be able to downlink data. Tracking a ship requires similar control capability, since the velocity of the wheel is practically zero compared to the velocity of the satellite. Directing the antennas to the nadir continuously only requires keeping a satellite angular velocity equal to the orbit's angular velocity.
+The satellite should be capable of tracking an Earth station in order to be able to downlink data effectively. Tracking a ship requires similar control capability, since the velocity of the wheel is practically zero compared to the velocity of the satellite. Directing the antennas to the nadir continuously only requires keeping a satellite angular velocity equal to the orbit's angular velocity.
 Tracking the Earth station requires torque from the actuators, the torque demand can be calculated based on the angular acceleration demand for Earth station tracking.
 
-There have been studies on what is the best configuration of redundant reaction wheels. The optimal configuration can of course depend on the requirements. If the requirement is to have the same controllability for reaction wheels in case of fault, and 6 reaction wheels are available, orthogonally configured double reaction wheels can be used. Minimizing energy consumption is normally the goal in deciding on a configuration. Ismail et al. \cite{ReactionWheelConfigSim} investigated several configurations by running simulations with the configuration being the only difference. The tetrahedron configuration of 4 reaction wheels has been chosen as the default configuration in the present thesis, which is quite widespread in the industry \cite{reactConfigNasa}. The tetrahedron configuration is visualized in Figure \ref{fig:tetrahedron}.
+\todo{move the first paragraph}
+
+Studies have been conducted on what is the best configuration of redundant reaction wheels. The optimal configuration can of course depend on the requirements. If the requirement is to have the same controllability for reaction wheels in case of fault, and 6 reaction wheels are available, orthogonally configured double reaction wheels can be used. Minimizing energy consumption is normally the goal in deciding on a configuration. Ismail et al. \cite{ReactionWheelConfigSim} investigated several configurations by running simulations with the configuration being the only difference. The tetrahedron configuration of 4 reaction wheels has been chosen as the default configuration in the present thesis, which is quite widespread in the field \cite{reactConfigNasa}. The tetrahedron configuration is visualized in Figure \ref{fig:tetrahedron}.
 In tetrahedron configuration the 4 wheel orientations are evenly distributed, unlike the also widespread pyramid configuration. 
 
 \begin{figure}[H]
 	\centering 
 	\includegraphics[width=120mm]{figures/tetrahedron}	
-	\caption{Geometry of the tetrahedron configuration}
+	\caption{Geometry of the tetrahedron configuration \cite{Kumar2015DesignAD}}
 	\label{fig:tetrahedron}
 \end{figure}
-\todo{source}
 
 %Tetrahedron configuration can output twice as much force along an axis as one wheel can produce along its own axis.
 %\cite{reactionWheelConfigThesis} 
 
 \subsubsection{Transformation Between Body \& Reaction Wheel Space}
 
-The main attitude controller sends torque demands to the actuators. The torque demand distributed to the reaction wheels have to be converted to torques parallel to reaction wheel axes, in order for the motor controllers to function. Transformation from reaction wheel space to body frame is quite intuitive. Knowing the orientation, the mounting angle of each motor axis and the corresponding motor torque
-, the torque in body frame can be derived according to equation \ref{eq:motorTrans1} - \ref{transmatrix}. The matrix for tetrahedron configuration is given by \cite{reactionWheelConfigThesis}.
+The main attitude controller sends torque demand signal to the actuators. The reaction wheel torque demand has to be converted from body frame to torques parallel to reaction wheel axes. The transformation is nontrivial. Transforming back from reaction wheel space to body frame is quite intuitive. Knowing the orientation, the mounting angle of each motor axis and the corresponding motor torque, the torque in body frame can be derived according to equation \ref{eq:motorTrans1} - \ref{eq:transmatrix}. The matrix for tetrahedron configuration is given by \cite{reactionWheelConfigThesis}.
 
 \begin{equation}
 \label{eq:motorTrans1}
