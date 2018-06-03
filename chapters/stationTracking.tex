@@ -1,6 +1,10 @@
-\section{Attitude reference}
+\section{Attitude Reference}
 
-The main attitude controllers require an attitude reference quaternion and a reference angular velocity to track. In the simulation environment, the attitude reference quaternion is given in orbit frame, the angular velocity reference in ECI frame. As discussed above,
+The main attitude controllers require an attitude reference quaternion and a reference angular velocity to track. In the simulation environment, the attitude reference quaternion is given in orbit frame, the angular velocity reference in ECI frame. As discussed above, two attitude control goals are distinguished: nadir pointing and Earth station tracking. For nadir pointing, the attitude reference quaternion is simply assigned as $[0, 0, 0, 1]^T$ and the angular velocity reference is identical to the orbit angular velocity. Creating the references for Earth station tracking are not as trivial.
+
+For Earth station tracking, the reference quaternion can be calculated using the positions of the satellite, the station, and the center of Earth. The unit rotation axis of the attitude quaternion is $\vec{e} = \frac{^{sat}\vec{R}_{o} \times ^{sat}\vec{R}_{st}}{||^{sat}\vec{R}_{o} \times ^{sat}\vec{R}_{st}||}$. The angle between the nadir pointing and the station pointing vectors can be calculated using the law of cosines. The attitude quaternion in orbit frame is calculated using the quaternion rotation formula $ \vec q = e^{\frac{\Phi}{2} (e_1 \textbf{i}+ e_2 \textbf{j} + e_3 \textbf{k} + e_4)} = \cos \frac{\Phi}{2} + (e_1 \textbf{i}+ e_2 \textbf{j} + e_3 \textbf{k} +e_4) \sin \frac{\Phi}{2}$, as described in appendix \ref{chap:A}. The corresponding angular velocity reference can be calculated using the equations described in appendix \ref{chap:C}.
+
+
 
 %For the satellite to be able to track a given static position on Earth within 1°, a quaternion is computed. Therefore, this quaternion represents the vector that points from the orbit position to the station.
 %
@@ -16,5 +20,3 @@ The main attitude controllers require an attitude reference quaternion and a ref
 	\caption{Tracking a target on Earth }
 	\label{fig:TS}
 \end{figure}
-
- \todo{correct the figure}
