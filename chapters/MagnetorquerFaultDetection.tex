@@ -1,4 +1,19 @@
 \section{Magnetorquers  fault detection}
+For magnetorquers fault detection, two types of structural analysis were implemented. First, a locally structure analysis for each magnetorquer was implemented, and second a second a structure analysis using the satellite dynamics.
+\subsection{Magnetorquers local structural analysis} \label{sec: MTStructAnal}
+Using the Biot-Savar law from \ref{eq:BS}, the residual for the magnetorquer is generated using the following equation:
+\begin{flalign}
+	residual = B - \frac{4 \mu_0}{\sqrt{2} \pi L} I
+	\label{eq:BfS}
+\end{flalign} 
+where \\
+$\vec B$ is the magnetic field \\
+$\mu_0$ is a constant called permeability of free space \\
+$I$ is the current \\
+$L$ is the length of the coil
+
+In equation \ref{eq:BfS} the magnetic field is measured and based on this measurement the magnetic moment can be deducted, but for the residual is not necessary, because if it is correct then the magnetic moment should be as expected using magnetic sensors for checking, unless the shape of the coil changes, perhaps due to some physical movement of the system.
+
 \subsection{Unknown Input Observer (UIO)} \label{sec:UIO}
 Uncertainties and modeling errors may cause discrepancies between the actual system and the descriptor mathematical model. Linearization and simplifications which make the system more manageable may lead also to uncertainties. All these\nomenclature[A]{\textbf{UIO}}{Unknown Input Observer } uncertainties can have an effect on the system dynamic behavior through the input signals.   
 A residual, fault indicator, based on observer design can be robust regarding the unknown input signals by making the effect of unknown inputs(UI) insensitive to the residual and thus making possible to maximize the detectability of a fault. The dynamic equation of the system can be written as 

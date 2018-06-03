@@ -60,7 +60,7 @@ $\vec r_{s}$ is the vector from the centre of mass of the satellite to the geome
 Solar radiation pressure is emitted from various sources such as reflection from the Earth's atmosphere, from solar wind and direct radiation from the sun to the surface of the satellite\cite{SADC}\cite{PrevPro}  . Direct radiation is larger and only this source will be taken into account.
 		\begin{figure}[H]
 			\centering
-			\includegraphics[width=0.55\linewidth]{figures/solarRad}
+			\includegraphics[width=0.5\linewidth]{figures/solarRad}
 	\caption{ Sun radiation acting on satellite surface}
 	\label{fig:radf}
 		\end{figure}
@@ -144,28 +144,28 @@ where $M$ is the Earth magnetic moment and $R$ is the distance from the Earth to
 %\nomenclature[SB]{$\vec B$}{The magnetic field of the Earth}
 %\nomenclature[SM]{$\vec M$}{The Earth magnetic moment }
 %\nomenclature[SR]{$\vec R$}{The distance from the Earth to the center of the satellite}
+
 \subsection{Total disturbance torque}
-The total disturbance torque that the satellite is subject to is:
+The total disturbance torque that the satellite is subject to is presented as follows:
 
 \begin{flalign}
-	N_{dist} = N_{drag} + N_{solar} + N_{gg} + N_{mr}
+	N_{dist} = N_{drag} + N_{rad} + N_{gg} + N_{mr}
 	\label{eq:TDT}
 \end{flalign}
 
-Each disturbance torque is computed in MATLAB using the AAUStudentSpace toolbox and given in the following table:
+The magnitude of the torque is computed in MATLAB using the AAUStudentSpace toolbox and gather in the following table:
 \begin{table}[H]
 	\centering
-	\begin{tabular}{|l|c|}
+	\label{TTdist}
+	\begin{tabular}{|l|c|l|}
 		\hline
-		\textit{\textbf{Disturbance}} & \multicolumn{1}{l|}{\textit{\textbf{Torque (nNm)}}} \\ \hline
-		\textit{Aerodynamic}                   & 1.52                                               \\ \hline
-		\textit{Gravitaional}                  &     0.86                                               \\ \hline
-		\textit{Radiation}                     & 1.25                                                  \\ \hline
-	\textit{Magnetic residual }            & 48                                                  \\ \hline
-		\textbf{Total}                & 51                                                  \\ \hline
+		\textit{\textbf{Disturbance}} & \textit{\textbf{\begin{tabular}[c]{@{}c@{}}Torquet magnitude at a given\\  moment in the orbit (nNm)\end{tabular}}} & \multicolumn{1}{c|}{\textit{\textbf{\begin{tabular}[c]{@{}c@{}}Torque \\ magnitude (Nm)\end{tabular}}}} \\ \hline
+		\textit{Aerodynamic}          & 1.52                                                                                                                &                                                                                                         \\ \hline
+		\textit{Gravitaional}         & 0.86                                                                                                                &                                                                                                         \\ \hline
+		\textit{Radiation}            & 1.25                                                                                                                &                                                                                                         \\ \hline
+		\textit{Magnetic residual}    & 48                                                                                                                  &                                                                                                         \\ \hline
 	\end{tabular}
-\caption{Environment disturbance torques}
-\label{TN}
+	\caption{Environmental disturbance torques}
 \end{table}
 %Total torque magnitude is illustrated in figure \ref{fig:totalN}, where the most significant disturbance torque is the magnetic residual.
 %\begin{figure}[h!]
