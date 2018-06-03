@@ -18,15 +18,10 @@ When developing complex systems, using a modular design, setting up a hierarchy 
 	\label{fig:mainLoop}
 \end{figure}
 
-\todo{add reference omega and q to figure}
-\todo{evaluation of station tracking precision - should be within $1\deg$. Compare different reaction wheel configurations}
-
 		\begin{equation}
 		\underline{I}_{s}\vec{\dot{\omega}} + \underline{\omega}^\times\underline{I}_{s}\vec{\omega} = -\vec{\dot{h}}_{rw} -  \underline{\omega}^\times \vec{{h}}_{rw} + \vec{N_{mt}}  + \vec{N_{dist}} =  -  \underline{\omega}^\times \vec{{h}}_{rw} + \vec{N_{rw}} + \vec{N_{mt}}  + \vec{N_{dist}} 
 		\end{equation}
 		
-		Compensation for $\underline{\omega}^\times \vec{{h}}_{rw}$ for torque demand inputs \todo{compensation} 
-
 \input{chapters/desaturation.tex}
 \input{chapters/stationTracking.tex}
 \input{chapters/globalAttitudeControl.tex}
@@ -36,7 +31,7 @@ In the following sections \ref{sec:LC} and \ref{sec:SM}  will be discussed two a
 
 \section{Linear attitude controller} \label{sec:LC}
 
-\Eqref{eq:lele} following \cite{Rafael} can be written as 
+The $ \parallel \vec{ {\bar{\omega}}} \parallel $ is equal to the orbital angular velocity $(\approx 0.0011)$, \eqref{eq:lele} following \cite{Rafael} can be written as 
 %
 \begin{flalign}
 \begin{bmatrix}
@@ -126,7 +121,7 @@ with $i = 1, 2, 3 $. The control torque was defined by the state feedback law as
 	\end{bmatrix} 	
 	\label{eq:inputtorque}
 \end{flalign}
-leading to a second order closed loop system calculated as $det(s\underline{I} - (\underline{A} - \underline{BK}) )$. Identifying  this with a general second order equation $s^{2}+2\zeta\omega_{n}s+\omega_{n}^{2}$, with $\zeta$ be the dumping factor which was chosen to be equal to 1 leading to an over dumped response and $\omega_{n}$  the natural frequency $\omega_{n} =  \frac{2\pi}{60/0.35} $ with 60 be the value of the chosen rise time, the controller gains was derived as
+leading to a second order closed loop system calculated as $det(s\underline{I} - (\underline{A} - \underline{BK}) )$. Identifying  this with a general second order equation $s^{2}+2\zeta\omega_{n}s+\omega_{n}^{2}$, with $\zeta$ be the dumping factor which was chosen to be equal to 1 leading to an over dumped response and $\omega_{n}$  the natural frequency $\omega_{n} =  \frac{2\pi}{60/0.35} $ with 60 be the value of the chosen rise time. The controller gains was derived as
 
 \begin{flalign*}
 	k_{1} = -2 I_{i,s} \omega_{n}^{2} 
@@ -136,7 +131,7 @@ leading to a second order closed loop system calculated as $det(s\underline{I} -
 	k_{2} = -2\zeta I_{i,s} \omega_{n}^{2} 
 	\label{eq:gainsl223}
 \end{flalign*}
-which give stability for the all values of $ \vec{ {\bar{\omega}}} $. In the figure \ref{fig:linear demand} it is seen the torque demand from the linear controller for nadir pointing reference.
+Since the matrix $\underline{A}$ is affine,   stability analysis was made for all the values of $ \vec{ {\bar{\omega}}}$ evaluated on the vertices of the convex polyhedron for the all values of $ \vec{ {\bar{\omega}}} $\cite{PrevPro} giving maximum eigenvalue $-0.0308$. In the figure \ref{fig:linear demand} it is seen the torque demand from the linear controller for nadir pointing reference.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\linewidth]{figures/linear_controller_demant}
@@ -144,7 +139,7 @@ which give stability for the all values of $ \vec{ {\bar{\omega}}} $. In the fig
 	\label{fig:linear demand}
 \end{figure}
 \section{Sliding mode control} \label{sec:SM}
-As described previously the sliding mode control scheme belongs to the class of non-linear control designs and is more robust compared to the linear, when disturbances are present. The objective of the SMC is the design, from a geometrical point of view, of a manifold in the state space which whenever the states are on the manifold, the behavior of the system will meet the specifications it is designed for, i.e convergence to the desired reference.  
+As described previously the sliding mode control scheme belongs to the class of non-linear control designs. The objective of the SMC is the design, from a geometrical point of view, of a manifold in the state space $s = 0$, which whenever the state trajectory is on the manifold it is constraint, such that the behavior of the system will meet the specifications it is designed for, i.e convergence to the desired reference. In the \figref{fig:SM} it can be seen how the states slide on the hyperplane towards origin.   
 
 \begin{figure}[H]
 	\centering
@@ -158,18 +153,32 @@ Introducing the small signal deviation of the states as
 	\vec{\tilde{q}} = \vec{  \bar{q}}^{-1} \otimes \vec{ q} 
 	\label{eq:smallsignal22}
 \end{flalign}
-for the quaternion error and with $\vec{  \bar{q}}^{-1}$ be the reference quaternion and $\vec{ q} $ be the measured, and for the angular velocity
+for the quaternion error with $\vec{  \bar{q}}^{-1}$ be the desired reference quaternion and $\vec{ q} $ be the measured, and for the angular velocity the small signal deviation is written as 
 \begin{flalign}
 	\vec{\tilde{\omega}}  = \vec{\omega}-\vec{\bar{\omega}}  
 	\label{eq:smallsi4gnal4566}
 \end{flalign}
-with $\vec{\bar{\omega}}$ be the nominal value of the angular velocity. Moreover, by introducing the sliding variable as $s$ which depends on the error \nomenclature[S]{s}{Sliding variable} and is chosen to be 
-
+with $\vec{\bar{\omega}}$ be the nominal value of the angular velocity. The sliding variable can now be written in terms of the error signals as  %\nomenclature[S]{s}{Sliding variable} and is chosen to be 
 \begin{flalign}
 	s  = \underline{F}\vec{\tilde{q}} + \vec{\tilde{\omega}}  
 	\label{eq:sliding variable}
 \end{flalign}
-with $\underline{F} = \alpha\ast diag[111]$ be a positive definite matrix. For $s=0$, $\vec{\tilde{\omega}} = - \alpha\ast\vec{\tilde{q}_{1:3}}$, where $\vec{\tilde{q}_{1:3}}$ denotes the vector part of the quaternion, and thus $\alpha$ can be designed appropriately, by trial and error to give the desired convergence for $\vec{\tilde{q}}$ meaning $[0;0;0;1]$, more details can be found in \todo{create appendix}.
+with $\underline{F} = \alpha\underline{\vec 1}_{3\times3}$ be a positive definite matrix. It can be seen that for $s=0$, the motion on the sliding surface is governed by $\vec{\tilde{\omega}} = - \alpha\vec{\tilde{q}_{1:3}}$, where $\vec{\tilde{q}_{1:3}}$ denotes the vector part of the quaternion, and $\alpha$ is chosen appropriately through trial and error to give the desired convergence for $\vec{\tilde{q}}$ which for the desired alignment between frames is $[0 \ 0 \ 0 \ 1]^{T}$. In order to prove this differentiation of \eqref{eq:smallsignal22} following \cite{TH} is written as
+%
+\begin{flalign}
+\vec{\dot{\tilde{q}}}  = \frac{1}{2}(-\vec{q_{\bar{\omega}}}\otimes\vec{\tilde{q}}+ \vec{\tilde{q}}\otimes\vec{q_{\bar{\omega}}}+\vec{\tilde{q}}\otimes\vec{q_{\tilde{\omega}}}) 
+\label{eq:sliding stability}
+\end{flalign}
+%
+with $\vec{q_{\bar{\omega}}} = \bar{\omega_{1}}i + \bar{\omega_{2}}j+\bar{\omega_{3}}k + 0$ and $\vec{q_{\tilde{\omega}}} = \tilde{\omega_{1}}i + \tilde{\omega_{2}}j+\tilde{\omega_{3}}k + 0$.
+From \eqref{eq:sliding stability} the real part of the quaternion error can be written as 
+%
+\begin{flalign}
+\dot{\tilde{q_{4}}}  = -\frac{1}{2} \vec{\tilde{\omega}} \cdot \vec{\tilde{q}_{1:3}} = \frac{\alpha}{2} \rVert \vec{\tilde{q}_{1:3}} \rVert^{2} = \frac{\alpha}{2}(1 -\tilde{q_{4}}^{2})
+\label{eq:sliding realpart}
+\end{flalign}
+%
+It can be seen that $\vec{\tilde{q}} \longrightarrow [0\ 0\ 0\ 1]^{T}$ with a desired rate given by $\alpha$.
 The variable $s$ can be driven to 0 by making use of a Lyapunov candidate function as
 \begin{flalign}
 	V  = \frac{1}{2} \vec{s}^{T}\vec{s} 
