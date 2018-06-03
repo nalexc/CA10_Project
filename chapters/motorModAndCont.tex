@@ -6,14 +6,14 @@ A widely used actuation system is reaction wheels which are spinning wheels and 
 %Since the focus of the current thesis is not on the design of reaction wheels, only few constraints are  taken into account for the selection of the wheels, such as the weight and the inertia. In order to minimize the total weight of the satellite, the weight of each wheel, is not overcome the %weight of each motor. 
  The reaction wheels are chosen to give higher inertia from the motor shaft, and can provide medium manoeuvrability in terms of time required to turn the satellite $90^o$ \cite{SIDI}. The wheel inertia is \cite{flywheel_design_thesis} $J_{wheel} = 2.456 [gcm^2]$ and the weight is $m_{wheel} = 4.201 [g] $ compared to the motor weight $m_{motor} =8 [g] $ and the motor shaft inertia $J_{motor} = 0.0249 [gcm^2]$. The characteristics of the selected motor can be found in appendix \ref{chap: B}. The maximal speed of the motor is $\omega_{max}= 20000[rpm]$ and thus the maximum angular momentum that the system wheel-motor can provide can be found as    
 %
-\nomenclature[S]{\textbf{$J_{wheel}$}}{Reaction wheel inertia}
-\nomenclature[S]{\textbf{$J_{motor}$}}{Motor inertia}
-\nomenclature[S]{\textbf{$m_{motor}$}}{Weight of the motor}
-\nomenclature[S]{\textbf{$m_{wheel}$}}{Weight of the reaction wheel}
+%\nomenclature[S]{\textbf{$J_{wheel}$}}{Reaction wheel inertia}
+%\nomenclature[S]{\textbf{$J_{motor}$}}{Motor inertia}
+%\nomenclature[S]{\textbf{$m_{motor}$}}{Weight of the motor}
+%\nomenclature[S]{\textbf{$m_{wheel}$}}{Weight of the reaction wheel}
 \begin{flalign*}
 	h_{max} = {J_{wheel}} {\omega_{max}} 
 \end{flalign*}
-\nomenclature[S]{\textbf{$h_{max}$}}{Maximum angular momentum of the wheel-motor system}
+%\nomenclature[S]{\textbf{$h_{max}$}}{Maximum angular momentum of the wheel-motor system}
 %0.000114450   5.1438e-04
 which is found to be $5.1438*10^{-4} [Kgm^2/s]$ for each wheel.	
 %
@@ -24,7 +24,7 @@ For 3 axis stabilization, 3 wheels each orthogonal to the principal axis, are ef
 
 In order to make the system more reliable, brush-less DC motors are chosen as actuators. BLDC motors are lighter compared to brushed with the same power output and do not causing sparking thus can be used in operations that demand long life and reliability.
 %
-\nomenclature[A]{\textbf{BLDC}}{Brushless Direct Current }
+%\nomenclature[A]{\textbf{BLDC}}{Brushless Direct Current }
 Each motor consists of an electrical part and a mechanical part. The electrical part of the motor can be modeled using Kirchhoff's Voltage Law as
 %
 \begin{flalign}
@@ -32,20 +32,20 @@ Each motor consists of an electrical part and a mechanical part. The electrical 
 \label{Kirchhoff1}
 \end{flalign}
 %
-\nomenclature[S]{\textbf{$V_{a}$}}{Voltage source }
-\nomenclature[S]{\textbf{$V_{R}$}}{Voltage drop across the resistance }
-\nomenclature[S]{\textbf{$V_{L}$}}{Voltage drop across the inductance }
+%\nomenclature[S]{\textbf{$V_{a}$}}{Voltage source }
+%\nomenclature[S]{\textbf{$V_{R}$}}{Voltage drop across the resistance }
+%\nomenclature[S]{\textbf{$V_{L}$}}{Voltage drop across the inductance }
 where $V_{a}$ is the voltage source, $V_{R}$ is the voltage drop across the resistance, $V_{L}$ is the voltage drop across the inductance and $V_{e}$ is the back emf. \Eqref{Kirchhoff1} can be re written as 
 %
-\nomenclature[S]{\textbf{$V_{e}$}}{Back electromotive force- emf }
+%\nomenclature[S]{\textbf{$V_{e}$}}{Back electromotive force- emf }
 \begin{flalign}
 	V_{a}= R_{a}i + L_{a}\dfrac{di}{dt}+ k_{e}\omega
 	\label{Kirchhoff244}
 \end{flalign}
 %
-\nomenclature[S]{\textbf{$R_{a}$}}{Armature resistance}
-\nomenclature[S]{\textbf{$L_{a}$}}{Armature inductance}
-\nomenclature[S]{\textbf{$k_{e}$}}{Back emf coefficient}
+%\nomenclature[S]{\textbf{$R_{a}$}}{Armature resistance}
+%\nomenclature[S]{\textbf{$L_{a}$}}{Armature inductance}
+%\nomenclature[S]{\textbf{$k_{e}$}}{Back emf coefficient}
  where $R_{a}$ [Ohm] is the armature resistance, $L_{a}$ [H] is the armature inductance and $k_{e}$ is the back emf coefficient as it can be seen in the \figref{fig:electromech} .   
 %
 
@@ -80,8 +80,8 @@ The mechanical part of the motor can be modelled as
 	\label{mechpart66}
 \end{flalign}
 %
-\nomenclature[S]{\textbf{$k_{t}$}}{Motor torque coefficient}
-\nomenclature[S]{\textbf{$b$}}{Viscous friction coefficient}
+%\nomenclature[S]{\textbf{$k_{t}$}}{Motor torque coefficient}
+%\nomenclature[S]{\textbf{$b$}}{Viscous friction coefficient}
 where $J$ is the rotor moment of inertia, $k_{t}$ [Nm/A] is the motor torque coefficient and $b$ [Nm s/rad] is the viscous friction coefficient. %Assuming the current will not increase rapidly in order not to harm the equipment, and moreover the electrical time constant $\tau_{e}=\dfrac{L}{R}$ is much smaller than the mechanical time constant $\tau_{m}=\dfrac{J}{b}$, the effect of the inductance can be neglected and the
  \Eqref{mechpart66} can be solved for $i$ and  replaced in \eqref{Kirchhoff244}\cite{permanent_magnet}     
 %
@@ -112,8 +112,8 @@ following \cite{permanent_magnet} the electrical time constant $\tau_{e}$ and me
 %
 the block diagram of the system can be seen in \figref{fig:blockdi} along with PI velocity controller which will be discussed in the next chapter. Four wheels, requiring four motors in tetrahedron configuration. The total moment of inertia of the motor-wheel system is the sum of individual moments $J = J_{wheel}+J_{motor}$. Since $J_{wheel}\gg J_{motor}$ the inertia of the motor can be neglected.
 %
-\nomenclature[S]{\textbf{$\tau_{e}$}}{Electrical time constant}
-\nomenclature[S]{\textbf{$\tau_{m}$}}{Mechanical time constant}
+%\nomenclature[S]{\textbf{$\tau_{e}$}}{Electrical time constant}
+%\nomenclature[S]{\textbf{$\tau_{m}$}}{Mechanical time constant}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\linewidth]{figures/omegaControl}
