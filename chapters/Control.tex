@@ -167,7 +167,7 @@ with $\vec{\bar{\omega}}$ be the nominal value of the angular velocity. The slid
 	s  = \underline{F}\vec{\tilde{q}} + \vec{\tilde{\omega}}  
 	\label{eq:sliding variable}
 \end{flalign}
-with $\underline{F} = \alpha\underline{\vec 1}_{3\times3}$ be a positive definite matrix. It can be seen that for $s=0$, the motion on the sliding surface is governed by $\vec{\tilde{\omega}} = - \alpha\vec{\tilde{q}_{1:3}}$, where $\vec{\tilde{q}_{1:3}}$ denotes the vector part of the quaternion, and $\alpha$ is chosen appropriately through trial and error to give the desired convergence for $\vec{\tilde{q}}$ which for the desired alignment between frames is $[0;0;0;1]$. In order to prove this, differentiation of \eqref{eq:smallsignal22} following \cite{TH} is written as
+with $\underline{F} = \alpha\underline{\vec 1}_{3\times3}$ be a positive definite matrix. It can be seen that for $s=0$, the motion on the sliding surface is governed by $\vec{\tilde{\omega}} = - \alpha\vec{\tilde{q}_{1:3}}$, where $\vec{\tilde{q}_{1:3}}$ denotes the vector part of the quaternion, and $\alpha$ is chosen appropriately through trial and error to give the desired convergence for $\vec{\tilde{q}}$ which for the desired alignment between frames is $[0 \ 0 \ 0 \ 1]^{T}$. In order to prove this differentiation of \eqref{eq:smallsignal22} following \cite{TH} is written as
 %
 \begin{flalign}
 \vec{\dot{\tilde{q}}}  = \frac{1}{2}(-\vec{q_{\bar{\omega}}}\otimes\vec{\tilde{q}}+ \vec{\tilde{q}}\otimes\vec{q_{\bar{\omega}}}+\vec{\tilde{q}}\otimes\vec{q_{\tilde{\omega}}}) 
