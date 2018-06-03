@@ -18,15 +18,10 @@ When developing complex systems, using a modular design, setting up a hierarchy 
 	\label{fig:mainLoop}
 \end{figure}
 
-\todo{add reference omega and q to figure}
-\todo{evaluation of station tracking precision - should be within $1\deg$. Compare different reaction wheel configurations}
-
 		\begin{equation}
 		\underline{I}_{s}\vec{\dot{\omega}} + \underline{\omega}^\times\underline{I}_{s}\vec{\omega} = -\vec{\dot{h}}_{rw} -  \underline{\omega}^\times \vec{{h}}_{rw} + \vec{N_{mt}}  + \vec{N_{dist}} =  -  \underline{\omega}^\times \vec{{h}}_{rw} + \vec{N_{rw}} + \vec{N_{mt}}  + \vec{N_{dist}} 
 		\end{equation}
 		
-		Compensation for $\underline{\omega}^\times \vec{{h}}_{rw}$ for torque demand inputs \todo{compensation} 
-
 \input{chapters/desaturation.tex}
 \input{chapters/stationTracking.tex}
 \input{chapters/globalAttitudeControl.tex}
