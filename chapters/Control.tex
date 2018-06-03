@@ -35,7 +35,7 @@ In the following sections \ref{sec:LC} and \ref{sec:SM}  will be discussed two a
 
 \section{Linear attitude controller} \label{sec:LC}
 
-\Eqref{eq:lele} following \cite{Rafael} can be written as 
+The $ \parallel \vec{ {\bar{\omega}}} \parallel $ is equal to the orbital angular velocity $(\approx 0.0011)$, \eqref{eq:lele} following \cite{Rafael} can be written as 
 %
 \begin{flalign}
 \begin{bmatrix}
@@ -125,7 +125,7 @@ with $i = 1, 2, 3 $. The control torque was defined by the state feedback law as
 	\end{bmatrix} 	
 	\label{eq:inputtorque}
 \end{flalign}
-leading to a second order closed loop system calculated as $det(s\underline{I} - (\underline{A} - \underline{BK}) )$. Identifying  this with a general second order equation $s^{2}+2\zeta\omega_{n}s+\omega_{n}^{2}$, with $\zeta$ be the dumping factor which was chosen to be equal to 1 leading to an over dumped response and $\omega_{n}$  the natural frequency $\omega_{n} =  \frac{2\pi}{60/0.35} $ with 60 be the value of the chosen rise time, the controller gains was derived as
+leading to a second order closed loop system calculated as $det(s\underline{I} - (\underline{A} - \underline{BK}) )$. Identifying  this with a general second order equation $s^{2}+2\zeta\omega_{n}s+\omega_{n}^{2}$, with $\zeta$ be the dumping factor which was chosen to be equal to 1 leading to an over dumped response and $\omega_{n}$  the natural frequency $\omega_{n} =  \frac{2\pi}{60/0.35} $ with 60 be the value of the chosen rise time. The controller gains was derived as
 
 \begin{flalign*}
 	k_{1} = -2 I_{i,s} \omega_{n}^{2} 
@@ -135,7 +135,7 @@ leading to a second order closed loop system calculated as $det(s\underline{I} -
 	k_{2} = -2\zeta I_{i,s} \omega_{n}^{2} 
 	\label{eq:gainsl223}
 \end{flalign*}
-which give stability for the all values of $ \vec{ {\bar{\omega}}} $. In the figure \ref{fig:linear demand} it is seen the torque demand from the linear controller for nadir pointing reference.
+Since the matrix $\underline{A}$ is affine,   stability analysis was made for all the values of $ \vec{ {\bar{\omega}}}$ evaluated on the vertices of the convex polyhedron for the all values of $ \vec{ {\bar{\omega}}} $\cite{PrevPro} giving maximum eigenvalue $-0.0308$. In the figure \ref{fig:linear demand} it is seen the torque demand from the linear controller for nadir pointing reference.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\linewidth]{figures/linear_controller_demant}
