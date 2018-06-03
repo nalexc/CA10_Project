@@ -1,5 +1,5 @@
 \chapter{Fault handling and reconfiguration}  \label{chap:faltHandling}
- \subsection{Virtual actuators and sensors} \label{chap: virtual}
+ \section{Virtual actuators and sensors} \label{chap: virtual}
  Actuators and sensors are subject to various faults in the process. Due to these faults the system may experience drops in the performance which could lead to stability loss.
  
  The objective of fault tolerant control using virtual actuators and sensors is to add a reconfiguration block which is presented as an extra layer between the faulty system and the controller, while the nominal controller is running. The purpose of the reconfiguration block in case of a fault is to provide fault tolerance by using the virtual actuators and sensors as can be seen in figure \ref{fig:VA}.
@@ -15,7 +15,7 @@
  
  In the case that a fault will occur in the reaction wheel sensor, the angular velocity measurement it is assumed functional and based on that measurement, the torque output form the faulty wheel can be computed. A second assumption is that the sensors will completely fail, but in this case a model of how the angular velocity of the wheel is decreasing over time is obtained. This model can be used as a virtual sensor for the angular velocity sensor. 
  
-\subsection{Reaction Wheel Reconfiguration}
+\section{Reaction Wheel Reconfiguration}
 \label{sec:rwReconfig}
 Fault handling in the redundant reaction wheel configuration can be done by isolating which is the reaction wheel where the fault occurred and shutting it off and redistributing the torques to the rest of the reaction wheels. Fault signals emitted by the fault detection modules are handled by the reconfiguration logic. Section \ref{ref:reactConfig} describes the distribution of reaction wheel torque demand between the reaction wheels. When the reconfiguration system receives a fault signal, it redistributes the $\vec{N_{rw}^d}$ torque demand by modifying $\underline{A}_M$ matrix in equation \ref{eq:transmatrix}. The torque demand for the faulty wheel becomes zero, while the sum of reaction wheel torques are controlled to follow $\vec{N_{rw}^d}$.
 
@@ -63,7 +63,7 @@ Equation \ref{eq:motorTransReconfig2} presents the reconfigured torque distribut
 
 \input{chapters/rwStructFaultReconfig}
 
-\subsection{Magnetorquer Reconfiguration}
+\section{Magnetorquer Reconfiguration}
 \label{sec:MTReconfig}
 
 \subsubsection{Reconfiguration with compensation in case of Luenberger-like Observer residual fault detection}
