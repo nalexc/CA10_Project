@@ -1,10 +1,7 @@
 \chapter{Control Schemes}
 \textit{The satellite control schemes are introduced starting from the top of the hierarchy. The chosen reaction wheel desaturation control scheme determines the overall control structure, while allowing modification of other control blocks, making the system modular. Three different main attitude controllers are discussed}
 
-\sout{In this chapter the purpose is to describe the design of the controllers for the satellite. First, a desaturation controller is designed for distributing the torque between the actuators. A second controller is the hybrid attitude one, which is capable of taking care of the tumble of the satellite. Next, based on previous work, two types of attitude controllers are designed. For making a comparison between a linear controller and non-linear one, a state feedback controller and a sliding mode controller are presented.}
-
-
-\todo{evaluation of station tracking precision - should be within $1\deg$. Compare different reaction wheel configurations}
+%\sout{In this chapter the purpose is to describe the design of the controllers for the satellite. First, a desaturation controller is designed for distributing the torque between the actuators. A second controller is the hybrid attitude one, which is capable of taking care of the tumble of the satellite. Next, based on previous work, two types of attitude controllers are designed. For making a comparison between a linear controller and non-linear one, a state feedback controller and a sliding mode controller are presented.}
 
 When developing complex systems, using a modular design, setting up a hierarchy between elements, and using abstractions can be very helpful in keeping the complexity at a manageable level. They can also prove to be useful during debugging or finding faults in the system. The proposed control scheme utilizes these tools. Figure  \ref{fig:mainLoop} introduces the high-level control scheme used in the thesis. The scheme is inspired by the control scheme proposed by Trégouët et al. in their paper concerning a new desaturation control scheme \cite{DesatTregouet}. 
 
