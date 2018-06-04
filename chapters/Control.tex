@@ -31,7 +31,7 @@ In the following sections \ref{sec:LC} and \ref{sec:SM}  will be discussed two a
 
 \section{Linear attitude controller} \label{sec:LC}
 
-The $ \parallel \vec{ {\bar{\omega}}} \parallel $ is equal to the orbital angular velocity $(\approx 0.0011)$, \eqref{eq:lele} following \cite{Rafael} can be written as 
+The system's equilibrium operating in nadir is defined between the orbit frame and the body frame. The angular rate between the frames should be zero $\vec{ ^s_o  \omega} = 0$ and the two frames should be aligned thus the relative attitude quaternion is $[0 \ 0 \ 0 \ 1]$. Therefore,  $ \parallel \vec{ {\bar{\omega}}} \parallel $ is equal to the orbital angular velocity $(\approx 0.0011)$, and  \eqref{eq:lele} following \cite{Rafael} can be written as 
 %
 \begin{flalign}
 \begin{bmatrix}
@@ -60,7 +60,7 @@ The $ \parallel \vec{ {\bar{\omega}}} \parallel $ is equal to the orbital angula
 \label{eq:lelele}
 \end{flalign}
 %
-with $\sigma_{x}= \frac{I_{y}-I_{z}}{I_{x}}$,$\sigma_{y}=\frac{I_{z}-I_{x}}{I_{y}}$,$\sigma_{z}=\frac{I_{x}-I_{y}}{I_{z}}$ and $I_{x} = 0.0017$, $I_{y}=0.0022$, $I_{z}=0.0022$ been the values of the inertia matrix and ${\omega_{o}}\approx0.0011 $ , is the orbital angular rate. The linearization is made for the angular velocity between the control frame and the orbit frame been zero and the two frames are aligned.     
+with $\sigma_{x}= \frac{I_{y}-I_{z}}{I_{x}}$,$\sigma_{y}=\frac{I_{z}-I_{x}}{I_{y}}$,$\sigma_{z}=\frac{I_{x}-I_{y}}{I_{z}}$ and $I_{x} = 0.0017$, $I_{y}=0.0022$, $I_{z}=0.0022$ been the values of the inertia matrix and ${\omega_{o}}\approx0.0011 $ [$\frac{rad}{s}$] , is the orbital angular rate.     
 Moreover, by comparing the values of  matrix \eqref{eq:lelele} it can be seen that the value $\frac{1}{2}$ is larger compared to the other values thus \eqref{eq:lelele} can be simplified to 
 \begin{flalign}
 	\begin{bmatrix}
@@ -131,15 +131,15 @@ leading to a second order closed loop system calculated as $det(s\underline{I} -
 	k_{2} = -2\zeta I_{i,s} \omega_{n}^{2} 
 	\label{eq:gainsl223}
 \end{flalign*}
-Since the matrix $\underline{A}$ is affine,   stability analysis was made for all the values of $ \vec{ {\bar{\omega}}}$ evaluated on the vertices of the convex polyhedron for the all values of $ \vec{ {\bar{\omega}}} $\cite{PrevPro} giving maximum eigenvalue $-0.0308$. In the figure \ref{fig:linear demand} it is seen the torque demand from the linear controller for nadir pointing reference.
+Since the matrix $\underline{A}$ is affine,   stability analysis was made for all the values of $ \vec{ {\bar{\omega}}}$ evaluated on the vertices of the convex polyhedron for the all values of $ \vec{ {\bar{\omega}}} \ $\cite{PrevPro} giving maximum eigenvalue $-0.0308$. In the figure \ref{fig:linear demand} it is seen the torque demand from the linear controller for nadir pointing reference.
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\linewidth]{figures/linear_controller_demant}
+	\includegraphics[width=0.7\linewidth]{figures/linear_controller_demant}
 	\caption{Linear controller Nadir pointing torque demand }
 	\label{fig:linear demand}
 \end{figure}
 \section{Sliding mode control} \label{sec:SM}
-As described previously the sliding mode control scheme belongs to the class of non-linear control designs. The objective of the SMC is the design, from a geometrical point of view, of a manifold in the state space, denoted as $s$, which whenever the state trajectory is on the manifold it is constraint, such that the behavior of the system will meet the specifications it is designed for, i.e convergence to the desired reference. In the \figref{fig:SM} it can be seen how the states slide on the hyperplane towards origin.   
+As described previously the sliding mode control scheme belongs to the class of non-linear control designs. The objective of the SMC is the design, from a geometrical point of view, of a manifold in the state space, denoted as $s$, which whenever the state trajectory is on the manifold ($s = 0$) it is constraint such that the behavior of the system will meet the specifications it is designed for, i.e convergence to the desired reference. In the \figref{fig:SM} it can be seen how the states slide on the hyperplane towards origin.   
 
 \begin{figure}[H]
 	\centering
