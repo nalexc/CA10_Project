@@ -36,8 +36,8 @@ The cross product control law achieves desaturation by using two control loops t
 %\end{equation}
 
 If the control goal is to rotate the satellite, it might be desired to make the apparent satellite dynamics independent of reaction wheel angular momenta. This can be achieved by using the actuators to counteract the effect of the gyroscopic term $\underline{\omega}^\times \vec{h_{rw}}$. This is a form of state compensation. Equation \ref{eq:desatDynReorder} presents the attitude control loop terms corresponding to $\vec{u}$ control input and to $\vec{d}$ disturbance. $\vec{N_{dist}}$ is discarded from the discussion of the desaturation scheme.
-\nomenclature[S]{$\vec{u}$}{Control input}
-\nomenclature[S]{$\vec{d}$}{Disturbance input}
+\nomenclature[Su]{$\vec{u}$}{Control input}
+\nomenclature[Sd]{$\vec{d}$}{Disturbance input}
 
 \begin{equation}
 \underline I_{s} \vec{\dot{\omega}} + \underline{\omega}^\times\underline I_{s} \vec{\omega} =    \overbrace{-\underline{\omega}^\times\vec{h_{rw}} + \vec{N_{rw}}}^{\vec{u}} +  \overbrace{\vec{N_{mt}}}^{\vec{d}}
@@ -80,11 +80,11 @@ The cross-product control law controls the magnetorquers' magnetic momentum usin
 \end{equation}
 where $k_p$ is an adjustable proportional gain.
 
-		\nomenclature[S]{$\vec{m_{mt}}$}{Magnetorquer magnetic moment}
-		\nomenclature[S]{$\vec{B}$}{local geomagnetic field in body fixed frame}
-		\nomenclature[S]{$\vec{h_{rw}}$}{The angular momentum vector of the reaction wheels}
-		\nomenclature[S]{$\vec{h_{ref}}$}{The reference angular momentum vector of the reaction wheels}
-		\nomenclature[S]{$\vec{h_{T}}$}{Total angular momentum of the satellite}	
+		\nomenclature[Sm]{$\vec{m_{mt}}$}{Magnetorquer magnetic moment}
+		\nomenclature[SB]{$\vec{B}$}{local geomagnetic field in body fixed frame}
+		\nomenclature[Sh]{$\vec{h_{rw}}$}{The angular momentum vector of the reaction wheels}
+		\nomenclature[Sh]{$\vec{h_{ref}}$}{The reference angular momentum vector of the reaction wheels}
+		\nomenclature[Sh]{$\vec{h_{T}}$}{Total angular momentum of the satellite}	
 		
 Recognizing that the reaction wheels cannot change $\vec{h_{T}}^{[I]}$ total angular momentum, a step can be taken towards detaching the effect of the magnetorquers and the reaction wheels. Substituting $ \vec{h_{rw}} = \underline{R}(^s_i\vec{ q}) \vec{h_{T}^{[I]}} - \underline{I}_s \vec{\omega}$. Using this, equation \ref{eq:crossLaw} can be rewritten according to equation \ref{eq:bodyDesatRewrite}.
 

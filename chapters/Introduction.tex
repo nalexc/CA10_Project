@@ -1,7 +1,7 @@
 \chapter{Introduction}\label{chap:Introduction}
 
 Satellites are no longer the privilege of just a handful of economic powerhouses such as nations or mega companies. There are currently 1738 active satellites orbiting Earth, 129 of it is categorized as having civil uses, created mostly for educational purposes \cite{SatSummary}. The ongoing AAUSAT project at Aalborg University is part of this educational effort. AAUSATs are mostly student built low-cost picosatellites, 5 of them already in orbit, the next one is currently in development \cite{aausatsite}. 
-\nomenclature[T]{\textbf{Picosatellite}}{Picosatellites are small satellites with mass between 0.1 and 1 kg.}
+\nomenclature[TP]{\textbf{Picosatellite}}{Picosatellites are small satellites with mass between 0.1 and 1 kg.}
  The mission goal of each of them include taking pictures of Earth and celestial objects and downlink them, or even tracking objects on Earth's surface. These require precise attitude control of the satellite. 
 
 Satellite attitude control differs fundamentally from the attitude control of earthbound objects, and is more challenging, as there is no direct mechanical connection available to other objects. Thus attitude control can be achieved using different interactions, such as transferring angular momentum between components of the satellite, utilizing the magnetic field of Earth or solar sails, or occasionally rocket propellants.
@@ -29,7 +29,7 @@ Satellite attitude control differs fundamentally from the attitude control of ea
  \end{figure}
 
  
- \nomenclature[T]{\textbf{Precession}}{A rotating body can experience a change in the orientation around the rotational axis.} 
+ \nomenclature[TP]{\textbf{Precession}}{A rotating body can experience a change in the orientation around the rotational axis.} 
  
 \todo{discuss control methods in previous aausats}
 
@@ -41,8 +41,8 @@ The objective of the present thesis is to implement a fault-tolerant attitude co
 \section{Use-case}\label{sec:useCase}
 To further expand the problem statement stated above, a use case is conceived. In order to achieve the mission task, the use case is constructed for proving the system requirements.
 
-One of the tasks of the AAUSAT3 pico-satellite is to track ships in arctic regions. This steams from the desire of the Danish Maritime Safety Administration \nomenclature[A]{\textbf{DaMSA}}{Danish Maritime Safety Administration}(DaMSA) to improve naval safety by monitoring the ships. The test area would around Greenland, where monitoring is lacking. % http://www.space.aau.dk/aausat3/index.php?n=Main.AAUSAT3MissionDescription
+One of the tasks of the AAUSAT3 pico-satellite is to track ships in arctic regions. This steams from the desire of the Danish Maritime Safety Administration \nomenclature[AD]{\textbf{DaMSA}}{Danish Maritime Safety Administration}(DaMSA) to improve naval safety by monitoring the ships. The test area would around Greenland, where monitoring is lacking. % http://www.space.aau.dk/aausat3/index.php?n=Main.AAUSAT3MissionDescription
 
-In order to achieve this objective, a Low Earth Orbit  \nomenclature[A]{\textbf{LEO}}{Low Earth Orbit}(LEO)  satellite is deployed and Automatic Identification System \nomenclature[A]{\textbf{AIS}}{Automatic Identification System}(AIS) signals are used for exchanging information with a ground station. As secondary mission the satellite has to gather pictures of the Arctic regions.
+In order to achieve this objective, a Low Earth Orbit  \nomenclature[AL]{\textbf{LEO}}{Low Earth Orbit}(LEO)  satellite is deployed and Automatic Identification System \nomenclature[AA]{\textbf{AIS}}{Automatic Identification System}(AIS) signals are used for exchanging information with a ground station. As secondary mission the satellite has to gather pictures of the Arctic regions.
 
 If the requirement for the satellite is tracking objects on Earth, the tracking torque demand can be calculated using knowledge about satellite altitude, orbit shape and the corresponding satellite speed, and satellite moment of inertia. For a circular orbit at 600 km altitude, the satellite speed would be $7.56 km/s$  according to \cite{satSpeed}. Appendix \ref{chap:E} presents the graphs used in deriving the torque demand for Earth station pointing. A maximum torque of ${2.388 \times 10^{-7} Nm}$ was calculated, which acts as a requirement for the actuators torque output.
