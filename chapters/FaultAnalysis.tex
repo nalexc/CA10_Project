@@ -1,5 +1,5 @@
 \chapter{Fault  Analysis }
-\textit{In this chapter, probable faults in the system are examined using a  Failure Mode and Effects Analysis (FMEA). Next, in order to find how probable a fault will happen and the effect of it, the severity and occurrence (SO)  of faults is analyzed. It was decided that the fault analysis will be carry out only for the actuators (magnetorquers and reaction wheels).}
+\textit{Probable faults in the system are examined using a  Failure Mode and Effects Analysis (FMEA). In order to decide the importance of handling each fault, the severity and occurrence (SO)  of faults is analyzed. It was decided that the fault analysis will be focusing on the actuators: magnetorquers and reaction wheels.}
 
 \nomenclature[A]{\textbf{FMEA}}{Failure Mode and Effects Analysis}
 \nomenclature[A]{\textbf{SO}}{Severity and Occurrance}
@@ -7,9 +7,9 @@
 \nomenclature[S]{$\vec{{F}_{MT}}$}{The fault vector for the magnetorqers}
 \nomenclature[S]{$\vec{{F}_{RW}}$}{The fault vector for the reaction wheels}
 
-A fault in a system can be seen as a sudden shift in the system functionality, nevertheless, it might not mean a total shutdown of the system. One way to see it is as a disturbance in the system, that might cause performance loss or serious deterioration to the system. On the other hand, a failure can be understood as a total shutdown of the system component. 
+A fault in a system can be seen as a sudden shift in the system functionality, nevertheless, it might not mean a total shutdown of the system. The faults can be considered as a disturbance in the system, some of which might cause performance loss, others serious deterioration to the system. Failures are distinguished from faults, they lead to a total shutdown of the system component. 
 
-In figure \ref{fig:1} a fault tolerant system is shown, which contains an autonomous supervisor that has the ability to switch between various controllers taking into account the type of fault that a component has. The spacecraft block illustrated in the picture is composed of a plant, actuators and sensors and is monitored by the fault detection and isolation (FDI) system, which include detectors that will feed informations to the supervisor in the eventuality of a fault. Based on the information received, the supervisor will establish if a fault occurred or not and in case of a fault the effectors will handle it. Furthermore figure \ref{fig:1} shows the procedure of how faults are handled with various methods. The first step in Fault Analysis is fault modelling which uses a procedure called FMEA.
+In figure \ref{fig:1} a fault tolerant system is shown, which contains an autonomous supervisor that has the ability to switch between various controllers taking into account the type of fault that a component has. The spacecraft block illustrated in the picture is composed of a plant, actuators and sensors and is monitored by the fault detection and isolation (FDI) system, which include detectors that will feed informations to the supervisor in the eventuality of a fault. Based on the information received, the supervisor will establish if a fault occurred or not and in case of a fault the effectors will handle it. Furthermore figure \ref{fig:1} shows the procedure of how faults are handled with various methods. The first step in Fault Analysis is fault modeling which uses a procedure called FMEA.
 \begin{figure}[H]
 	\begin{minipage}[b]{0.49\linewidth}
 		\centering
@@ -30,13 +30,13 @@ In figure \ref{fig:1} a fault tolerant system is shown, which contains an autono
 \end{figure}
 
 \section{Failure Mode and Effects Analysis}
-A FMEA analysis which is a bottom-up analysis method is performed for the components of the satellite. The main goal of FMEA is to identify possible faults and their effects on components. Another aspect of FMEA analysis is that, the severity of a fault can be determined,offering the opportunity to prioritize the faults by severity and in this way focus on the important faults.
+A FMEA analysis which is a bottom-up analysis method is performed for the components of the satellite. The main goal of FMEA is to identify possible faults and their effects on components. Another aspect of FMEA analysis is that, the severity of a fault can be determined, offering the opportunity to prioritize the faults by severity and in this way focus on the important faults.
 
-In order to control the attitude of the satellite, two types of actuators are used: magnetorquers and reaction wheels. Potential faults are gather into a table which describes the effect and cause, while the satellite is orbiting.
+In order to control the attitude of the satellite, two types of actuators are used: magnetorquers and reaction wheels. Potential faults are gathered into tables \ref{tab:mtfault} and \ref{table:kysymys} describing the effect and cause on the satellite in orbit.
+
 \subsubsection{Magnetorquers}
 \begin{table}[H]
 	\centering
-	\label{my-label}
 	\begin{tabular}{|l|l|l|}
 		\hline
 		\multicolumn{3}{|c|}{\textit{\textbf{Magnetorquers}}}                                          \\ \hline
@@ -44,28 +44,30 @@ In order to control the attitude of the satellite, two types of actuators are us
 		\textbf{Reference} & \textbf{Failure Effect} & \textbf{Failure Cause}                          \\ \hline
 		$MT1$                 & Low magnetic field  & \begin{tabular}[c]{@{}l@{}}1) Broken wire or bad soldering\\ 2) Component burned\end{tabular} \\ \hline
 		$MT2$                 & Maximum magnetic field power  & Short circuit to the power voltage   \\ \hline
-		$MT3$                 & Wrong direction of the magnetic field & \begin{tabular}[c]{@{}l@{}} 1) Misalignment of the magnetorquer\\ 2) Short circuit of some parts of the \\ torquer to the power voltage \end{tabular} \\ \hline
-		$MT4$                 & Wrong  power of the magnetic field                 & Floating supplay voltage                                            \\ \hline
+		$MT3$                 & Wrong direction of the magnetic moment & \begin{tabular}[c]{@{}l@{}} 1) Misalignment of the magnetorquer\\ 2) Short circuit between  the \\ magnetorquer and the power voltage \end{tabular} \\ \hline
+		$MT4$                 & Wrong  magnetic field magnitude                & Faulty supply voltage                                            \\ \hline
 	\end{tabular}
 	\caption{Potential faults in the magnetorquers}
+	\label{tab:mtfault}
 \end{table}
 Description of faults in the magnetorquers: 
 
 $\mathcal{F}_{MT1}$: 
-The coil it might have a broken wire or a bad soldering inside, that will lead to a poor generation of magnetic field from the magnetorqers. On the other hand, a component could be burned due to a fluctuation in the current. \todo{voltage regulator is the reason}
+The coil might have a broken wire or bad soldering, which can lead to the weakening of the magnetorqer magnetic field. The same effect can arise if an electric component is burned from large currents caused by a fault in the voltage regulator.
 
 $\mathcal{F}_{MT2}$: 
-With a short circuit in the power supply, a maximum magnetic field power is expected.
+A short circuit in the power supply can lead to maximum magnetic field output.
 
 $\mathcal{F}_{MT3}$:
-A misalignment of the magnetorquer  due to transportation or a sudden shift during the launch, could affect the direction of the magnetic field.
+A misalignment of the magnetorquer  due to transportation or a sudden shift during the launch, could affect the direction of the magnetorquer magnetic field, leading to wrong magnetorquer magnetic moment output.
 
 $\mathcal{F}_{MT4}$:  
-A variable supply voltage that could mean a positive or negative operation will end up with an error power of the magnetic field.
+A fault supply voltage that could mean lead to uncontrollable magnetorquer magnetic field.
 
-The fault vector for the magnetorqers is constructed as follows:
+%The fault vector for the magnetorqers is constructed as follows:
+%
+%$\mathcal {\vec{{F}_{MT}}}$ = [ \ $\mathcal{F}_{MT1}$ \ $\mathcal{F}_{MT2}$ \ $\mathcal{F}_{MT3}$ \ $\mathcal{F}_{MT4}$ ]$^ \mathsf{T}$
 
-$\mathcal {\vec{{F}_{MT}}}$ = [ \ $\mathcal{F}_{MT1}$ \ $\mathcal{F}_{MT2}$ \ $\mathcal{F}_{MT3}$ \ $\mathcal{F}_{MT4}$ ]$^ \mathsf{T}$
 \subsubsection{Reaction wheels}
 \begin{table}[H]
 	\centering
@@ -73,36 +75,36 @@ $\mathcal {\vec{{F}_{MT}}}$ = [ \ $\mathcal{F}_{MT1}$ \ $\mathcal{F}_{MT2}$ \ $\
 	\begin{tabular}{|l|l|l|}
 		\hline
 		\multicolumn{3}{|c|}{\textit{\textbf{Reaction wheels}}}                                          \\ \hline
-		\multicolumn{3}{|c|}{Produces a torque about the satellite COM in order to rotate it }                     \\ \hline
+		\multicolumn{3}{|c|}{Produces a torque in order to rotate the satellite}                     \\ \hline
 		\textbf{Reference} & \textbf{Failure Effect} & \textbf{Failure Cause}                          \\ \hline
-		$RW1$                & Faulty orientation & \begin{tabular}[c]{@{}l@{}} Shifting of the flywheel  \\   \end{tabular} \\ \hline
-		$RW2$                & Unable to control the rotation   & A short-circuit in the power supply  \\ \hline
-		$RW3$                & Low power received& \begin{tabular}[c]{@{}l@{}} Short circuit to the ground\\  \end{tabular} \\ \hline
+		$RW1$                & Faulty torque orientation & \begin{tabular}[c]{@{}l@{}} Shifting of the flywheel  \\   \end{tabular} \\ \hline
+		$RW2$                & Uncontrollable rotation   & A short-circuit in the power supply  \\ \hline
+		$RW3$                & Low motor power & Short circuit \\ \hline
 		$RW4$                & No torque exerted  &  A fault in windings    \\ \hline
-		$RW5$                & More power requirement  &  A fault in bearings    \\ \hline
+		$RW5$                & Higher power requirement  &  A fault in bearings    \\ \hline
 	\end{tabular}
 	\caption{Potential faults in the reaction wheels}
 \end{table}
 Description of faults in the reaction wheels: 
 
 $\mathcal{F}_{RW1}$: 
-A displacement of the flywheel throughout launch or transportation could result in a error in the orientation that might alter the angular velocity of the satellite.
+A displacement of the flywheel during launch or transportation could result in an error in the controlled torque orientation.
 
 $\mathcal{F}_{RW2}$: 
-A short-circuit in the power supply could influence the rotation of the flywheel, by having a low or maximum rotation, which will end up with a low or maximum power.
+A short-circuit in the power supply could influence the control of the flywheel by decreasing the range of the control voltage.
 
 $\mathcal{F}_{RW3}$:
-A short circuit to the ground due to a broken wire or bad soldering will result in low power generation, that could influence the rotation of the flywheel.
+A short circuit to the ground due to a broken wire or bad soldering will result in low torque output. 
 
 $\mathcal{F}_{RW4}$:  
-Due to a fault in the windings, the flywheel is uncontrollable since the motor can not exerts torque.
+Due to a fault in the windings, the flywheel is uncontrollable since the motor can not exert torque.
 
 $\mathcal{F}_{RW5}$:  
 If the motor bearings fail, then the motor will need to generate more torque than usual in order to compensate, therefore more power is required.
 
-The fault vector for the reaction wheels is constructed as follows:
-
-$\mathcal {\vec{{F}_{RW}}}$ = [ \ $\mathcal{F}_{RW1}$ \ $\mathcal{F}_{RW2}$ \ $\mathcal{F}_{RW3}$ \ $\mathcal{F}_{RW4}$ \ $\mathcal{F}_{RW5}$]$^ \mathsf{T}$
+%The fault vector for the reaction wheels is constructed as follows:
+%
+%$\mathcal {\vec{{F}_{RW}}}$ = [ \ $\mathcal{F}_{RW1}$ \ $\mathcal{F}_{RW2}$ \ $\mathcal{F}_{RW3}$ \ $\mathcal{F}_{RW4}$ \ $\mathcal{F}_{RW5}$]$^ \mathsf{T}$
 
 In appendix \ref{chap:H} a severity and occurrence evaluation is performed.
 %\subsubsection{Fault propagation analysis}
