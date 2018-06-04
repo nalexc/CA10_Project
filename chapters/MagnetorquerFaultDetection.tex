@@ -15,9 +15,9 @@ $L$ is the length of the coil
 In equation \ref{eq:BfS} the magnetic field is measured and based on this measurement the magnetic moment can be deducted, but for the residual is not necessary, because if it is correct then the magnetic moment should be as expected using magnetic sensors for checking, unless the shape of the coil changes, perhaps due to some physical movement of the system.
 
 \subsection{Unknown Input Observer (UIO)} \label{sec:UIO}
-Uncertainties and modeling errors may cause discrepancies between the actual system and the descriptor mathematical model. Linearization and simplifications which make the system more manageable may lead also to uncertainties. All these\nomenclature[A]{\textbf{UIO}}{Unknown Input Observer } uncertainties can have an effect on the system dynamic behavior through the input signals.   
+Uncertainties and modeling errors may cause discrepancies between the actual system and the descriptor mathematical model. Linearization and simplifications which make the system more manageable may lead also to uncertainties. All these\nomenclature[AU]{\textbf{UIO}}{Unknown Input Observer } uncertainties can have an effect on the system dynamic behavior through the input signals.   
 A residual, fault indicator, based on observer design can be robust regarding the unknown input signals by making the effect of unknown inputs(UI) insensitive to the residual and thus making possible to maximize the detectability of a fault. The dynamic equation of the system can be written as 
-\nomenclature[A]{\textbf{UI}}{Unknown Input}
+%\nomenclature[A]{\textbf{UI}}{Unknown Input}
 %
 
 \begin{equation}
@@ -111,7 +111,7 @@ which is clear that does not depend on the disturbance vector. A simple threshol
 $\{\lVert \vec{r}\rVert \geq threshold \}$ else if $\{\lVert \vec{r}\rVert < threshold \}$ then the system is fault free. In the \figref{fig:residualobs} the block diagram of the nominal system and the observer can be seen along with the residual generator
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\linewidth]{figures/UIO}
+	\includegraphics[width=0.8\linewidth]{figures/UIO}
 	\caption{Observer based residual generator}
 	\label{fig:residualobs}
 \end{figure}
