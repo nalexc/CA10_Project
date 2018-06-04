@@ -46,23 +46,30 @@ with $\underline{C}$ be identity matrix. The matrix $\underline{A}$ is found by 
 \subsubsection{Residual generation}
  \label{sec:simpleObserveresidual}
  %
- Assuming that the motors are fault free a residual can be generated from the Luenberger-like observer. By denoting $\vec{N_{real}} =I\vec{\hat{{\dot \omega}}}$ where $I$ is the inertia of the satellite then a residual can be generated as
+ Assuming that the motors are fault free a residual can be generated from the Luenberger-like observer. By denoting $\vec{N_{obs}} =I\vec{\hat{{\dot \omega}}}$ where $I$ is the inertia of the satellite then a residual can be generated as
 
  %
  \begin{equation}
- \vec{N_{residual}} = \vec{N_{actual}} - \vec{N_{real}}
+ residual = \vec{N_{actual}} - \vec{N_{obs}}
  \label{eq:residualObs}
  \end{equation}
  %
- thus if $\{\lVert \vec{N_{residual}}\rVert \geq threshold \}$ a fault has been occurred the structure of Luenberger-like observer can be seen in \figref{fig:observer} and the generated residual signal in \figref{fig:observerresidual} . 
+ thus if $\lVert \vec{residual} \rVert \geq threshold$ a fault has been occurred. The structure of Luenberger-like observer can be seen in \figref{fig:observer2} and the generated residual signal in \figref{fig:observerresidual} . 
  %
- \begin{figure}[H]
- 	\vspace*{1cm}
- 	\hspace*{3cm}\includegraphics[width=0.9\linewidth]{figures/Observer}\hspace*{-3cm}
- 	\caption{Luenberger-like Observer structure and residual generation   }
- 	\label{fig:observer}
- \end{figure}
-%
+ %\begin{figure}[H]
+ %	\vspace*{1.5cm}
+ %	\hspace*{-1cm}\includegraphics[width=0.9\linewidth]{figures/Observer}\hspace*{1cm}
+ %	\caption{Luenberger-like Observer structure and residual generation   }
+ %	\label{fig:observer}
+%\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figures/Observer}
+	\caption{Luenberger-like Observer residual signal }
+	\label{fig:observer2}
+\end{figure}
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\linewidth]{figures/Observer_residual}
