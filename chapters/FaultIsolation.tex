@@ -2,8 +2,7 @@
  \section{Virtual actuators and sensors} \label{chap: virtual}
  Actuators and sensors are subject to various faults in the process. Due to these faults the system may experience drops in the performance which could lead to stability loss.
  
- The objective of fault tolerant control using virtual actuators and sensors is to add a reconfiguration block which is presented as an extra layer between the faulty system and the controller, while the nominal controller is running. The purpose of the reconfiguration block in case of a fault is to provide fault tolerance by using the virtual actuators and sensors as can be seen in figure \ref{fig:VA}.
- 
+ The objective of fault tolerant control using virtual actuators and sensors is to add a reconfiguration block which is presented as an extra layer between the faulty system and the controller, while the nominal controller is running. The purpose of the reconfiguration block in case of a fault is to provide fault tolerance by using the virtual actuators and sensors as can be seen in figure \ref{fig:VA}. In the figure, $u_f$ represents the faulty control input which is reconfigure based on the faults and the main attitude control input, and $y_f$ is the faulty output. 
  \begin{figure}[H]
  	\centering
  	\includegraphics[width=0.8\linewidth]{figures/VirtualActuator}
