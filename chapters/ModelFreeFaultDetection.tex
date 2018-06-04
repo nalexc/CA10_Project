@@ -10,13 +10,6 @@ A reconfiguration scheme using anomaly detection in angular velocity sensors has
 FaultSignal_i = |\omega_{w,i}(k) - \omega_{w,i}(k-1)| > \dot{\omega}_{thresh} \Delta t
 \end{equation}
 
-\subsubsection{Verify the detectability of potential faults}
-The faults are verified according to the FMEA analysis.
 
-By taking a measurement of the voltage indicates that the fault $\mathcal{F}_{RW2}$ is not possible to detect due to structure analysis, because the structure analysis is checking the relation between the measured quantities, which are done according to the model. Therefore, if the measured quantities are wrong then the fault can not be detected.  Having a short-circuit in the power supply denote that the control voltage is zero all the time. It represents a simple model free detection by knowning the saturation, torque demand and the voltage measurement.
-
-The fault corresponding to the faulty orientation $\mathcal{F}_{RW1}$ can be detected. This is possible due to the fact that the structural analysis for the overall dynamics includes the assumption that the orientation are similar with the model, but if the actual orientation changes then the fault can be detected. Moreover, if the torque demand for the reaction wheel is non zero and the wheel is not in saturation, but the reaction wheel still does not generate any output torque, then there is a fault.
-
-The fault equivalent to the bearings fail $\mathcal{F}_{RW5}$ can also be detected. In case a bearing has a fault, then the friction in the residual \ref{eq:res1} changes, therefore it will be detected as a fault.
 
 

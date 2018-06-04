@@ -1,0 +1,29 @@
+\subsection{Detectability of potential faults}
+
+\textit{The possible detection methods for the faults discussed above are discussed. The methods are described in more detail in subsequent sections.}
+
+\textbf{Decreasing control voltage range:}
+Detection does not require more in depth knowledge of the system. The fault detector needs to receive control voltage measurement, control voltage demand and needs to be aware of the normal voltage range. If the voltage demand is below the normal range, but the measured voltage does not match with the demand, a power supply related problem can be suspected.
+
+\textbf{Sensor fault:}
+Some of the sensor faults can be detected through the discontinuities they cause in the signal.
+
+\textbf{Discrepancy between estimated and actual actuator torques:}
+Observer based fault detection methods can help in exposing wrong torque estimates. The estimated torque is fed to the simulated observer system. If the system states of the observer and the real satellite have a substantial mismatch, a fault can be suspected.
+
+\textbf{Reaction wheel or magnetorquer axis displacement:}
+The reaction wheel system has voltage, current, angular velocity sensors, but none of these local sensors are able to detect the displacement of the axis. However fault detectors taking into account the satellite dynamics using attitude measurements can register the difference between actuator torque demand and actuator torque output, which can indicate a misalignment. During normal operation, when all actuators are working, finding the actuator with misaligned axis can be quite problematic. Isolation of this type of fault can be done by turning off the main attitude controller, then one by one giving torque demand to each actuator. If the actuator has an unexpected effect on the satellite dynamics, the actuator can be deemed faulty. 
+
+\textbf{Winding fault leading to zero torque output}:
+Reaction wheel winding fault can not be directly detected, since there's no direct measurement available of the output torque. Residuals based on structural analysis can detect a discrepancy between winding current and torque output. Similarly, structural analysis based residual can be established for the magnetorquers using magnetic field and current measurement.
+
+\textbf{Reaction wheel bearing fault:}
+If the bearing of a reaction wheel is faulty, the friction increases, changing the dynamics of the motor. This can be detected through the structural analysis based residual signal.
+
+
+%By taking a measurement of the voltage indicates that the fault $\mathcal{F}_{RW2}$ is not possible to detect due to structure analysis, because the structure analysis is checking the relation between the measured quantities, which are done according to the model. Therefore, if the measured quantities are wrong then the fault can not be detected.  Having a short-circuit in the power supply denote that the control voltage is zero all the time. It represents a simple model free detection by knowning the saturation, torque demand and the voltage measurement.
+%
+%The fault corresponding to the faulty orientation $\mathcal{F}_{RW1}$ can be detected. This is possible due to the fact that the structural analysis for the overall dynamics includes the assumption that the orientation are similar with the model, but if the actual orientation changes then the fault can be detected. Moreover, if the torque demand for the reaction wheel is non zero and the wheel is not in saturation, but the reaction wheel still does not generate any output torque, then there is a fault.
+%
+%The fault equivalent to the bearings fail $\mathcal{F}_{RW5}$ can also be detected. In case a bearing has a fault, then the friction in the residual \ref{eq:res1} changes, therefore it will be detected as a fault.
+
