@@ -26,7 +26,7 @@ F_z = - \frac{\partial U}{\partial z} =  \mu \left[ -\frac{z}{r^3} + A_{J_2} \le
 \label{eq:Pr34331}
 \end{flalign}
 where $A_{J_2}  = \frac{1}{2} J_2 R_e^2$ and and $R_e$ is the mean radius o the Earth at the equator
-\subsection*{Aerodynamic disturbance torque}\label{chap:disturbances}
+\subsection{Aerodynamic disturbance torque}\label{chap:disturbances}
 %
 Gas molecules, in a LEO(low Earth orbit) collide with the surface of the satellite causing
 a force which direction opposes the direction of the satellites velocity vector. This Aerodynamic force can be modeled as \cite{SADC,PrevPro}  
@@ -55,7 +55,7 @@ Using the \eqref{eq:ec1c}, the aerodynamic torque acting on the satellite can be
 where:\\
 $\vec r_{s}$ is the vector from the centre of mass of the satellite to the geometric centre of the exposed area
 %\nomenclature[S]{\textbf{$\vec N_{drag}$}}{Drag disturbance torque}
-\subsection*{Solar radiation disturbance torque}\label{chap: disturbances2}
+\subsection{Solar radiation disturbance torque}\label{chap: disturbances2}
 
 Solar radiation pressure is emitted from various sources such as reflection from the Earth's atmosphere, from solar wind and direct radiation from the sun to the surface of the satellite\cite{SADC}\cite{PrevPro}  . Direct radiation is larger and only this source will be taken into account.
 		\begin{figure}[H]
@@ -90,7 +90,7 @@ where $\vec r_{s}$ is the vector from the center of mass of the satellite to the
 %\nomenclature[S]{\textbf{$F_{rad}$}}{solar radiation force}
 %\nomenclature[S]{\textbf{$\vec N_{rad}$}}{Solar radiation torque}
 %
-\subsection*{Gravity Gradient disturbance torque}\label{chap: disturbances3}
+\subsection{Gravity Gradient disturbance torque}\label{chap: disturbances3}
 Contrary to $j_{2}$ effect, in order to derive an expression for the gravitational torque exerted about the mass center of the satellite, it is assumed symmetrical and spherical Earth's mass distribution  \cite{SADC}.
 The gravity gradient effect about the center of mass of the satellite is a consequence of the non-uniform gravitational field of the Earth. If the gravitational field was uniformly distributed no torque would be present. The force to an infinitesimal element $d\vec{F_{i}}$ to a distance $R_{i}$ from the center of the Earth can be written
 %
@@ -108,7 +108,7 @@ as it can be seen in \figref{fig:gg}. The torque about the geometric center of t
  Assuming that the center of mass is aligned with the geometric center, the torque about the center of mass of the satellite can be expressed as\cite{SADC}\cite{PrevPro}  
 
 %\nomenclature[A]{\textbf{$\vec N_{gra}$}}{Gravity Gradient torque}
-\nomenclature[A]{\textbf{COM}}{Center of Mass}
+\nomenclature[AC]{\textbf{COM}}{Center of Mass}
 %\nomenclature[S]{\textbf{$d\vec F_{i}$}}{Gravity force to an infinitesimal element}
 %
 \begin{flalign}
@@ -159,7 +159,7 @@ The magnitude of the torque is computed in MATLAB using the AAUStudentSpace tool
 	\label{TTdist}
 	\begin{tabular}{|l|c|l|}
 		\hline
-		\textit{\textbf{Disturbance}} & \textit{\textbf{\begin{tabular}[c]{@{}c@{}}Torquet magnitude at a given\\  moment in the orbit (nNm)\end{tabular}}} & \multicolumn{1}{c|}{\textit{\textbf{\begin{tabular}[c]{@{}c@{}}Torque \\ magnitude (Nm)\end{tabular}}}} \\ \hline
+		\textit{\textbf{Disturbance}} & \textit{\textbf{\begin{tabular}[c]{@{}c@{}}Torque magnitude at a given\\  moment in the orbit (nNm)\end{tabular}}} & \multicolumn{1}{c|}{\textit{\textbf{\begin{tabular}[c]{@{}c@{}}Torque \\ magnitude (Nm)\end{tabular}}}} \\ \hline
 		\textit{Aerodynamic}          & 1.52                                                                                                                &                                                                                                         \\ \hline
 		\textit{Gravitaional}         & 0.86                                                                                                                &                                                                                                         \\ \hline
 		\textit{Radiation}            & 1.25                                                                                                                &                                                                                                         \\ \hline
