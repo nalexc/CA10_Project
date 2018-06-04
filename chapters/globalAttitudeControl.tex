@@ -97,27 +97,37 @@ After a satellite is ejected from its rocket, it might be rotating quite fast. T
 
 
 \begin{figure}[H]
+	\begin{subfigure}{0.5\linewidth}
+			\centering
+		%	\includegraphics[width=0.7\linewidth]{figures/detumbling}
+		\includegraphics[width=1\linewidth]{figures/hybridtorque}
+		\caption{Hybrid controller detumbling torque demand}
+		\label{fig:detumbling}
+	\end{subfigure}
+	\begin{subfigure}{0.5\linewidth}
 	\centering
-%	\includegraphics[width=0.7\linewidth]{figures/detumbling}
-	\includegraphics[width=0.9\linewidth]{figures/hybridtorque}
-	\caption{Hybrid controller detumbling torque demand}
-	\label{fig:detumbling}
+%	\includegraphics[width=0.7\linewidth]{figures/detumbling3}
+\includegraphics[width=0.7\linewidth]{figures/xc}
+\caption{$x_c$ controller state during detumbling maneuver using the hybrid controller. The quaternion error is negated at 4 seconds.}
+\label{fig:detumblingVar}
+	\end{subfigure}
+
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 %	\includegraphics[width=0.7\linewidth]{figures/detumbling3}
-	\includegraphics[width=0.7\linewidth]{figures/hybridomega}
+	\includegraphics[width=0.5\linewidth]{figures/hybridomega}
 	\caption{Satellite angular velocity during detumbling maneuver using the hybrid controller}
 	\label{fig:detumblingomega}
 \end{figure}
 
-\begin{figure}[H]
-	\centering
-	%	\includegraphics[width=0.7\linewidth]{figures/detumbling3}
-	\includegraphics[width=0.4\linewidth]{figures/xc}
-	\caption{$x_c$ controller state during detumbling maneuver using the hybrid controller. The quaternion error is negated at 4 seconds.}
-	\label{fig:detumblingVar}
-\end{figure}
+%\begin{figure}[H]
+%	\centering
+%	%	\includegraphics[width=0.7\linewidth]{figures/detumbling3}
+%	\includegraphics[width=0.4\linewidth]{figures/xc}
+%	\caption{$x_c$ controller state during detumbling maneuver using the hybrid controller. The quaternion error is negated at 4 seconds.}
+%	\label{fig:detumblingVar}
+%\end{figure}
 
 

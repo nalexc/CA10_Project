@@ -10,5 +10,3 @@ The main attitude controller sends a torque demand to the actuators, which is th
 \end{figure}
 
 As shown on Figure \ref{fig:torqueControl} , the torque controller controls the torque error signal using a PD controller. Since the torque has a $ 10^{-5} Nm$ magnitude, while the voltage has $ 10^1 V$, numerically the PD gains are quite large. The control signal is the input voltage for the DC motor. The subsystem is second order, including an integrator for current and one for angular velocity.
-
-\todo{Move to appendix}

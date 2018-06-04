@@ -4,6 +4,11 @@ A widely used actuation system is reaction wheels which are spinning wheels and 
 \section{Reaction wheels}
 %
 %Since the focus of the current thesis is not on the design of reaction wheels, only few constraints are  taken into account for the selection of the wheels, such as the weight and the inertia. In order to minimize the total weight of the satellite, the weight of each wheel, is not overcome the %weight of each motor. 
+
+The satellite should be capable of tracking an Earth station in order to be able to downlink data effectively. Tracking a ship requires similar control capability, since the velocity of the wheel is practically zero compared to the velocity of the satellite. Directing the antennas to the nadir continuously only requires keeping a satellite angular velocity equal to the orbit's angular velocity.
+Tracking the Earth station requires torque from the actuators, the torque demand can be calculated based on the angular acceleration demand for Earth station tracking.
+
+
  The reaction wheels are chosen to give higher inertia from the motor shaft, and can provide medium manoeuvrability in terms of time required to turn the satellite $90^o$ \cite{SIDI}. The wheel inertia is \cite{flywheel_design_thesis} $J_{wheel} = 2.456 [gcm^2]$ and the weight is $m_{wheel} = 4.201 [g] $ compared to the motor weight $m_{motor} =8 [g] $ and the motor shaft inertia $J_{motor} = 0.0249 [gcm^2]$. The characteristics of the selected motor can be found in appendix \ref{chap: B}. The maximal speed of the motor is $\omega_{max}= 20000[rpm]$ and thus the maximum angular momentum that the system wheel-motor can provide can be found as    
 %
 %\nomenclature[S]{\textbf{$J_{wheel}$}}{Reaction wheel inertia}

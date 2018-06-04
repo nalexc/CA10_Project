@@ -71,7 +71,7 @@ residual = -k_t i + J \frac{d\omega}{dt} + b \omega
 
 The friction model is quite accurate at high speeds, not so much for low speeds. This needs to be addressed by a higher threshold fault signal threshold at low speeds. Figures \ref{fig:residual} - \ref{fig:residualOmega} show the effect of a bearing fault on the residual, when the fault doubles the reaction wheel friction.
 
- When a residual indicates a fault, the torque distributor changes mode, shutting down the faulty wheel. There's a short term error in the reaction wheel subsystem's torque output, but then the torque reference tracking normalizes quite quickly. This might jeopardize a downlink operation, but since this kind of fault rarely occurs, the effects are not serious. \todo{move}
+ When a residual indicates a fault, the supervisor system can decide to change the mode of torque distributor, shutting down the faulty wheel. There's a short term error in the reaction wheel subsystem's torque output, but then the angular velocity reference tracking normalizes the output quite quickly. This might jeopardize a downlink operation, but this kind of fault rarely occurs, and might only require downlinking to be postponed for the next orbit.
 
 
 \begin{figure}
