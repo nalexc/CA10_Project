@@ -131,7 +131,7 @@ leading to a second order closed loop system calculated as $det(s\underline{I} -
 Since the matrix $\underline{A}$ is affine,   stability analysis was made for all the values of $ \vec{ {\bar{\omega}}}$ evaluated on the vertices of the convex polyhedron for the all values of $ \vec{ {\bar{\omega}}} $\cite{PrevPro} giving maximum eigenvalue $-0.0308$. In the figure \ref{fig:linear demand} it is seen the torque demand from the linear controller for nadir pointing reference.
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\linewidth]{figures/linear_controller_demant}
+	\includegraphics[width=0.7\linewidth]{figures/linear_controller_demant2}
 	\caption{Linear controller Nadir pointing torque demand }
 	\label{fig:linear demand}
 \end{figure}
@@ -221,7 +221,7 @@ equation \ref{eq:444444} is written as
 Eventually, it can be seen that choosing $\lambda > \lVert{\vec{\dot{\tilde{\omega}}_{max}}} \rVert + \lVert \vec{N_{mt}} \rVert + \lVert \vec{N_{dist}} \rVert $ the condition $\dot{V} < 0 $ is satisfied. Sign function presents chattering around the manifold which is undesirable, thus the sign function is replaced with the hyperbolic tangent function $tanh$ which is smoother. In the figure \ref{fig:slidingtorque} is depicted the torque demand the sliding mode controller outputs. It can be seen that is more aggressive compared to the linear controller discussed in previous chapter, and furthermore it can be seen that the torque converging slower compared to the linear controller since the SMC need to bring the states to the manifold.
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\linewidth]{figures/SMC_tor}
+	\includegraphics[width=0.7\linewidth]{figures/SMC_tor2}
 	\caption{Sliding Mode controller nadir pointing torque demand }
 	\label{fig:slidingtorque}
 \end{figure} 
