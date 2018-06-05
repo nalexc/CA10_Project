@@ -3,18 +3,17 @@
 
 \section{Reference Frames}
 
-\nomenclature[A]{\textbf{ECI}}{Earth Centered Inertial Frame}
-\nomenclature[A]{\textbf{ECEF}}{Earth Centered Earth Fixed Frame}
-\nomenclature[A]{\textbf{SBRF}}{Satellite Body Reference Frame}
+\nomenclature[AE]{\textbf{ECI}}{Earth Centered Inertial Frame}
+\nomenclature[AE]{\textbf{ECEF}}{Earth Centered Earth Fixed Frame}
+\nomenclature[AS]{\textbf{SBRF}}{Satellite Body Reference Frame}
 
 Using different reference frame for different calculations can simplify equations. Values in one reference frame can be converted into the other by using the proper transformations.
 Inertial frames of reference are frames where Newton's 3 laws of dynamics apply.
 The most used reference frames for Earth-orbiting satellites are Earth Centered Inertial Frame (ECI), Earth Centered Earth Fixed Frame (ECEF), Orbit Frame, Satellite Body Reference Frame (SBRF)  \cite{ref1} \cite{ref2}. Figure \ref{fig:frames} provides a visualization of the frames.
-
-\begin{figure}[h!]
+\begin{figure}[H]
 	\centering 
-	\includegraphics[width=140mm]{figures/frame.pdf}	
-	\caption{Reference frame axes. Superscripts: i - ECI, o - Orbital, s - Satellite Body Frame \cite{our_report}.}
+	\includegraphics[width=100mm]{figures/frame.pdf}	
+	\caption{Reference frame axes. Superscripts: i - ECI, o - Orbital, s - Satellite Body Frame \cite{PrevPro}.}
 	\label{fig:frames}
 \end{figure}
 
@@ -24,7 +23,7 @@ As the name suggests, the origin of the coordinate system is the center of earth
 ECI is a cartesian coordinate system. Its $^iz$ vector points in the direction of the northern axis of rotation, while the $^ix$ axis towards the vernal equinox. The $^iy$ axis completes the triad of the right-handed Cartesian coordinate system.
 
 
-\nomenclature[T]{\textbf{Vernal Equinox}}{The vernal equinox is the vector pointing towards the Sun's center during the equinox (20th of March in 2018). The $x$ vector also keeps its direction relative to the stars.}
+\nomenclature[TV]{\textbf{Vernal Equinox}}{The vernal equinox is the vector pointing towards the Sun's center during the equinox (20th of March in 2018). The $x$ vector also keeps its direction relative to the stars.}
 
 
 \subsubsection{Earth Centered Earth Fixed Frame (ECEF)}
@@ -35,7 +34,7 @@ ECEF, similarly to ECI is centered at the Earth's origin. Its $z$ vector points 
 
 The Orbital Frame is centered at the center of mass of the satellite. The $^oz$ axis points towards the center of Earth, $^ox$ points in the direction of the satellite's velocity, while $^oy$ is the normal vector for the orbital plane. The 3 axes make up an orthogonal triad.
 
-\nomenclature[T]{\textbf{Nadir}}{The axis pointing towards Earth's center of mass}
+\nomenclature[TN]{\textbf{Nadir}}{The axis pointing towards Earth's center of mass}
 
 \subsubsection{Satellite Body Reference Frame (SBRF)}
 

@@ -2,11 +2,9 @@
 \textit{This section describes the derivation of the mathematical model of the satellite which contains the dynamic and kinematic model, based on the rigid body dynamics and kinematics.}
 \subsection{Kinematic equation}
 In this subsection, the focus will be on describing the orientation of the satellite. The method used for describing the satellite attitude is quaternion representation. It was decided to choose quaternion representation, because they provide a way to deal with singularities.
-\nomenclature[S]{$\vec N_{ext}$}{Represent all the external torques that influence the satellite}
-\nomenclature[S]{${\vec{ h_{sat}}}$}{Angular momentum of the satellite}
-\nomenclature[S]{${\vec{ h_{tot}}}$}{Total angular momentum}
-\nomenclature[S]{$\vec{ \bar{q}}$}{ The operating point of the quaternion}
-\nomenclature[S]{$\vec{q_{\omega}}$}{ The angular velocity quaternion}
+\nomenclature[Sh]{${\vec{ h_{sat}}}$}{Angular momentum of the satellite}
+\nomenclature[Sq]{$\vec{ \bar{q}}$}{ The operating point of the quaternion}
+\nomenclature[Somega]{$\vec{q_{\omega}}$}{ The angular velocity quaternion}
 
 The quaternion $\textbf{q}(t)$ is defined as the attitude quaternion of a rigid body at time $t$ with respect to the inertial frame and at time $t+\Delta t$, the quaternion $\textbf{q}(t+\Delta t)$ is defined. The orientation quaternion can be divided into the quaternion at time $t$ and performing a quaternion multiplication with the rotation in the interval $\Delta t$ as follows:
 \begin{flalign}
@@ -91,10 +89,10 @@ The rate of change in the orientation of the spacecraft $\vec{^s_i q(t)}$  can b
 The satellite dynamics are described using Euler's equation of motion and Newton's laws of motion. 
 Using Euler's equation of motion, the relation between the change in angular momentum and the torques that affect the satellite is given as follows:
 \begin{flalign}
-	\vec{ \dot h} = \vec{N_{ext}} =  \vec{N_{mt}}+ \vec{N_{dist}}
+	\vec{ \dot h} = \vec{N_{dist}} =  \vec{N_{mt}}+ \vec{N_{dist}}
 	\label{eq:ec2}
 \end{flalign} 
-where $h$ is the angular momentum of a rigid body, $N_{ext}$ represent all the external torques that influence the satellite, $N_{mt}$ is the torque from the magnetorquers and $N_{dist}$ is the torque from the disturbances.
+where $h$ is the angular momentum of a rigid body, $N_{dist}$ represent all the external torques that influence the satellite, $N_{mt}$ is the torque from the magnetorquers and $N_{dist}$ is the torque from the disturbances.
 
 The change in angular momentum of the satellite can be express as the product between the angular acceleration and the moment of inertia:
 \begin{flalign}
@@ -105,30 +103,30 @@ where $h_{sat}$ is the angular momentum of the satellite, $\underline I_{s}$ is 
 
 Including the momentum wheels, the total angular momentum is given by:
 \begin{flalign}
-	{\vec{h_{tot}}} = \vec{h_{sat}} + \vec{h_{rw}}
+	{\vec{h_{T}}} = \vec{h_{sat}} + \vec{h_{rw}}
 	\label{eq:ec4}
 \end{flalign} 
 where $\vec{h_{rw}}$ is the angular momentum of the reaction wheels.
 Therefore, the total angular momentum is described by:
 \begin{flalign}
-	{\vec{h_{tot}}} = {\underline I_{s}}{\vec{\omega}}+{\vec{h_{rw}}}
+	{\vec{h_{T}}} = {\underline I_{s}}{\vec{\omega}}+{\vec{h_{rw}}}
 	\label{eq:ec5}
 \end{flalign}
 By rearranging terms, equation \ref{eq:ec5} becomes:
 \begin{flalign}
-	{\vec{\omega}} = {\underline I_{s}^{-1}} ({\vec{h_{tot}}}-{\vec{h_{rw}}})
+	{\vec{\omega}} = {\underline I_{s}^{-1}} ({\vec{h_{T}}}-{\vec{h_{rw}}})
 	\label{eq:ec6}
 \end{flalign}
 
-Using Euler's equation of motion, the time derivative of $\vec{h_{tot}}$ expressed in the SBRF frame is:
+Using Euler's equation of motion, the time derivative of $\vec{h_{T}}$ expressed in the SBRF frame is:
 \begin{flalign}
-	&	\vec{ \dot h_{tot}} = \vec{ \dot h_{sat}} + \vec \omega \times \vec h_{tot}= \vec{  N_{mt}} + \vec{  N_{dist}} \\
-	&\underline I_s {\vec{\dot{\omega}}} + \vec {\dot{h}_{rw}}+ \vec \omega \times \vec h_{tot} = \vec{  N_{mt}} + \vec{  N_{dist}} 
+	&	\vec{ \dot h_{T}} = \vec{ \dot h_{sat}} + \vec \omega \times \vec h_{T}= \vec{  N_{mt}} + \vec{  N_{dist}} \\
+	&\underline I_s {\vec{\dot{\omega}}} + \vec {\dot{h}_{rw}}+ \vec \omega \times \vec h_{T} = \vec{  N_{mt}} + \vec{  N_{dist}} 
 	\label{eq:ec7}
 \end{flalign}
 Subsequently, the angular velocity is separated and expressed as:
 \begin{flalign}
-	{\vec{\dot{\omega}}} = -\underline I_s ^{-1} \vec \omega \times \vec h_{tot} -\underline I_s ^{-1} \vec {\dot{h}_{rw}} + \underline I_s ^{-1}(\vec{  N_{mt}} + \vec{  N_{dist}}) 
+	{\vec{\dot{\omega}}} = -\underline I_s ^{-1} \vec \omega \times \vec h_{T} -\underline I_s ^{-1} \vec {\dot{h}_{rw}} + \underline I_s ^{-1}(\vec{  N_{mt}} + \vec{  N_{dist}}) 
 	\label{eq:ec8}
 \end{flalign}
 Next, by replacing the cross product with a skew-symmetric matrix $\vec \omega ^\times  $, \eqref{eq:ec8} becomes:
