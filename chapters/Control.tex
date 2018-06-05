@@ -28,7 +28,7 @@ In the following sections \ref{sec:LC} and \ref{sec:SM}  will be discussed two a
 
 \section{Linear attitude controller} \label{sec:LC}
 
-The $ \parallel \vec{ {\bar{\omega}}} \parallel $ is equal to the orbital angular velocity $(\approx 0.0011)$, \eqref{eq:lele} following \cite{Rafael} can be written as 
+The system's equilibrium operating in nadir is defined between the orbit frame and the body frame. The angular rate between the frames should be zero $\vec{ ^s_o  \omega} = 0$ and the two frames should be aligned thus the relative attitude quaternion is $[0 \ 0 \ 0 \ 1]^{T}$. Therefore,  $ \parallel \vec{ {\bar{\omega}}} \parallel $ is equal to the orbital angular velocity, and equation \ref{eq:lele} following \cite{Rafael} can be written as  
 %
 \begin{flalign}
 \begin{bmatrix}
@@ -57,7 +57,7 @@ The $ \parallel \vec{ {\bar{\omega}}} \parallel $ is equal to the orbital angula
 \label{eq:lelele}
 \end{flalign}
 %
-with $\sigma_{x}= \frac{I_{y}-I_{z}}{I_{x}}$,$\sigma_{y}=\frac{I_{z}-I_{x}}{I_{y}}$,$\sigma_{z}=\frac{I_{x}-I_{y}}{I_{z}}$ and $I_{x} = 0.0017$, $I_{y}=0.0022$, $I_{z}=0.0022$ been the values of the inertia matrix and ${\omega_{o}}\approx0.0011 $ , is the orbital angular rate. The linearization is made for the angular velocity between the control frame and the orbit frame be equal to zero and the two frames are aligned thus the .     
+with $\sigma_{x}= \frac{I_{y}-I_{z}}{I_{x}}$,$\sigma_{y}=\frac{I_{z}-I_{x}}{I_{y}}$,$\sigma_{z}=\frac{I_{x}-I_{y}}{I_{z}}$ and $I_{x} = 0.0017$, $I_{y}=0.0022$, $I_{z}=0.0022$ been the values of the inertia matrix and ${\omega_{o}}\approx0.0011 $ is the orbital angular rate. The linearization is made for the angular velocity between the control frame and the orbit frame be equal to zero and the two frames are aligned thus the .     
 Moreover, by comparing the values of  matrix \eqref{eq:lelele} it can be seen that the value $\frac{1}{2}$ is larger compared to the other values thus \eqref{eq:lelele} can be simplified to 
 \begin{flalign}
 	\begin{bmatrix}
@@ -131,12 +131,12 @@ leading to a second order closed loop system calculated as $det(s\underline{I} -
 Since the matrix $\underline{A}$ is affine,   stability analysis was made for all the values of $ \vec{ {\bar{\omega}}}$ evaluated on the vertices of the convex polyhedron for the all values of $ \vec{ {\bar{\omega}}} $\cite{PrevPro} giving maximum eigenvalue $-0.0308$. In the figure \ref{fig:linear demand} it is seen the torque demand from the linear controller for nadir pointing reference.
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\linewidth]{figures/linear_controller_demant}
+	\includegraphics[width=0.7\linewidth]{figures/linear_controller_demant}
 	\caption{Linear controller Nadir pointing torque demand }
 	\label{fig:linear demand}
 \end{figure}
 \section{Sliding mode control} \label{sec:SM}
-As described previously the sliding mode control scheme belongs to the class of non-linear control designs. The objective of the SMC is the design, from a geometrical point of view, of a manifold in the state space $s = 0$, which whenever the state trajectory is on the manifold it is constraint, such that the behavior of the system will meet the specifications it is designed for, i.e convergence to the desired reference. In the \figref{fig:SM} it can be seen how the states slide on the hyperplane towards origin.   
+As described previously the sliding mode control scheme belongs to the class of non-linear control designs. The objective of the SMC is the design, from a geometrical point of view, of a manifold in the state space, denoted as $s$, which whenever the state trajectory is on the manifold ($s = 0$) it is constraint such that the behavior of the system will meet the specifications it is designed for, i.e convergence to the desired reference. In the \figref{fig:SM} it can be seen how the states slide on the hyperplane towards origin.   
 
 \begin{figure}[H]
 	\centering
@@ -144,23 +144,23 @@ As described previously the sliding mode control scheme belongs to the class of 
 	\caption{Sliding mode behavior }
 	\label{fig:SM}
 \end{figure}
-
-Introducing the small signal deviation of the states as
+\subsection{Sliding variable design}
+Introducing the small signal deviation for the quaternion error as
 \begin{flalign}
-	\vec{\tilde{q}} = \vec{  \bar{q}}^{-1} \otimes \vec{ q} 
-	\label{eq:smallsignal22}
+\vec{\tilde{q}} = \vec{  \bar{q}}^{-1} \otimes \vec{ q} 
+\label{eq:smallsignal22}
 \end{flalign}
-for the quaternion error with $\vec{  \bar{q}}^{-1}$ be the desired reference quaternion and $\vec{ q} $ be the measured, and for the angular velocity the small signal deviation is written as 
+with $\vec{  \bar{q}}^{-1}$ be the desired reference quaternion and $\vec{ q} $ be the measured, and for the angular velocity as 
 \begin{flalign}
-	\vec{\tilde{\omega}}  = \vec{\omega}-\vec{\bar{\omega}}  
-	\label{eq:smallsi4gnal4566}
+\vec{\tilde{\omega}}  = \vec{\omega}-\vec{\bar{\omega}}  
+\label{eq:smallsi4gnal4566}
 \end{flalign}
 with $\vec{\bar{\omega}}$ be the nominal value of the angular velocity. The sliding variable can now be written in terms of the error signals as  %\nomenclature[S]{s}{Sliding variable} and is chosen to be 
 \begin{flalign}
-	s  = \underline{F}\vec{\tilde{q}} + \vec{\tilde{\omega}}  
-	\label{eq:sliding variable}
+s  = \underline{F}\vec{\tilde{q}} + \vec{\tilde{\omega}}  
+\label{eq:sliding variable}
 \end{flalign}
-with $\underline{F} = \alpha\underline{\vec 1}_{3\times3}$ be a positive definite matrix. It can be seen that for $s=0$, the motion on the sliding surface is governed by $\vec{\tilde{\omega}} = - \alpha\vec{\tilde{q}_{1:3}}$, where $\vec{\tilde{q}_{1:3}}$ denotes the vector part of the quaternion, and $\alpha$ is chosen appropriately through trial and error to give the desired convergence for $\vec{\tilde{q}}$ which for the desired alignment between frames is $[0 \ 0 \ 0 \ 1]^{T}$. In order to prove this differentiation of \eqref{eq:smallsignal22} following \cite{TH} is written as
+with $\underline{F} = \alpha\underline{\vec 1}_{3\times3}$ be a positive definite matrix. It can be seen that for $s=0$, the motion on the sliding surface is governed by $\vec{\tilde{\omega}} = - \alpha\vec{\tilde{q}_{1:3}}$, where $\vec{\tilde{q}_{1:3}}$ denotes the vector part of the quaternion, and $\alpha$ is chosen appropriately through trial and error to give the desired convergence for $\vec{\tilde{q}}$ which for the desired alignment between frames is $[0 \ 0 \ 0 \ 1]^{T}$. In order to prove this, differentiation of \eqref{eq:smallsignal22} following \cite{TH} is written as
 %
 \begin{flalign}
 \vec{\dot{\tilde{q}}}  = \frac{1}{2}(-\vec{q_{\bar{\omega}}}\otimes\vec{\tilde{q}}+ \vec{\tilde{q}}\otimes\vec{q_{\bar{\omega}}}+\vec{\tilde{q}}\otimes\vec{q_{\tilde{\omega}}}) 
@@ -168,41 +168,61 @@ with $\underline{F} = \alpha\underline{\vec 1}_{3\times3}$ be a positive definit
 \end{flalign}
 %
 with $\vec{q_{\bar{\omega}}} = \bar{\omega_{1}}i + \bar{\omega_{2}}j+\bar{\omega_{3}}k + 0$ and $\vec{q_{\tilde{\omega}}} = \tilde{\omega_{1}}i + \tilde{\omega_{2}}j+\tilde{\omega_{3}}k + 0$.
-From \eqref{eq:sliding stability} the real part of the quaternion error can be written as 
+From equation \ref{eq:sliding stability} the real part of the quaternion error can be written as 
 %
 \begin{flalign}
 \dot{\tilde{q_{4}}}  = -\frac{1}{2} \vec{\tilde{\omega}} \cdot \vec{\tilde{q}_{1:3}} = \frac{\alpha}{2} \rVert \vec{\tilde{q}_{1:3}} \rVert^{2} = \frac{\alpha}{2}(1 -\tilde{q_{4}}^{2})
 \label{eq:sliding realpart}
 \end{flalign}
 %
-It can be seen that $\vec{\tilde{q}} \longrightarrow [0\ 0\ 0\ 1]^{T}$ with a desired rate given by $\alpha$.
+It can be seen that $\vec{\tilde{q}} \longrightarrow [0\ 0\ 0\ 1]^{T}$ with a desired rate given by $\alpha$. Figure \ref{fig:quaterror} showing the $\vec{\tilde{q}}$ converging with rate given by $\alpha = 0.035$
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figures/quaternion_error}
+	\caption{shows the quaternion error converging with $\alpha = 0.035$ }
+	\label{fig:quaterror}
+\end{figure}
+\subsection{Sliding condition - Control law}
 The variable $s$ can be driven to 0 by making use of a Lyapunov candidate function as
 \begin{flalign}
-	V  = \frac{1}{2} \vec{s}^{T}\vec{s} 
-	\label{eq:sliding variable333}
+V  = \frac{1}{2} \vec{s}^{T}\vec{s} 
+\label{eq:sliding variable333}
 \end{flalign} 
-and in order to prove stability around $s=0$ a necessary condition is $\dot{V} < 0 $ for each $s\neq0$. The time derivative of \eqref{eq:sliding variable333} is written as
+and in order to prove stability around $s=0$ a necessary condition is $\dot{V} < 0 $ for each $s\neq0$. The time derivative of equation \ref{eq:sliding variable333} is written as
 \begin{flalign}
-	\dot{V}  = \frac{1}{2}( \dot{\vec{s}^{T}}\vec{s}+\vec{s}^{T}\dot{\vec{s}}) 
-	\label{eq:sliding variable33333}
+\dot{V}  = \frac{1}{2}( \dot{\vec{s}^{T}}\vec{s}+\vec{s}^{T}\dot{\vec{s}}) 
+\label{eq:sliding variable33333}
 \end{flalign}
 showing that $\vec{s}^{T}\dot{\vec{s}} < 0 $ $\forall s\neq0$ the condition may be satisfied.
-Substituting \eqref{eq:sliding variable} is obtained
+Substituting equation \ref{eq:sliding variable} is obtained
 \begin{flalign}
-	\dot{V}  = \vec{s}^{T} (\underline{F}{\vec{\dot{\tilde{q}}}} + {\vec{\dot{\tilde{\omega}}}}) 
-	\label{eq:e33333}
+\dot{V}  = \vec{s}^{T}\dot{\vec{s}}  = \vec{s}^{T} (\underline{F}{\vec{\dot{\tilde{q}}}} + {\vec{\dot{\tilde{\omega}}}}) 
+\label{eq:e33333}
 \end{flalign}
-and thus replacing \eqref{eq:seom} expressed for ${\vec{\dot{\tilde{\omega}}}}$ \eqref{eq:e33333} is written as 
+and thus replacing the dynamic equation \ref{eq:seom}, equation \ref{eq:e33333} may be written as 
 
 
 \begin{flalign}
-	\dot{V}  = \vec{s}^{T}\underline{I}_{s}^{-1}(-\underline{{\omega}}^\times\underline{I}_{s}\vec{\omega}-\underline{{\omega}}^\times\vec{h_{rw}}-\vec{N_{rw}}+\vec{N_{dis}} - \underline{I}_{s}\dot{\bar{\omega}} +\underline{I}_{s}\underline{F}{\vec{\dot{\tilde{q}}}} ) 
-	\label{eq:444444}
+\dot{V}  = \vec{s}^{T}\underline{I}_{s}^{-1}(-\underline{{\omega}}^\times\underline{I}_{s}\vec{\omega}-\underline{{\omega}}^\times\vec{h_{rw}}+\vec{N_{rw}^{d}}+\vec{N_{mt}}+\vec{N_{dis}} - \underline{I}_{s}\dot{\bar{\omega}} +\underline{I}_{s}\underline{F}{\vec{\dot{\tilde{q}}}} ) 
+\label{eq:444444}
 \end{flalign}
-by choosing the control as
+designing the control as
 \begin{flalign}
-	\vec{N_{rw}}  = -\underline{{\omega}}^\times\underline{I}_{s}\vec{\omega}-\underline{{\omega}}^\times\vec{h_{rw}} - \underline{I}_{s}\dot{\omega} +\underline{I}_{s}\underline{F}{\vec{\dot{\tilde{q}}}}+\underline{I}_{s}\lambda sign(\vec{s})  ) 
-	\label{eq:555555}
+\vec{N_{rw}^{d}}  = \underline{{\omega}}^\times\underline{I}_{s}\vec{\omega}+\underline{{\omega}}^\times\vec{h_{rw}} + \underline{I}_{s}\dot{\omega} -\underline{I}_{s}\underline{F}{\vec{\dot{\tilde{q}}}}-\underline{I}_{s}\lambda sign(\vec{s})  ) 
+\label{eq:555555}
 \end{flalign}
 
+equation \ref{eq:444444} is written as
+\begin{flalign}
+\dot{V}  = -\vec{s}^{T}(-{\vec{\dot{\tilde{\omega}}}} + \lambda sign(\vec{s}) -\vec{N_{mt}}-\vec{N_{dist}} ) 
+\label{eq:stability}
+\end{flalign}
+Eventually, it can be seen that choosing $\lambda > \lVert{\vec{\dot{\tilde{\omega}}_{max}}} \rVert + \lVert \vec{N_{mt}} \rVert + \lVert \vec{N_{dist}} \rVert $ the condition $\dot{V} < 0 $ is satisfied. Sign function presents chattering around the manifold which is undesirable, thus the sign function is replaced with the hyperbolic tangent function $tanh$ which is smoother. In the figure \ref{fig:slidingtorque} is depicted the torque demand the sliding mode controller outputs. It can be seen that is more aggressive compared to the linear controller discussed in previous chapter, and furthermore it can be seen that the torque converging slower compared to the linear controller since the SMC need to bring the states to the manifold.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figures/SMC_tor}
+	\caption{Sliding Mode controller nadir pointing torque demand }
+	\label{fig:slidingtorque}
+\end{figure} 
 
