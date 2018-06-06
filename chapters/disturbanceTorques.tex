@@ -1,7 +1,7 @@
 \section {Environmental disturbances}
   \label{chap:distTorques}
 %
-The environmental disturbances can cause a change in the total momentum of the spacecraft. At the following chapter will be accounted the main disturbing torques that are aerodynamic, solar radiation, gravity gradient and magnetic disturbance torque, as well as the $J_{2}$ orbital perturbation due to oblateness of the Earth .
+The environmental disturbances can cause a change in the total momentum of the spacecraft. At the following chapter will be accounted the main disturbances that are aerodynamic, solar radiation, gravity gradient and magnetic disturbance torque, as well as the $J_{2}$ orbital perturbation due to oblateness of the Earth .
 \subsection{Orbit perturbation - $J_2$ }\label{chap: j2}
 Due to Earth's spin, its shape is oblate rather than spherical. This non spherical mass distribution of the Earth, affects a satellite motion in LEO. The gravitational potential is corrected using spherical harmonics which depend only on the latitude. These harmonics affect the satellite, determining its orbit difference compared to ideal mathematical models.
 An approximation of the gravitational potential of the Earth is \cite{SADC}\cite{PrevPro}:
@@ -12,7 +12,7 @@ U \approx -\frac{\mu}{r} \left[1 - \sum_{n=2}^{\infty} \left(\frac{R_e}{r}\right
 %\nomenclature[S]{\textbf{$j_2$}}{Zonal harmonic coefficient}
 %\nomenclature[S]{\textbf{$R_e$}}{Equatorial radius}
 describing deviations of the potential to the south and north direction,
-with $P_n$ be Legendre polynomial, $\theta$ be a spherical polar coordinate, $U_0$ = -1, $U_{J_2}$ = $\left(\frac{R_e}{r}\right)^{2} J_2 \frac{1}{2} (3 cos^2 \theta -1) $ and ${J_2 = 1.0826*10^{-3}}$ be a zonal numerical coefficient and the other terms($j_3,j_4,...$) been discarded since are less significant compared to $j_2$. The force caused by the $j_2$ term is obtained as 
+with $\mu = GM $ $G$ the gravitational constant and $M$ the Earth's mass, $P_n$ be Legendre polynomial, $\theta$ be a spherical polar coordinate, $R_e = 6.3781 \cdot 10^{6} [m]$ is the mean radius of the Earth at the equator, $r$ is the distance between the earth and the satellite, $U_0$ = -1, $U_{J_2}$ = $\left(\frac{R_e}{r}\right)^{2} J_2 \frac{1}{2} (3 cos^2 \theta -1) $ and ${J_2 = 1.0826\cdot10^{-3}}$ be a zonal numerical coefficient and the other terms($j_3,j_4,...$) been discarded since are less significant compared to $j_2$. The force caused by the $j_2$ term is written as 
 \begin{flalign}
 \vec F_{j2} = -m \nabla U
 \label{eq:Pr3431}
@@ -25,7 +25,7 @@ F_y = -\frac{\partial U}{\partial y} = \mu \left[ -\frac{y}{r^3} + A_{J_2} \left
 F_z = - \frac{\partial U}{\partial z} =  \mu \left[ -\frac{z}{r^3} + A_{J_2} \left(15 \frac{z^3}{r^7} - 3\frac{z}{r^5}   \right )  \right]       
 \label{eq:Pr34331}
 \end{flalign}
-where $A_{J_2}  = \frac{1}{2} J_2 R_e^2$ and and $R_e$ is the mean radius o the Earth at the equator
+where $A_{J_2}  = \frac{1}{2} J_2 R_e^2$.
 \subsection{Aerodynamic disturbance torque}\label{chap:disturbances}
 %
 Gas molecules, in a LEO(low Earth orbit) collide with the surface of the satellite causing
