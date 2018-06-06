@@ -176,8 +176,14 @@ where $\vec{_I^{lv}\omega}$ is the angular velocity of the LVLH frame compared t
 
 \begin{equation}
 \vec{\dot{x}} =
-\underline{A}\vec{x} + \underline{B}(t)\vec{u} + \underline{E} \vec{d} + \underline{F}_x \vec{f} 
+\underline{A}\vec{x} + \underline{B}(t)\vec{u} + \underline{E} \vec{d} + \underline{F}_x \vec{f_y} 
 \label{eq:uioagain}
+\end{equation}
+
+\begin{equation}
+\vec{y} =
+\underline{C}\vec{x} + \underline{F}_y \vec{f_y} 
+\label{eq:uioagain2}
 \end{equation}
 
 \tiny
@@ -281,7 +287,14 @@ N^{est \ error}_{dist,3}\\
 \end{align}
 \normalsize
 
-where $I_w$ is the reaction wheel axial moment of inertia, $\omega_o$ is the angular velocity of the orbit, $I_i$ is the satellite moment of inertia along $i$th principal axis.
+where $I_w$ is the reaction wheel axial moment of inertia, $\omega_o$ is the angular velocity of the orbit, $I_i$ is the satellite moment of inertia along $i$th principal axis. $\underline{C}$ is an identity matrix. 
+
+If the UIO design algorithm is followed, without fault the residual converges to zero, as shown in figure \ref{fig:nosensfault_res}. If the angular velocity estimate is wrong, i.e. $\underline{F}_y \vec{f_y}$ is nonzero, the residual doesn't converge to zero. Figure \ref{fig:residualdist} shows the residual for an error in angular velocity estimate. The angular velocity of the satellite is estimated through and sensor fusion and filtering, the details of which is out of the scope of the present thesis.
+
+The UIO dynamics are designed to make the residual converge to zero in the presence of unknown input $\vec{d}$. The fact that the disturbances and magnetorquer faults affect the same state variables $\vec{_{lv}^s\dot{\omega}}$ means that the system cannot distinguish the magnetorquer fault from the disturbances, thus they cannot be decoupled.
+
+An experiment was made to investigate if ignoring the unknown torque disturbances, is it possible to distinguish magnetorquer faults through thresholding. The $\underline{E}$ was modified to a zero matrix, then the observer was redesigned accordingly. This essentially makes the observer stop being an UIO. In the test, $N^{est \ error}_{dist}$ was simulated as a constant vector with a magnitude of $1 nNm$, while the magnetorquer magnetic moment fault 
+$\m^{fault}_{mt,1}$ error was a constant $10 mT$
 
 \nomenclature[SIw]{$I_w$}{Reaction wheel axial moment of inertia}
 
@@ -300,6 +313,7 @@ where $I_w$ is the reaction wheel axial moment of inertia, $\omega_o$ is the ang
 \caption{sensor fault 0.1 ang vel x excess}
 \label{fig:sensfault_res}	
 	\end{subfigure}
+\caption{sensor}
 \end{figure}
 
 %\begin{figure}[H]
@@ -322,6 +336,7 @@ where $I_w$ is the reaction wheel axial moment of inertia, $\omega_o$ is the ang
 	\caption{only dist const}
 	\label{fig:residualdist}	
 	\end{subfigure}
+\caption{actuator}
 \end{figure}
 
 %\begin{figure}[H]
