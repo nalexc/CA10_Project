@@ -1,26 +1,43 @@
 \chapter{Simulation framework} \label{chap:G}
-In this chapter an overview about the simulation environment is presented. Therefore, a simulation environment is needed with the aim of testing the performance of the control methods developed for this thesis. Firstly, a short summary about what the simulation environment contains will be introduced, and secondly a series of adjustments have been made in order to speed up the simulation, which will be explained.
+\textit{This chapter gives an overview and development notes about the simulation environment.}
 
-The whole environment is designed in MATLAB by using the Simulink library, namely AAUSAT library used for simulating a satellite in LEO. The library was constructed for the AAUSAT missions and designed by students from previous groups. The library incorporates building blocks containing satellite kinematics and dynamics, environmental perturbations, orbit propagation, models for the sensors and actuatuors and also different functionalities such as quaternions multiplications, vectors or matrices operations. Even if the AAUSAT library was proven to work well, a few changes and additions were made for the purpose of this thesis.
+% In this chapter an overview about the simulation environment is presented.
+% Therefore, a simulation environment is needed with the aim of testing the performance of the control methods developed for this thesis. Firstly, a short summary about what the simulation environment contains will be introduced, and secondly a series of adjustments have been made in order to speed up the simulation, which will be explained.
 
-A way to improve the performance of the simulation is to use S-functions which are assessed at any time step. These functions are written as C code, which is compiled as \textit{mex-files} that represent an interface between MATLAB and the function written in C or C++ and act as a built-in function. In the end, these functions will help to a faster crossing from MATLAB files that will contain the controller algorithm to C code, which will be uploaded on the satellite.
+The simulation environment is created in Simulink and MATLAB. Some elements were reused from AAUSAT team's Simulink library created for LEO satellites, 
+The library incorporates building blocks containing satellite kinematics and dynamics, orbit propagation model, environmental perturbations, orbit propagation, models for the sensors and actuatuors and also different functionalities such as quaternions multiplications, vectors or matrices operations. Even if the AAUSAT library was proven to work well, a few adjustments were made for the this thesis. Among these adjustments was modifying the S-function written in C code that is responsible for handling the satellite dynamics and kinematics. The C-code is compiled using mex compiler and the compiled blocks can function at similar speeds as Simulinks blocks.
+%such as the modified version of the satellite dynamics and kinematics written in C code, the basic magnetorquer model, Earth magnetic field model and some disturbance calculations. 
 
-Running the simulation with MATLAB functions it was noticed that it reduces the simulation speed considerably, hence a way to replace the MATLAB functions is to use the built-in Simulink function blocks which proved to be faster. 
+A convenient way to program in Simulink is by using MATLAB code blocks. In the beginning these were used in abundance, however soon it became obvious that they slow down the simulation. Even Mathwork's website states that getting rid of MATLAB blocks can lead to significant speed increase. Thus, from the middle of the development the usage of MATLAB blocks was minimized, the ones used before were mostly recreated by using Simulink blocks.
 
-In order to organize the blocks and having a simplify model, hierarchical subsystems are introduced. In this way the number of blocks in the main model  can be reduced. Moreover, it offers a way to swap between elements without having any problem and reduces the risk of having mistakes. Another advantage is that, since the simulation is built modularly, it will be easier to simulate the environment by taking out different block and simulate it separately. Therefore, by having these subsystems, it could improve the performance for simulation speed, model loading and memory usage.
+%A way to improve the performance of the simulation is to use S-functions which are assessed at any time step. These functions are written as C code, which is compiled as \textit{mex-files} that represent an interface between MATLAB and the function written in C or C++ and act as a built-in function. In the end, these functions will help to a faster crossing from MATLAB files that will contain the controller algorithm to C code, which will be uploaded on the satellite.
 
-Because the model contains slow to fast transitions, unit delay blocks have been added. Since the controller has a certain frequency that is running at and the sampling is made at high frequency, the unit delays are appropriate to use and approximates the actual system well.
+%Running the simulation with MATLAB functions it was noticed that it reduces the simulation speed considerably, hence a way to replace the MATLAB functions is to use the built-in Simulink function blocks which proved to be faster. 
+
+The simulation environment got really complex during the development. To handle this complexity, blocks were grouped together in subsystems, according to their functionalities. Then a hierarchy was introduced between some of the blocks as a further step in keeping the complexity manageable. This also helped in making the system modular. Modules such as reaction wheel control schemes and models could be changed much easier. When long simulation times were necessary, this made swapping to less computation heavy components easier.
+
+%In order to organize the blocks and having a simplify model, hierarchical subsystems are introduced. In this way the number of blocks in the main model  can be reduced. Moreover, it offers a way to swap between elements without having any problem and reduces the risk of having mistakes.
+% Another advantage is that, since the simulation is built modularly, it will be easier to simulate the environment by taking out different block and simulate it separately. Therefore, by having these subsystems, it could improve the performance for simulation speed, model loading and memory usage.
+
+Algebraic loops in the Simulink model lead to significant simulation speed decrease. To avoid algebraic loops in the feedbacks, unit delays were used when necessary. In the case of controller feedback, this is justified, since the digital controllers have a discrete sampling time. Using unit delays to speed up simulation of continuous dynamics do not affect the simulation result in any significant way, especially when using small simulation step sizes.
+
+%Because the model contains slow to fast transitions, unit delay blocks have been added. Since the controller has a certain frequency that is running at and the sampling is made at high frequency, the unit delays are appropriate to use and approximates the actual system well.
 
 % it slows down the sys that we have fast subsys (the motors) and slow subsys, and when we developed the lower subsys we just substituted ( instead of using the angular velocity motor we used a dummy that just directly output the torque deemed) 
 
-A way to simplify the model is to use \textit{From} and \textit{Goto} blocks, because these blocks offer virtual connection and provide a way to send a signal between different blocks without connecting them.
+The complexity was also managed by using \textit{From} and \textit{Goto} blocks. These blocks offer virtual connection and provide a way to send a signal between different blocks without connecting them. This means that the huge amount of connections do not pollute the block structure.
 
-Even though in Simulink the MATLAB function can be used, the Aerospace Toolbox was chosen, because it provides an alternative to compute the cross product between two vectors and also includes coordinate axes transformations where different conversions can be made. Using this toolbox proved to accelerate the simulation speed.
+The default Simulink libraries lack many essential blocks. In order to avoid having to implement things such as quaternion calculations, risking slowdowns, Aerospace Toolbox was utilized in the environment.
+
+The maximum step size for most simulations were set to 10 ms, but if fast dynamics were simulated such as torque controlled reaction wheel, the actual automatically adjusted step size was decreased to much smaller values. Many signals are rather small, some of are in the order of magnitude of $10-{12}$. To make sure that Simulink calculates these signals properly, the tolerance needed to be decreased accordingly.
+
+%Even though in Simulink the MATLAB function can be used, the Aerospace Toolbox was chosen, because it provides an alternative to compute the cross product between two vectors and also includes coordinate axes transformations where different conversions can be made. Using this toolbox proved to accelerate the simulation speed.
 
 The\textit{ igrf2005.d} file is a collection of data gather from different magnetic observatories placed around the world. It is a reliable source of comparing the Earth magnetic field with the magnetic field measured by the magnetometer.
 In Simulink, a block that have as input the satellite position and the rotation of Earth, gives as output a vector with the magnetic field taking into account the satellite position.
 
 \textbf{Simulation parameters ?!} 
+\todo{fill out}
 
 Orbit parameters: \\
 - Altitude\\
