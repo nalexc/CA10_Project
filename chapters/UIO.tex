@@ -1,7 +1,6 @@
 \subsection{Unknown Input Observer (UIO)} \label{sec:UIO}
 Disturbances and modeling errors may cause discrepancies between the actual system and the descriptor mathematical model. Linearization and simplifications which make the system more manageable may lead to such uncertainties. Uncertainties can have an effect on the system dynamic behavior. During observer design, these uncertainties can be considered as unknown inputs. The observer can be designed to make the system state estimate error converge to zero in the presence of such unknown inputs. The linearized system dynamics is described according to equations \ref{stateObs} and \ref{eq:ui2}.
   
-  \todo{reference lecture notes}
 %A residual, fault indicator, based on observer design can be robust regarding the unknown input signals by making the effect of unknown inputs (UI) insensitive to the residual and thus making possible to maximize the detectability of a fault. The dynamic equation of the system can be written as  
 
 %\nomenclature[A]{\textbf{UI}}{Unknown Input}
@@ -125,20 +124,20 @@ Actuator fault isolation is possible assuming that all the sensors are fault fre
 \end{equation}
 where $\vec{f_{act}}$ represents the actuator faults. 
 
-In order to isolate faults, separate UIOs need to be constructed for each actuator. The observer matrices are adjusted for each actuator by deleting the column of the matrix B corresponding to the actuator, namely $\vec{b_{i}}$ and incorporating this along with the disturbance distribution matrix as
-\begin{equation*}
-E^{i} = [ E  \vec{b_{i}}]
-\label{errordynamics14}
-\end{equation*}
-and furthermore, the $i_{th}$ component of the input vector $u_{i}$ is incorporated to the disturbance vector as 
-\begin{flalign*}
-\begin{bmatrix}
-\vec{d} \\ u_{i}+f^{i}_{act}
-\end{bmatrix}
-\end{flalign*} 
-leading to a bank of observers with each residual actuated by 2 inputs(without $i_{th}$) and all outputs. The detection of the fault is made by applying a threshold as  $\{\lVert r^{i}\rVert < Thr^{i} \}$ else if $\{\lVert r^{k}\rVert \geq Thr^{k} \}$ with $k = 1,...i-1,..i+1,5..r$.
-
-\todo{is the last paragraph ok?}
+%In order to isolate faults, separate UIOs need to be constructed for each actuator. The observer matrices are adjusted for each actuator by deleting the column of the matrix B corresponding to the actuator, namely $\vec{b_{i}}$ and incorporating this along with the disturbance distribution matrix as
+%\begin{equation*}
+%E^{i} = [ E  \vec{b_{i}}]
+%\label{errordynamics14}
+%\end{equation*}
+%and furthermore, the $i_{th}$ component of the input vector $u_{i}$ is incorporated to the disturbance vector as 
+%\begin{flalign*}
+%\begin{bmatrix}
+%\vec{d} \\ u_{i}+f^{i}_{act}
+%\end{bmatrix}
+%\end{flalign*} 
+%leading to a bank of observers with each residual actuated by 2 inputs(without $i_{th}$) and all outputs. The detection of the fault is made by applying a threshold as  $\{\lVert r^{i}\rVert < Thr^{i} \}$ else if $\{\lVert r^{k}\rVert \geq Thr^{k} \}$ with $k = 1,...i-1,..i+1,5..r$.
+%
+%\todo{is the last paragraph ok?}
 
 %\subsection{CUSUM algorithm and change detection} 
 %The evaluation of the residual which determines if the %actuator is faulty or fault free is based on the %cumulative sum (CUSUM), a sequential hypothesis %testing technique to detect changes on the noisy %signal. By changes are accounted changes on the mean %of the original signal. 
@@ -157,10 +156,9 @@ leading to a bank of observers with each residual actuated by 2 inputs(without $
 \subsection{Application of Unknown Input Observer}
 \label{sec:UIO_App}
 
-\todo{discuss articles a bit}
-\todo{add LVLH to frames chapter}
-\todo{should we show the equations in more detail?}
-\todo{short model derivation}
+%\todo{discuss articles a bit}
+%\todo{should we show the equations in more detail?}
+%\todo{short model derivation}
 
 The present chapter discusses how to apply unknown input observer (UIO) theory to the satellite functioning in nadir pointing control goal. The regular UIO uses linear model, however the satellite system is highly nonlinear.  During one orbit, the orientation of the nadir pointing satellite rotates by $360^o$. By choosing the appropriate reference frame, this rotation can be eliminated from attitude dynamics. In local vertical, local horizontal frame (LVLH), the nadir pointing satellite keeps its attitude. This opens an opportunity to use linear approximation of the trigonometric nonlinearities in the satellite dynamic equations. The operating point should be chosen as nadir pointing, and if the attitude stays near enough to the operating point, the model stays quite accurate.
 
@@ -296,7 +294,7 @@ The UIO dynamics are designed to make the residual converge to zero in the prese
 
 An experiment was made to investigate if ignoring the unknown torque disturbances, is it possible to distinguish magnetorquer faults through thresholding. The $\underline{E}$ was modified to a zero matrix, then the observer was redesigned accordingly. This essentially makes the observer stop being an UIO. In the test, $N^{est \ error}_{dist}$ was simulated as a constant vector with a magnitude of $1 nNm$, around $2\%$ of $\vec{N_{dist} }$, while the magnetorquer magnetic moment fault $\m^{fault}_{mt,1}$ error was a constant $10 mJ/T$, a magnitude that would occur at rather high reaction wheel speed due to desaturation torque demand. Figure \ref{fig:residualdist} shows the residual when only the disturbance is present, figure \ref{fig:residualmt} shows the residual when a fault occurs at 800 second intervals following a square signal. The residual for the fault is orders of magnitude higher than for the disturbance, however the residual from the disturbance keeps growing and growing through many orbits. This means that thresholding is not effective for magnetorquer fault detection in the long term with this observer.
 
-\todo{what about RW fault?}
+%\todo{what about RW fault?}
 
 \nomenclature[SIw]{$I_w$}{Reaction wheel axial moment of inertia}
 
