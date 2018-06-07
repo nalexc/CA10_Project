@@ -1,6 +1,5 @@
 \subsection*{ Angular velocity control}
-
-In the previous chapters has been discussed how the control demand is calculated through different nature controllers. This torque demand is used to give the desired angular velocity reference for the wheels and thus the torque that will be fed back to the satellite. The output torque from the linear and non-linear(SMC) controllers has three elements which has to be transformed in the tetrahedron configuration using the matrix \eqref{eq:transmatrix}.  A \textit{PI} controller has been designed to control the angular velocity of the motor as seen in the \figref{fig:blockdi}:
+The higher level controllers give a control demand to the reaction wheels, this torque demand is transformed to angular velocity demand in motor frame. A \textit{PI} controller has been designed to control the angular velocity of the motor as seen in the \figref{fig:blockdi}:
 %\begin{figure}[H]
 %	\centering
 %	\includegraphics[width=1.0\linewidth]{figures/block_diagram_2}
@@ -8,11 +7,11 @@ In the previous chapters has been discussed how the control demand is calculated
 %	\label{fig:blockdi222}
 %\end{figure}  
 %
-The PI controller gains are chosen by trial and error in order to achieve faster closed loop response, zero steady state error and asymptotically stable system. The gains are chosen to be:   
+The PI controller gains are chosen by trial and error in order to achieve faster closed loop response, zero steady state error and stable system. The gains are chosen to be:   
 %
 \begin{flalign*}
-	k_{p} = 0.006 \\
-	k_{i} = 6
+	k_{p}& = 0.006 \\
+	k_{i}& = 6
 \end{flalign*}
 %\nomenclature[S]{\textbf{$k_{p}$}}{Proportional gain of PI control}
 %\nomenclature[S]{\textbf{$k_{i}$}}{Integral gain of PI control}
@@ -23,18 +22,18 @@ The PI controller gains are chosen by trial and error in order to achieve faster
 %	\caption{Step response of closed loop system with PI control}
 %	\label{fig:closedloopsys}
 %\end{figure}
-The root locus of one motor with PI controller is seen in the \figref{fig:rlocus33}
+The root locus of one motor with PI controller is seen in figure \ref{fig:rlocus33}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\linewidth]{figures/rloci_new}
+	\includegraphics[width=0.7\linewidth]{figures/rloci_new}
 	\caption{Root locus of one motor with PI controller}
 	\label{fig:rlocus33}
 \end{figure}
-Furthermore, its is worth showing how the poles moving when the motor reach saturation mode and thus the gain becomes 0 which can be seen in \figref{fig:rlocus44}.
+Furthermore, it is worth showing how the poles moving when the motor reach saturation mode and thus the gain becomes 0 which can be seen in figure \ref{fig:rlocus44}.
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\linewidth]{figures/stauration_motor_mode}
+	\includegraphics[width=0.7\linewidth]{figures/stauration_motor_mode}
 	\caption{Root locus of one motor with PI controller when the gain K becomes 0}
 	\label{fig:rlocus44}
 \end{figure}

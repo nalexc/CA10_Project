@@ -18,19 +18,19 @@ q_4
 \left[ 
 \begin{array}{cccc}
 \vec{q}_{1:3} \\
-\eta
+q_4
 \end{array}
 \right]
 =
 \left[ 
 \begin{array}{cccc}
 \textbf{$\epsilon$} \\
-\eta
+\vec{\eta}
 \end{array}
 \right] 
 \end{equation}
 
-A rotation with $\Phi$ around the unit vector can be described according to Euler's formula.
+A rotation of $\Phi$ around the unit vector $\vec{q_{1:3}}$ can be described according to Euler's formula.
 \begin{equation}
 \vec q = e^{\frac{\Phi}{2} (e_1 \textbf{i}+ e_2 \textbf{j} + e_3 \textbf{k} + e_4)} = \cos \frac{\Phi}{2} + (e_1 \textbf{i}+ e_2 \textbf{j} + e_3 \textbf{k} +e_4) \sin \frac{\Phi}{2}
 \end{equation}
@@ -56,13 +56,16 @@ e_3  \sin \frac{\Phi}{2} \\
 \end{array}
 \right] 
 \end{equation}
-Rotation matrix corresponding to a quaternion
+Rotation matrix corresponding to a quaternion can be calculated as
 \begin{equation}
-\underline{R}(\vec{^s_i q(t)}) = \underline{\vec 1} + 2 \eta \underline{S} ^\times (\epsilon) + 2 \underline{S^2} ^\times (\epsilon) 
+\underline{R}(\vec{^s_i q(t)}) = (q_4^2 - \vec{q_{1:3}}^T \vec{q_{1:3}}) \underline{1} + 2 \vec{q_{1:3}} \vec{q_{1:3}}^T - 2q_4 \underline{q}_{1:3}^\times 
 \end{equation}
+%\begin{equation}
+%\underline{R}(\vec{^s_i q(t)}) = \underline{ 1} + 2  \underline{q}_{1:3} ^\times + 2 \underline{S^2} ^\times (\epsilon) 
+%\end{equation}
 
 \subsection{Quaternion multiplication}
-Let \textbf{q} represent the unit length rotation axis, with \textbf{i}, \textbf{j}, \textbf{k} being the base vectors in euclidean space and $e_4$ as the scalar part: 
+Let \textbf{q} represent the unit rotation quaternion, with \textbf{i}, \textbf{j}, \textbf{k} being the base vectors in Euclidean space and $q_4$ as the scalar part: 
 \begin{equation}
 \textbf{q} = q_1 \textbf{i}  + q_2 \textbf{j} + q_3 \textbf{k} + q_4
 \end{equation}
@@ -114,9 +117,9 @@ The product quaternion can be expressed in a matrix form:
 	\end{bmatrix} 	
 	\label{eq:sfgdm}
 \end{flalign}
-A skew-symmetric matrix is given as $\underline{S}(\vec q)^\times$ and defined as
+A skew-symmetric matrix is given as $\underline q^\times$ and defined as
 \begin{flalign}   
-	\underline{S}(\vec q)^\times = 
+	\underline q^\times = 
 	\begin{bmatrix}
 		 0 & - q_{A_{3}}  & q_{A_{2}}\\
 		 q_{A_{3}}&  0  & - q_{A_{1}} \\ 
@@ -129,7 +132,7 @@ Moreover equation \ref{eq:sfgdm} can be written as
 \begin{flalign}   
 	\vec q_C = \vec q_A \vec q_B = \underline{C}_A \vec q_B = 
 	\begin{bmatrix}
-		 - \underline S(\vec{ q})^\times + \underline{\vec 1} q_{C_{4}} & \vec{ q} \\
+		 - \underline  q^\times + \underline{\vec 1} q_{C_{4}} & \vec{ q} \\
 		 - \vec{ q}^\mathsf{T}&  q_{C_{4}}  \\ 
 	\end{bmatrix} 
    \vec q_B

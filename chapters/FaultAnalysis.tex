@@ -1,5 +1,8 @@
 \chapter{Fault  Analysis }
-\textit{Probable faults in the system are examined using a  Failure Mode and Effects Analysis (FMEA). In order to decide the importance of handling each fault, the severity and occurrence (SO)  of faults is analyzed. It was decided that the fault analysis will be focusing on the actuators: magnetorquers and reaction wheels.}
+\textit{Probable faults in the system are examined using a  Failure Mode and Effects Analysis (FMEA). In order to decide the importance of handling each fault, the severity and occurrence (SO)  of faults is analyzed. It was decided that the fault analysis is focused on actuators fault detection.}
+
+\label{chap:fault}
+
 
 \nomenclature[AF]{\textbf{FMEA}}{Failure Mode and Effects Analysis}
 \nomenclature[AS]{\textbf{SO}}{Severity and Occurrance}
@@ -7,7 +10,7 @@
 \nomenclature[SF]{$\vec{{F}_{MT}}$}{The fault vector for the magnetorqers}
 \nomenclature[SF]{$\vec{{F}_{RW}}$}{The fault vector for the reaction wheels}
 
-A fault in a system can be seen as a sudden shift in the system functionality, nevertheless, it might not mean a total shutdown of the system. The faults can be considered as a disturbance in the system, some of which might cause performance loss, others serious deterioration to the system. Failures are distinguished from faults, they lead to a total shutdown of the system component. 
+A fault in a system can be seen as a sudden shift in the system functionality, however, it might not mean a total shutdown of the system. The faults can be considered as a disturbance in the system, some of which might cause performance loss while others serious deterioration to the system. Failures are distinguished from faults since can cause a total shutdown of the system component. 
 
 In figure \ref{fig:1} a fault tolerant system is shown, which contains an autonomous supervisor that has the ability to switch between various controllers taking into account the type of fault that a component has. The spacecraft block illustrated in the picture is composed of a plant, actuators and sensors and is monitored by the fault detection and isolation (FDI) system, which include detectors that will feed informations to the supervisor in the eventuality of a fault. Based on the information received, the supervisor will establish if a fault occurred or not and in case of a fault the effectors will handle it. Furthermore figure \ref{fig:1} shows the procedure of how faults are handled with various methods. The first step in Fault Analysis is fault modeling which uses a procedure called FMEA.
 \begin{figure}[H]
@@ -32,7 +35,7 @@ In figure \ref{fig:1} a fault tolerant system is shown, which contains an autono
 \section{Failure Mode and Effects Analysis}
 A FMEA analysis which is a bottom-up analysis method is performed for the components of the satellite. The main goal of FMEA is to identify possible faults and their effects on components. Another aspect of FMEA analysis is that, the severity of a fault can be determined, offering the opportunity to prioritize the faults by severity and in this way focus on the important faults.
 
-In order to control the attitude of the satellite, two types of actuators are used: magnetorquers and reaction wheels. Potential faults are gathered into tables \ref{tab:mtfault} and \ref{table:kysymys} describing the effect and cause on the satellite in orbit.
+In order to control the attitude of the satellite, two types of actuators are used: magnetorquers and reaction wheels. Potential faults are gathered into tables \ref{tab:mtfault} and \ref{tab:kysymys} describing the effect and cause on the satellite in orbit.
 
 \subsubsection{Magnetorquers}
 \begin{table}[H]
@@ -71,7 +74,6 @@ A fault supply voltage that could mean lead to uncontrollable magnetorquer magne
 \subsubsection{Reaction wheels}
 \begin{table}[H]
 	\centering
-	\label{table:kysymys}
 	\begin{tabular}{|l|l|l|}
 		\hline
 		\multicolumn{3}{|c|}{\textit{\textbf{Reaction wheels}}}                                          \\ \hline
@@ -84,6 +86,7 @@ A fault supply voltage that could mean lead to uncontrollable magnetorquer magne
 		$RW5$                & Higher power requirement  &  A fault in bearings    \\ \hline
 	\end{tabular}
 	\caption{Potential faults in the reaction wheels}
+	\label{tab:kysymys}
 \end{table}
 Description of faults in the reaction wheels: 
 
