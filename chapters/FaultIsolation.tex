@@ -1,8 +1,6 @@
 \chapter{Fault handling and reconfiguration}  \label{chap:faltHandling}
  \section{Virtual actuators and sensors} \label{chap: virtual}
- Actuators and sensors are subject to various faults in the process. Due to these faults the system may experience drops in performance which could lead to stability loss.
- 
- The objective of fault tolerant control using virtual actuators and sensors is to add a reconfiguration block which is presented as an extra layer between the faulty system and the level controller. The purpose of the reconfiguration block in case of a fault is to provide fault tolerance by using the virtual actuators and sensors. As can be seen in figure \ref{fig:VA} the reconfiguration of the faulty actuators is made independently of the main attitude control schemes.  In the figure, $u_f$ represents a low level control input that takes into account the faults of the system, and $y_f$ is the faulty output. 
+ Actuators and sensors are subject to various faults. Due to these faults the system may experience drops in performance which could lead to stability loss. The objective of fault tolerant control using virtual actuators and sensors is to add a reconfiguration block which is presented as an extra layer between the faulty system and the level controller, capable of satisfying control requirements through reconfiguration. The purpose of the reconfiguration block in case of a fault is to provide fault tolerance by using the virtual actuators and sensors. As can be seen in figure \ref{fig:VA} the reconfiguration of the faulty actuators is made independently of the main attitude control schemes.  In the figure, $u_f$ represents a low level control input that takes into account the faults of the system, and $y_f$ is the faulty output. 
  \begin{figure}[H]
  	\centering
  	\includegraphics[width=0.8\linewidth]{figures/VirtualActuator}
@@ -12,9 +10,13 @@
  
  The reconfiguration of the faulty actuators is made in the adequate actuator subsystems. 
  
- In the case of the reaction wheel subsystem compensation is needed while in the magnetorquers reconfiguration.
- 
- In the case that a fault occurs in the reaction wheel sensor, the angular velocity measurement it is assumed functional and based on that measurement, the torque output from the faulty wheel can be computed. A second assumption is that the sensors will completely fail, but in this case a model of how the angular velocity of the wheel is decreasing over time is obtained. This model can be used as a virtual sensor for the angular velocity sensor. 
+
+% In the case of the reaction wheel subsystem compensation is needed while in the magnetorquers reconfiguration.
+% 
+% In the case that a fault occurs in the reaction wheel sensor, the angular velocity measurement it is assumed functional and based on that measurement, the torque output from the faulty wheel can be computed. A second assumption is that the sensors will completely fail, but in this case a model of how the angular velocity of the wheel is decreasing over time is obtained. This model can be used as a virtual sensor for the angular velocity sensor. 
+
+To keep the overall system dynamics undisturbed by reaction wheel reconfiguration, compensation schemes need to be used during reconfiguration to counteract the force occurring during the deceleration of the wheels. During magnetorquer reconfiguration, no such compensation is needed, since the magnetorquers can be shut down practically instantaneously.
+
  
 \section{Reaction Wheel Reconfiguration}
 \label{sec:rwReconfig}
@@ -107,12 +109,14 @@ Similarly to the reaction wheel reconfiguration \secref{sec:rwReconfig}, fault h
 	\begin{subfigure}{0.5\linewidth}
 		\centering
 		\includegraphics[width=1\linewidth]{figures/config1.eps}
+		\caption{}
 		\label{fig:magcompens}
 	\end{subfigure}
 	\begin{subfigure}{0.5\linewidth}
 		\centering
 		\includegraphics[width=1\linewidth]{figures/config11.eps}
 		\label{fig:fig:magcompens2}	
+		\caption{}
 	\end{subfigure}
 \begin{subfigure}{0.5\linewidth}
 	\centering
@@ -123,18 +127,22 @@ Similarly to the reaction wheel reconfiguration \secref{sec:rwReconfig}, fault h
 	\centering
 	\includegraphics[width=1\linewidth]{figures/config22.eps}
 	\label{fig:fig:magcompens4}	
+	\caption{}
 \end{subfigure}
 \begin{subfigure}{0.5\linewidth}
 	\centering
 	\includegraphics[width=1\linewidth]{figures/config3.eps}
 	\label{fig:fig:magcompens33}
+	\caption{}
 \end{subfigure}
 \begin{subfigure}{0.5\linewidth}
 	\centering
 	\includegraphics[width=1\linewidth]{figures/config33.eps}
 	\label{fig:fig:magcompens43}	
+	\caption{}
 \end{subfigure}
 	\caption{To the left are depicted the magnetorquers of each axis subjected to a fault in the voltage supply and to the right the redundant magnetorquer pairs.}
 	\label{fig:magneticconfig}
+	\caption{}
 \end{figure}
 

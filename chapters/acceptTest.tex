@@ -2,7 +2,12 @@
 
 The system is tested to see if it fulfills the requirements put up (\chapref{chap:requirements}).
 
-Nadir pointing capability is tested by turning on the linear attitude controller of a satellite with initial attitude and angular velocity deviating from the reference. After reducing the initial error, the tracking error stays below $1^o$, as shown in figure \ref{fig:angle_error.}.
+
+% Nadir pointing capability is tested by turning on the linear attitude controller of a satellite with initial attitude and angular velocity deviating from the reference. After reducing the initial error, the tracking error stays below $1^o$, as shown in figure 9.1.
+
+\textbf{1. The satellite shall track the nadir within 1°.}
+
+Nadir pointing capability is tested by turning on the linear attitude controller of a satellite with initial attitude and angular velocity deviating from the reference. After reducing the initial error, the tracking error stays below $1^o$, as shown in figure \ref{fig:angle_error}.
 
 \begin{figure}[H]
 	\centering
@@ -12,7 +17,9 @@ Nadir pointing capability is tested by turning on the linear attitude controller
 	\label{fig:angle_error}
 \end{figure}
 
-Earth station tracking is  tested in a scenario where the satellite flies right over the station. This is the closest the satellite in orbit can get to the Earth station, leading to maximum torque demand. The tracking error is kept below  $1^o$, with error peaks appearing during flyover. Figures \ref{fig:angle_error2} and \ref{fig:torque_stationTrack} present the tracking error and torque demand arising during station tracking.
+\textbf{2. The satellite should be able to track the Earth station within 1°.	}
+
+Earth station tracking is tested in a scenario where the satellite flies right over the station. This is the closest the satellite in orbit can get to the Earth station, leading to maximum torque demand. The tracking error is kept below  $1^o$, with error peaks appearing during flyover. Figures \ref{fig:angle_error2} and \ref{fig:torque_stationTrack} present the tracking error and torque demand arising during station tracking.
 
 \begin{figure}[H]
 	\centering
@@ -42,3 +49,11 @@ Earth station tracking is  tested in a scenario where the satellite flies right 
 
 %\subsection{1. The formation shall be able to maintain a given angle within 45$^{\circ}$.}
 %The
+
+\textbf{3. The satellite shall detect certain actuator faults.}
+
+The system is able to detect a family of faults that may occur during a mission. For the purpose of fault tolerant control, it was not necessary to find the exact source of the fault, however finding the actuator where the fault has occurred has proven sufficient. 
+
+\textbf{4. The satellite should be able to reconfigure the control scheme in order to handle faults.}
+
+The system is able to reconfigure the control scheme in order to accommodate for possible faults.
