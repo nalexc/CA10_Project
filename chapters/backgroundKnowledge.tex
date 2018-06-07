@@ -1,14 +1,15 @@
 \chapter{Satellite Modeling}
-\textit{In the following chapter the modeling of the satellite is described. First different reference frame are introduced for describing the attitude of the satellite and also used in computations. Next the satellite equations of motation are derived and linearized for the purpose of designing a linear controller. Finally, the main disturbances that a satellite can encounter in LEO are identify.}
+\textit{In the following chapter the modeling of the satellite is described. First, different reference frames are introduced for describing the attitude of the satellite. Next, the equations governing satellite rotation dynamics and kinematics are derived and linearized for the purpose of designing a linear controller. Finally, the main disturbances that a satellite can encounter in LEO are identified.}
 
 \section{Reference Frames}
 
 \nomenclature[AE]{\textbf{ECI}}{Earth Centered Inertial Frame}
 \nomenclature[AE]{\textbf{ECEF}}{Earth Centered Earth Fixed Frame}
 \nomenclature[AS]{\textbf{SBRF}}{Satellite Body Reference Frame}
+\nomenclature[AS]{\textbf{LVHV}}{Local Vertical, Local Horizontal (Reference Frame)}
 
 Using different reference frame for different calculations can simplify equations. Values in one reference frame can be converted into the other by using the proper transformations.
-Inertial frames of reference are frames where Newton's 3 laws of dynamics apply.
+Inertial frames of reference are frames where Newton's three laws of dynamics apply.
 The most used reference frames for Earth-orbiting satellites are Earth Centered Inertial Frame (ECI), Earth Centered Earth Fixed Frame (ECEF), Orbit Frame, Satellite Body Reference Frame (SBRF)  \cite{ref1} \cite{ref2}. Figure \ref{fig:frames} provides a visualization of the frames.
 \begin{figure}[H]
 	\centering 
@@ -19,7 +20,7 @@ The most used reference frames for Earth-orbiting satellites are Earth Centered 
 
 \subsubsection{Earth Centered Inertial Frame (ECI)}
 Earth is rotating and is orbiting the Sun, it accelerates in the direction of the Sun's center of mass, the Sun is orbiting the center of the Milky Way, etc. Thus there is no frame fixed to Earth's center that is an inertial frame \textit{per definitionem}. But in the case of earth orbiting satellites, there exists a coordinate system attached to Earth's center that out of practical considerations can be treated as one, the Earth Centered Inertial Frame (ECI).
-As the name suggests, the origin of the coordinate system is the center of earth. Inertial means that the frame doesn't rotate, the direction of stars remain the same. 
+As the name suggests, the origin of the coordinate system is the center of earth. Inertial means that the frame does not rotate, the direction of stars remain the same. 
 ECI is a cartesian coordinate system. Its $^iz$ vector points in the direction of the northern axis of rotation, while the $^ix$ axis towards the vernal equinox. The $^iy$ axis completes the triad of the right-handed Cartesian coordinate system.
 
 
@@ -35,6 +36,10 @@ ECEF, similarly to ECI is centered at the Earth's origin. Its $z$ vector points 
 The Orbital Frame is centered at the center of mass of the satellite. The $^oz$ axis points towards the center of Earth, $^ox$ points in the direction of the satellite's velocity, while $^oy$ is the normal vector for the orbital plane. The 3 axes make up an orthogonal triad.
 
 \nomenclature[TN]{\textbf{Nadir}}{The axis pointing towards Earth's center of mass}
+
+\subsubsection{Local Vertical, Local Horizontal Frame (LVLH)}
+
+The $^{lvlh}x$ axis is parallel to the vector  pointing from the center of the Earth to the satellite. $^{lvlh}z$ is parallel to the orbit normal. $^{lvlh}y$ is assigned to complete the right-handed orthogonal triad.
 
 \subsubsection{Satellite Body Reference Frame (SBRF)}
 

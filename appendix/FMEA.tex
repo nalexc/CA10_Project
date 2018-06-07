@@ -1,6 +1,17 @@
-\chapter{Failure Mode and Effects Analysis} \label{chap:H}
-\subsubsection{Severity and occurrence evaluation} \label{sec:SOE}
-The next step into Fault Analysis is the Fault Assessment that involves a Severity Occurrence analysis for investigating the faults that have the biggest rate of occurrence. The severity of the effects of failures and the probability of occurrence is determined based on the faults from FMEA. This procedure describes how each fault receives a severity index \nomenclature[AS]{\textbf{SI}}{Severity Index} (SI) and an occurrence index \nomenclature[AO]{\textbf{OI}}{Occurrence Index} (OI). A table containing the severity and occurrence for magnetorquers is shown 
+\chapter{Severity and occurrence evaluation} \label{chap:H}
+%\subsubsection{Severity and occurrence evaluation} \label{sec:SOE}
+
+The importance of dealing with certain faults can be decided using severity and occurrence evaluation. Faults described in \ref{chap:fault} are evaluated using intuitive severity and occurrence values. The severity and occurence index is computed using the following formula:
+\begin{flalign}
+SO_{index} = severity \cdot occurrence
+\label{eq:ec1}
+\end{flalign} 
+
+ The following table presents the evaluation findings.
+\nomenclature[AO]{\textbf{OI}}{Occurrence Index} (OI)
+
+%The next step into Fault Analysis is the Fault Assessment that involves a Severity Occurrence analysis for investigating the faults that have the biggest rate of occurrence. The severity of the effects of failures and the probability of occurrence is determined based on the faults from FMEA. This procedure describes how each fault receives a severity index \nomenclature[AS]{\textbf{SI}}{Severity Index} (SI) and an occurrence index . A table containing the severity and occurrence for magnetorquers is shown 
+
 \begin{table}[H]
 	\centering
 	\label{11}
@@ -31,11 +42,7 @@ The same procedure is done for reaction wheels as follows:
 	\caption{SO for reaction wheels}
 \end{table}
 
-The severity index is computed using the following formula:
-\begin{flalign}
-	SO_{index} = severity \cdot occurrence
-	\label{eq:ec1}
-\end{flalign} 
+
 
 %Severity (1 = not severe, 10 = very severe) 
 %Occurrence (1 = not likely, 10 = very likely)
