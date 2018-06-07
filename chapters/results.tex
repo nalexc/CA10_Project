@@ -1,4 +1,6 @@
-\chapter{Results}
+\chapter{Closure}
+
+\section{Results}
 
 A satellite attitude control scheme for two cooperating actuator subsystems was implemented in a simulation environment for a fault-free system. The two subsystems supplement each other by eliminating each other's weaknesses. The reaction wheel is capable of arbitrary torque exertion at any given moment, however is susceptible to saturation, the magnetorquer can only exert torques in 2 dimensions at any given moment, but is capable of desaturating the reaction wheels. The attitude control system was designed to be modular in order to be able to implement parallel control loops.
 Nadir pointing capability of these control methods were proven. The control scheme can also satisfy the more difficult problem of Earth station tracking. Earth station tracking is a benchmark of great attitude control ability. The simulation environment included environmental disturbances, but signal disturbances were not considered. 
@@ -9,3 +11,17 @@ Based on fault detector signals, faults have been handled by shutting down the a
 
 
 %power usage increase
+
+\section{Discussion}
+
+State of the art control schemes have been implemented and combined in the simulation environment, adjusted to the specific requirements of fault tolerant control.
+
+The limitation of unknown input observers has been reached with the torque disturbance not being distinguishable from actuator fault. Literature research has shown how observer design becomes significantly more difficult for nonlinear systems.
+
+The thesis has shown that exact identification of the fault source is not required to perform fault tolerant control for redundant actuator system, isolating the actuator where the fault occurred proved sufficient. This relaxes the amount of 'detective work' required in the system.
+
+\section{Conclusion}
+In this thesis actuator fault detection and fault tolerant control was examined for a pico-satellie. For fulfilling the requirements, various control schemes were developed and tested in a simulation environment.
+
+Attitude control is achieved by using three different attitude controlers. 
+
