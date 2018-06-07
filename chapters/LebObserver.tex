@@ -1,7 +1,7 @@
 \subsection{Luenberger Observer} 
 \label{sec:simpleObserver}
 
-Parallel to structural analysis methods also two observer based methods have been designed for fault detection in magnetorquer based actuators. Here will be discussed a Luenberger-like form which is based directly on the non-linear dynamics. In previous chapter has been discussed that for each axis there is a pair of magnetorquers. The redundant magnetic actuators are used for reconfiguration in the presence of a fault or failure.\\    The Luenberger-like observer is based on the dynamic  \eqref{eq:seom} and for the sake of brevity is rewritten here as   
+Parallel to structural analysis method an observer based method have been designed for fault detection in magnetorquer based actuators. Here will be discussed a Luenberger-like form which is based directly on the non-linear dynamics. In previous chapter has been discussed that for each axis there is a pair of magnetorquers. The redundant magnetic actuators are used for reconfiguration in the presence of a fault or failure.\\    The Luenberger-like observer is based on the dynamic equation \ref{eq:seom} and for the sake of brevity is rewritten here as   
 
 %
 \begin{flalign}
@@ -45,7 +45,7 @@ with $\underline{C}$ be identity matrix. The matrix $\underline{A}$ is found by 
 %
 \subsubsection{Residual generation}
  %
- Assuming that the motors are fault free a residual can be generated from the Luenberger-like observer. By denoting $\vec{N_{obs}} =I\vec{\hat{{\dot \omega}}}$ where $I$ is the inertia of the satellite then a residual can be generated as
+ Assuming that the motors are fault free a residual can be generated from the Luenberger-like observer. By denoting $\vec{N_{obs}} =\vec{I_s}\vec{\dot{{\hat \omega}}}$ where $I$ is the inertia of the satellite then a residual can be generated as
  
  %
  \begin{equation}
