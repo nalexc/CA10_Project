@@ -1,8 +1,8 @@
 \chapter{Fault handling and reconfiguration}  \label{chap:faltHandling}
  \section{Virtual actuators and sensors} \label{chap: virtual}
- Actuators and sensors are subject to various faults in the process. Due to these faults the system may experience drops in the performance which could lead to stability loss.
+ Actuators and sensors are subject to various faults in the process. Due to these faults the system may experience drops in performance which could lead to stability loss.
  
- The objective of fault tolerant control using virtual actuators and sensors is to add a reconfiguration block which is presented as an extra layer between the faulty system and the controller, while the nominal controller is running. The purpose of the reconfiguration block in case of a fault is to provide fault tolerance by using the virtual actuators and sensors as can be seen in figure \ref{fig:VA}. In the figure, $u_f$ represents the faulty control input which is reconfigure based on the faults and the main attitude control input, and $y_f$ is the faulty output. 
+ The objective of fault tolerant control using virtual actuators and sensors is to add a reconfiguration block which is presented as an extra layer between the faulty system and the level controller. The purpose of the reconfiguration block in case of a fault is to provide fault tolerance by using the virtual actuators and sensors. As can be seen in figure \ref{fig:VA} the reconfiguration of the faulty actuators is made independently of the main attitude control schemes.  In the figure, $u_f$ represents a low level control input that takes into account the faults of the system, and $y_f$ is the faulty output. 
  \begin{figure}[H]
  	\centering
  	\includegraphics[width=0.8\linewidth]{figures/VirtualActuator}
@@ -10,9 +10,11 @@
  	\label{fig:VA}
  \end{figure}
  
- If that the main controller remain unchanged, a reconfiguration between the system and the output of the controller is made. If a fault in the actuators or sensors will occur, then the reconfiguration block has the possibility to give as an output a signal that is similar with the one that the actuator or sensor will have for the nominal controller.
+ The reconfiguration of the faulty actuators is made in the adequate actuator subsystems. 
  
- In the case that a fault will occur in the reaction wheel sensor, the angular velocity measurement it is assumed functional and based on that measurement, the torque output form the faulty wheel can be computed. A second assumption is that the sensors will completely fail, but in this case a model of how the angular velocity of the wheel is decreasing over time is obtained. This model can be used as a virtual sensor for the angular velocity sensor. 
+ In the case of the reaction wheel subsystem compensation is needed, while in the magnetorquers not.
+ 
+ In the case that a fault occurs in the reaction wheel sensor, the angular velocity measurement it is assumed functional and based on that measurement, the torque output from the faulty wheel can be computed. A second assumption is that the sensors will completely fail, but in this case a model of how the angular velocity of the wheel is decreasing over time is obtained. This model can be used as a virtual sensor for the angular velocity sensor. 
  
 \section{Reaction Wheel Reconfiguration}
 \label{sec:rwReconfig}
@@ -70,36 +72,69 @@ Equation \ref{eq:motorTransReconfig2} presents the reconfigured torque distribut
 Similarly to the reaction wheel reconfiguration \secref{sec:rwReconfig}, fault handling in the redundant magnetorquer scheme can be done by isolating the faulty magnetic component, shutting it off and at the same time turn on the redundant magnetorquer at the same axis. As it has been discussed in \secref{sec:simpleObserver} the Luenberger-like Observer is not robust in the sense of isolating which component is faulty. Therefore, a combination with the structural analysis method \secref{sec: MTStructAnal} can be  made in order to isolate the faulty component. Each method give a flag, commonly a binary input, such that when a fault is present each method indicate 1 and when a fault is absent indicate 0. Moreover, the structural analysis method is also limited on the faults which can detect. Therefore, the binary flags from both methods are inputs to a block which emulates the logic operator $OR$, so if the flags from each method give binary indicator 1, all the magnetorquers are switched which gives robustness in a manner of fault handling. In the \figref{fig:magneticconfig} it can be seen how the main magnetorquers shutting off in the presence of a fault in the power supply at time 150 and their corresponding pair takes action. Moreover, it is worth mentioning that isolation and configuration of only the faulty component can achieved by replacing the $OR$ by $AND$ logic operator, but this will lead in a reduced number of the family of faults that can be handled. 
 %
 %
-\begin{figure}[ht]  
-	\begin{minipage}{0.5\textwidth}
-		\includegraphics[width=\textwidth]{figures/config1.eps}
-	\end{minipage}
-	\hfill
-	\begin{minipage}{0.5\textwidth}
-		\includegraphics[width=\textwidth]{figures/config11.eps}
-	\end{minipage}
-\end{figure}
-\begin{figure}[ht]  
-	\begin{minipage}{0.5\textwidth}
-		\includegraphics[width=\textwidth]{figures/config2.eps}
-	\end{minipage}
-	\hfill
-	\begin{minipage}{0.5\textwidth}
-		\includegraphics[width=\textwidth]{figures/config22.eps}
-	\end{minipage}
-\end{figure}    
-\begin{figure}[ht]  
-	\begin{minipage}{0.5\textwidth}
-		\includegraphics[width=\textwidth]{figures/config3.eps}
-	\end{minipage}
-	\hfill
-	\begin{minipage}{0.5\textwidth}
-		\includegraphics[width=\textwidth]{figures/config33.eps}
-	\end{minipage}
-	\caption{To the left are depicted the magnetorquers of each axis subjected to a fault in the voltage supply and to the right their pairs}
+%\begin{figure}[ht]  
+%	\begin{minipage}{0.5\textwidth}
+%		\includegraphics[width=\textwidth]{figures/config1.eps}
+%	\end{minipage}
+%	\hfill
+%	\begin{minipage}{0.5\textwidth}
+%		\includegraphics[width=\textwidth]{figures/config11.eps}
+%	\end{minipage}
+%\end{figure}
+%\begin{figure}[ht]  
+%	\begin{minipage}{0.5\textwidth}
+%		\includegraphics[width=\textwidth]{figures/config2.eps}
+%	\end{minipage}
+%	\hfill
+%	\begin{minipage}{0.5\textwidth}
+%		\includegraphics[width=\textwidth]{figures/config22.eps}
+%	\end{minipage}
+%\end{figure}    
+%\begin{figure}[ht]  
+%	\begin{minipage}{0.5\textwidth}
+%		\includegraphics[width=\textwidth]{figures/config3.eps}
+%	\end{minipage}
+%	\hfill
+%	\begin{minipage}{0.5\textwidth}
+%		\includegraphics[width=\textwidth]{figures/config33.eps}
+%	\end{minipage}
+%	\caption{To the left are depicted the magnetorquers of each axis subjected to a fault in the voltage supply and to the right the redundant magnetorquer pairs}
+%	\label{fig:magneticconfig}
+%\end{figure}  
+%%
+
+\begin{figure}[H]
+	\begin{subfigure}{0.5\linewidth}
+		\centering
+		\includegraphics[width=1\linewidth]{figures/config1.eps}
+		\label{fig:magcompens}
+	\end{subfigure}
+	\begin{subfigure}{0.5\linewidth}
+		\centering
+		\includegraphics[width=1\linewidth]{figures/config11.eps}
+		\label{fig:fig:magcompens2}	
+	\end{subfigure}
+\begin{subfigure}{0.5\linewidth}
+	\centering
+	\includegraphics[width=1\linewidth]{figures/config2.eps}
+	\label{fig:fig:magcompens3}
+\end{subfigure}
+\begin{subfigure}{0.5\linewidth}
+	\centering
+	\includegraphics[width=1\linewidth]{figures/config22.eps}
+	\label{fig:fig:magcompens4}	
+\end{subfigure}
+\begin{subfigure}{0.5\linewidth}
+	\centering
+	\includegraphics[width=1\linewidth]{figures/config3.eps}
+	\label{fig:fig:magcompens33}
+\end{subfigure}
+\begin{subfigure}{0.5\linewidth}
+	\centering
+	\includegraphics[width=1\linewidth]{figures/config33.eps}
+	\label{fig:fig:magcompens43}	
+\end{subfigure}
+	\caption{To the left are depicted the magnetorquers of each axis subjected to a fault in the voltage supply and to the right the redundant magnetorquer pairs.}
 	\label{fig:magneticconfig}
-\end{figure}  
-%
-
-
+\end{figure}
 

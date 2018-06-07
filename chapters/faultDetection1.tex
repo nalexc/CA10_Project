@@ -1,15 +1,15 @@
 \newpage
 \section{Fault Detection}
 
-Fault detection deals with detecting system discrepancies and abnormal behaviour. Some of the methods require sensor data filtering or threshold adjustment to handle signal noise. Fault detection is the first step towards handling faults. It doesn't necessarily identify the source of the fault, just establishes the fact that a fault has occurred in the system. In redundant systems, fault handling can be achieved by shutting down the actuator affected by the fault and redistributing the control tasks between the functioning actuators.
+Fault detection deals with detecting system discrepancies and abnormal behavior. Some of the methods require sensor data filtering or threshold adjustment to handle signal noise. Fault detection is the first step towards handling faults. It does not necessarily identify the source of the fault, just establishes the fact that a fault has occurred in the system. In redundant systems, fault handling can be achieved by shutting down the actuator affected by the fault and redistributing the control tasks between the functioning actuators.
 
-
+Accuracy of general fault detection methods can be improved by filtering the signals used in the fault detector. When observer is used filtering is not needed. Filtering methods are outside of the scope of the thesis. Observer theory is well developed for linear systems however, observers for nonlinear systems is a field under development \cite{bokor}. 
 \input{chapters/detectability.tex}
 
 \subsection{Motor fault detection}
 
 
-\subsection{Model-free fault detection}
+\subsubsection{Model-free fault detection}
 
 \input{chapters/ModelFreeFaultDetection.tex}
 

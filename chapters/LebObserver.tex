@@ -1,7 +1,7 @@
 \subsection{Luenberger Observer} 
 \label{sec:simpleObserver}
 
-Parallel to structural analysis methods also two observer based methods have been designed for fault detection in magnetorquer based actuators. Here will be discussed a Luenberger-like form which is based directly on the non-linear dynamics. In previous chapter has been discussed that for each axis there is a pair of magnetorquers. The redundant magnetic actuators are used for reconfiguration in the presence of a fault or failure.\\    The Luenberger-like observer is based on the dynamic  \eqref{eq:seom} and for the sake of brevity is rewritten here as   
+Parallel to structural analysis method an observer based method have been designed for fault detection in magnetorquer based actuators. Here will be discussed a Luenberger-like form which is based directly on the non-linear dynamics. In previous chapter has been discussed that for each axis there is a pair of magnetorquers. The redundant magnetic actuators are used for reconfiguration in the presence of a fault or failure.\\    The Luenberger-like observer is based on the dynamic equation \ref{eq:seom} and for the sake of brevity is rewritten here as   
 
 %
 \begin{flalign}
@@ -43,28 +43,30 @@ with $\underline{C}$ be identity matrix. The matrix $\underline{A}$ is found by 
 \label{eq:orthoMatrix22}
 \end{equation}
 %
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.7\linewidth]{figures/observerSimple}
-	\caption{FILL ME IN WITH SOME TITLE!}
-	\label{fig:obe}
-\end{figure}
 \subsubsection{Residual generation}
- \label{sec:simpleObserveresidual}
  %
- Assuming that the motors are fault free a residual can be generated from the Luenberger-like observer. By denoting $\vec{N_{real}} =I\vec{\hat{{\dot \omega}}}$ where $I$ is the inertia of the satellite then a residual can be generated as
-
+ Assuming that the motors are fault free a residual can be generated from the Luenberger-like observer. By denoting $\vec{N_{obs}} =\vec{I_s}\vec{\dot{{\hat \omega}}}$ where $I$ is the inertia of the satellite then a residual can be generated as
+ 
  %
  \begin{equation}
- \vec{N_{residual}} = \vec{N_{actual}} - \vec{N_{real}}
+ residual = \vec{N_{actual}} - \vec{N_{obs}}
  \label{eq:residualObs}
  \end{equation}
  %
- thus if $\{\lVert \vec{N_{residual}}\rVert \geq threshold \}$ a fault has been occurred the structure of Luenberger-like observer can be seen in \figref{fig:observer} and the generated residual signal in \figref{fig:observerresidual} . 
+ thus if $\lVert \vec{residual} \rVert \geq threshold$ a fault has been occurred. The structure of Luenberger-like observer can be seen in \figref{fig:obe} and the generated residual signal in \figref{fig:observerresidual} . 
+ %
+ \begin{figure}[H]
+ 	\centering
+ 	\includegraphics[width=0.7\linewidth]{figures/observerSimple}
+ 	\caption{Luenberger-like observer structure and residual generation}
+ 	\label{fig:obe}
+ \end{figure}
+ %
+ \label{sec:simpleObserveresidual}
  %
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\linewidth]{figures/Observer_residual}
+	\includegraphics[width=0.7\linewidth]{figures/Observer_residual}
 	\caption{Luenberger-like Observer residual signal }
 	\label{fig:observerresidual}
 \end{figure}
@@ -73,7 +75,7 @@ with $\underline{C}$ be identity matrix. The matrix $\underline{A}$ is found by 
  %
  \begin{figure}[H]
  	\centering
- 	\includegraphics[width=0.9\linewidth]{figures/Luenberger_Observerflag}
+ 	\includegraphics[width=0.7\linewidth]{figures/Luenberger_Observerflag}
  	\caption{Luenberger-like Observer flag with a fault in the voltage supply occurring at 200 seconds   }
  	\label{fig:obsflag}
  \end{figure}

@@ -1,7 +1,7 @@
 \chapter{Derivation of the satellite equations of motion} \label{chap:C}
-\textit{This section describes the derivation of the mathematical model of the satellite which contains the dynamic and kinematic model, based on the rigid body dynamics and kinematics.}
+\textit{This section describes the derivation of the mathematical model of the satellite which contains the attitude dynamic and kinematic model, based on the rigid body dynamics and kinematics.}
 \subsection{Kinematic equation}
-In this subsection, the focus will be on describing the orientation of the satellite. The method used for describing the satellite attitude is quaternion representation. It was decided to choose quaternion representation, because they provide a way to deal with singularities.
+In this subsection, the focus will be on describing the attitude kinematics of the satellite. Quaternion representation is used for describing the satellite attitude. It was decided to choose quaternion representation, because they provide a way to deal with singularities that would occur in Euler angle representation.
 \nomenclature[Sh]{${\vec{ h_{sat}}}$}{Angular momentum of the satellite}
 \nomenclature[Sq]{$\vec{ \bar{q}}$}{ The operating point of the quaternion}
 \nomenclature[Somega]{$\vec{q_{\omega}}$}{ The angular velocity quaternion}
@@ -40,7 +40,7 @@ Using equation \ref{eq:q11} and equation \ref{eq:q4} and insert them into equati
 \begin{flalign}
 	\vec{ ^s_i q}(t+\Delta{t})
 	= 
-	\left\{\cos\frac{\Delta\Phi}{2} \underline I_{(4\times4)}+\sin\frac{\Delta\Phi}{2}
+	\left\{\cos\frac{\Delta\Phi}{2} \underline 1_{(4\times4)}+\sin\frac{\Delta\Phi}{2}
 	\begin{bmatrix}
 		0 &e_{z}&-e_{y}&e_{x} \\
 		-e_{z}&0&e_{x}&e_{y}  \\ 
@@ -51,7 +51,7 @@ Using equation \ref{eq:q11} and equation \ref{eq:q4} and insert them into equati
 	\label{eq:quatm}
 \end{flalign}  
 %
-where $\underline I$ is the identity matrix with the dimensions of $4\times4$.
+where $\underline 1$ is the identity matrix with the dimensions of $4\times4$.
 
 In order to turn equation \ref{eq:quatm} into a differential equation, a small angle approximation it is used: 
 \begin{flalign}
@@ -87,14 +87,14 @@ The rate of change in the orientation of the spacecraft $\vec{^s_i q(t)}$  can b
 
 \subsection{ Dynamic equation}
 The satellite dynamics are described using Euler's equation of motion and Newton's laws of motion. 
-Using Euler's equation of motion, the relation between the change in angular momentum and the torques that affect the satellite is given as follows:
+Using Euler's equation of motion, the relation between the change in angular momentum and the external torques that affect the satellite is given as follows:
 \begin{flalign}
-	\vec{ \dot h} = \vec{N_{dist}} =  \vec{N_{mt}}+ \vec{N_{dist}}
+	\vec{ \dot h}_T =  \vec{N_{mt}}+ \vec{N_{dist}}
 	\label{eq:ec2}
 \end{flalign} 
-where $h$ is the angular momentum of a rigid body, $N_{dist}$ represent all the external torques that influence the satellite, $N_{mt}$ is the torque from the magnetorquers and $N_{dist}$ is the torque from the disturbances.
+where $h_T$ is the angular momentum of a rigid body, $N_{mt}$ is the torque from the magnetorquers and $N_{dist}$ is the torque from the disturbances.
 
-The change in angular momentum of the satellite can be express as the product between the angular acceleration and the moment of inertia:
+The change in angular momentum of the satellite can be expressed as the product between the angular acceleration and the moment of inertia:
 \begin{flalign}
 	{\vec{\dot h_{sat}}} = {\underline I_{s}}{\vec{\dot \omega}}
 	\label{eq:ec3}
@@ -275,7 +275,7 @@ Therefore, equation \ref{eq:sfgfm} can be rewritten by using this property as:
 	\vec{\tilde{q}} \otimes \vec{\tilde q_{\omega}}  
 	=
 	\begin{bmatrix}
-		& - (\vec{\tilde \omega}^\times \vec{\tilde q} +  \vec{\tilde \omega} {\tilde q_4}   \\
+		& - \vec{\tilde \omega}^\times \vec{\tilde q} +  \vec{\tilde \omega} {\tilde q_4}   \\
 		& - \vec{\tilde \omega}^\mathsf{T} \vec{\tilde q}\\ 
 	\end{bmatrix} 
 =
@@ -307,7 +307,7 @@ Collecting terms and inserting equation \ref{eq:sffm},  \ref{eq:sfm}, \ref{eq:sf
 Next, the non-linear dynamic equation is given by:
 \begin{align*}
 	\begin{split}
-	{\vec{\dot{\omega}}} &={-\underline I_{s}^{-1}\underline \omega^\times\underline I_{s}\vec \omega-\underline I_{s}^{-1} \underline \omega^\times\vec h_{rw}-\underline I_s ^{-1}\vec{  N_{rw}} + \underline I_s ^{-1}(\vec{  N_{mt}} + \vec{  N_{dist}})} = \\
+	{\vec{\dot{\omega}}} &={-\underline I_{s}^{-1}\underline \omega^\times\underline I_{s}\vec \omega-\underline I_{s}^{-1} \underline \omega^\times\vec h_{rw} + \underline I_s ^{-1}\vec{  N_{rw}} + \underline I_s ^{-1}(\vec{  N_{mt}} + \vec{  N_{dist}})} = \\
 	&= {\underline I_{s}^{-1}} [\vec{  N_{dist}} + \vec{  N_{ctrl}} - \underline \omega^\times (\underline I_{s} \omega + \vec h_{rw})] 
 \label{eq:ec34}
 \end{split}
