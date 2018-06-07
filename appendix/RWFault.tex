@@ -1,6 +1,6 @@
 \chapter{Alternative method for identifying reaction wheel fault} \label{chap:E}
 
-With enough computational power the faulty reaction wheel can be detected through the calculated reaction wheel output torque, assuming only one reaction wheel is faulty. It is done by calculating the difference between 3D torque demand and actual 3D torque output. 
+With enough on-board computational power the faulty reaction wheel can be detected through the calculated reaction wheel output torque, assuming only one reaction wheel is faulty. It is done by calculating the difference between 3D torque demand and actual 3D torque output. In order for this residual based fault detection to work, the model needs to precisely reflect the satellite dynamics and the signals need to be filtered properly.
 
 \begin{equation}
 \vec{N}_{rw} = \underline{I}_s \dot{\vec{\omega}}  + \vec{\omega} \times \vec{h_{rw}} - \vec{N_{mt}} - \vec{N_{dist}}
@@ -17,15 +17,13 @@ Then the difference between torque demand and torque output is calculated. The r
  \pm \vec{N}_{rw}^{diff}  \stackrel{?}{\approx} \vec{axis} 
 \end{equation}
 
-If the torque error exceeds a certain threshold, then the faulty wheel index can be identified as
-
-unit vectors!!!
+If the torque error exceeds a certain threshold, then the faulty wheel index can be identified.
 
 \begin{equation}
 faultyWheelIndex = \arg\min_i ( \pm \vec{N}_{rw}^{diff} - \vec{axis}_i ) 
 \end{equation}
 
-\todo{mention unit vector notation, decide notation for axis, express axis according to q}
+% \todo{mention unit vector notation, decide notation for axis, express axis according to q}
 
-Note: the lag for torque change and wheel saturation has to be taken into account separately, as those don't count as faults. 
-Thresholds should be applied.
+Note: the lag for torque change and wheel saturation has to be taken into account separately, as those do not count as faults. 
+Thresholds should be applied. This method has questionable applicability in presence of uncertainties, thus it was omitted from the main report.
