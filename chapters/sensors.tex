@@ -1,12 +1,12 @@
 \section{Sensors}
-This section presents an overview about the various types of sensors the satellite contains on board and been used for attitude determination
+This section presents an overview about the various types of sensors the satellite contains on board and has been used for attitude determination.
 \subsection{Magnetometer}
 
-The orbit of the satellite is predictable, the satellite's location can be described as a function of time. Earth's magnetic field can also be quite accurately modeled. This means that by using magnetometer, the orientation of the satellite can be approximated by comparing the magnetic field model at the satellite's current location and the direction of the magnetic field measured by the magnetometer. To address the noise in the measurement, including the noise arising from inside the satellite, Kalman or particle filtering, along with sensor fusion can be used, however this is outside of the scope of the thesis.
+The orbit of the satellite is predictable, the satellite's location can be described as a function of time. Earth's magnetic field can also be quite accurately modeled. This means that by using magnetometer, the orientation of the satellite can be approximated by comparing Earth's magnetic field model at the satellite's current location and the direction of the magnetic field in the SBRF attributed to Earth following the magnetometer measurements. To address the noise in the measurement, including the noise arising from inside the satellite, Kalman or particle filtering, along with sensor fusion can be used, however this is outside of the scope of the thesis.
 
 \subsection{Sun Sensor}
 
-Sun trackers can be much easier to develop than star trackers. It measures the sun's orientation in relation to the satellite frame. By using it alongside other sensors, higher accuracy attitude estimation can be achieved, however when Earth is obstructing the sun rays, it is unable to provide attitude data, thus it is not sufficient to only use a sun tracking sensor.
+Sun trackers can be much easier to develop than star trackers. They measure the Sun’s orientation in relation to the satellite frame. By using it alongside other sensors, higher accuracy attitude estimation can be achieved. However when Earth is obstructing the sun rays, it is unable to provide attitude data, thus it is not sufficient to only use a sun tracking sensor.
 
 %\subsection{Sun sensor}
 %Sun sensors are commonly used in attitude determination. Sun sensors have the advantage of having small power requirement, however during eclipse, they are unable 
