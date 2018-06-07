@@ -163,7 +163,7 @@ where $\vec{f_{act}}$ represents the actuator faults.
 The present chapter discusses how to apply unknown input observer (UIO) theory to the satellite functioning in nadir pointing control goal. The regular UIO uses linear model, however the satellite system is highly nonlinear.  During one orbit, the orientation of the nadir pointing satellite rotates by $360^o$. By choosing the appropriate reference frame, this rotation can be eliminated from attitude dynamics. In local vertical, local horizontal frame (LVLH), the nadir pointing satellite keeps its attitude. This opens an opportunity to use linear approximation of the trigonometric nonlinearities in the satellite dynamic equations. The operating point should be chosen as nadir pointing, and if the attitude stays near enough to the operating point, the model stays quite accurate.
 
 
-Yang's article on desaturation \cite{DesatYang} describes a model that can be effective for UIO. For derivation of the model, please refer to appendix \ref{sec:UIO_deriv}. The $\underline{A}$ matrix of the model is constant, so the UIO matrices can be derived as described in \ref{sec:UIO}. The model detaches the orbit angular velocity from the dynamics according to equation \ref{eq:angDetach}.
+Yang's article on desaturation \cite{DesatYang} describes a model that can be effective for UIO. The $\underline{A}$ matrix of the model is constant, so the UIO matrices can be derived as described in \ref{sec:UIO}. The model detaches the orbit angular velocity from the dynamics according to equation \ref{eq:angDetach}.
 
 \begin{equation}
 \label{eq:angDetach}
@@ -184,107 +184,112 @@ where $\vec{_I^{lv}\omega}$ is the angular velocity of the LVLH frame compared t
 \label{eq:uioagain2}
 \end{equation}
 
-\tiny
-\begin{align}
-\begin{bmatrix}
-\vec{_{lv}^s\dot{\omega}} \\
-\vec{\dot{\omega}_{rw} } \\
-\vec{\dot{q}_{1:3}}
-\end{bmatrix} 
- \nonumber
-= \begin{bmatrix}
-0 & 0 & \omega_o\frac{I_1 - I_2 + I_3}{-I_1} & 0.58\omega_o\frac{I_w}{I_1} & 0.58\omega_o\frac{I_w}{I_1} & 0.58\omega_o\frac{I_w}{I_1} & -\omega_o\frac{I_w}{I_1} & 2\omega_o^2\frac{I_3 - I_2}{I_1} & 0 & 0 \\
-0 & 0 &	0 & 0 & 0 &	0 & 0 &  0 &  0 & 0\\
- \omega_o\frac{I_1 - I_2 + I_3}{I_3}  & 0 & 0 &  0.81\omega_o\frac{I_w}{I_3} & 0.77\omega_o\frac{I_w}{I_3} & 0.77\omega_o\frac{I_w}{I_3} &	0 & 0 & 0 & 2\omega_o^2\frac{I_1 - I_2}{I_3}\\
-0 & 0 &	0  & 0 & 0 & 0 & 0 & 0 & 0& 0\\
-0 & 0 &	0  & 0 & 0 & 0 & 0 & 0 & 0& 0 \\
-0 & 0 &	0 & 0 & 0 & 0 & 0 & 0 & 0& 0\\
-0 & 0 &	0 & 0 & 0 & 0 & 0 & 0 & 0& 0\\
-0.5 & 0 &	0 & 0 & 0 & 0 & 0 & 0 & 0& 0 \\
-0 & 0.5 &	0& 0 & 0 & 0 & 0 & 0 & 0& 0 \\
-0 & 0 &	0.5 & 0 & 0 & 0 & 0 & 0 & 0& 0\\
-\end{bmatrix}
-\begin{bmatrix}
-_{lv}^s\omega_1 \\
-_{lv}^s\omega_2 \\
-_{lv}^s\omega_3 \\
-\omega_{rw,1} \\
-\omega_{rw,2} \\
-\omega_{rw,3} \\
-\omega_{rw,4} \\
-q_1 \\
-q_2 \\
-q_3 
-\end{bmatrix}
- \\
- \nonumber
-+
-\begin{bmatrix}
-0.81I_1^{-1} & 0.77I_1^{-1} & 0.77I_1^{-1} & 0 & 0 & \frac{b_3}{I_1} & -\frac{b_2}{I_1}	& I_1^{-1} & 0 & 0\\
-0 & 0.125I_2^{-1} & -0.125I_2^{-1} & 0 & - \frac{b_3}{I_2} & 0 &  \frac{b_1}{I_2} & 0 & I_2^{-1} & 0\\ 
--0.58I_3^{-1} & -0.58 I_3^{-1} & -0.58 I_3^{-1} & I_3^{-1} &  \frac{b_2}{I_3} &  -\frac{b_1}{I_3} & 0 & 0 & 0 & I_3^{-1} \\  
-I_w^{-1} & 0 & 0& 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-0 & I_w^{-1} & 0& 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 
-0 & 0 & I_w^{-1} & 0 & 0 & 0 & 0 & 0 & 0 & 0\\  
-0 & 0 & 0 &  I_w^{-1} & 0& 0 & 0 & 0 & 0 & 0\\
-0 & 0 & 0 & 0 & 0& 0 & 0 & 0 & 0 & 0\\
-0 & 0 & 0 & 0 & 0& 0 & 0 & 0 & 0 & 0\\
-0 & 0 & 0 & 0 & 0& 0 & 0 & 0 & 0 & 0
-\end{bmatrix}
-\begin{bmatrix}
-N_{rw,1} \\
-N_{rw,2} \\
-N_{rw,3}\\
-N_{rw,4}\\
-\m_{mt,1} \\
-\m_{mt,2} \\
-\m_{mt,3} \\
-N^{est}_{dist,1} \\
-N^{est}_{dist,2} \\
-N^{est}_{dist,3}
-\end{bmatrix}
-+
-\begin{bmatrix}
-I_1^{-1} & 0 & 0 \\
-0 & I_2^{-1} & 0 \\
-0 & 0 & I_3^{-1}\\
-0 & 0 & 0 \\
-0 & 0 & 0 \\
-0 & 0 & 0 \\
-0 & 0 & 0 \\
-0 & 0 & 0 \\
-0 & 0 & 0 
-\end{bmatrix}
-\begin{bmatrix}
-N^{est \ error}_{dist,1} \\
-N^{est \ error}_{dist,2} \\
-N^{est \ error}_{dist,3}\\
-\end{bmatrix}
- \\
- + 
- \begin{bmatrix}
-0.81I_1^{-1} & 0.77I_1^{-1} & 0.77I_1^{-1} & 0 & 0 & \frac{b_3}{I_1} & -\frac{b_2}{I_1}\\
-0 & 0.125I_2^{-1} & -0.125I_2^{-1} & 0 & - \frac{b_3}{I_2} & 0 &  \frac{b_1}{I_2} \\ 
- -0.58I_3^{-1} & -0.58 I_3^{-1} & -0.58 I_3^{-1} & I_3^{-1} &  \frac{b_2}{I_3} &  -\frac{b_1}{I_3} & 0 \\  
- I_w^{-1} & 0 & 0 & 0 & 0 & 0 \\
- 0 & I_w^{-1} & 0 & 0 & 0 & 0 \\ 
- 0 & 0 & I_w^{-1} & 0& 0 & 0 & 0 \\  
- 0 & 0 & 0 & I_w^{-1} & 0 & 0 & 0 \\
- 0 & 0 & 0 & 0 & 0 & 0& 0 \\
- 0 & 0 & 0 & 0 & 0& 0 & 0 \\
- \end{bmatrix}
- \begin{bmatrix}
- N^{fault}_{rw,1} \\
- N^{fault}_{rw,2} \\
- N^{fault}_{rw,3}\\
- N^{fault}_{rw,4}\\
- \m^{fault}_{mt,1} \\
- \m^{fault}_{mt,2} \\
- \m^{fault}_{mt,3} 
- \end{bmatrix}
-\label{eq:uioMatrices}
-\end{align}
-\normalsize
+ For the detailed matrices of the model used for designing the observer, please refer to appendix \ref{sec:UIO_deriv}.
+
+%
+%\tiny
+%\begin{align}
+%\begin{bmatrix}
+%\vec{_{lv}^s\dot{\omega}} \\
+%\vec{\dot{\omega}_{rw} } \\
+%\vec{\dot{q}_{1:3}}
+%\end{bmatrix} 
+% \nonumber\\
+%= \begin{bmatrix}
+%0 & 0 & \omega_o\frac{I_1 - I_2 + I_3}{-I_1} & 0.58\omega_o\frac{I_w}{I_1} & 0.58\omega_o\frac{I_w}{I_1} & 0.58\omega_o\frac{I_w}{I_1} & -\omega_o\frac{I_w}{I_1} & 2\omega_o^2\frac{I_3 - I_2}{I_1} & 0 & 0 \\
+%0 & 0 &	0 & 0 & 0 &	0 & 0 &  0 &  0 & 0\\
+% \omega_o\frac{I_1 - I_2 + I_3}{I_3}  & 0 & 0 &  0.81\omega_o\frac{I_w}{I_3} & 0.77\omega_o\frac{I_w}{I_3} & 0.77\omega_o\frac{I_w}{I_3} &	0 & 0 & 0 & 2\omega_o^2\frac{I_1 - I_2}{I_3}\\
+%0 & 0 &	0  & 0 & 0 & 0 & 0 & 0 & 0& 0\\
+%0 & 0 &	0  & 0 & 0 & 0 & 0 & 0 & 0& 0 \\
+%0 & 0 &	0 & 0 & 0 & 0 & 0 & 0 & 0& 0\\
+%0 & 0 &	0 & 0 & 0 & 0 & 0 & 0 & 0& 0\\
+%0.5 & 0 &	0 & 0 & 0 & 0 & 0 & 0 & 0& 0 \\
+%0 & 0.5 &	0& 0 & 0 & 0 & 0 & 0 & 0& 0 \\
+%0 & 0 &	0.5 & 0 & 0 & 0 & 0 & 0 & 0& 0\\
+%\end{bmatrix}
+%\begin{bmatrix}
+%_{lv}^s\omega_1 \\
+%_{lv}^s\omega_2 \\
+%_{lv}^s\omega_3 \\
+%\omega_{rw,1} \\
+%\omega_{rw,2} \\
+%\omega_{rw,3} \\
+%\omega_{rw,4} \\
+%q_1 \\
+%q_2 \\
+%q_3 
+%\end{bmatrix}
+% \\
+% \nonumber
+%+
+%\begin{bmatrix}
+%0.81I_1^{-1} & 0.77I_1^{-1} & 0.77I_1^{-1} & 0 & 0 & \frac{b_3}{I_1} & -\frac{b_2}{I_1}	& I_1^{-1} & 0 & 0\\
+%0 & 0.125I_2^{-1} & -0.125I_2^{-1} & 0 & - \frac{b_3}{I_2} & 0 &  \frac{b_1}{I_2} & 0 & I_2^{-1} & 0\\ 
+%-0.58I_3^{-1} & -0.58 I_3^{-1} & -0.58 I_3^{-1} & I_3^{-1} &  \frac{b_2}{I_3} &  -\frac{b_1}{I_3} & 0 & 0 & 0 & I_3^{-1} \\  
+%I_w^{-1} & 0 & 0& 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+%0 & I_w^{-1} & 0& 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 
+%0 & 0 & I_w^{-1} & 0 & 0 & 0 & 0 & 0 & 0 & 0\\  
+%0 & 0 & 0 &  I_w^{-1} & 0& 0 & 0 & 0 & 0 & 0\\
+%0 & 0 & 0 & 0 & 0& 0 & 0 & 0 & 0 & 0\\
+%0 & 0 & 0 & 0 & 0& 0 & 0 & 0 & 0 & 0\\
+%0 & 0 & 0 & 0 & 0& 0 & 0 & 0 & 0 & 0
+%\end{bmatrix}
+%\begin{bmatrix}
+%N_{rw,1} \\
+%N_{rw,2} \\
+%N_{rw,3}\\
+%N_{rw,4}\\
+%\m_{mt,1} \\
+%\m_{mt,2} \\
+%\m_{mt,3} \\
+%N^{est}_{dist,1} \\
+%N^{est}_{dist,2} \\
+%N^{est}_{dist,3}
+%\end{bmatrix}
+%+
+%\\
+%\nonumber
+%\begin{bmatrix}
+%I_1^{-1} & 0 & 0 \\
+%0 & I_2^{-1} & 0 \\
+%0 & 0 & I_3^{-1}\\
+%0 & 0 & 0 \\
+%0 & 0 & 0 \\
+%0 & 0 & 0 \\
+%0 & 0 & 0 \\
+%0 & 0 & 0 \\
+%0 & 0 & 0 
+%\end{bmatrix}
+%\begin{bmatrix}
+%N^{est \ error}_{dist,1} \\
+%N^{est \ error}_{dist,2} \\
+%N^{est \ error}_{dist,3}\\
+%\end{bmatrix}
+% \\
+% + 
+% \begin{bmatrix}
+%0.81I_1^{-1} & 0.77I_1^{-1} & 0.77I_1^{-1} & 0 & 0 & \frac{b_3}{I_1} & -\frac{b_2}{I_1}\\
+%0 & 0.125I_2^{-1} & -0.125I_2^{-1} & 0 & - \frac{b_3}{I_2} & 0 &  \frac{b_1}{I_2} \\ 
+% -0.58I_3^{-1} & -0.58 I_3^{-1} & -0.58 I_3^{-1} & I_3^{-1} &  \frac{b_2}{I_3} &  -\frac{b_1}{I_3} & 0 \\  
+% I_w^{-1} & 0 & 0 & 0 & 0 & 0 \\
+% 0 & I_w^{-1} & 0 & 0 & 0 & 0 \\ 
+% 0 & 0 & I_w^{-1} & 0& 0 & 0 & 0 \\  
+% 0 & 0 & 0 & I_w^{-1} & 0 & 0 & 0 \\
+% 0 & 0 & 0 & 0 & 0 & 0& 0 \\
+% 0 & 0 & 0 & 0 & 0& 0 & 0 \\
+% \end{bmatrix}
+% \begin{bmatrix}
+% N^{fault}_{rw,1} \\
+% N^{fault}_{rw,2} \\
+% N^{fault}_{rw,3}\\
+% N^{fault}_{rw,4}\\
+% \m^{fault}_{mt,1} \\
+% \m^{fault}_{mt,2} \\
+% \m^{fault}_{mt,3} 
+% \end{bmatrix}
+%\label{eq:uioMatrices}
+%\end{align}
+%\normalsize
 
 where $I_w$ is the reaction wheel axial moment of inertia, $\omega_o$ is the angular velocity of the orbit, $I_i$ is the satellite moment of inertia along $i$th principal axis. $\underline{C}$ is an identity matrix. 
 
