@@ -309,12 +309,14 @@ An experiment was made to investigate if ignoring the unknown torque disturbance
 	\begin{subfigure}{0.5\linewidth}
 			\centering
 		\includegraphics[width=1\linewidth]{figures/nosensfault_res}
-		\label{fig:nosensfault_res}
+		\label{fig:nosensfault_res}		
+		\caption{}
 	\end{subfigure}
 		\begin{subfigure}{0.5\linewidth}
 	\centering
 \includegraphics[width=1\linewidth]{figures/sensfault_res}
 \label{fig:sensfault_res}	
+\caption{}
 	\end{subfigure}
 \caption{\ref{fig:nosensfault_res} presents how the residual converges to zero when disturbance is present and fault is absent. \ref{fig:nosensfault_res} presents the residual in case of a fault in angular velocity estimation.}
 \end{figure}
@@ -331,13 +333,15 @@ An experiment was made to investigate if ignoring the unknown torque disturbance
 	\centering
 	\includegraphics[width=1\linewidth]{figures/constdistonly_res}
 	\label{fig:residualdist}	
+	\caption{}
 	\end{subfigure}
 	\begin{subfigure}{0.5\linewidth}
 	\centering
 	\includegraphics[width=1\linewidth]{figures/mt_fault_res}
 	\label{fig:residualmt}
+	\caption{}
 	\end{subfigure}
-\caption{\ref{fig:residualdist} presents the residual of the observer without torque disturbance convergence when only disturbance torque estimate is present. \ref{fig:residualdist} presents the residual with periodically occurring magnetorquer fault. The order of magnitude of the residual in \ref{fig:residualdist} is 3 times as big.}
+\caption{\ref{fig:residualdist} presents the residual of the observer without torque disturbance convergence when only disturbance torque estimate is present. \ref{fig:residualmt} presents the residual with periodically occurring magnetorquer fault. The order of magnitude of the residual in \ref{fig:residualdist} is 3 times as big.}
 \end{figure}
 
 %\begin{figure}[H]
