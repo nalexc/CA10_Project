@@ -23,9 +23,6 @@ When developing complex systems, using a modular design, setting up a hierarchy 
 \input{chapters/stationTracking.tex}
 \input{chapters/globalAttitudeControl.tex}
 
-
-In the following sections \ref{sec:LC} and \ref{sec:SM}  will be discussed two attitude controller designs that are based on previous work \cite{PrevPro}. The two controllers calculate a torque demand that has to be produced from the motors. The first controller is based on the linearized model \eqref{eq:lele}, and thus is characterized as linear state feedback control, while the second one is based on the non-linear dynamics \eqref{eq:seom} creating a sliding manifold, a hyperplane, such that when the states are on the manifold, will converge to the desired reference. The non-linear controller is called Sliding Mode Control (SMC).\nomenclature[AS]{\textbf{SMC}}{Sliding Mode Control}
-
 \subsection{Linear attitude controller} \label{sec:LC}
 
 The system's equilibrium operating in nadir is defined between the orbit frame and the body frame. The angular rate between the frames should be zero $\vec{ ^s_o  \omega} = 0$ and the two frames should be aligned thus the relative attitude quaternion is $[0 \ 0 \ 0 \ 1]^{T}$. Therefore,  $ \parallel \vec{ {\bar{\omega}}} \parallel $ is equal to the orbital angular velocity, and equation \ref{eq:lele} following \cite{Rafael} can be written as  

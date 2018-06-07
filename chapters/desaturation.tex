@@ -126,7 +126,7 @@ Further analysis made by Trégouët et al. \cite{DesatTregouet} found that the c
 \label{eq:momDumpDynDependency}
 \end{align}		
 
-where $\underline{1}_3$ is a $3\times3$ identity matrix, $\vec{\xi}(\vec{q}, \vec{\omega})$ is the notation for the term related satellite dynamics states that affect the desaturation dynamics.
+where $\underline{1}_{3\times3}$ is a $3\times3$ identity matrix, $\vec{\xi}(\vec{q}, \vec{\omega})$ is the notation for the term related satellite dynamics states that affect the desaturation dynamics.
 
 Remapping equation \ref{eq:momDumpDynDependency} to inertial frame results in equation  \ref{eq:momDumpDynDependencyInertial}. Figure \ref{fig:quasiCascadeDesat} illustrates the system according to equations \ref{eq:desatDynReorder} and \ref{eq:momDumpDynDependencyInertial}.
 
@@ -177,7 +177,7 @@ The dynamics of the total angular momentum and the satellite's angular velocity 
 
 \subsubsection{Static allocation}
 
-Equation \ref{eq:dyn02} suggests that the desaturation loop can have an effect on the on the attitude control loop, as mentioned above. That is undesired, since the attitude control loop is of higher importance than desaturation. To reverse the cascade arrangement corresponding to control law \ref{eq:newMTcontrol}, the grouping of the terms need to be revised first. For the reverse cascade scheme, the control input $\vec{u}$ is modified to include the magnetorquer torque, according to equation \ref{eq:newdesatDynReorder}. The magnetorquer torque is no longer handled as a disturbance, instead it is explicitly a term in the control input. If  $\vec{u}$ actuation tracking  $\vec{u}$ demand well, the main attitude dynamics becomes independent of the magnetorquer torque output.
+Equation \ref{eq:dyn02} suggests that the desaturation loop can have an effect on the attitude control loop, as mentioned above. That is undesired, since the attitude control loop is of higher importance than desaturation. To reverse the cascade arrangement corresponding to control law \ref{eq:newMTcontrol}, the grouping of the terms need to be revised first. For the reverse cascade scheme, the control input $\vec{u}$ is modified to include the magnetorquer torque, according to equation \ref{eq:newdesatDynReorder}. The magnetorquer torque is no longer handled as a disturbance, instead it is explicitly a term in the control input. If  $\vec{u}$ actuation tracking  $\vec{u}$ demand well, the main attitude dynamics becomes independent of the magnetorquer torque output.
 
 \begin{equation}
 \underline I_{s} \vec{\dot{\omega}} + \underline{\omega}^\times\underline I_{s} \vec{\omega} =    \overbrace{-\underline{\omega}^\times\vec{h_{rw}} + \vec{N_{rw}} +  \vec{N_{mt}}}^{\vec{u}}
